@@ -1,0 +1,3777 @@
+@font-face {
+  font-family: Regestogrotesk;
+  src: url('../fonts/RegestoGrotesk-Bold.ttf') format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Regestogrotesk;
+  src: url('../fonts/RegestoGrotesk-Medium.ttf') format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Regestogrotesk;
+  src: url('../fonts/RegestoGrotesk-Regular.ttf') format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.w-embed-youtubevideo {
+  background-image: url('https://d3e54v103j8qbb.cloudfront.net/static/youtube-placeholder.2b05e7d68d.svg');
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+}
+
+.w-embed-youtubevideo:empty {
+  min-height: 75px;
+  padding-bottom: 56.25%;
+}
+
+.w-layout-grid {
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.section-2 {
+  text-align: center;
+  background-color: #fff;
+  border-bottom: 1px #d1d1d1;
+  padding: 20px 40px;
+  display: flex;
+}
+
+.image {
+  width: 150px;
+  overflow: visible;
+}
+
+.body {
+  color: #000;
+  background-color: #f1f1f1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.div-block {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 750px;
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.div-block.hero-information {
+  height: auto;
+  position: absolute;
+}
+
+.heading {
+  color: #fff;
+  text-align: center;
+  text-transform: none;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-size: 50px;
+  font-style: normal;
+}
+
+.utility-page-wrap {
+  background-color: #f1f1f1;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100%;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  display: flex;
+}
+
+.utility-page-content {
+  text-align: center;
+  flex-direction: column;
+  width: auto;
+  max-width: 430px;
+  display: flex;
+}
+
+.search {
+  justify-content: center;
+  align-items: center;
+  max-width: 750px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+  overflow: hidden;
+}
+
+.search-input {
+  border-radius: 20px 0 0 20px;
+  margin-bottom: 0;
+  padding-top: 8px;
+}
+
+.field-label {
+  color: #454545;
+  text-align: center;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.div-block-2 {
+  padding-top: 20px;
+}
+
+.section-3 {
+  justify-content: space-between;
+  align-items: center;
+  height: 450px;
+  display: flex;
+  overflow: hidden;
+}
+
+.div-block-3 {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.search-button {
+  color: #000;
+  background-color: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.heading-2 {
+  text-align: center;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.heading-2.titulo-seccion {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.paragraph-2 {
+  text-align: center;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  display: block;
+}
+
+.div-block-4 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.numeralia {
+  max-width: 1440px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.numeralia.max_width {
+  background-color: #fff0;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.text-block {
+  text-align: center;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.text-block.color_oro {
+  color: #bb945c;
+}
+
+.div-block-5 {
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  overflow: hidden;
+}
+
+.max_width {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1440px;
+  margin: 40px auto;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.max_width.seccion-de-diputados {
+  margin-top: 20px;
+}
+
+.descripcion_dato {
+  color: #828282;
+  text-align: center;
+  margin-top: 10px;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.columns {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  overflow: hidden;
+}
+
+.column {
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.column.numeralia_columna {
+  overflow: visible;
+}
+
+.numeralia_columna {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: visible;
+}
+
+.diputados.max_width {
+  background-color: #fff;
+  border-radius: 20px;
+  height: auto;
+  margin-bottom: 20px;
+  padding: 40px 20px;
+  overflow: visible;
+}
+
+.heading-3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-size: 30px;
+}
+
+.div-block-6 {
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+}
+
+.search-2 {
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+}
+
+.search-input-2 {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 300px;
+  margin-bottom: 0;
+}
+
+.search-button-2 {
+  background-color: #000;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.button {
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.button.grupo_parlamentario {
+  color: #bb945c;
+  border: 1px solid #bb945c;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  transition: background-color .35s;
+}
+
+.button.grupo_parlamentario:hover {
+  color: #fff;
+  background-color: #b5261e;
+}
+
+.button.grupo_parlamentario.btn-pan:hover {
+  color: #fff;
+  background-color: #143288;
+}
+
+.button.grupo_parlamentario.btn-pt:hover {
+  color: #fff;
+  background-color: #da431d;
+}
+
+.button.grupo_parlamentario.btn-pri:hover {
+  background-color: #d23026;
+}
+
+.button.grupo_parlamentario.btn-pvem:hover {
+  background-color: #6dae56;
+}
+
+.button.grupo_parlamentario.btn-mc:hover {
+  background-color: #ff8300;
+}
+
+.button.grupo_parlamentario.btn-prd:hover {
+  background-color: #f7cf00;
+}
+
+.button.grupo_parlamentario.btn-var-1 {
+  box-sizing: border-box;
+  text-align: center;
+  flex: 0 auto;
+  width: 100%;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  display: block;
+  overflow: visible;
+}
+
+.button.grupo_parlamentario.btn-var-1:hover {
+  background-color: #bb945c;
+}
+
+.filtros-diputados {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding-top: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.div-block-8 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.div-block-9 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: 700;
+  display: flex;
+}
+
+.menu-option {
+  -webkit-text-stroke-color: #333;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: none;
+}
+
+.menu-option:hover {
+  color: #96134b;
+  text-decoration: none;
+}
+
+.div-block-11 {
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.columns-2 {
+  outline-offset: 0px;
+  border-radius: 20px;
+  outline: 1px solid #d9d9d9;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px;
+  display: flex;
+}
+
+.div-block-12 {
+  box-sizing: border-box;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  overflow: clip;
+}
+
+.image-3 {
+  border: 0 solid #d9d9d9;
+  border-radius: 10px;
+  width: auto;
+  height: auto;
+}
+
+.columns-3 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.column-2 {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.column-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.div-block-13 {
+  flex-flow: wrap;
+  display: flex;
+}
+
+.div-block-14 {
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.columns-4 {
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 0;
+  display: flex;
+}
+
+.paragraph-3 {
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.image-4 {
+  width: 20px;
+  height: 16px;
+}
+
+.social-media {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+.image-5 {
+  width: 8px;
+  height: 15px;
+}
+
+.image-6 {
+  width: 17px;
+  height: 15px;
+}
+
+.image-7, .image-8 {
+  width: 15px;
+  height: 15px;
+}
+
+.image-8.youtube-icono {
+  width: 21px;
+}
+
+.column-5, .div-block-16 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.div-block-17 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading-4 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.heading-5 {
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 30px;
+}
+
+.columns-5 {
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+  display: flex;
+}
+
+.youtube {
+  border-radius: 20px;
+}
+
+.list-item {
+  background-color: #e1e1e100;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+}
+
+.text-block-3 {
+  font-weight: 700;
+}
+
+.div-block-19 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  display: flex;
+}
+
+.column-6 {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.heading-6 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.heading-6.titulo-seccion.titulo-center {
+  text-align: center;
+}
+
+.column-7 {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-left: 10px;
+  display: flex;
+}
+
+.column-8 {
+  padding-right: 10px;
+}
+
+.div-block-20 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.columns-6 {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.button-2 {
+  margin-left: 10px;
+}
+
+.button-2.btn-var2 {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+}
+
+.button-2.btn-var2:hover {
+  color: #96134b;
+  border-color: #96134b;
+}
+
+.grid {
+  background-color: #fff;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.heading-8 {
+  color: #fff;
+  text-align: center;
+  font-size: 25px;
+  text-decoration: none;
+}
+
+.div-block-21 {
+  background-image: url('../images/Hero.jpeg');
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 280px;
+  padding: 20px 10px;
+  display: flex;
+  overflow: hidden;
+}
+
+.div-block-21.legis-in-1 {
+  -webkit-text-fill-color: inherit;
+  background-color: #000;
+  background-image: linear-gradient(#0009, #0009), url('../images/JEN_9480-de-tamaño-grande.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+  background-clip: border-box;
+}
+
+.div-block-21.legis-in-1:hover {
+  background-image: linear-gradient(#0006, #0006), url('../images/JEN_9480-de-tamaño-grande.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-2 {
+  background-image: linear-gradient(#0009, #0009), url('../images/congreso-dron-3-de-tamaño-grande.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-2:hover {
+  background-image: linear-gradient(#0006, #0006), url('../images/congreso-dron-3-de-tamaño-grande.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-3 {
+  background-image: linear-gradient(#0009, #0009), url('../images/JEN_9490-de-tamaño-grande.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-3:hover {
+  background-image: linear-gradient(#0006, #0006), url('../images/JEN_9490-de-tamaño-grande.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-4 {
+  background-image: linear-gradient(#0009, #0009), url('../images/JEN_9510.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-4:hover {
+  background-image: linear-gradient(#0006, #0006), url('../images/JEN_9510.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-5 {
+  background-image: linear-gradient(#0009, #0009), url('../images/JEN_9500.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-5:hover {
+  background-image: linear-gradient(#0006, #0006), url('../images/JEN_9500.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-6 {
+  background-image: linear-gradient(#0009, #0009), url('../images/JEN_9483.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-block-21.legis-in-6:hover {
+  background-image: linear-gradient(#0006, #0006), url('../images/JEN_9483.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.image-10 {
+  background-image: url('../images/boletin.jpg');
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 10px;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 10px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.column-9 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.titulo-seccion {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-size: 30px;
+}
+
+.titulo-seccion.titulo-center {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.titulo-seccion.trabajo-legislativo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.heading-10 {
+  font-size: 20px;
+}
+
+.paragraph-4 {
+  color: #c7c7c7;
+}
+
+.div-block-22 {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.div-block-23 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.fecha-boletin {
+  color: #c7c7c7;
+  text-align: left;
+}
+
+.btn-var-2 {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  flex: 0 auto;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.btn-var-2.w--current {
+  color: #fff;
+  background-color: #bb945c;
+}
+
+.img-boletin {
+  border-radius: 10px;
+}
+
+.image-11 {
+  max-width: 150px;
+  display: block;
+}
+
+.column-10 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.section-4 {
+  background-color: #fcfcfc;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.columns-7 {
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.text-block-8 {
+  color: #c7c7c7;
+}
+
+.columns-8 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.grid-2 {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.image-12 {
+  width: 24px;
+  height: 24px;
+  display: none;
+  overflow: visible;
+}
+
+.link-nav-menu {
+  background-color: #fff0;
+}
+
+.link-nav-menu:hover {
+  color: #96134b;
+}
+
+.dropdown-list {
+  background-color: #dddddd0a;
+}
+
+.dropdown-list.w--open {
+  -webkit-text-fill-color: inherit;
+  background-color: #ffffffe6;
+  background-clip: border-box;
+  border-radius: 20px;
+}
+
+.image-13 {
+  border-radius: 20px;
+}
+
+.image-14 {
+  border-radius: 0;
+}
+
+.image-14.banner-info, .banner-info {
+  border-radius: 20px;
+}
+
+.code-embed {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  display: flex;
+  position: static;
+  inset: 0% 0% auto;
+  overflow: hidden;
+}
+
+.body-2 {
+  background-color: #f1f1f1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.filtro-grupoparlamentario {
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.filtro-grupoparlamentario:hover {
+  color: #bb945c;
+}
+
+.filtro-grupoparlamentario.w--open {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.filtro-grupoparlamentario.opcion-de-grupo {
+  border-width: 0;
+}
+
+.dropdown-list-2 {
+  background-color: #ddd;
+}
+
+.dropdown-list-2.w--open {
+  background-color: #fff;
+  border: 1px solid #d8d8d8;
+  border-radius: 0 0 20px 20px;
+}
+
+.div-block-26 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.dropdown-grupo-parlamentario {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.grid-3 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.image-15 {
+  width: 100%;
+}
+
+.image-15.diputado-pan:hover {
+  pointer-events: auto;
+  background-image: url('../images/PAN_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-15.diputado-pvem {
+  border-radius: 10px;
+}
+
+.image-15.diputado-pvem:hover {
+  background-image: url('../images/PVEM_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-15.diputado-morena:hover {
+  background-image: url('../images/morena_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-15.diputado-mc:hover {
+  background-image: url('../images/MC_1.png');
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+.image-15.diputado-pri {
+  border-radius: 0;
+}
+
+.image-15.diputado-pri:hover {
+  background-image: url('../images/PRI_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-15.diputado-prd:hover {
+  background-image: url('../images/PRD_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.grupo-de-filtro {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.heading-13 {
+  font-size: 30px;
+}
+
+.body-3 {
+  background-color: #f1f1f1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.info-diputado-basica {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-diputados {
+  max-width: 1440px;
+  margin: 40px auto 80px;
+}
+
+.perfil-diputado {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.foto-de-diputado {
+  overflow: hidden;
+}
+
+.image-16 {
+  background-image: url('../images/PAN_1.png');
+  background-position: 50% 0;
+  background-size: cover;
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.heading-14 {
+  font-size: 30px;
+}
+
+.paragraph-6 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.column-11 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  padding-top: 20px;
+  display: flex;
+}
+
+.heading-15 {
+  font-size: 30px;
+}
+
+.section-diputados {
+  margin-top: 40px;
+}
+
+.tab-area {
+  background-color: #fff0;
+  border-radius: 20px;
+}
+
+.tab-link-iniciativas {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.tab-link-iniciativas:hover {
+  background-color: #fff;
+}
+
+.tab-link-iniciativas.w--current {
+  border-bottom-left-radius: 10px;
+}
+
+.tab-link-iniciativas.w--current:hover {
+  background-color: #fff;
+}
+
+.tab-link-comunicados {
+  border-top-right-radius: 0;
+}
+
+.tab-link-comunicados:hover {
+  background-color: #fff;
+}
+
+.heading-16 {
+  font-size: 20px;
+}
+
+.lista-iniciativas {
+  border-radius: 20px;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.image-17 {
+  width: 100%;
+}
+
+.columns-9 {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.columns-9.columna-lista_comunicados {
+  padding-bottom: 20px;
+}
+
+.tab-pane-comunicados {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 20px;
+  padding: 20px 10px;
+}
+
+.body-4 {
+  background-color: #f1f1f1;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  display: block;
+}
+
+.main-legislativo {
+  max-width: 1440px;
+  margin: 40px auto 80px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.grid-4 {
+  background-color: #fff0;
+  border-radius: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 0;
+}
+
+.gaceta {
+  margin-bottom: 20px;
+}
+
+.tabs-menu {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  text-align: left;
+  flex-flow: row;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: static;
+  overflow: scroll;
+}
+
+.titulo-seccion-legislativo {
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 30px;
+}
+
+.text-block-10 {
+  flex: none;
+}
+
+.link-block {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+}
+
+.titulo-tab {
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 18px;
+  display: flex;
+}
+
+.div-block-30 {
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+}
+
+.list-legislacion-documentos {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.link-block-3 {
+  color: #333;
+  text-decoration: none;
+}
+
+.text-block-11 {
+  flex: none;
+}
+
+.tabs {
+  margin-top: 40px;
+}
+
+.tabs-menu-2 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.margen-seccion {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.column-12, .column-13 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.body-5 {
+  background-color: #f1f1f1;
+}
+
+.hero-img {
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 40px;
+  overflow: hidden;
+}
+
+.grid-5 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: wrap;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: row;
+  justify-content: center;
+  place-items: start center;
+  display: grid;
+}
+
+.image-20 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heading-19 {
+  text-align: center;
+  -webkit-text-stroke-color: #333;
+}
+
+.div-block-31 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 200px;
+  display: flex;
+}
+
+.link-block-4 {
+  color: #333;
+  -webkit-text-stroke-color: #333;
+  text-decoration: none;
+}
+
+.heading-20 {
+  text-align: center;
+}
+
+.grid-6 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-7 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.bold-text, .heading-21, .heading-22, .heading-23 {
+  text-align: center;
+}
+
+.listta-solicitud-informacion {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.text-block-12, .text-block-13 {
+  text-align: center;
+}
+
+.lista-solicitud-informacion-elemento {
+  border: 1px solid #f1f1f1;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.text-block-14, .text-block-15 {
+  text-align: center;
+}
+
+.list-item-2 {
+  border: 2px solid #f1f1f1;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.div-block-32 {
+  overflow: hidden;
+}
+
+.heading-24, .text-block-16, .paragraph-7, .paragraph-8, .paragraph-9, .paragraph-10, .heading-25, .heading-26, .heading-27 {
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.image-21 {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 40px;
+  display: block;
+}
+
+.text-block-17 {
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.texto-btn {
+  text-align: center;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.heading-28, .paragraph-11, .heading-29, .paragraph-12 {
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.paragraph-12.h-bold {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.columns-10 {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.column-14, .columns-11 {
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.body-6 {
+  background-color: #f1f1f1;
+}
+
+.grid-8 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 40px;
+}
+
+.div-block-33 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-flow: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.div-block-34 {
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 20px;
+  padding: 20px 10px;
+}
+
+.imagen-dependencias {
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+}
+
+.imagen-dependencias:hover {
+  background-image: linear-gradient(297deg, #fff, #bb945c4d);
+}
+
+.titulo-dorado {
+  color: #bb945c;
+}
+
+.features-wrapper {
+  color: #333;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.features-block {
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: auto;
+  align-items: center;
+  display: flex;
+}
+
+.features-title {
+  margin-bottom: 8px;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.features-title-small {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.image-23 {
+  width: 50px;
+  padding-bottom: 20px;
+}
+
+.div-block-36 {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.img-parlamentaria {
+  max-width: 60%;
+  margin-bottom: 80px;
+}
+
+.div-block-37 {
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tabs-content {
+  margin-top: 0;
+}
+
+.body-7 {
+  background-color: #f1f1f1;
+}
+
+.img-comunicado-home-2 {
+  background-image: url('../images/100020329798866823-5619-4363-8843-3f82be94b497-1.jpg');
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 10px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.img-comunicado-home-1 {
+  background-image: url('../images/emma-comunicado1.jpg');
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 10px;
+  height: 100%;
+}
+
+.nombre-diputado-home {
+  font-size: 20px;
+}
+
+.btn-envivo {
+  color: #000;
+  background-color: #f1f1f1;
+  border: 1px solid #96124a;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.btn-envivo:hover {
+  color: #fff;
+  background-color: #96124a;
+}
+
+.lightbox-link {
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  overflow: hidden;
+}
+
+.image-25 {
+  border-radius: 20px;
+  width: 50%;
+}
+
+.texto-comunicado {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.img-lightbox-under {
+  border-radius: 10px;
+  width: 200px;
+}
+
+.div-block-40 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.body-9 {
+  color: #454545;
+  background-color: #f1f1f1;
+}
+
+.div-block-41 {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-8 {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1400px;
+  margin-bottom: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 80px;
+}
+
+.heading-36 {
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.intro-boletin {
+  float: none;
+  clear: none;
+  text-align: justify;
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.encabezado-bole-n {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-top: 40px;
+}
+
+.column-17 {
+  text-align: right;
+}
+
+.btn-nav-boletin {
+  color: #000;
+  background-color: #3898ec00;
+}
+
+.btn-nav-boletin:hover {
+  color: #bb945c;
+}
+
+.serction-nav-boletin {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.boletines-relacionados {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.heading-37 {
+  text-align: center;
+}
+
+.grid-boletin {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.columna-informativa-blog {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.gp-diputado {
+  font-weight: 700;
+}
+
+.nombre-diputado {
+  font-size: 16px;
+}
+
+.text-block-19 {
+  font-weight: 700;
+}
+
+.tab-link-comisiones {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.tab-link-comisiones:hover {
+  background-color: #fff;
+}
+
+.grid-11 {
+  background-color: #fff;
+  border-radius: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.div-block-42 {
+  border: 0 solid #f1f1f1;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.img-comision-top {
+  background-color: #bb945c;
+  border-radius: 10px;
+  width: 80px;
+  max-width: 100%;
+  height: 80px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.img-comision-top:hover {
+  background-color: #bb945c;
+  margin-top: 0;
+}
+
+.texto-bold-comision {
+  text-align: center;
+  font-weight: 400;
+}
+
+.texto-comision {
+  text-align: center;
+  font-weight: 700;
+}
+
+.img-comision-general {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.grid-12 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.div-block-43 {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.btn-black-str {
+  color: #454545;
+  text-align: center;
+  -webkit-text-stroke-color: #454545;
+  background-color: #fff;
+  border: 1px solid #454545;
+  border-radius: 5px;
+  max-width: 140px;
+}
+
+.div-block-44 {
+  margin-bottom: 20px;
+}
+
+.columns-14 {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.image-28 {
+  border-radius: 20px;
+}
+
+.columns-15 {
+  border-radius: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.grid-13 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.div-block-45 {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.paragraph-13 {
+  text-align: center;
+}
+
+.body-10 {
+  background-color: #f1f1f1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.columns-17 {
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+}
+
+.hero_congreso {
+  background-color: #fff;
+  border: 0 solid #fff;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.grid-14 {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.div-block-47 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.subtitulo-info {
+  font-weight: 700;
+}
+
+.div-block-48 {
+  background-color: #fff;
+  border: 0 solid #a1a1a1;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.titulo-informacion {
+  text-align: left;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.img-informacion, .image-30 {
+  border-radius: 10px;
+}
+
+.titulo-centrado {
+  text-align: center;
+  max-width: 1440px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.div-block-50 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.texto-centrado {
+  text-align: center;
+}
+
+.titulo-gigante {
+  margin-bottom: 20px;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.img-organos-congresos {
+  min-width: 10px;
+  max-width: 100px;
+  min-height: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: static;
+  overflow: hidden;
+}
+
+.columna-organos {
+  background-color: #fff;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.columna-organos-congreso {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.div-block-51 {
+  width: 100%;
+}
+
+.column-21 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.image-31 {
+  max-width: 350px;
+}
+
+.que_es_un_diputado {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.body-11 {
+  background-color: #f1f1f1;
+}
+
+.div-block-52 {
+  background-color: #fff0;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.div-block-53 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.subtitulo-info-centrado {
+  text-align: center;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+}
+
+.cuerpo-jucopo {
+  max-width: 1440px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.column-22 {
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+}
+
+.column-23 {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.columns-18 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff0;
+  background-image: linear-gradient(#fff, #fff0);
+  border-radius: 20px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.presidente-card-jucopo {
+  background-color: #fff;
+  border: 0 solid #e1e1e1;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 250px;
+  padding: 10px;
+  display: flex;
+}
+
+.img-jucopo {
+  background-color: #f1f1f1;
+  background-image: linear-gradient(127deg, #bb945c80, #fff);
+  border-radius: 20px;
+  max-width: 230px;
+}
+
+.img-jucopo:hover {
+  background-image: linear-gradient(127deg, #bb945c80, #fff);
+}
+
+.img-jucopo.bg-pvedm {
+  max-width: 180px;
+}
+
+.img-jucopo.bg-pvedm:hover {
+  background-image: url('../images/PVEM_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 50% 0, 0 0;
+  background-size: cover, auto;
+}
+
+.img-jucopo.bg-pri {
+  max-width: 180px;
+}
+
+.img-jucopo.bg-pri:hover {
+  background-image: url('../images/PRI_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 50% 0, 0 0;
+  background-size: cover, auto;
+}
+
+.img-jucopo.bg-pt {
+  background-image: linear-gradient(127deg, #bb945c80, #fff);
+  max-width: 180px;
+}
+
+.img-jucopo.bg-pt:hover {
+  background-image: url('../images/PT_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 0 0, 0 0;
+  background-size: cover, auto;
+}
+
+.img-jucopo.bg-pan {
+  max-width: 180px;
+}
+
+.img-jucopo.bg-pan:hover {
+  background-image: url('../images/PAN_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 0 0, 0 0;
+  background-size: cover, auto;
+}
+
+.img-jucopo.bg-prd {
+  max-width: 180px;
+}
+
+.img-jucopo.bg-prd:hover {
+  background-image: url('../images/PRD_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 0 0, 0 0;
+  background-size: cover, auto;
+}
+
+.img-jucopo.bg-mc {
+  max-width: 180px;
+}
+
+.img-jucopo.bg-mc:hover {
+  background-image: url('../images/MC_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 0 0, 0 0;
+  background-size: cover, auto;
+}
+
+.img-jucopo.bg-morena {
+  max-width: 180px;
+}
+
+.img-jucopo.bg-morena:hover {
+  background-image: url('../images/morena_1.png'), linear-gradient(127deg, #bb945c80, #fff);
+  background-position: 50% 0, 0 0;
+  background-size: cover, auto;
+}
+
+.text-block-24 {
+  text-align: left;
+}
+
+.grid-15 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.miembro-card-jucopo {
+  background-color: #fff;
+  border: 0 solid #e1e1e1;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+  padding: 10px 20px;
+  display: flex;
+}
+
+.nombre-jucopo {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.cuerpo-info-jucopo {
+  text-align: center;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.que_es_jucopo {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 20px 10px;
+}
+
+.body-12 {
+  background-color: #f1f1f1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.hero-img-comisiones {
+  background-image: linear-gradient(135deg, #f1f1f1 30%, #f1f1f1b3 50%, #f1f1f1 70%), url('../images/Recurso-1.png');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  max-height: 250px;
+  margin-top: 40px;
+  display: flex;
+  overflow: hidden;
+}
+
+.numero-de-cc {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 80px;
+}
+
+.text-centrado-cc {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.columns-19 {
+  flex: 1;
+  max-width: 1000px;
+}
+
+.column-24, .column-25 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: column;
+  display: flex;
+}
+
+.div-block-54 {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 10px 10px 20px;
+}
+
+.grid-comisionesycomitespermanentes {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+}
+
+.div-block-55 {
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  display: flex;
+}
+
+.div-block-56 {
+  background-color: #fff;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-comisiones {
+  color: #454545;
+  -webkit-text-stroke-color: #454545;
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 5px;
+}
+
+.lista-comisiones-legislativas {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: wrap;
+  margin-top: 20px;
+  display: flex;
+}
+
+.texto-presidente-cc {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 0;
+  font-size: 12px;
+  line-height: 15px;
+  text-decoration: none;
+}
+
+.titulo-centrado-peque-o {
+  text-align: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.body-13 {
+  color: #454545;
+  background-color: #f1f1f1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.div-block-57 {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.text-block-26 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.descripcion_dato-izq {
+  color: #828282;
+  text-align: left;
+  margin-top: 10px;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.body_comites {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-bottom: 40px;
+  padding: 20px 10px;
+}
+
+.div-block-58 {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.resultados-iniciativas {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.image-32 {
+  border-radius: 10px;
+}
+
+.columns-20 {
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.img_cc-hero {
+  max-width: 250px;
+}
+
+.column-26 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.tab-cc-1 {
+  background-color: #f1f1f1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.tab-cc-1:hover {
+  background-color: #88898c;
+}
+
+.tab-cc-1.w--current {
+  color: #454545;
+  background-color: #c7c7c7;
+  border-bottom-left-radius: 10px;
+}
+
+.tab-cc-1.w--current:hover {
+  color: #454545;
+  -webkit-text-stroke-color: white;
+  background-color: #f1f1f1;
+  border: 0 solid #f1f1f1;
+}
+
+.tab-final {
+  background-color: #f1f1f1;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.tab-final:hover {
+  background-color: #88898c;
+}
+
+.tab-cc {
+  background-color: #f1f1f1;
+}
+
+.tab-cc:hover {
+  background-color: #88898c;
+}
+
+.integrante-comision {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.nombre-cc-centrado {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.grid-integrante-cc {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.img-integrantes-cc {
+  border-radius: 20px;
+}
+
+.img-integrantes-cc.bg-morena {
+  background-color: #f1f1f1;
+}
+
+.img-integrantes-cc.bg-morena:hover {
+  background-image: url('../images/morena_1.png');
+  background-position: 0 0;
+  background-size: cover;
+}
+
+.img-integrantes-cc.bg-pan {
+  background-color: #f1f1f1;
+}
+
+.img-integrantes-cc.bg-pan:hover {
+  background-image: url('../images/PAN_1.png');
+  background-position: 0 0;
+  background-size: cover;
+}
+
+.img-integrantes-cc.bg-pvem {
+  background-color: #f1f1f1;
+}
+
+.img-integrantes-cc.bg-pvem:hover {
+  background-image: url('../images/PVEM_1.png');
+  background-position: 0 0;
+  background-size: cover;
+}
+
+.img-integrantes-cc.bg-pri {
+  background-color: #f1f1f1;
+}
+
+.img-integrantes-cc.bg-pri:hover {
+  background-image: url('../images/PRI_1.png');
+  background-position: 0 0;
+  background-size: cover;
+}
+
+.img-integrantes-cc.bg-mc {
+  background-color: #f1f1f1;
+}
+
+.img-integrantes-cc.bg-mc:hover {
+  background-image: url('../images/MC_1.png');
+  background-position: 0 0;
+  background-size: auto;
+}
+
+.img-integrantes-cc.bg-prd {
+  background-color: #f1f1f1;
+  border: 0 solid #ffd900;
+}
+
+.img-integrantes-cc.bg-prd:hover {
+  background-image: url('../images/PRD_1.png');
+  background-size: cover;
+}
+
+.text-tab {
+  text-align: center;
+}
+
+.tabs-menu-copy {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  text-align: left;
+  flex-flow: row;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: static;
+  overflow: scroll;
+}
+
+.tabs-menu-4 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.div-mesa-direciva {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  border-radius: 20px;
+  flex-flow: wrap;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+}
+
+.columns-21 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.bg-gradient-gris {
+  background-image: linear-gradient(140deg, #ccc, #fff 76%, #bb945c);
+  border-radius: 20px;
+}
+
+.div-block-59 {
+  margin-top: 20px;
+}
+
+.div-iniciativas {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.texto-iniciativas {
+  text-align: justify;
+}
+
+.div-block-60 {
+  border: 0 solid #ccc;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  display: flex;
+}
+
+.text-decoration-none {
+  color: #454545;
+  text-decoration: none;
+}
+
+.grid-16 {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.titulo-dato-iniciativas {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.titulo-iniciativa {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.search-button-3 {
+  color: #fff;
+  background-color: #95134a;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.search-input-3 {
+  border: 1px solid #ccc;
+  border-radius: 20px 0 0 20px;
+  margin-bottom: 0;
+  padding-top: 8px;
+}
+
+.div-block-61 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.texto-status-aprobada {
+  color: #1a9637;
+  margin-bottom: 0;
+  font-weight: 700;
+}
+
+.div-iniciativa {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.btn-comisiones-action {
+  color: #454545;
+  -webkit-text-stroke-color: #454545;
+  background-color: #fff;
+  border: 1px solid #f1f1f1;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.div-block-62 {
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
+
+.body-14 {
+  color: #454545;
+  background-color: #f2f4f5;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.div-block-63 {
+  max-width: 1200px;
+  margin-top: 40px;
+}
+
+.section-9 {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1000px;
+  margin: 40px auto 80px;
+  padding: 40px 20px;
+}
+
+.h4-centrado {
+  color: #454545;
+  text-align: center;
+}
+
+.div-block-64 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.text-span {
+  color: #96134b;
+}
+
+.paragraph-14 {
+  text-align: justify;
+}
+
+.div-block-65 {
+  margin-bottom: 20px;
+}
+
+.div-block-66 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.grid-iniciativas {
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 20px;
+}
+
+.columns-22 {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.column-27 {
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  display: flex;
+}
+
+.img-btn-columnas {
+  width: 30px;
+  max-width: none;
+}
+
+.div-block-67 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.div-block-68 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-votacion {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px;
+  display: flex;
+}
+
+.btn-votacion:hover {
+  background-color: #f2f4f5;
+}
+
+.column-28 {
+  justify-content: center;
+  align-items: center;
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+}
+
+.div-btn-decreto {
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.grid-iniciativa-2 {
+  grid-template-rows: auto;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.grid-iniciativa-1 {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+}
+
+.img-btn-titulo {
+  width: 60px;
+  max-width: none;
+}
+
+.columnas-titulo-iniciativa {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.body-15 {
+  background-color: #f2f4f5;
+}
+
+.grid-17 {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 40px;
+}
+
+.resultado-votacion {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.titulo-resultados {
+  color: #96134b;
+  text-align: center;
+}
+
+.section-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.div-timeline {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.div-categoria {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.image-33 {
+  max-width: 30px;
+}
+
+.categoria {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.div-seccion-punto {
+  border: 1px solid #09c21b;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.div-seccion-turnada {
+  border: 1px solid #7e5b28;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-youtube {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #b10000;
+  border: 1px solid red;
+  border-radius: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.btn-texto-blanco {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.div-block-69 {
+  background-color: #f1f1f1;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.btn-votacion-copy {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  margin-bottom: 20px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 10px;
+  display: flex;
+}
+
+.btn-votacion-copy:hover {
+  background-color: #f2f4f5;
+}
+
+.btns-iniciativa {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  display: flex;
+}
+
+.div-timeline-resolucion {
+  background-color: #f6fff0;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  .section-3 {
+    height: 400px;
+    display: flex;
+  }
+
+  .div-block-6 {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    flex-flow: column;
+  }
+
+  .filtros-diputados.grupos-parlamentarios-selector {
+    flex-flow: wrap;
+  }
+
+  .div-block-9 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-flow: wrap;
+    overflow: auto;
+  }
+
+  .div-block-11 {
+    aspect-ratio: auto;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .columns-2 {
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .div-block-12 {
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    flex-flow: column;
+    overflow: hidden;
+  }
+
+  .columns-3 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .div-block-14 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .column-4 {
+    flex-flow: column;
+    display: block;
+    overflow: hidden;
+  }
+
+  .columns-5 {
+    flex-flow: row;
+  }
+
+  .column-7 {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .div-block-20 {
+    width: auto;
+    overflow: hidden;
+  }
+
+  .columns-6 {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .btn-var-2 {
+    flex: none;
+    display: flex;
+  }
+
+  .div-block-24 {
+    box-sizing: border-box;
+    aspect-ratio: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .div-block-26 {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .main-diputados {
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .tabs-menu {
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+  }
+
+  .text-block-10 {
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .tabs-menu-2 {
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .margen-seccion.tabs-menu-1 {
+    flex-flow: wrap;
+  }
+
+  .grid-7 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .features-wrapper {
+    justify-content: space-between;
+  }
+
+  .heading-38 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  .grid-comisionesycomitespermanentes {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    justify-content: stretch;
+  }
+
+  .grid-integrante-cc {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .tabs-menu-copy {
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+  }
+
+  .grid-iniciativas {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .div-block.hero-information {
+    height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .heading {
+    font-size: 40px;
+  }
+
+  .section-3 {
+    justify-content: space-between;
+    align-items: center;
+    height: 250px;
+  }
+
+  .div-block-4 {
+    display: block;
+  }
+
+  .heading-3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .div-block-6 {
+    flex-flow: column;
+  }
+
+  .button.grupo_parlamentario {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .button.grupo_parlamentario.btn-pri.btn-grupo-parlamentario {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .filtros-diputados {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filtros-diputados.grupos-parlamentarios-selector {
+    flex-flow: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .div-block-9 {
+    display: none;
+  }
+
+  .columns-5 {
+    flex-flow: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .btn-var-2 {
+    flex: none;
+  }
+
+  .section-4 {
+    flex-flow: column;
+    display: flex;
+  }
+
+  .columns-7 {
+    flex-flow: row;
+  }
+
+  .columns-8 {
+    flex-flow: column;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .image-12 {
+    display: block;
+  }
+
+  .div-block-26 {
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: scroll;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .main-legislativo {
+    overflow: scroll;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-7 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .columns-11 {
+    display: none;
+  }
+
+  .features-wrapper {
+    flex-wrap: wrap;
+    margin-bottom: -40px;
+  }
+
+  .features-block {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+
+  .grid-12 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .btn-black-str {
+    font-size: 14px;
+  }
+
+  .columns-14 {
+    flex-flow: column;
+  }
+
+  .titulo-comunicado-general {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .grid-integrante-cc {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .grid-iniciativas {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-17 {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .body {
+    overflow: hidden;
+  }
+
+  .div-block {
+    height: 100%;
+    position: absolute;
+  }
+
+  .div-block.hero-information {
+    width: auto;
+    margin-top: 100px;
+    display: flex;
+    position: absolute;
+    inset: 0% 0% auto;
+    overflow: hidden;
+  }
+
+  .heading {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .div-block-2 {
+    padding-top: 0;
+  }
+
+  .section-3 {
+    background-image: none;
+    height: 230px;
+    overflow: hidden;
+  }
+
+  .heading-2.titulo-seccion, .div-block-4 {
+    text-align: center;
+  }
+
+  .numeralia.max_width {
+    flex-flow: column;
+    margin-top: 40px;
+    display: flex;
+  }
+
+  .text-block {
+    font-size: 30px;
+  }
+
+  .max_width, .max_width.seccion-de-diputados {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .heading-3 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .heading-3.titulo-seccion {
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .search-input-2 {
+    width: auto;
+  }
+
+  .button.grupo_parlamentario.btn-prd.btn-grupo-parlamentario {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .button.grupo_parlamentario.btn-grupo-parlamentario {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .filtros-diputados {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filtros-diputados.grupos-parlamentarios-selector {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .div-block-8 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+
+  .div-block-9 {
+    overflow: scroll;
+  }
+
+  .columns-2 {
+    object-fit: fill;
+    flex-flow: column;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: hidden;
+  }
+
+  .div-block-12 {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    overflow: scroll;
+  }
+
+  .columns-3 {
+    flex-flow: wrap;
+  }
+
+  .column-2 {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .column-4 {
+    position: relative;
+    overflow: visible;
+  }
+
+  .social-media {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .list-item {
+    flex-flow: column;
+  }
+
+  .columns-6 {
+    flex-flow: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-seccion {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .section-4 {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .columns-7 {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .text-block-8 {
+    text-align: center;
+  }
+
+  .columns-8 {
+    flex-flow: column;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .code-embed {
+    flex-flow: column;
+    justify-content: center;
+  }
+
+  .body-2 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .div-block-26 {
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .heading-13 {
+    font-size: 25px;
+  }
+
+  .main-diputados {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .image-16 {
+    background-image: url('../images/PAN_1.png');
+    background-position: 50% 0;
+    background-size: cover;
+  }
+
+  .heading-14, .heading-15 {
+    line-height: 30px;
+  }
+
+  .tab-link-iniciativas, .tab-link-comunicados, .tab-link-comunicados.w--current {
+    border-radius: 10px;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs-menu, .div-block-30, .tabs-menu-2 {
+    flex-flow: column;
+  }
+
+  .grid-5, .grid-7 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lista-solicitud-informacion-elemento {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+
+  .image-21 {
+    width: 100%;
+    padding-top: 40px;
+  }
+
+  .columns-10 {
+    flex-flow: column;
+  }
+
+  .columns-11 {
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+    display: none;
+    overflow: hidden;
+  }
+
+  .grid-8 {
+    grid-template-columns: 1fr;
+  }
+
+  .div-block-37 {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .img-comunicado-home-2, .img-comunicado-home-1 {
+    height: 200px;
+  }
+
+  .image-25 {
+    width: 90%;
+  }
+
+  .img-lightbox-under {
+    width: 40%;
+  }
+
+  .div-block-40 {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .div-block-41 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .heading-36 {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  .intro-boletin {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .encabezado-bole-n {
+    overflow: hidden;
+  }
+
+  .grid-boletin {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+
+  .columna-informativa-blog {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+
+  .tab-link-comisiones, .tab-link-comisiones.w--current {
+    border-radius: 10px;
+  }
+
+  .grid-11 {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+  }
+
+  .div-block-42 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .tabs-menu-3 {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    border-radius: 0;
+    flex-flow: column;
+    display: flex;
+  }
+
+  .text-block-21, .text-block-22, .text-block-23 {
+    text-align: center;
+  }
+
+  .columns-15, .columns-17 {
+    flex-flow: column;
+  }
+
+  .grid-14 {
+    grid-template-columns: 1fr;
+  }
+
+  .columns-18 {
+    flex-flow: wrap;
+  }
+
+  .grid-15 {
+    flex-flow: column;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .hero-img-comisiones {
+    background-position: 0 0, 50%;
+    background-size: auto, auto;
+  }
+
+  .grid-comisionesycomitespermanentes {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+  }
+
+  .tab-cc-1 {
+    border-radius: 10px;
+  }
+
+  .tab-final {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .tab-cc {
+    border-radius: 10px;
+  }
+
+  .grid-integrante-cc {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .text-tab {
+    text-align: center;
+  }
+
+  .tabs-menu-copy {
+    flex-flow: column;
+  }
+
+  .div-mesa-direciva {
+    flex-flow: column;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .div-iniciativas {
+    overflow: hidden;
+  }
+
+  .grid-16 {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .titulo-iniciativa {
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .grid-iniciativas {
+    flex-flow: column;
+    grid-template-rows: auto;
+    display: flex;
+  }
+
+  .columnas-titulo-iniciativa {
+    flex-flow: column;
+  }
+
+  .grid-17 {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .titulo-resultados {
+    font-size: 20px;
+  }
+
+  .section-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .div-resultados {
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+  }
+}
+
+#w-node-d567c7f8-8d96-8b81-859d-aca8ab8b5342-8a899405 {
+  place-self: center;
+}
+
+#w-node-_1f2f83e8-da3f-8aae-046b-3a779f06870d-c28fa9cc, #w-node-_67d5ffe6-35a4-f4bd-6cfc-56d04faa419f-c28fa9cc, #w-node-_3305844d-151a-b38e-83e6-fbd1436c9a01-c28fa9cc, #w-node-_1a7cde36-afd7-2146-0e2d-cc21462efb3f-c28fa9cc, #w-node-_162eb323-d3fd-8aea-75ae-48f27a1c54a7-c28fa9cc, #w-node-_46ef0abe-2548-71cc-4490-db8a92036cbd-c28fa9cc, #w-node-_13994a4b-87fc-93b5-d257-9aff2fa07af0-c28fa9cc, #w-node-fb76482e-ca9f-2312-4352-a3a1a4b72eef-c28fa9cc, #w-node-_5ddf0da0-ef45-8c24-9329-5d2294f32807-c28fa9cc, #w-node-_0233fb2b-52d2-595b-94b7-639a6653ac41-c28fa9cc, #w-node-e680aa00-4e88-2036-602c-54dac8f4945a-c28fa9cc, #w-node-_2d41f720-1c56-871b-7176-fd385c9ddb97-c28fa9cc, #w-node-_1c4fe7a2-71d1-ecbe-bb99-62d7c80abe3b-c28fa9cc, #w-node-_623a021d-5a67-747d-a9e1-abaf2618db01-c28fa9cc, #w-node-bcecde35-1676-afa4-4088-9966db60d5da-c28fa9cc, #w-node-d9d45bcf-7490-b18f-a74a-f7b5ab23df41-c28fa9cc, #w-node-b08a7bf3-c031-b676-8a3a-21a0e1ed1176-c03d1daa, #w-node-c3982523-3945-9231-6070-767e2ff299ac-c03d1daa, #w-node-_3ee0e583-57f9-63e0-37e7-332c78fc5897-c03d1daa, #w-node-a73ebdff-8fea-d6bb-d3b6-77faad5a65d3-c03d1daa, #w-node-_0e9922c6-fc3e-837e-45ff-887512c6fa23-c03d1daa, #w-node-_18d5d959-d041-f492-793b-2d97ad0d09fa-c03d1daa, #w-node-c322b408-0e07-9d93-3de2-f0b71b7d050c-c03d1daa, #w-node-_3bb27e34-c6a4-3763-9019-5c77465fbc67-c03d1daa, #w-node-_7f441646-2304-8a64-ff34-247558382d21-c03d1daa, #w-node-d60d83b3-08cf-6f7a-02f2-bab44d5deed5-c03d1daa, #w-node-_0213e1de-2ca3-9e2c-f3e9-40f403d805a6-c03d1daa, #w-node-d0c09005-7b69-8ead-e22d-e3b0e23d939b-c03d1daa, #w-node-aa36c545-12ba-a2bb-9998-9e89d3c76563-c03d1daa, #w-node-_3eff6fb1-9e4b-d59c-5812-28c82ee92c0f-c03d1daa, #w-node-cfcd291d-df65-e8d9-5df8-444d6f5c60cb-c03d1daa, #w-node-c9dd513a-2d35-2216-4a07-6c4c6e9cf35d-c03d1daa, #w-node-_4ccb8849-f1e1-cfcb-fb86-2af21908573c-c03d1daa, #w-node-_0e72b205-bd2c-0a16-5a31-e944965212d2-c03d1daa, #w-node-_07fd0c0a-abd2-8103-4196-d9590b51e9b5-c03d1daa, #w-node-_884509cd-3156-21d9-f5f5-a6eaf8464677-c03d1daa, #w-node-_7bc67f2d-91f7-b605-2053-5a445de09a8f-c03d1daa, #w-node-_64d89ee3-a372-fccd-5905-00bd0a2a90bb-c03d1daa, #w-node-_40b07fd1-da24-9ff1-9292-b3296c49384e-c03d1daa, #w-node-_801369c6-fe44-da87-d90c-aa37954f818f-c03d1daa, #w-node-f50dba82-4028-14fa-e8e2-51b923b6e40f-c03d1daa, #w-node-e748f42b-d6df-ba33-9879-9b0a393f8bd9-c03d1daa, #w-node-_72f2acc9-0c9a-d2f2-c945-92a2659c0f1c-c03d1daa, #w-node-bf796a8f-f563-a21a-fb6c-3aed1c0b4dab-c03d1daa, #w-node-a55c8c50-718b-a4fd-a83b-87e0677b05af-c03d1daa, #w-node-_819a7aff-d2c6-4512-f508-dbf1fd1c0196-c03d1daa, #w-node-e09698a2-af17-46e0-3d7d-08982467d924-c03d1daa, #w-node-c1e57e05-3d87-1007-7947-61965a5951b2-c03d1daa, #w-node-_3b8acc2e-852e-a3d0-c53e-8fa0e0a7aace-c03d1daa, #w-node-_93459faa-6a30-5b6f-212a-d31dd0306198-c03d1daa, #w-node-_937100b1-004b-1bfc-89e7-0d1873039a9e-c03d1daa, #w-node-ddf165c1-e293-814a-63b8-5af571464b56-c03d1daa, #w-node-ab9c15eb-7256-62fd-0c06-7fe4fca67560-c03d1daa, #w-node-_79984979-7520-f164-871c-81c601835df2-c03d1daa, #w-node-fe29ca19-6d14-cf9c-c5f4-b85a7247364f-c03d1daa, #w-node-dfc8b2b2-f891-9ea5-18df-78e78a64de69-c03d1daa, #w-node-f77900ba-76b5-fb1a-6297-137accfe15e7-c03d1daa, #w-node-b2ec7a96-d378-9df4-5c1f-dce3114b9af7-c03d1daa, #w-node-_48b6c35b-5399-d80f-6d88-2a1644178848-c03d1daa, #w-node-_05cc2cdd-5e3f-b687-3769-1adebeba8d6a-c03d1daa, #w-node-_8685c169-7d57-9e51-e840-65662b64a25e-c03d1daa, #w-node-e6e2e623-1259-73e6-7545-a76f08d04ecf-c03d1daa, #w-node-a2862a1c-88d0-341c-b421-6e38284344a3-c03d1daa, #w-node-_9ce4251e-b4f0-c27a-f162-089c3e9f9fff-c03d1daa, #w-node-_5ed947fc-17aa-4a36-c9bf-58dd71fb0916-c03d1daa, #w-node-fdf13d04-f425-58e5-7652-9afecdea8024-c03d1daa, #w-node-b4f2fcc2-4115-7352-04be-0d9503b576a2-c03d1daa, #w-node-_2db1951d-9856-ffc1-3c3d-58019ee26c3b-c03d1daa, #w-node-_3d6e876e-bd5a-2d5c-cd3b-bb13a89ada18-c03d1daa, #w-node-_35210e57-fc7d-4250-fe4a-8d3d1679da05-c03d1daa, #w-node-_63db3237-5959-d7bd-17f5-109485545faf-c03d1daa, #w-node-_1dda23b4-f567-238c-3877-49e394bfff89-c03d1daa, #w-node-_97ef7a0c-d0c6-e6b9-b92d-4af35991e765-c03d1daa, #w-node-f2b9f81a-ff2e-52cd-f196-ed436f94c0a0-c03d1daa, #w-node-_7abee792-1fd7-7f59-0d41-938f6654ec36-c03d1daa, #w-node-_248273ff-4d2b-c8a8-07e5-b78d1b34f712-c03d1daa, #w-node-_63f5e4df-3d33-a427-d57f-d3d8185b8b10-c03d1daa, #w-node-_2f4988e5-dd69-350c-67f9-80534c1695d9-c03d1daa, #w-node-c18d0568-b3f6-08e8-edce-6f64c313e374-c03d1daa, #w-node-_53697572-3ace-b590-33a9-a3bde60e3494-c03d1daa, #w-node-_21767491-bc62-edce-3f10-0397cb83f74b-c03d1daa, #w-node-_392f865a-5ed6-ddba-dbc0-825fc4cb3bee-c03d1daa, #w-node-_90def5f5-be65-a088-48b6-f4a1f3d64e91-c03d1daa, #w-node-e6a5096f-c15f-7d12-b0ab-3f0e7389a2fb-c03d1daa, #w-node-f01a421e-e551-f1f0-67e6-73bf906041dd-c03d1daa, #w-node-_01557379-7439-ea47-9f41-72bfb995616a-c03d1daa, #w-node-_5bdb8819-474e-610f-1934-36e32fd648b3-c03d1daa, #w-node-_253333f3-74d3-a7c5-13da-a941abf4e254-c03d1daa, #w-node-_44e9111b-4e15-0f13-b0b9-80723deb842e-c03d1daa, #w-node-e8191b6c-7e38-57a6-c614-35284bb743bf-c03d1daa, #w-node-_40e35fe2-f504-fd9f-6f4d-3b88c369fbb1-c03d1daa, #w-node-a707c284-b8eb-f4e5-6162-42bf2f3c5bf1-c03d1daa, #w-node-d00ca65e-1048-cf6e-96e2-209b90dc8e73-c03d1daa, #w-node-adb4f9ee-7cb9-e6f4-6d8b-05924e4a7d2d-c03d1daa, #w-node-_21c16b6b-e153-f25b-fa3d-1b03b61dbe03-c03d1daa, #w-node-_30264652-28c5-1451-b600-befa3bfaf167-c03d1daa, #w-node-_9e2f9196-f97a-eccf-5b4a-9d26904ace40-c03d1daa, #w-node-d0c09005-7b69-8ead-e22d-e3b0e23d93a0-c03d1daa, #w-node-d0c09005-7b69-8ead-e22d-e3b0e23d93a5-c03d1daa, #w-node-d23bac5f-8ded-3ef6-ac09-b74ddf0e1b14-6ac439b5, #w-node-_3d2ceb75-7d84-c7da-4e86-cd1035807bfc-6ac439b5, #w-node-d2e1ebfa-9260-8651-c429-74e5a273885a-6ac439b5, #w-node-_6dee5c2d-d9d6-1c67-3b86-d1e60a623434-6ac439b5, #w-node-_675eae69-f1f2-baf3-01c7-0ba6f24a8071-6ac439b5, #w-node-e4b491d7-ce3d-eaab-684d-15f7fd05eeb0-6ac439b5, #w-node-_61b08c85-98ad-33c6-4357-ca3a75c833fe-6ac439b5, #w-node-eec317d5-0130-ae86-f692-9ccd7f4119e3-6ac439b5, #w-node-_897a263e-c124-2675-fec3-a9177d99e1dd-6ac439b5, #w-node-_810404e1-0db5-99bc-4e16-93e7552d673c-6ac439b5, #w-node-_9570c985-1f39-7e78-06ed-073ff62d33a9-6ac439b5, #w-node-_5285430c-6021-cbb7-171e-9f933807d5a6-6ac439b5, #w-node-_4843ea58-16e4-82b7-967c-48d72fd1d4d8-6ac439b5, #w-node-_9ebd60d7-73c2-d234-e5ad-7e74d614235e-6ac439b5, #w-node-d23bac5f-8ded-3ef6-ac09-b74ddf0e1b14-d2469d87, #w-node-_628d4357-bc76-37b1-5877-5ce39db8fe96-d2469d87, #w-node-_4765118a-1fbd-db43-79ab-ac9d830ac8a0-d2469d87, #w-node-_613efc3f-50a0-2c22-639b-bb9b7e90962f-d2469d87, #w-node-cb916340-1cab-573e-1ee2-7145b58608fd-d2469d87, #w-node-_07881fe3-2d50-a9c8-ade0-221ad2c0346a-d2469d87, #w-node-bc850174-b096-8c21-7427-aa90d6bc07e6-d2469d87, #w-node-_20377189-5108-78a3-9386-8d7ae88809b7-d2469d87, #w-node-_85d34021-6d3e-e5fd-1609-c51e6bc18ca7-d2469d87, #w-node-_2c76dff9-b7c5-83b1-edaa-95b9343c2102-d2469d87, #w-node-_4a8b97b6-f323-e5a7-c265-ad5944d2c46f-d2469d87 {
+  justify-self: center;
+}
+
+
+@font-face {
+  font-family: 'Regestogrotesk';
+  src: url('../fonts/RegestoGrotesk-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Regestogrotesk';
+  src: url('../fonts/RegestoGrotesk-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Regestogrotesk';
+  src: url('../fonts/RegestoGrotesk-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
