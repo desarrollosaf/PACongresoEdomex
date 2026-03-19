@@ -30,13 +30,13 @@ let IntegranteLegislatura = class IntegranteLegislatura extends sequelize_typesc
 };
 exports.IntegranteLegislatura = IntegranteLegislatura;
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, primaryKey: true, autoIncrement: true }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36), primaryKey: true, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
+    __metadata("design:type", String)
 ], IntegranteLegislatura.prototype, "id", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => legislatura_entity_1.Legislatura),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
+    __metadata("design:type", String)
 ], IntegranteLegislatura.prototype, "legislatura_id", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => legislatura_entity_1.Legislatura),
@@ -44,8 +44,8 @@ __decorate([
 ], IntegranteLegislatura.prototype, "legislatura", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => diputado_entity_1.Diputado),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
+    __metadata("design:type", String)
 ], IntegranteLegislatura.prototype, "diputado_id", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => diputado_entity_1.Diputado),
@@ -53,8 +53,8 @@ __decorate([
 ], IntegranteLegislatura.prototype, "diputado", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => partido_entity_1.Partido),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
+    __metadata("design:type", String)
 ], IntegranteLegislatura.prototype, "partido_id", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => partido_entity_1.Partido),
@@ -62,8 +62,8 @@ __decorate([
 ], IntegranteLegislatura.prototype, "partido", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => distrito_entity_1.Distrito),
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
+    __metadata("design:type", String)
 ], IntegranteLegislatura.prototype, "distrito_id", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => distrito_entity_1.Distrito),
@@ -82,6 +82,6 @@ __decorate([
     __metadata("design:type", Date)
 ], IntegranteLegislatura.prototype, "fecha_fin", void 0);
 exports.IntegranteLegislatura = IntegranteLegislatura = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'integrantes_legislatura', underscored: true, timestamps: true, paranoid: true })
+    (0, sequelize_typescript_1.Table)({ tableName: 'integrantes_legislatura', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], IntegranteLegislatura);
 //# sourceMappingURL=integrante-legislatura.entity.js.map

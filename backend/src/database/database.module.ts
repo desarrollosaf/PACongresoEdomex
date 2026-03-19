@@ -9,18 +9,18 @@ import { Distrito } from './entities/distrito.entity';
 import { IntegranteLegislatura } from './entities/integrante-legislatura.entity';
 import { Comunicados } from './entities/comunicados.entity';
 
+const sequelizeFeatures = SequelizeModule.forFeature([
+  Legislatura,
+  Diputado,
+  Partido,
+  Distrito,
+  IntegranteLegislatura,
+  Comunicados,
+]);
+
 @Global()
 @Module({
-  imports: [
-    SequelizeModule.forFeature([
-      Legislatura,
-      Diputado,
-      Partido,
-      Distrito,
-      IntegranteLegislatura,
-      Comunicados
-    ]),
-  ],
-  exports: [SequelizeModule], // Exportar los modelos para que cualquier módulo pueda utilizarlos
+  imports: [sequelizeFeatures],
+  exports: [sequelizeFeatures],
 })
 export class DatabaseModule {}

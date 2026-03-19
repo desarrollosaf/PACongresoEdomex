@@ -1,7 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
 export declare class Diputado extends Model {
-    id: number;
+    id: string;
     apaterno: string;
     amaterno: string;
     nombres: string;

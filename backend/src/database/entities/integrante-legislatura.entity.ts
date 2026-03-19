@@ -4,35 +4,35 @@ import { Diputado } from './diputado.entity';
 import { Partido } from './partido.entity';
 import { Distrito } from './distrito.entity';
 
-@Table({ tableName: 'integrantes_legislatura', underscored: true, timestamps: true, paranoid: true })
+@Table({ tableName: 'integrantes_legislatura', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class IntegranteLegislatura extends Model {
-  @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
-  declare id: number;
+  @Column({ type: DataType.CHAR(36), primaryKey: true, defaultValue: DataType.UUIDV4 })
+  declare id: string;
 
   @ForeignKey(() => Legislatura)
-  @Column({ type: DataType.INTEGER })
-  legislatura_id: number;
+  @Column({ type: DataType.CHAR(36) })
+  legislatura_id: string;
 
   @BelongsTo(() => Legislatura)
   legislatura: Legislatura;
 
   @ForeignKey(() => Diputado)
-  @Column({ type: DataType.INTEGER })
-  diputado_id: number;
+  @Column({ type: DataType.CHAR(36) })
+  diputado_id: string;
 
   @BelongsTo(() => Diputado)
   diputado: Diputado;
 
   @ForeignKey(() => Partido)
-  @Column({ type: DataType.INTEGER })
-  partido_id: number;
+  @Column({ type: DataType.CHAR(36) })
+  partido_id: string;
 
   @BelongsTo(() => Partido)
   partido: Partido;
 
   @ForeignKey(() => Distrito)
-  @Column({ type: DataType.INTEGER })
-  distrito_id: number;
+  @Column({ type: DataType.CHAR(36) })
+  distrito_id: string;
 
   @BelongsTo(() => Distrito)
   distrito: Distrito;
