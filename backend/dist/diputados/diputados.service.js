@@ -33,11 +33,13 @@ let DiputadosService = class DiputadosService {
     }
     async findAll() {
         return this.diputadoModel.findAll({
+            order: [['apaterno', 'ASC']],
             include: [
                 foto_entity_1.Foto,
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
                     where: { fecha_fin: null },
+                    include: [partido_entity_1.Partido, distrito_entity_1.Distrito],
                 },
             ],
         });
