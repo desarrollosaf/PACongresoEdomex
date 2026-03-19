@@ -7,6 +7,7 @@ import { Diputado } from './entities/diputado.entity';
 import { Partido } from './entities/partido.entity';
 import { Distrito } from './entities/distrito.entity';
 import { IntegranteLegislatura } from './entities/integrante-legislatura.entity';
+import { Comunicados } from './entities/comunicados.entity';
 
 @Global()
 @Module({
@@ -17,6 +18,7 @@ import { IntegranteLegislatura } from './entities/integrante-legislatura.entity'
       Partido,
       Distrito,
       IntegranteLegislatura,
+      Comunicados
     ]),
   ],
   exports: [SequelizeModule], // Exportar los modelos para que cualquier módulo pueda utilizarlos
