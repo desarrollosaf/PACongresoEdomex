@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislativo.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
       database: 'congreso_bd',
       models: [],
     }),
+    TrabajoLegislativoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
