@@ -1,6 +1,8 @@
-import { getDiputados } from '../api/diputados.api';
+
 import DiputadosList from './DiputadosList';
 import ParliamentaryStats from './ParliamentaryStats';
+import { getDiputados } from '../service/diputados.api';
+
 
 export default async function DiputadosPage() {
     const diputados = await getDiputados();
