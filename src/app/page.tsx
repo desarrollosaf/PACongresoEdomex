@@ -11,8 +11,20 @@ async function getDiputados() {
   }
 }
 
+async function getBoletines() {
+  try {
+    const res = await fetch('http://localhost:3001/api/boletines', { next: { revalidate: 10 } });
+    // if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch boletines:", error);
+    return [];
+  }
+}
 export default async function Home() {
   const diputados = await getDiputados();
+  const boletines = await getBoletines();
+  console.log(boletines,' boletines')
   const mainDiputado = diputados.length > 0 ? diputados[0] : null;
 
   return (
@@ -285,9 +297,10 @@ export default async function Home() {
       <section className="max_width">
         <div>
           <div>
-            <h4 className="titulo-seccion">Boletínes</h4>
+            <h4 className="titulo-seccion">Boletínes </h4>
           </div>
           <div>Mantente informado de todo lo que ocurre en el pleno</div>
+          aqui comunicados funcion
           <div className="div-block-23">
             <div className="columns-8 w-row">
               <div className="column-9 w-col w-col-6">
