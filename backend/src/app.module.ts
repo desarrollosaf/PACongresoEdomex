@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { DiputadosModule } from './diputados/diputados.module';
 import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislativo.module';
+import { DiputadosModule } from './diputados/diputados.module';
 
 @Module({
   imports: [
@@ -11,13 +11,15 @@ import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislat
       dialect: 'mysql',
       host: '192.168.10.10',
       port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
+      username: 'homestead',
+      password: 'secret',
+      database: 'congreso_bd',
       models: [],
       autoLoadModels: true, 
       synchronize: true,  
     }),
+    TrabajoLegislativoModule,
+    DiputadosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
