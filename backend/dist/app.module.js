@@ -12,6 +12,7 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const sequelize_1 = require("@nestjs/sequelize");
 const boletines_module_1 = require("./boletines/boletines.module");
+const diputados_module_1 = require("./diputados/diputados.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,6 +29,12 @@ exports.AppModule = AppModule = __decorate([
                 models: [],
             }),
             boletines_module_1.BoletinesModule,
+                database: 'congreso',
+                models: [],
+                autoLoadModels: true,
+                synchronize: true,
+            }),
+            diputados_module_1.DiputadosModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
