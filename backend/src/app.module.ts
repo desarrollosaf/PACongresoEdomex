@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ComisionesModule } from './comisiones/comisiones.module';
+import { DiputadosModule } from './diputados/diputados.module';
 
 @Module({
   imports: [
@@ -11,11 +12,14 @@ import { ComisionesModule } from './comisiones/comisiones.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
-      database: 'test',
+      password: '',
+      database: 'congreso',
       models: [],
+      autoLoadModels: true, 
+      synchronize: true,  
     }),
     ComisionesModule,
+    DiputadosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
