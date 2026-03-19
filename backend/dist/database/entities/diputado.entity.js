@@ -12,22 +12,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Diputado = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const integrante_legislatura_entity_1 = require("./integrante-legislatura.entity");
+const foto_entity_1 = require("./foto.entity");
 let Diputado = class Diputado extends sequelize_typescript_1.Model {
     apaterno;
     amaterno;
     nombres;
     descripcion;
     shortname;
-    fancurl;
+    fancyurl;
     gender_id;
     email;
     ext;
     facebook;
     twitter;
     instagram;
-    unicacion;
+    ubicacion;
     telefono;
     integrantes;
+    fotos;
 };
 exports.Diputado = Diputado;
 __decorate([
@@ -57,7 +59,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)
-], Diputado.prototype, "fancurl", void 0);
+], Diputado.prototype, "fancyurl", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
     __metadata("design:type", Number)
@@ -85,7 +87,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)
-], Diputado.prototype, "unicacion", void 0);
+], Diputado.prototype, "ubicacion", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)
@@ -94,6 +96,10 @@ __decorate([
     (0, sequelize_typescript_1.HasMany)(() => integrante_legislatura_entity_1.IntegranteLegislatura),
     __metadata("design:type", Array)
 ], Diputado.prototype, "integrantes", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => foto_entity_1.Foto, { foreignKey: 'fotoable_id', constraints: false }),
+    __metadata("design:type", Array)
+], Diputado.prototype, "fotos", void 0);
 exports.Diputado = Diputado = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], Diputado);

@@ -7,19 +7,30 @@ import { IntegranteLegislatura } from '../database/entities/integrante-legislatu
 import { Diputado } from '../database/entities/diputado.entity';
 import { Partido } from '../database/entities/partido.entity';
 import { Distrito } from '../database/entities/distrito.entity';
+import { Foto } from '../database/entities/foto.entity';
 
 @Injectable()
 export class DiputadosService {
   constructor(
     @InjectModel(Legislatura)
     private legislaturaModel: typeof Legislatura,
+    @InjectModel(Diputado)
+    private diputadoModel: typeof Diputado,
   ) {}
   create(createDiputadoDto: CreateDiputadoDto) {
     return 'This action adds a new diputado';
   }
 
-  findAll() {
-    return `This action returns all diputados`;
+  async findAll() {
+    return this.diputadoModel.findAll({
+      include: [
+        Foto,
+        {
+          model: IntegranteLegislatura,
+          where: { fecha_fin: null },
+        },
+      ],
+    });
   }
 
   async findIntegrantesByLegislatura(numero: string) {
@@ -28,7 +39,15 @@ export class DiputadosService {
       include: [
         {
           model: IntegranteLegislatura,
-          include: [Diputado, Partido, Distrito],
+          where: { fecha_fin: null },
+          include: [
+            {
+              model: Diputado,
+              include: [Foto]
+            },
+            Partido,
+            Distrito
+          ],
         },
       ],
     });

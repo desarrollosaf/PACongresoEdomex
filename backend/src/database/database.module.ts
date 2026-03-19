@@ -8,6 +8,7 @@ import { Partido } from './entities/partido.entity';
 import { Distrito } from './entities/distrito.entity';
 import { IntegranteLegislatura } from './entities/integrante-legislatura.entity';
 import { Comunicados } from './entities/comunicados.entity';
+import { Foto } from './entities/foto.entity';
 
 const sequelizeFeatures = SequelizeModule.forFeature([
   Legislatura,
@@ -16,6 +17,7 @@ const sequelizeFeatures = SequelizeModule.forFeature([
   Distrito,
   IntegranteLegislatura,
   Comunicados,
+  Foto,
 ]);
 
 @Global()

@@ -15,7 +15,7 @@ import { DiputadosModule } from './diputados/diputados.module';
       port: 3306,
       username: 'root',
       password: '',
-      database: 'congreso',
+      database: 'congreso_bd',
       models: [],
       autoLoadModels: true, 
       synchronize: true,  
