@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { DiputadosModule } from './diputados/diputados.module';
 
 @Module({
   imports: [
@@ -10,10 +11,13 @@ import { SequelizeModule } from '@nestjs/sequelize';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'root',
-      database: 'test',
+      password: '',
+      database: 'congreso',
       models: [],
+      autoLoadModels: true, 
+      synchronize: true,  
     }),
+    DiputadosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
