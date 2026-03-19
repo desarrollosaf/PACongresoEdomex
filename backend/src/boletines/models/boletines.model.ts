@@ -1,35 +1,33 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  ManyToOne,
-  DeleteDateColumn,
-} from 'typeorm';
+ Column, Model, Table, HasMany, 
+ PrimaryKey,
+ DataType,
+ Default
+} from 'sequelize-typescript';
 
 // import { AutorComunicado } from './autor-comunicado.entity';
 // import { Foto } from './foto.entity';
 // import { Legislatura } from './legislatura.entity';
 // import { DescripcionComunicado } from './descripcion-comunicado.entity';
 
-@Entity('comunicados')
-export class Comunicado {
-  @PrimaryGeneratedColumn('uuid')
+@Table({
+  tableName: 'comunicados'
+})
+export class Comunicado extends Model {
+ @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column(DataType.UUID)
   id: string;
 
-  @Column({ nullable: true })
+  @Column
   fecha: Date;
 
-  @Column({ nullable: true })
+  @Column
   comunicado: number;
 
-  @Column({ nullable: true })
+  @Column
   titulo: string;
 
-  @Column({ nullable: true })
+  @Column
   texto: string;
-
-  // 🗑 Soft delete (equivalente a SoftDeletes)
-  @DeleteDateColumn()
-  deletedAt: Date;
 }
