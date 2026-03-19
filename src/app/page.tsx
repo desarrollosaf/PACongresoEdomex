@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getDiputados() {
   try {
-    const res = await fetch('http://localhost:3001/api/diputados', { next: { revalidate: 10 } });
+    const res = await fetch('http://localhost:4000/api/diputados', { next: { revalidate: 10 } });
     if (!res.ok) return [];
     return res.json();
   } catch (error) {
@@ -13,19 +13,24 @@ async function getDiputados() {
 
 async function getBoletines() {
   try {
-    const res = await fetch('http://localhost:3001/api/boletines', { next: { revalidate: 10 } });
-    // if (!res.ok) return [];
-    return res.json();
+    const res = await fetch('http://localhost:4000/api/boletines', { next: { revalidate: 10 } });
+    if (!res.ok) {
+      const text = await res.text();
+      console.error('Error backend:', text);
+      return [];
+    }
+  return await res.json();
   } catch (error) {
     console.error("Failed to fetch boletines:", error);
     return [];
   }
 }
 export default async function Home() {
-  const diputados = await getDiputados();
+  // const diputados = await getDiputados();
   const boletines = await getBoletines();
-  console.log(boletines,' boletines')
-  const mainDiputado = diputados.length > 0 ? diputados[0] : null;
+  const mainBoletines = boletines.length > 0 ? boletines : null;
+  // console.log(mainBoletines[0].fotos[0].path)
+  // const mainDiputado = diputados.length > 0 ? diputados[0] : null;
 
   return (
     <>
@@ -118,17 +123,17 @@ export default async function Home() {
               <div className="column-3 w-col w-col-6">
                 <div className="columns-3 w-row">
                   <div className="column-2 w-col w-col-6">
-                    {mainDiputado ? (
+                    {/* {mainDiputado ? (
                       <Link href={`/diputados/${mainDiputado.id}`} className="w-inline-block">
                         <img src={mainDiputado.image} loading="lazy" alt="" className="image-3" />
                       </Link>
                     ) : (
                        <img src="/images/2PAN-Emma-Laura-Álvarez-Villavicencio-01.png" loading="lazy" alt="" className="image-3" />
-                    )}
+                    )} */}
                   </div>
                   <div className="column-4 w-col w-col-6">
                     <div className="div-block-24">
-                      {mainDiputado ? (
+                      {/* {mainDiputado ? (
                         <>
                           <div>
                             <h4 className="nombre-diputado-home">{mainDiputado.name}<br /></h4>
@@ -148,7 +153,7 @@ export default async function Home() {
                             <p>Cargando datos del servidor...</p>
                           </div>
                         </>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
@@ -300,16 +305,21 @@ export default async function Home() {
             <h4 className="titulo-seccion">Boletínes </h4>
           </div>
           <div>Mantente informado de todo lo que ocurre en el pleno</div>
-          aqui comunicados funcion
           <div className="div-block-23">
             <div className="columns-8 w-row">
+              {/* aqui va la posicion 0 de boletines */}
               <div className="column-9 w-col w-col-6">
                 <div className="div-block-22">
-                  <img src="/images/Comisión-legislativa-avala-ajustes-al-Consejo-Directivo-de-Probosque.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2666px) 48vw, 1280px" srcSet="/images/Comisión-legislativa-avala-ajustes-al-Consejo-Directivo-de-Probosque-p-500.jpg 500w, /images/Comisión-legislativa-avala-ajustes-al-Consejo-Directivo-de-Probosque-p-800.jpg 800w, /images/Comisión-legislativa-avala-ajustes-al-Consejo-Directivo-de-Probosque-p-1080.jpg 1080w, /images/Comisión-legislativa-avala-ajustes-al-Consejo-Directivo-de-Probosque.jpg 1280w" alt="" className="image-10" />
+                  <img src={`https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2666px) 48vw, 1280px" 
+                  srcSet={`
+                  https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 500w, 
+                  https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 800w, 
+                  https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 1080w, 
+                  https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 1280w`} alt="" className="image-10" />
                   <div>
-                    <h4 className="heading-10">Comisión legislativa avala ajustes al Consejo Directivo de Probosque<br /></h4>
-                    <p className="paragraph-4">08 de Diciembre 2025</p>
-                    <p>La Comisión Legislativa de Protección Ambiental y Cambio Climático avaló que la presidencia del Consejo Directivo de la Protectora de Bosques del Estado de México (Probosque) sea encabezada por la persona titular de la Secretaría del Campo, a iniciativa de la gobernadora Delfina Gómez.<br /></p>
+                    <h4 className="heading-10"> { mainBoletines[0].titulo}  <br /></h4>
+                    <p className="paragraph-4"> { mainBoletines[0].fecha} </p>
+                    <p> {mainBoletines[0].descripcion[0].bullets} </p>
                   </div>
                   <Link href="/noticias/comision-legislativa-avala-ajustes-al-consejo-directivo-de-probosque" className="btn-var-2 w-button">Leer el boletín</Link>
                 </div>
@@ -318,27 +328,48 @@ export default async function Home() {
                 <div>
                   <div className="w-layout-grid">
                     <div>
-                      <img src="/images/1051eb7fc-a015-46d9-acf3-4ba2d32d68e0.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" srcSet="/images/1051eb7fc-a015-46d9-acf3-4ba2d32d68e0-p-500.jpg 500w, /images/1051eb7fc-a015-46d9-acf3-4ba2d32d68e0-p-800.jpg 800w, /images/1051eb7fc-a015-46d9-acf3-4ba2d32d68e0-p-1080.jpg 1080w, /images/1051eb7fc-a015-46d9-acf3-4ba2d32d68e0.jpg 1290w" alt="" className="img-boletin" />
-                      <h5>Congreso develó fachada navideña con la presencia de la Gobernadora</h5>
-                      <div className="fecha-boletin">08 de Diciembre 2025</div>
+                      <img src={`https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
+                        srcSet={`
+                        https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 500w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 800w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 1080w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 1280w`} alt="" className="img-boletin" />
+                      <h5>{ mainBoletines[1].titulo}</h5>
+                      <div className="fecha-boletin">{ mainBoletines[1].fecha} </div>
                       <a href="#" className="btn-var-2 w-button">Leer el boletín</a>
                     </div>
                     <div>
-                      <img src="/images/1080265a8-2efe-46fa-802b-adc5f5cab2e6.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2666px) 48vw, 1280px" srcSet="/images/1080265a8-2efe-46fa-802b-adc5f5cab2e6-p-500.jpg 500w, /images/1080265a8-2efe-46fa-802b-adc5f5cab2e6-p-800.jpg 800w, /images/1080265a8-2efe-46fa-802b-adc5f5cab2e6-p-1080.jpg 1080w, /images/1080265a8-2efe-46fa-802b-adc5f5cab2e6.jpg 1280w" alt="" className="img-boletin" />
-                      <h5>Agradece gobernadora a congresistas por confianza en su gobierno</h5>
-                      <div className="fecha-boletin">08 de Diciembre 2025</div>
+                        <img src={`https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
+                        srcSet={`
+                        https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 500w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 800w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 1080w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 1280w`} alt="" className="img-boletin" />
+                      <h5>{ mainBoletines[2].titulo}</h5>
+                      <div className="fecha-boletin">{ mainBoletines[2].fecha}</div>
                       <a href="#" className="btn-var-2 w-button">Leer el boletín</a>
                     </div>
                     <div>
-                      <img src="/images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 991px) 48vw, (max-width: 8256px) 50vw, 4128px" srcSet="/images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-500.jpg 500w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-800.jpg 800w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-1080.jpg 1080w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-1600.jpg 1600w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-2000.jpg 2000w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-2600.jpg 2600w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2-p-3200.jpg 3200w, /images/1d6cdb34c-2e63-49f1-a7de-f671371f45e2.jpg 4128w" alt="" className="img-boletin" />
-                      <h5>Anuncian nueva legislación en materia de planeación gubernamental</h5>
-                      <div className="fecha-boletin">08 de Diciembre 2025</div>
+                      <img src={`https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
+                        srcSet={`
+                        https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 500w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 800w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 1080w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 1280w`} alt="" className="img-boletin" />
+                    
+                      <h5>{ mainBoletines[3].titulo}</h5>
+                      <div className="fecha-boletin">{ mainBoletines[3].fecha}</div>
                       <a href="#" className="btn-var-2 w-button">Leer el boletín</a>
                     </div>
                     <div>
-                      <img src="/images/A38d9247d-6745-4959-a0b9-a2450fd1656a.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 991px) 48vw, (max-width: 3265px) 49vw, 1600px" srcSet="/images/A38d9247d-6745-4959-a0b9-a2450fd1656a-p-500.jpg 500w, /images/A38d9247d-6745-4959-a0b9-a2450fd1656a-p-800.jpg 800w, /images/A38d9247d-6745-4959-a0b9-a2450fd1656a-p-1080.jpg 1080w, /images/A38d9247d-6745-4959-a0b9-a2450fd1656a.jpg 1600w" alt="" className="img-boletin" />
-                      <h5>Asiste Francisco Vázquez a informe del alcalde de Tlalnepantla</h5>
-                      <div className="fecha-boletin">05 de Diciembre 2025</div>
+                      <img src={`https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
+                        srcSet={`
+                        https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 500w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 800w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 1080w, 
+                        https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 1280w`} alt="" className="img-boletin" />
+                      <h5>{ mainBoletines[4].titulo}</h5>
+                      <div className="fecha-boletin">{ mainBoletines[4].fecha}</div>
                       <a href="#" className="btn-var-2 w-button">Leer el boletín</a>
                     </div>
                   </div>

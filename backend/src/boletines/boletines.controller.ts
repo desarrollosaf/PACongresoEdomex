@@ -3,7 +3,7 @@ import { BoletinesService } from './boletines.service';
 import { CreateBoletineDto } from './dto/create-boletine.dto';
 import { UpdateBoletineDto } from './dto/update-boletine.dto';
 
-@Controller('api/boletines')
+@Controller('boletines')
 export class BoletinesController {
   constructor(private readonly boletinesService: BoletinesService) {}
 

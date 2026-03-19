@@ -75,7 +75,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BoletinesController.prototype, "remove", null);
 exports.BoletinesController = BoletinesController = __decorate([
-    (0, common_1.Controller)('api/boletines'),
+    (0, common_1.Controller)('boletines'),
     __metadata("design:paramtypes", [boletines_service_1.BoletinesService])
 ], BoletinesController);
 //# sourceMappingURL=boletines.controller.js.map

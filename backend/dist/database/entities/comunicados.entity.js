@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Comunicados = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const fotos_entity_1 = require("./fotos.entity");
+const descripcioncomunicados_entity_1 = require("./descripcioncomunicados.entity");
 let Comunicados = class Comunicados extends sequelize_typescript_1.Model {
-    fecha;
-    comunicado;
-    titulo;
-    texto;
+    fotos;
+    descripcion;
 };
 exports.Comunicados = Comunicados;
 __decorate([
@@ -38,6 +38,21 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.TEXT }),
     __metadata("design:type", String)
 ], Comunicados.prototype, "texto", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => fotos_entity_1.Foto, {
+        foreignKey: 'fotoable_id',
+        scope: {
+            fotoable_type: 'App\\Models\\Comunicado',
+        }
+    }),
+    __metadata("design:type", Array)
+], Comunicados.prototype, "fotos", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => descripcioncomunicados_entity_1.DescripcionComunicados, {
+        foreignKey: 'comunicado_id',
+    }),
+    __metadata("design:type", Array)
+], Comunicados.prototype, "descripcion", void 0);
 exports.Comunicados = Comunicados = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: 'comunicados', underscored: true, timestamps: true, paranoid: true })
 ], Comunicados);
