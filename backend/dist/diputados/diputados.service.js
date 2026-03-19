@@ -20,16 +20,27 @@ const integrante_legislatura_entity_1 = require("../database/entities/integrante
 const diputado_entity_1 = require("../database/entities/diputado.entity");
 const partido_entity_1 = require("../database/entities/partido.entity");
 const distrito_entity_1 = require("../database/entities/distrito.entity");
+const foto_entity_1 = require("../database/entities/foto.entity");
 let DiputadosService = class DiputadosService {
     legislaturaModel;
-    constructor(legislaturaModel) {
+    diputadoModel;
+    constructor(legislaturaModel, diputadoModel) {
         this.legislaturaModel = legislaturaModel;
+        this.diputadoModel = diputadoModel;
     }
     create(createDiputadoDto) {
         return 'This action adds a new diputado';
     }
-    findAll() {
-        return `This action returns all diputados`;
+    async findAll() {
+        return this.diputadoModel.findAll({
+            include: [
+                foto_entity_1.Foto,
+                {
+                    model: integrante_legislatura_entity_1.IntegranteLegislatura,
+                    where: { fecha_fin: null },
+                },
+            ],
+        });
     }
     async findIntegrantesByLegislatura(numero) {
         return this.legislaturaModel.findOne({
@@ -37,7 +48,15 @@ let DiputadosService = class DiputadosService {
             include: [
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
-                    include: [diputado_entity_1.Diputado, partido_entity_1.Partido, distrito_entity_1.Distrito],
+                    where: { fecha_fin: null },
+                    include: [
+                        {
+                            model: diputado_entity_1.Diputado,
+                            include: [foto_entity_1.Foto]
+                        },
+                        partido_entity_1.Partido,
+                        distrito_entity_1.Distrito
+                    ],
                 },
             ],
         });
@@ -56,6 +75,7 @@ exports.DiputadosService = DiputadosService;
 exports.DiputadosService = DiputadosService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(legislatura_entity_1.Legislatura)),
-    __metadata("design:paramtypes", [Object])
+    __param(1, (0, sequelize_1.InjectModel)(diputado_entity_1.Diputado)),
+    __metadata("design:paramtypes", [Object, Object])
 ], DiputadosService);
 //# sourceMappingURL=diputados.service.js.map

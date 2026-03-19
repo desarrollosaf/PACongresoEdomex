@@ -1,5 +1,6 @@
 import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
+import { Foto } from './foto.entity';
 
 @Table({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class Diputado extends Model {
@@ -22,7 +23,7 @@ export class Diputado extends Model {
   shortname: string;
 
   @Column({ type: DataType.STRING })
-  fancurl: string;
+  fancyurl: string; 
 
   @Column({ type: DataType.INTEGER })
   gender_id: number;
@@ -43,11 +44,14 @@ export class Diputado extends Model {
   instagram: string;
 
   @Column({ type: DataType.STRING })
-  unicacion: string; // From the requirements
+  ubicacion: string;
 
   @Column({ type: DataType.STRING })
   telefono: string;
 
   @HasMany(() => IntegranteLegislatura)
   integrantes: IntegranteLegislatura[];
+
+  @HasMany(() => Foto, { foreignKey: 'fotoable_id', constraints: false })
+  fotos: Foto[];
 }

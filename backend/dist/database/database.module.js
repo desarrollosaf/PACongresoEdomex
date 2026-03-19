@@ -15,6 +15,7 @@ const partido_entity_1 = require("./entities/partido.entity");
 const distrito_entity_1 = require("./entities/distrito.entity");
 const integrante_legislatura_entity_1 = require("./entities/integrante-legislatura.entity");
 const comunicados_entity_1 = require("./entities/comunicados.entity");
+const foto_entity_1 = require("./entities/foto.entity");
 const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislatura_entity_1.Legislatura,
     diputado_entity_1.Diputado,
@@ -22,6 +23,7 @@ const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     distrito_entity_1.Distrito,
     integrante_legislatura_entity_1.IntegranteLegislatura,
     comunicados_entity_1.Comunicados,
+    foto_entity_1.Foto,
 ]);
 let DatabaseModule = class DatabaseModule {
 };

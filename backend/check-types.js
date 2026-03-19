@@ -8,8 +8,8 @@ const sequelize = new Sequelize('congreso', 'root', '', {
 
 async function check() {
   try {
-    const [results] = await sequelize.query(`SHOW CREATE TABLE legislaturas;`);
-    console.log(results[0]['Create Table']);
+    const [results] = await sequelize.query(`SHOW COLUMNS FROM diputados;`);
+    console.table(results.map(r => r.Field));
   } catch (err) {
     console.error(err);
   } finally {
