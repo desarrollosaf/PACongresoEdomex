@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
 
 @Module({
@@ -17,6 +18,7 @@ import { DiputadosModule } from './diputados/diputados.module';
       autoLoadModels: true, 
       synchronize: true,  
     }),
+    ComisionesModule,
     DiputadosModule,
   ],
   controllers: [AppController],
