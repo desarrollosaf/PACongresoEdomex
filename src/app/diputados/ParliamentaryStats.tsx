@@ -19,57 +19,89 @@ export default function ParliamentaryStats() {
     useEffect(() => {
         const style = document.createElement('style');
         style.textContent = `
-            .features-block-anim {
+            /* Los que SUBEN (índice par) */
+            .features-block-anim.sube {
                 opacity: 0;
-                transform: translateY(32px);
-                transition: opacity 0.5s ease, transform 0.5s ease;
+                transform: translateY(40px);
+                transition: opacity 0.6s ease, transform 0.6s ease;
             }
-            .features-block-anim.visible {
+            .features-block-anim.sube.visible {
                 opacity: 1;
                 transform: translateY(0);
             }
-            .img-parlamentaria-anim {
+            .features-block-anim.sube.hidden {
                 opacity: 0;
-                transform: scale(0.96);
-                transition: opacity 0.7s ease, transform 0.7s ease;
+                transform: translateY(40px);
             }
-            .img-parlamentaria-anim.visible {
+
+            /* Los que NO SUBEN (índice impar) */
+            .features-block-anim.no-sube {
+                opacity: 0;
+                transition: opacity 0.6s ease;
+                transform: translateY(0);
+            }
+            .features-block-anim.no-sube.visible {
                 opacity: 1;
-                transform: scale(1);
+            }
+            .features-block-anim.no-sube.hidden {
+                opacity: 0;
+            }
+
+            /* Parallax imagen */
+            .img-parlamentaria-anim {
+                will-change: transform;
+                transition: transform 0.1s linear;
             }
         `;
         document.head.appendChild(style);
         return () => { document.head.removeChild(style); };
     }, []);
 
+    // Parallax en la imagen
+    useEffect(() => {
+        const img = imgRef.current;
+        if (!img) return;
+
+        const handleScroll = () => {
+            const rect = img.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            if (rect.bottom > 0 && rect.top < windowHeight) {
+                const scrolled = (windowHeight - rect.top) / (windowHeight + rect.height);
+                const offset = (scrolled - 0.5) * 80;
+                img.style.transform = `translateY(${offset}px)`;
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Fade + stagger escalonado con sube/no-sube alternado
     useEffect(() => {
         const blocks = wrapperRef.current?.querySelectorAll<HTMLElement>('.features-block-anim');
-        const img = imgRef.current;
+        if (!blocks) return;
 
-      const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                // Aparece
-                if (img) img.classList.add('visible');
-                blocks?.forEach((block, i) => {
-                    setTimeout(() => {
-                        block.classList.add('visible');
-                    }, 150 + i * 120);
-                });
-            } else {
-                // Desaparece
-                if (img) img.classList.remove('visible');
-                blocks?.forEach((block) => {
-                    block.classList.remove('visible');
-                });
-            }
-        });
-    },
-    { threshold: 0.15 }
-);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const block = entry.target as HTMLElement;
+                    const index = Array.from(blocks).indexOf(block);
 
-        if (wrapperRef.current) observer.observe(wrapperRef.current);
+                    if (entry.isIntersecting) {
+                        block.classList.remove('hidden');
+                        setTimeout(() => {
+                            block.classList.add('visible');
+                        }, index * 120); // stagger de 120ms entre cada logo
+                    } else {
+                        block.classList.remove('visible');
+                        block.classList.add('hidden');
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        blocks.forEach((block) => observer.observe(block));
         return () => observer.disconnect();
     }, []);
 
@@ -85,8 +117,11 @@ export default function ParliamentaryStats() {
                 className="img-parlamentaria img-parlamentaria-anim"
             />
             <div className="features-wrapper">
-                {PARTIDOS.map((p) => (
-                    <div key={p.img} className="features-block features-block-anim">
+                {PARTIDOS.map((p, i) => (
+                    <div
+                        key={p.img}
+                        className={`features-block features-block-anim ${i % 2 === 0 ? 'sube' : 'no-sube'}`}
+                    >
                         <img
                             src={p.img}
                             loading="lazy"
