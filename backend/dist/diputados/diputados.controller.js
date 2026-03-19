@@ -28,6 +28,9 @@ let DiputadosController = class DiputadosController {
     findAll() {
         return this.diputadosService.findAll();
     }
+    findIntegrantesByLegislatura(numero) {
+        return this.diputadosService.findIntegrantesByLegislatura(numero);
+    }
     findOne(id) {
         return this.diputadosService.findOne(+id);
     }
@@ -52,6 +55,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], DiputadosController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('legislatura/:numero'),
+    __param(0, (0, common_1.Param)('numero')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], DiputadosController.prototype, "findIntegrantesByLegislatura", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
