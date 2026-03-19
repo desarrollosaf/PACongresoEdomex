@@ -14,6 +14,7 @@ const diputado_entity_1 = require("./entities/diputado.entity");
 const partido_entity_1 = require("./entities/partido.entity");
 const distrito_entity_1 = require("./entities/distrito.entity");
 const integrante_legislatura_entity_1 = require("./entities/integrante-legislatura.entity");
+const comunicados_entity_1 = require("./entities/comunicados.entity");
 let DatabaseModule = class DatabaseModule {
 };
 exports.DatabaseModule = DatabaseModule;
@@ -27,6 +28,7 @@ exports.DatabaseModule = DatabaseModule = __decorate([
                 partido_entity_1.Partido,
                 distrito_entity_1.Distrito,
                 integrante_legislatura_entity_1.IntegranteLegislatura,
+                comunicados_entity_1.Comunicados
             ]),
         ],
         exports: [sequelize_1.SequelizeModule],
