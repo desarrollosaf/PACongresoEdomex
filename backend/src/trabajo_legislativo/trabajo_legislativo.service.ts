@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTrabajoLegislativoDto } from './dto/create-trabajo_legislativo.dto';
 import { UpdateTrabajoLegislativoDto } from './dto/update-trabajo_legislativo.dto';
+import { Gaceta } from '../database/entities/gaceta.entity';
 
 @Injectable()
 export class TrabajoLegislativoService {
@@ -8,8 +9,10 @@ export class TrabajoLegislativoService {
     return 'This action adds a new trabajoLegislativo';
   }
 
-  findAll() {
-    return `This action returns all trabajoLegislativo`;
+  async findAll() {
+    const data = await Gaceta.findAll();
+    console.log(JSON.stringify(data, null, 2));
+    return data;
   }
 
   findOne(id: number) {
@@ -23,4 +26,5 @@ export class TrabajoLegislativoService {
   remove(id: number) {
     return `This action removes a #${id} trabajoLegislativo`;
   }
+
 }

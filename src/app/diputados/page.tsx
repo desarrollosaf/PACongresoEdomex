@@ -1,4 +1,4 @@
-import { getDiputados } from '../api/diputados.api';
+import { getDiputados } from '../service/diputados.api';
 
 export default async function DiputadosPage() {
     const diputados = await getDiputados();
