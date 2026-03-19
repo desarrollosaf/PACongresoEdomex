@@ -5,7 +5,7 @@ export declare class DiputadosController {
     private readonly diputadosService;
     constructor(diputadosService: DiputadosService);
     create(createDiputadoDto: CreateDiputadoDto): string;
-    findAll(): string;
+    findAll(): Promise<import("../database/entities/diputado.entity").Diputado[]>;
     findIntegrantesByLegislatura(numero: string): Promise<import("../database/entities/legislatura.entity").Legislatura | null>;
     findOne(id: string): string;
     update(id: string, updateDiputadoDto: UpdateDiputadoDto): string;

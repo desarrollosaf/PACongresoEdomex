@@ -1,4 +1,8 @@
-export default function DiputadosPage() {
+import { getDiputados } from '../api/diputados.api';
+
+export default async function DiputadosPage() {
+    const diputados = await getDiputados();
+
     return (
         <>
 
@@ -75,7 +79,45 @@ export default function DiputadosPage() {
                 </div>
             </section>
 
+            <section className="max_width seccion-de-diputados">
+                <div>
+                    <h4 className="heading-13">Por apellido A-Z</h4>
+                </div>
+                <div>Encuentra a tu diputado por orden alfabético de apellido</div>
+                <div className="grupo-de-filtro">
+                    <div>
+                        <div className="w-layout-grid grid-3">
+                            {diputados.map((diputado: any) => {
+                                const integrante = diputado.integrantes?.[0];
+                                const partido = integrante?.partido;
+                                const distrito = integrante?.distrito;
+                                const foto = diputado.fotos?.[0];
+                                const fotoUrl = foto?.path ? `https://www.congresoedomex.gob.mx/${foto.path}` : undefined;
+                                const nombreCompleto = `${diputado.apaterno ?? ''} ${diputado.amaterno ?? ''} ${diputado.nombres ?? ''}`.trim();
+                                const siglas = partido?.siglas ?? '';
+                                const tipoCargo = distrito?.distrito ?? 'Plurinominal';
 
+                                return (
+                                    <div key={diputado.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                        <img
+                                            src={fotoUrl ?? 'images/placeholder-diputado.png'}
+                                            loading="lazy"
+                                            alt={nombreCompleto}
+                                            className={`image-15 diputado-${siglas.toLowerCase()}`}
+                                        />
+                                        <div className="info-diputado-basica" style={{ flex: 1, width: '100%' }}>
+                                            <h4 className="nombre-diputado">{nombreCompleto}</h4>
+                                            <div className="gp-diputado">{siglas}</div>
+                                            <div>{tipoCargo}</div>
+                                        </div>
+                                        <a href={`/diputados/${diputado.fancyurl ?? diputado.id}`} className="btn-var-2 w-button">Saber más</a>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </section>
         </>
     )
 }
