@@ -23,11 +23,13 @@ export class DiputadosService {
 
   async findAll() {
     return this.diputadoModel.findAll({
+      order: [['apaterno', 'ASC']],
       include: [
         Foto,
         {
           model: IntegranteLegislatura,
           where: { fecha_fin: null },
+          include: [Partido, Distrito],
         },
       ],
     });
