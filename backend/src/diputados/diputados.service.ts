@@ -1,15 +1,37 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { CreateDiputadoDto } from './dto/create-diputado.dto';
 import { UpdateDiputadoDto } from './dto/update-diputado.dto';
+import { Legislatura } from '../database/entities/legislatura.entity';
+import { IntegranteLegislatura } from '../database/entities/integrante-legislatura.entity';
+import { Diputado } from '../database/entities/diputado.entity';
+import { Partido } from '../database/entities/partido.entity';
+import { Distrito } from '../database/entities/distrito.entity';
 
 @Injectable()
 export class DiputadosService {
+  constructor(
+    @InjectModel(Legislatura)
+    private legislaturaModel: typeof Legislatura,
+  ) {}
   create(createDiputadoDto: CreateDiputadoDto) {
     return 'This action adds a new diputado';
   }
 
   findAll() {
     return `This action returns all diputados`;
+  }
+
+  async findIntegrantesByLegislatura(numero: string) {
+    return this.legislaturaModel.findOne({
+      where: { numero },
+      include: [
+        {
+          model: IntegranteLegislatura,
+          include: [Diputado, Partido, Distrito],
+        },
+      ],
+    });
   }
 
   findOne(id: number) {

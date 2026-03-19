@@ -17,6 +17,11 @@ export class DiputadosController {
     return this.diputadosService.findAll();
   }
 
+  @Get('legislatura/:numero')
+  findIntegrantesByLegislatura(@Param('numero') numero: string) {
+    return this.diputadosService.findIntegrantesByLegislatura(numero);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.diputadosService.findOne(+id);
