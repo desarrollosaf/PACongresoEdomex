@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislativo.module';
+import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
 
 @Module({
@@ -19,6 +20,7 @@ import { DiputadosModule } from './diputados/diputados.module';
       synchronize: true,  
     }),
     TrabajoLegislativoModule,
+    ComisionesModule,
     DiputadosModule,
   ],
   controllers: [AppController],
