@@ -12,80 +12,70 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DiputadosController = void 0;
+exports.TrabajoLegislativoController = void 0;
 const common_1 = require("@nestjs/common");
-const diputados_service_1 = require("./diputados.service");
-const create_diputado_dto_1 = require("./dto/create-diputado.dto");
-const update_diputado_dto_1 = require("./dto/update-diputado.dto");
-let DiputadosController = class DiputadosController {
-    diputadosService;
-    constructor(diputadosService) {
-        this.diputadosService = diputadosService;
+const trabajo_legislativo_service_1 = require("./trabajo_legislativo.service");
+const create_trabajo_legislativo_dto_1 = require("./dto/create-trabajo_legislativo.dto");
+const update_trabajo_legislativo_dto_1 = require("./dto/update-trabajo_legislativo.dto");
+let TrabajoLegislativoController = class TrabajoLegislativoController {
+    trabajoLegislativoService;
+    constructor(trabajoLegislativoService) {
+        this.trabajoLegislativoService = trabajoLegislativoService;
     }
-    create(createDiputadoDto) {
-        return this.diputadosService.create(createDiputadoDto);
+    create(createTrabajoLegislativoDto) {
+        return this.trabajoLegislativoService.create(createTrabajoLegislativoDto);
     }
     findAll() {
-        return this.diputadosService.findAll();
-    }
-    findIntegrantesByLegislatura(numero) {
-        return this.diputadosService.findIntegrantesByLegislatura(numero);
+        return this.trabajoLegislativoService.findAll();
     }
     findOne(id) {
-        return this.diputadosService.findOne(+id);
+        return this.trabajoLegislativoService.findOne(+id);
     }
-    update(id, updateDiputadoDto) {
-        return this.diputadosService.update(+id, updateDiputadoDto);
+    update(id, updateTrabajoLegislativoDto) {
+        return this.trabajoLegislativoService.update(+id, updateTrabajoLegislativoDto);
     }
     remove(id) {
-        return this.diputadosService.remove(+id);
+        return this.trabajoLegislativoService.remove(+id);
     }
 };
-exports.DiputadosController = DiputadosController;
+exports.TrabajoLegislativoController = TrabajoLegislativoController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_diputado_dto_1.CreateDiputadoDto]),
+    __metadata("design:paramtypes", [create_trabajo_legislativo_dto_1.CreateTrabajoLegislativoDto]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "create", null);
+], TrabajoLegislativoController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)('legislatura/:numero'),
-    __param(0, (0, common_1.Param)('numero')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "findIntegrantesByLegislatura", null);
+], TrabajoLegislativoController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "findOne", null);
+], TrabajoLegislativoController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_diputado_dto_1.UpdateDiputadoDto]),
+    __metadata("design:paramtypes", [String, update_trabajo_legislativo_dto_1.UpdateTrabajoLegislativoDto]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "update", null);
+], TrabajoLegislativoController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "remove", null);
-exports.DiputadosController = DiputadosController = __decorate([
-    (0, common_1.Controller)('diputados'),
-    __metadata("design:paramtypes", [diputados_service_1.DiputadosService])
-], DiputadosController);
-//# sourceMappingURL=diputados.controller.js.map
+], TrabajoLegislativoController.prototype, "remove", null);
+exports.TrabajoLegislativoController = TrabajoLegislativoController = __decorate([
+    (0, common_1.Controller)('trabajo-legislativo'),
+    __metadata("design:paramtypes", [trabajo_legislativo_service_1.TrabajoLegislativoService])
+], TrabajoLegislativoController);
+//# sourceMappingURL=trabajo_legislativo.controller.js.map

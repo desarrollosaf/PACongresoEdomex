@@ -12,80 +12,70 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DiputadosController = void 0;
+exports.ComisionesController = void 0;
 const common_1 = require("@nestjs/common");
-const diputados_service_1 = require("./diputados.service");
-const create_diputado_dto_1 = require("./dto/create-diputado.dto");
-const update_diputado_dto_1 = require("./dto/update-diputado.dto");
-let DiputadosController = class DiputadosController {
-    diputadosService;
-    constructor(diputadosService) {
-        this.diputadosService = diputadosService;
+const comisiones_service_1 = require("./comisiones.service");
+const create_comisione_dto_1 = require("./dto/create-comisione.dto");
+const update_comisione_dto_1 = require("./dto/update-comisione.dto");
+let ComisionesController = class ComisionesController {
+    comisionesService;
+    constructor(comisionesService) {
+        this.comisionesService = comisionesService;
     }
-    create(createDiputadoDto) {
-        return this.diputadosService.create(createDiputadoDto);
+    create(createComisioneDto) {
+        return this.comisionesService.create(createComisioneDto);
     }
     findAll() {
-        return this.diputadosService.findAll();
-    }
-    findIntegrantesByLegislatura(numero) {
-        return this.diputadosService.findIntegrantesByLegislatura(numero);
+        return this.comisionesService.findAll();
     }
     findOne(id) {
-        return this.diputadosService.findOne(+id);
+        return this.comisionesService.findOne(+id);
     }
-    update(id, updateDiputadoDto) {
-        return this.diputadosService.update(+id, updateDiputadoDto);
+    update(id, updateComisioneDto) {
+        return this.comisionesService.update(+id, updateComisioneDto);
     }
     remove(id) {
-        return this.diputadosService.remove(+id);
+        return this.comisionesService.remove(+id);
     }
 };
-exports.DiputadosController = DiputadosController;
+exports.ComisionesController = ComisionesController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_diputado_dto_1.CreateDiputadoDto]),
+    __metadata("design:paramtypes", [create_comisione_dto_1.CreateComisioneDto]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "create", null);
+], ComisionesController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)('legislatura/:numero'),
-    __param(0, (0, common_1.Param)('numero')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "findIntegrantesByLegislatura", null);
+], ComisionesController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "findOne", null);
+], ComisionesController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_diputado_dto_1.UpdateDiputadoDto]),
+    __metadata("design:paramtypes", [String, update_comisione_dto_1.UpdateComisioneDto]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "update", null);
+], ComisionesController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], DiputadosController.prototype, "remove", null);
-exports.DiputadosController = DiputadosController = __decorate([
-    (0, common_1.Controller)('diputados'),
-    __metadata("design:paramtypes", [diputados_service_1.DiputadosService])
-], DiputadosController);
-//# sourceMappingURL=diputados.controller.js.map
+], ComisionesController.prototype, "remove", null);
+exports.ComisionesController = ComisionesController = __decorate([
+    (0, common_1.Controller)('comisiones'),
+    __metadata("design:paramtypes", [comisiones_service_1.ComisionesService])
+], ComisionesController);
+//# sourceMappingURL=comisiones.controller.js.map
