@@ -20,8 +20,8 @@ let Distrito = class Distrito extends sequelize_typescript_1.Model {
 };
 exports.Distrito = Distrito;
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, primaryKey: true, autoIncrement: true }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36), primaryKey: true, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
+    __metadata("design:type", String)
 ], Distrito.prototype, "id", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
@@ -40,6 +40,6 @@ __decorate([
     __metadata("design:type", Array)
 ], Distrito.prototype, "integrantes", void 0);
 exports.Distrito = Distrito = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'distritos', underscored: true, timestamps: true })
+    (0, sequelize_typescript_1.Table)({ tableName: 'distritos', underscored: true, timestamps: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], Distrito);
 //# sourceMappingURL=distrito.entity.js.map

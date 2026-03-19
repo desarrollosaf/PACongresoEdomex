@@ -1,7 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
 export declare class Partido extends Model {
-    id: number;
+    id: string;
     siglas: string;
     nombre: string;
     emblema: string;

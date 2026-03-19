@@ -15,23 +15,22 @@ const partido_entity_1 = require("./entities/partido.entity");
 const distrito_entity_1 = require("./entities/distrito.entity");
 const integrante_legislatura_entity_1 = require("./entities/integrante-legislatura.entity");
 const comunicados_entity_1 = require("./entities/comunicados.entity");
+const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
+    legislatura_entity_1.Legislatura,
+    diputado_entity_1.Diputado,
+    partido_entity_1.Partido,
+    distrito_entity_1.Distrito,
+    integrante_legislatura_entity_1.IntegranteLegislatura,
+    comunicados_entity_1.Comunicados,
+]);
 let DatabaseModule = class DatabaseModule {
 };
 exports.DatabaseModule = DatabaseModule;
 exports.DatabaseModule = DatabaseModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
-        imports: [
-            sequelize_1.SequelizeModule.forFeature([
-                legislatura_entity_1.Legislatura,
-                diputado_entity_1.Diputado,
-                partido_entity_1.Partido,
-                distrito_entity_1.Distrito,
-                integrante_legislatura_entity_1.IntegranteLegislatura,
-                comunicados_entity_1.Comunicados
-            ]),
-        ],
-        exports: [sequelize_1.SequelizeModule],
+        imports: [sequelizeFeatures],
+        exports: [sequelizeFeatures],
     })
 ], DatabaseModule);
 //# sourceMappingURL=database.module.js.map

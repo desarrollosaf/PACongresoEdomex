@@ -22,8 +22,8 @@ let Partido = class Partido extends sequelize_typescript_1.Model {
 };
 exports.Partido = Partido;
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, primaryKey: true, autoIncrement: true }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36), primaryKey: true, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
+    __metadata("design:type", String)
 ], Partido.prototype, "id", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
@@ -50,6 +50,6 @@ __decorate([
     __metadata("design:type", Array)
 ], Partido.prototype, "integrantes", void 0);
 exports.Partido = Partido = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'partidos', underscored: true, timestamps: true, paranoid: true })
+    (0, sequelize_typescript_1.Table)({ tableName: 'partidos', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], Partido);
 //# sourceMappingURL=partido.entity.js.map

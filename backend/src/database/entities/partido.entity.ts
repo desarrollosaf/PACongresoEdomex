@@ -1,10 +1,10 @@
 import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
 
-@Table({ tableName: 'partidos', underscored: true, timestamps: true, paranoid: true })
+@Table({ tableName: 'partidos', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class Partido extends Model {
-  @Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
-  declare id: number;
+  @Column({ type: DataType.CHAR(36), primaryKey: true, defaultValue: DataType.UUIDV4 })
+  declare id: string;
 
   @Column({ type: DataType.STRING })
   siglas: string;

@@ -11,11 +11,11 @@ import { DiputadosModule } from './diputados/diputados.module';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: '192.168.10.10',
+      host: 'localhost',
       port: 3306,
       username: 'root',
       password: '',
-      database: 'congreso_bd',
+      database: 'congreso',
       models: [],
       autoLoadModels: true, 
       synchronize: true,  

@@ -31,8 +31,8 @@ let Diputado = class Diputado extends sequelize_typescript_1.Model {
 };
 exports.Diputado = Diputado;
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER, primaryKey: true, autoIncrement: true }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36), primaryKey: true, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
+    __metadata("design:type", String)
 ], Diputado.prototype, "id", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
@@ -95,6 +95,6 @@ __decorate([
     __metadata("design:type", Array)
 ], Diputado.prototype, "integrantes", void 0);
 exports.Diputado = Diputado = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true })
+    (0, sequelize_typescript_1.Table)({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], Diputado);
 //# sourceMappingURL=diputado.entity.js.map
