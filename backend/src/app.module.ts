@@ -7,11 +7,11 @@ import { SequelizeModule } from '@nestjs/sequelize';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
+      host: '192.168.10.10',
       port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'test',
+      username: 'homestead',
+      password: 'secret',
+      database: 'congreso_bd',
       models: [],
     }),
   ],
