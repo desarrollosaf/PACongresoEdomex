@@ -4,7 +4,7 @@ import { Diputado } from './diputado.entity';
 import { Partido } from './partido.entity';
 import { Distrito } from './distrito.entity';
 
-@Table({ tableName: 'integrantes_legislatura', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
+@Table({ tableName: 'integrante_legislaturas', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class IntegranteLegislatura extends Model {
   @Column({ type: DataType.CHAR(36), primaryKey: true, defaultValue: DataType.UUIDV4 })
   declare id: string;

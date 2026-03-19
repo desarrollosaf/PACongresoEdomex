@@ -34,6 +34,7 @@ export class DiputadosService {
   }
 
   async findIntegrantesByLegislatura(numero: string) {
+    console.log('holi');
     return this.legislaturaModel.findOne({
       where: { numero },
       include: [

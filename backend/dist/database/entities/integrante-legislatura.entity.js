@@ -82,6 +82,6 @@ __decorate([
     __metadata("design:type", Date)
 ], IntegranteLegislatura.prototype, "fecha_fin", void 0);
 exports.IntegranteLegislatura = IntegranteLegislatura = __decorate([
-    (0, sequelize_typescript_1.Table)({ tableName: 'integrantes_legislatura', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
+    (0, sequelize_typescript_1.Table)({ tableName: 'integrante_legislaturas', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], IntegranteLegislatura);
 //# sourceMappingURL=integrante-legislatura.entity.js.map
