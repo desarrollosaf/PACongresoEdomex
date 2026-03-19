@@ -10,6 +10,7 @@ import { IntegranteLegislatura } from './entities/integrante-legislatura.entity'
 import { Comunicados } from './entities/comunicados.entity';
 import { Foto } from './entities/fotos.entity';
 import { DescripcionComunicados } from './entities/descripcioncomunicados.entity';
+import { Gaceta } from './entities/gaceta.entity';
 
 const sequelizeFeatures = SequelizeModule.forFeature([
   Legislatura,
@@ -19,7 +20,8 @@ const sequelizeFeatures = SequelizeModule.forFeature([
   IntegranteLegislatura,
   Comunicados,
   Foto,
-  DescripcionComunicados
+  DescripcionComunicados,
+  Gaceta
 ]);
 
 @Global()

@@ -8,12 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TrabajoLegislativoService = void 0;
 const common_1 = require("@nestjs/common");
+const gaceta_entity_1 = require("../database/entities/gaceta.entity");
 let TrabajoLegislativoService = class TrabajoLegislativoService {
     create(createTrabajoLegislativoDto) {
         return 'This action adds a new trabajoLegislativo';
     }
-    findAll() {
-        return `This action returns all trabajoLegislativo`;
+    async findAll() {
+        const data = await gaceta_entity_1.Gaceta.findAll();
+        console.log(JSON.stringify(data, null, 2));
+        return data;
     }
     findOne(id) {
         return `This action returns a #${id} trabajoLegislativo`;

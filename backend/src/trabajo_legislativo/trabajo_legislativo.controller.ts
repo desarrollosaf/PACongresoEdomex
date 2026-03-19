@@ -31,4 +31,6 @@ export class TrabajoLegislativoController {
   remove(@Param('id') id: string) {
     return this.trabajoLegislativoService.remove(+id);
   }
+
+  
 }
