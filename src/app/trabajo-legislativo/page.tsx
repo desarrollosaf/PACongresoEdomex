@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';   
-import { getTrabajoLegislativo } from '../service/trabajo_legislativo.service';
+import { getTrabajoLegislativo } from '../service/trabajo_legislativo.api';
 
 export default async function TrabajoLegislativoPage() {
   const [activeTab, setActiveTab] = useState('Gaceta');
