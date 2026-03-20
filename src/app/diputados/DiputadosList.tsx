@@ -45,7 +45,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
     const resultado = useMemo(() => {
         let lista = [...diputados];
 
-        // Filtro por búsqueda (nombre, apellidos, partido, distrito)
+        // Filtro  (nombre, apellidos, partido, distrito)
         if (busqueda.trim()) {
             const q = busqueda.trim().toLowerCase();
             lista = lista.filter((d) => {
@@ -91,7 +91,6 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
 
     return (
         <>
-            {/* Encabezado con buscador */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
                 <div>
                     <h4 className="heading-13">Por apellido A-Z</h4>
@@ -117,7 +116,6 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
             </div>
             <div>
                 <div className="div-block-26">
-                    {/* Dropdown Grupo Parlamentario */}
                     <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown">
                         <div className="filtro-grupoparlamentario w-dropdown-toggle">
                             <div className="w-icon-dropdown-toggle"></div>
@@ -147,7 +145,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                         </nav>
                     </div>
 
-                    {/* Dropdown Orden */}
+    
                     <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown">
                         <div className="filtro-grupoparlamentario w-dropdown-toggle">
                             <div className="w-icon-dropdown-toggle"></div>
@@ -170,7 +168,6 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                 </div>
             </div>
 
-            {/* Conteo de resultados */}
             {(busqueda || partidoFiltro) && (
                 <div style={{ margin: '8px 0', fontSize: '0.9rem', opacity: 0.75 }}>
                     {resultado.length} resultado{resultado.length !== 1 ? 's' : ''}
@@ -179,7 +176,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                 </div>
             )}
 
-            {/* Grid de tarjetas */}
+
             <div className="grupo-de-filtro">
                 <div>
                     <div className="w-layout-grid grid-3">
