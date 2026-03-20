@@ -22,7 +22,7 @@ exports.BoletinesModule = BoletinesModule = __decorate([
         controllers: [boletines_controller_1.BoletinesController],
         providers: [boletines_service_1.BoletinesService],
         imports: [
-            sequelize_1.SequelizeModule.forFeature([comunicados_entity_1.Comunicados, fotos_entity_1.Foto, descripcioncomunicados_entity_1.DescripcionComunicados])
+            sequelize_1.SequelizeModule.forFeature([comunicados_entity_1.Comunicados, fotos_entity_1.Foto, descripcioncomunicados_entity_1.DescripcionComunicados]),
         ]
     })
 ], BoletinesModule);

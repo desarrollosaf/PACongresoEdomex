@@ -18,6 +18,7 @@ const comunicados_entity_1 = require("../database/entities/comunicados.entity");
 const sequelize_1 = require("@nestjs/sequelize");
 const fotos_entity_1 = require("../database/entities/fotos.entity");
 const descripcioncomunicados_entity_1 = require("../database/entities/descripcioncomunicados.entity");
+const sequelize_2 = require("sequelize");
 let BoletinesService = class BoletinesService {
     comunicadosModel;
     constructor(comunicadosModel) {
@@ -39,14 +40,55 @@ let BoletinesService = class BoletinesService {
             ]
         });
     }
-    findOne(id) {
-        return `This action returns a #${id} boletine`;
+    async findOne(id) {
+        return await comunicados_entity_1.Comunicados.findByPk(id, {
+            include: [fotos_entity_1.Foto,
+                {
+                    model: descripcioncomunicados_entity_1.DescripcionComunicados,
+                    as: 'descripcion',
+                    separate: true,
+                    order: [['orden', 'ASC']]
+                }
+            ]
+        });
     }
     update(id, updateBoletineDto) {
-        return `This action updates a #${id} boletine`;
+        return `This action updates a #${id} boletine update`;
     }
     remove(id) {
-        return `This action removes a #${id} boletine`;
+        return `This action removes a #${id} boletine remove`;
+    }
+    async random() {
+        const fechaLimite = new Date();
+        fechaLimite.setDate(fechaLimite.getDate() - 30);
+        const ids = await comunicados_entity_1.Comunicados.findAll({
+            attributes: ['id'],
+            where: {
+                fecha: {
+                    [sequelize_2.Op.gte]: fechaLimite
+                }
+            },
+            order: (0, sequelize_2.literal)('RAND()'),
+            limit: 4,
+            raw: true
+        });
+        const idsArray = ids.map(i => i.id);
+        return await comunicados_entity_1.Comunicados.findAll({
+            where: {
+                id: {
+                    [sequelize_2.Op.in]: idsArray
+                }
+            },
+            include: [
+                fotos_entity_1.Foto,
+                {
+                    model: descripcioncomunicados_entity_1.DescripcionComunicados,
+                    as: 'descripcion',
+                    separate: true,
+                    order: [['orden', 'ASC']]
+                }
+            ]
+        });
     }
 };
 exports.BoletinesService = BoletinesService;

@@ -6,7 +6,8 @@ export declare class BoletinesService {
     constructor(comunicadosModel: typeof Comunicados);
     create(createBoletineDto: CreateBoletineDto): string;
     findAll(): Promise<Comunicados[]>;
-    findOne(id: number): string;
+    findOne(id: string): Promise<Comunicados | null>;
     update(id: number, updateBoletineDto: UpdateBoletineDto): string;
     remove(id: number): string;
+    random(): Promise<Comunicados[]>;
 }
