@@ -1,5 +1,5 @@
 export async function getTrabajoLegislativo() {
-  const data = await fetch("http://localhost:4000/api/trabajo-legislativo", {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/trabajo-legislativo`, {
     cache: "no-store",
   });
   return data.json();
