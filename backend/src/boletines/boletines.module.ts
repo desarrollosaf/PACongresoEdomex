@@ -10,7 +10,7 @@ import { DescripcionComunicados } from 'src/database/entities/descripcioncomunic
   controllers: [BoletinesController],
   providers: [BoletinesService],
   imports:[
-     SequelizeModule.forFeature([Comunicados, Foto, DescripcionComunicados])
+     SequelizeModule.forFeature([Comunicados, Foto, DescripcionComunicados]),
   ]
 })
 export class BoletinesModule {}
