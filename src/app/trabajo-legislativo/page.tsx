@@ -1,11 +1,29 @@
 'use client';
 
-import { useState } from 'react';   
-import { getTrabajoLegislativo } from '../service/trabajo_legislativo.api';
+import { useEffect, useState } from 'react';
+import { getTrabajoLegislativo } from '../service/trabajo_legislativo.service';
 
-export default async function TrabajoLegislativoPage() {
+export default function TrabajoLegislativoPage() {
   const [activeTab, setActiveTab] = useState('Gaceta');
-  const trabajoLegislativo = await getTrabajoLegislativo();
+  const [trabajoLegislativo, setTrabajoLegislativo] = useState<any[]>([]);
+
+  useEffect(() => {
+    const cargarTrabajoLegislativo = async () => {
+      try {
+        const data = await getTrabajoLegislativo();
+        console.log('DATA:', data);
+        console.log('ES ARRAY:', Array.isArray(data));
+
+        setTrabajoLegislativo(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Error al obtener trabajo legislativo:', error);
+        setTrabajoLegislativo([]);
+      }
+    };
+
+    cargarTrabajoLegislativo();
+  }, []);
+
   
   return (
     <>
@@ -55,123 +73,30 @@ export default async function TrabajoLegislativoPage() {
 
           <div className="tabs-content w-tab-content">
             {activeTab === 'Gaceta' && (
-              <div data-w-tab="Gaceta" className="w-tab-pane w--tab-active">
-                <div className="titulo-tab">
-                  <h2>Gaceta Parlamentaria</h2>
-                  <div>Conoce más sobre lo que ocurre cada semana en la cámara de diputados</div>
+                <div data-w-tab="Gaceta" className="w-tab-pane w--tab-active">
+                    <div className="titulo-tab">
+                    <h2>Gaceta Parlamentaria</h2>
+                    <div>Conoce más sobre lo que ocurre cada semana en la cámara de diputados</div>
+                    </div>
+
+                    <div className="gacetas-grid">
+                    {trabajoLegislativo.map((item: any) => (
+                        <div className="gaceta-card" key={item.id}>
+                        <img
+                            className="gaceta-img"
+                            sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
+                            srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
+                            alt=""
+                            src="images/gaceta-example-4.jpeg"
+                            loading="lazy"
+                        />
+                        <h4>Gaceta #{item.id}</h4>
+                        <div>{item.date}</div>
+                        </div>
+                    ))}
+                    </div>
                 </div>
-                <div className="w-layout-grid grid-4">
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-
-                  <div className="gaceta">
-                    <img
-                      sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                      srcSet="images/gaceta-example-4-p-500.jpeg 500w, images/gaceta-example-4-p-800.jpeg 800w, images/gaceta-example-4.jpeg 1004w"
-                      alt=""
-                      src="images/gaceta-example-4.jpeg"
-                      loading="lazy"
-                    />
-                    <h4>Numero de Gaceta</h4>
-                    <div>Fecha de publicación</div>
-                  </div>
-                </div>
-              </div>
             )}
-
             {activeTab === 'legislacion' && (
               <div data-w-tab="legislacion" className="w-tab-pane w--tab-active">
                 <div className="titulo-tab">
