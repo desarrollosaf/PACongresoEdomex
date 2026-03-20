@@ -8,6 +8,7 @@ import { Partido } from '../database/entities/partido.entity';
 import { Distrito } from '../database/entities/distrito.entity';
 import { IntegranteLegislatura } from '../database/entities/integrante-legislatura.entity';
 import { Foto } from '../database/entities/foto.entity';
+import { Gaceta } from 'src/database/entities/gaceta.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { Foto } from '../database/entities/foto.entity';
       Distrito,
       IntegranteLegislatura,
       Foto,
+      Gaceta
     ]),
   ],
   controllers: [DiputadosController],
