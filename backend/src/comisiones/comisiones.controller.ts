@@ -7,19 +7,21 @@ import { UpdateComisioneDto } from './dto/update-comisione.dto';
 export class ComisionesController {
   constructor(private readonly comisionesService: ComisionesService) {}
 
-  @Post()
-  create(@Body() createComisioneDto: CreateComisioneDto) {
-    return this.comisionesService.create(createComisioneDto);
-  }
-
+   // 👉 GET /comisiones
   @Get()
   findAll() {
     return this.comisionesService.findAll();
   }
 
+  // 👉 GET /comisiones/:id
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.comisionesService.findOne(+id);
+    return this.comisionesService.findOne(id);
+  }
+
+  @Post()
+  create(@Body() createComisioneDto: CreateComisioneDto) {
+    return this.comisionesService.create(createComisioneDto);
   }
 
   @Patch(':id')

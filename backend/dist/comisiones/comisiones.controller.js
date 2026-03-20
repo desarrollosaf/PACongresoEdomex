@@ -22,14 +22,14 @@ let ComisionesController = class ComisionesController {
     constructor(comisionesService) {
         this.comisionesService = comisionesService;
     }
-    create(createComisioneDto) {
-        return this.comisionesService.create(createComisioneDto);
-    }
     findAll() {
         return this.comisionesService.findAll();
     }
     findOne(id) {
-        return this.comisionesService.findOne(+id);
+        return this.comisionesService.findOne(id);
+    }
+    create(createComisioneDto) {
+        return this.comisionesService.create(createComisioneDto);
     }
     update(id, updateComisioneDto) {
         return this.comisionesService.update(+id, updateComisioneDto);
@@ -39,13 +39,6 @@ let ComisionesController = class ComisionesController {
     }
 };
 exports.ComisionesController = ComisionesController;
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_comisione_dto_1.CreateComisioneDto]),
-    __metadata("design:returntype", void 0)
-], ComisionesController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
@@ -59,6 +52,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ComisionesController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_comisione_dto_1.CreateComisioneDto]),
+    __metadata("design:returntype", void 0)
+], ComisionesController.prototype, "create", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

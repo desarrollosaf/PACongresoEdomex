@@ -5,18 +5,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComisionesService = void 0;
 const common_1 = require("@nestjs/common");
+const sequelize_1 = require("@nestjs/sequelize");
+const comisiones_entity_1 = require("../database/entities/comisiones.entity");
+const tipo_comisiones_entity_1 = require("../database/entities/tipo-comisiones.entity");
 let ComisionesService = class ComisionesService {
+    comisionModel;
     create(createComisioneDto) {
         return 'This action adds a new comisione';
     }
-    findAll() {
-        return `This action returns all comisiones`;
+    constructor(comisionModel) {
+        this.comisionModel = comisionModel;
     }
-    findOne(id) {
-        return `This action returns a #${id} comisione`;
+    async findAll() {
+        const comisiones = await this.comisionModel.findAll({
+            attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
+            include: [
+                {
+                    model: tipo_comisiones_entity_1.TipoComision,
+                    attributes: ['id', 'valor']
+                }
+            ]
+        });
+        const agrupado = comisiones.reduce((acc, comision) => {
+            const tipo = comision.tipo?.valor || 'Sin tipo';
+            if (!acc[tipo]) {
+                acc[tipo] = [];
+            }
+            acc[tipo].push(comision);
+            return acc;
+        }, {});
+        return agrupado;
+    }
+    async findOne(id) {
+        return this.comisionModel.findByPk(id);
     }
     update(id, updateComisioneDto) {
         return `This action updates a #${id} comisione`;
@@ -27,6 +57,8 @@ let ComisionesService = class ComisionesService {
 };
 exports.ComisionesService = ComisionesService;
 exports.ComisionesService = ComisionesService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __param(0, (0, sequelize_1.InjectModel)(comisiones_entity_1.Comision)),
+    __metadata("design:paramtypes", [Object])
 ], ComisionesService);
 //# sourceMappingURL=comisiones.service.js.map
