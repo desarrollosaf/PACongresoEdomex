@@ -14,6 +14,7 @@ export class TrabajoLegislativoController {
 
   @Get()
   findAll() {
+    //console.log('CONTROLLER => GET /trabajo-legislativo');
     return this.trabajoLegislativoService.findAll();
   }
 

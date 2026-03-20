@@ -17,6 +17,7 @@ const partido_entity_1 = require("../database/entities/partido.entity");
 const distrito_entity_1 = require("../database/entities/distrito.entity");
 const integrante_legislatura_entity_1 = require("../database/entities/integrante-legislatura.entity");
 const foto_entity_1 = require("../database/entities/foto.entity");
+const gaceta_entity_1 = require("../database/entities/gaceta.entity");
 let DiputadosModule = class DiputadosModule {
 };
 exports.DiputadosModule = DiputadosModule;
@@ -30,6 +31,7 @@ exports.DiputadosModule = DiputadosModule = __decorate([
                 distrito_entity_1.Distrito,
                 integrante_legislatura_entity_1.IntegranteLegislatura,
                 foto_entity_1.Foto,
+                gaceta_entity_1.Gaceta
             ]),
         ],
         controllers: [diputados_controller_1.DiputadosController],
