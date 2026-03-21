@@ -5,7 +5,10 @@ export declare class TrabajoLegislativoController {
     private readonly trabajoLegislativoService;
     constructor(trabajoLegislativoService: TrabajoLegislativoService);
     create(createTrabajoLegislativoDto: CreateTrabajoLegislativoDto): string;
-    findAll(): Promise<import("../database/entities/gaceta.entity").Gaceta[]>;
+    findAll(): Promise<{
+        gaceta: import("../database/entities/gaceta.entity").Gaceta[];
+        legislacion: import("../database/entities/legislacion.entity").Legislacion[];
+    }>;
     findOne(id: string): string;
     update(id: string, updateTrabajoLegislativoDto: UpdateTrabajoLegislativoDto): string;
     remove(id: string): string;
