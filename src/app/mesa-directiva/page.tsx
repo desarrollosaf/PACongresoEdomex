@@ -30,21 +30,21 @@ export default async function MesaPage() {
                             <img src={`https://congresoedomex.gob.mx/${integrante[0].integranteLegis.diputado.fotos[0].path}`} loading="lazy" alt="" className="img-jucopo bg-morena"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo">  Dip. { integrante[0].integranteLegis.diputado.nombres } { integrante[0].integranteLegis.diputado.apaterno } { integrante[0].integranteLegis.diputado.amaterno } </h3>
-                                <div className="texto-centrado"> { integrante[0].cargo. valor }</div>
+                                <div className="texto-centrado"> { integrante[0].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
                             <img src={`https://congresoedomex.gob.mx/${integrante[1].integranteLegis.diputado.fotos[0].path}`} loading="lazy" alt="" className="img-jucopo bg-pri"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo"> Dip. { integrante[1].integranteLegis.diputado.nombres } { integrante[1].integranteLegis.diputado.apaterno } { integrante[1].integranteLegis.diputado.amaterno }</h3>
-                                <div className="texto-centrado"> { integrante[1].cargo. valor } </div>
+                                <div className="texto-centrado"> { integrante[1].tipo_cargo.valor } </div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
                             <img src={`https://congresoedomex.gob.mx/${integrante[2].integranteLegis.diputado.fotos[0].path}`} loading="lazy" alt="" className="img-jucopo bg-pt"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo">Dip. { integrante[2].integranteLegis.diputado.nombres } { integrante[2].integranteLegis.diputado.apaterno } { integrante[2].integranteLegis.diputado.amaterno }</h3>
-                                <div className="text-block-24"> { integrante[2].cargo. valor } </div>
+                                <div className="text-block-24"> { integrante[2].tipo_cargo.valor } </div>
                             </div>
                         </div>
                     </div>
@@ -53,14 +53,14 @@ export default async function MesaPage() {
                             <img src={`https://congresoedomex.gob.mx/${integrante[3].integranteLegis.diputado.fotos[0].path}`}  loading="lazy" alt="" className="img-jucopo bg-pan"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo"> Dip. { integrante[3].integranteLegis.diputado.nombres } { integrante[3].integranteLegis.diputado.apaterno } { integrante[3].integranteLegis.diputado.amaterno }</h3>
-                                <div className="texto-centrado"> { integrante[3].cargo. valor }</div>
+                                <div className="texto-centrado"> { integrante[3].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
                             <img src={`https://congresoedomex.gob.mx/${integrante[4].integranteLegis.diputado.fotos[0].path}`}  loading="lazy" alt="" className="img-jucopo bg-mc"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo">Dip. { integrante[4].integranteLegis.diputado.nombres } { integrante[4].integranteLegis.diputado.apaterno } { integrante[4].integranteLegis.diputado.amaterno }</h3>
-                                <div className="texto-centrado">{ integrante[4].cargo. valor }</div>
+                                <div className="texto-centrado">{ integrante[4].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
@@ -73,7 +73,7 @@ export default async function MesaPage() {
                                 alt="" className="img-jucopo bg-morena"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo">Dip. { integrante[5].integranteLegis.diputado.nombres } { integrante[5].integranteLegis.diputado.apaterno } { integrante[5].integranteLegis.diputado.amaterno }</h3>
-                                <div className="text-block-24">{ integrante[5].cargo. valor }</div>
+                                <div className="text-block-24">{ integrante[5].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
@@ -84,7 +84,7 @@ export default async function MesaPage() {
                             images/MORENA-Jennifer-Nathalie-González-López.png 1251w" alt="" className="img-jucopo bg-morena"/>
                             <div className="cuerpo-info-jucopo">
                                 <h3 className="nombre-jucopo">Dip. { integrante[5].integranteLegis.diputado.nombres } { integrante[5].integranteLegis.diputado.apaterno } { integrante[5].integranteLegis.diputado.amaterno }</h3>
-                                <div className="text-block-24">{ integrante[5].cargo. valor }</div>
+                                <div className="text-block-24">{ integrante[5].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
@@ -125,35 +125,6 @@ export default async function MesaPage() {
                     </div>
                 </div>
             </div>
-            <section className="section-4">
-                <div className="columns-7 w-row">
-                    <div className="w-col w-col-4">
-                        <div className="text-block-8">Plaza Hidalgo s/n, Col. Centro Toluca de Lerdo, Estado de México<br/>Conmutador (722) 279-6400</div>
-                    </div>
-                    <div className="column-10 w-col w-col-4">
-                        <img src="images/logo-animado.gif" loading="lazy" alt="" className="image-11"/>
-                    </div>
-                    <div className="w-col w-col-4">
-                        <div className="social-media">
-                            <a href="https://www.facebook.com/CongresoEdomex" target="_blank" className="w-inline-block">
-                                <img src="images/facebook_icon.png" loading="lazy" alt="" className="image-5"/></a>
-                            <a href="https://x.com/CongresoEdomex" target="_blank" className="w-inline-block">
-                                <img src="images/x_icon.png" loading="lazy" alt="" className="image-6"/>
-                            </a>
-                            <a href="https://www.instagram.com/congresoedomex" target="_blank" className="w-inline-block">
-                                <img src="images/instagram_icon.png" loading="lazy" alt="" className="image-7"/>
-                            </a>
-                            <a href="https://www.tiktok.com/@congresoedomex" target="_blank" className="w-inline-block">
-                                <img src="images/tiktok_icono.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 763px) 97vw, (max-width: 767px) 741px, 31vw" 
-                                srcSet="images/tiktok_icono-p-500.png 500w, images/tiktok_icono.png 741w" alt="" className="image-7"/>
-                            </a>
-                            <a href="https://www.youtube.com/@CongresoEdomex" target="_blank" className="w-inline-block">
-                                <img src="images/youtube_icon.png" loading="lazy" alt="" className="image-8 youtube-icono"/>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>     
         </section>
     )
 }

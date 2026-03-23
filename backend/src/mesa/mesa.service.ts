@@ -23,7 +23,7 @@ export class MesaService {
             include:[
                 {
                 model: TipoCargoComision,
-                as: "cargo", 
+                as: "tipo_cargo", 
                 },
                 {
                     model: IntegranteLegislatura,
@@ -43,8 +43,10 @@ export class MesaService {
                 }, 
             ],
             order: [
-                [{ model: TipoCargoComision, as: 'cargo' }, 'nivel', 'ASC']
+                [{ model: TipoCargoComision, as: 'tipo_cargo' }, 'nivel', 'ASC']
             ]
         })
+
+        
     }
 }

@@ -42,7 +42,11 @@ let BoletinesService = class BoletinesService {
     }
     async findOne(id) {
         return await comunicados_entity_1.Comunicados.findByPk(id, {
-            include: [fotos_entity_1.Foto,
+            include: [
+                {
+                    model: fotos_entity_1.Foto,
+                    as: "fotos"
+                },
                 {
                     model: descripcioncomunicados_entity_1.DescripcionComunicados,
                     as: 'descripcion',
@@ -80,7 +84,10 @@ let BoletinesService = class BoletinesService {
                 }
             },
             include: [
-                fotos_entity_1.Foto,
+                {
+                    model: fotos_entity_1.Foto,
+                    as: "fotos"
+                },
                 {
                     model: descripcioncomunicados_entity_1.DescripcionComunicados,
                     as: 'descripcion',

@@ -28,7 +28,7 @@ let MesaService = class MesaService {
             include: [
                 {
                     model: tipo_cargo_comision_entity_1.TipoCargoComision,
-                    as: "cargo",
+                    as: "tipo_cargo",
                 },
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
@@ -48,7 +48,7 @@ let MesaService = class MesaService {
                 },
             ],
             order: [
-                [{ model: tipo_cargo_comision_entity_1.TipoCargoComision, as: 'cargo' }, 'nivel', 'ASC']
+                [{ model: tipo_cargo_comision_entity_1.TipoCargoComision, as: 'tipo_cargo' }, 'nivel', 'ASC']
             ]
         });
     }
