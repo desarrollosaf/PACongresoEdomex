@@ -4,9 +4,10 @@ import { ComisionesService } from './comisiones.service';
 import { ComisionesController } from './comisiones.controller';
 import { Comision } from '../database/entities/comisiones.entity';
 import { TipoComision } from '../database/entities/tipo-comisiones.entity';
+import { IntegranteComision } from '../database/entities/integrante-comisions.entity';
 
 @Module({
-  imports: [SequelizeModule.forFeature([Comision, TipoComision])],
+  imports: [SequelizeModule.forFeature([Comision, TipoComision, IntegranteComision])],
   controllers: [ComisionesController],
   providers: [ComisionesService],
 })

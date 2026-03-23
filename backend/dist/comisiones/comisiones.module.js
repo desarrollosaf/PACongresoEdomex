@@ -13,12 +13,13 @@ const comisiones_service_1 = require("./comisiones.service");
 const comisiones_controller_1 = require("./comisiones.controller");
 const comisiones_entity_1 = require("../database/entities/comisiones.entity");
 const tipo_comisiones_entity_1 = require("../database/entities/tipo-comisiones.entity");
+const integrante_comisions_entity_1 = require("../database/entities/integrante-comisions.entity");
 let ComisionesModule = class ComisionesModule {
 };
 exports.ComisionesModule = ComisionesModule;
 exports.ComisionesModule = ComisionesModule = __decorate([
     (0, common_1.Module)({
-        imports: [sequelize_1.SequelizeModule.forFeature([comisiones_entity_1.Comision, tipo_comisiones_entity_1.TipoComision])],
+        imports: [sequelize_1.SequelizeModule.forFeature([comisiones_entity_1.Comision, tipo_comisiones_entity_1.TipoComision, integrante_comisions_entity_1.IntegranteComision])],
         controllers: [comisiones_controller_1.ComisionesController],
         providers: [comisiones_service_1.ComisionesService],
     })

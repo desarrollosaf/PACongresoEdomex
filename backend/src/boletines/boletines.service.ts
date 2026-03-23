@@ -24,7 +24,11 @@ export class BoletinesService {
     return await Comunicados.findAll({
       limit: 5,
       order: [['fecha', 'DESC']],
-      include: [Foto,
+      include: [
+        {
+          model: Foto,
+          as:"fotos"
+        },
         {
           model: DescripcionComunicados,
           as: 'descripcion', 
@@ -36,7 +40,11 @@ export class BoletinesService {
 
   async findOne(id: string) {
     return await Comunicados.findByPk(id, {
-      include: [Foto,
+      include: [
+        {
+          model: Foto,
+          as: "fotos"
+        },
         {
           model: DescripcionComunicados,
           as: 'descripcion', 
@@ -81,7 +89,10 @@ export class BoletinesService {
       }
     },
     include: [
-      Foto,
+      {
+        model: Foto,
+        as:"fotos"
+      },
       {
         model: DescripcionComunicados,
         as: 'descripcion',

@@ -1,6 +1,6 @@
-import { Column, Model, Table, DataType } from 'sequelize-typescript';
-import { BelongsTo, ForeignKey } from 'sequelize-typescript';
+import { Column, Model, Table, DataType, BelongsTo, ForeignKey, HasMany } from 'sequelize-typescript';
 import { TipoComision } from './tipo-comisiones.entity';
+import { IntegranteComision } from './integrante-comisions.entity';
 
 @Table({
   tableName: 'comisions',
@@ -22,13 +22,14 @@ export class Comision extends Model {
     allowNull: false
   })
   declare nombre: string;
-  
+
   @ForeignKey(() => TipoComision)
   @Column({
     type: DataType.CHAR(30),
     allowNull: false
   })
   declare tipo_comision_id: string;
+
   @Column({
     type: DataType.STRING(255),
     allowNull: false
@@ -62,5 +63,8 @@ export class Comision extends Model {
 
   @BelongsTo(() => TipoComision)
   declare tipo: TipoComision;
+
+  @HasMany(() => IntegranteComision)
+  integrantes: IntegranteComision[];
 
 }

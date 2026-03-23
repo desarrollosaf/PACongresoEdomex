@@ -22,6 +22,7 @@ export default function TrabajoLegislativoPage() {
   const [trabajoLegislativo, setTrabajoLegislativo] = useState<any[]>([]);
   const [legislacion, setLegislacion] = useState<any[]>([]);
   const [busquedaTexto, setBusquedaTexto] = useState('');
+  const [busquedaLegislacion, setBusquedaLegislacion] = useState('');
 
   useEffect(() => {
     const cargarTrabajoLegislativo = async () => {
@@ -41,9 +42,16 @@ export default function TrabajoLegislativoPage() {
   }, []);
 
   useEffect(() => {
-    if (activeTab !== 'Gaceta') return;
+    const selector =
+      activeTab === 'Gaceta'
+        ? '.gaceta-card'
+        : activeTab === 'legislacion'
+        ? '.legislacion-item'
+        : '';
 
-    const cards = document.querySelectorAll('.gaceta-card');
+    if (!selector) return;
+
+    const cards = document.querySelectorAll(selector);
 
     cards.forEach((card) => {
       card.classList.remove('show');
@@ -63,7 +71,7 @@ export default function TrabajoLegislativoPage() {
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, [trabajoLegislativo, busquedaTexto, activeTab]);
+  }, [trabajoLegislativo, legislacion, busquedaTexto, busquedaLegislacion, activeTab]);
 
   const gacetasFiltradas = useMemo(() => {
     if (!Array.isArray(trabajoLegislativo)) return [];
@@ -90,6 +98,21 @@ export default function TrabajoLegislativoPage() {
       );
     });
   }, [trabajoLegislativo, busquedaTexto]);
+
+  const legislacionFiltrada = useMemo(() => {
+    if (!Array.isArray(legislacion)) return [];
+
+    const termino = busquedaLegislacion.trim().toLowerCase();
+
+    if (termino === '') return legislacion;
+
+    return legislacion.filter((item: any) => {
+      const nombre = String(item?.nombre || '').toLowerCase();
+      const path = String(item?.path || '').toLowerCase();
+
+      return nombre.includes(termino) || path.includes(termino);
+    });
+  }, [legislacion, busquedaLegislacion]);
 
   return (
     <section className="main-legislativo">
@@ -180,30 +203,37 @@ export default function TrabajoLegislativoPage() {
               <div className="gacetas-grid">
                 {gacetasFiltradas.length > 0 ? (
                   gacetasFiltradas.map((item: any, index: number) => (
-                    <div
-                      className="gaceta-card"
+                    <a
                       key={item.id ?? index}
-                      style={{ transitionDelay: `${index * 0.06}s` }}
+                      href={`https://legislacion.congresoedomex.gob.mx/storage/documentos/gaceta/${item.documento}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gaceta-card-link"
                     >
-                      <img
-                        className="gaceta-img"
-                        sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                        srcSet="/images/gaceta-example-4-p-500.jpeg 500w, /images/gaceta-example-4-p-800.jpeg 800w, /images/gaceta-example-4.jpeg 1004w"
-                        alt="Portada gaceta"
-                        src="/images/gaceta-example-4.jpeg"
-                        loading="lazy"
-                      />
+                      <div
+                        className="gaceta-card"
+                        style={{ transitionDelay: `${index * 0.06}s` }}
+                      >
+                        <img
+                          className="gaceta-img"
+                          sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
+                          srcSet="/images/gaceta-example-4-p-500.jpeg 500w, /images/gaceta-example-4-p-800.jpeg 800w, /images/gaceta-example-4.jpeg 1004w"
+                          alt="Portada gaceta"
+                          src="/images/gaceta-example-4.jpeg"
+                          loading="lazy"
+                        />
 
-                      <div className="gaceta-card-body">
-                        <h4>Gaceta #{item.numero ?? item.id}</h4>
-                        <div className="gaceta-fecha">{formatearFecha(item.date)}</div>
+                        <div className="gaceta-card-body">
+                          <h4>Gaceta #{item.numero ?? item.id}</h4>
+                          <div className="gaceta-fecha">{formatearFecha(item.date)}</div>
 
-                        <div className="gaceta-meta">
-                          {item.year && <span>Año: {item.year}</span>}
-                          {item.tomo && <span>Tomo: {item.tomo}</span>}
+                          <div className="gaceta-meta">
+                            {item.year && <span>Año: {item.year}</span>}
+                            {item.tomo && <span>Tomo: {item.tomo}</span>}
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </a>
                   ))
                 ) : (
                   <div className="sin-resultados">
@@ -219,27 +249,64 @@ export default function TrabajoLegislativoPage() {
               <div className="titulo-tab">
                 <h2>Recursos Documentales de la Legislación</h2>
                 <div>
-                  Aqui necesito un subtitulo, para explicarle al ciudadano que puede encontrar en esta
-                  sección
+                  Consulta leyes, códigos y ordenamientos vigentes del Estado de México,
+                  localiza rápidamente un documento y descárgalo en un solo clic.
                 </div>
               </div>
 
-              <ul role="list" className="list-legislacion-documentos">
-                {legislacion.length > 0 ? (
-                  legislacion.map((item: any, index: number) => (
-                    <li key={item.id ?? index}>
-                      <div className="div-block-30">
+              <div className="filtros-gaceta">
+                <div className="buscador-texto-box">
+                  <label htmlFor="busquedaLegislacion" className="label-fecha">
+                    Buscar documento
+                  </label>
+
+                  <input
+                    id="busquedaLegislacion"
+                    type="text"
+                    value={busquedaLegislacion}
+                    onChange={(e) => setBusquedaLegislacion(e.target.value)}
+                    className="input-fecha"
+                    placeholder="Ej. constitución, código civil, administrativo"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  className="btn-limpiar-fecha"
+                  onClick={() => setBusquedaLegislacion('')}
+                >
+                  Limpiar
+                </button>
+              </div>
+
+              <div className="legislacion-lista">
+                {legislacionFiltrada.length > 0 ? (
+                  legislacionFiltrada.map((item: any, index: number) => (
+                    <div
+                      className="legislacion-item"
+                      key={item.id ?? index}
+                      style={{ transitionDelay: `${index * 0.05}s` }}
+                    >
+                      <div className="legislacion-item-info">
                         <h4>{item.nombre}</h4>
-                        <a href={item.path} className="btn-var-2 w-button" target="_blank">
-                          Descargar Documento
-                        </a>
                       </div>
-                    </li>
+
+                      <a
+                        href={item.path}
+                        className="legislacion-btn"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Descargar Documento
+                      </a>
+                    </div>
                   ))
                 ) : (
-                  <div>No hay documentos disponibles.</div>
+                  <div className="sin-resultados">
+                    No se encontraron documentos con esa búsqueda.
+                  </div>
                 )}
-              </ul>
+              </div>
             </div>
           )}
 

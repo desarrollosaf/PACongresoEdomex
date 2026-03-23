@@ -9,38 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Foto = void 0;
+exports.TipoCargoComision = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-let Foto = class Foto extends sequelize_typescript_1.Model {
-    path;
-    fotoable_id;
-    fotoable_type;
+let TipoCargoComision = class TipoCargoComision extends sequelize_typescript_1.Model {
 };
-exports.Foto = Foto;
+exports.TipoCargoComision = TipoCargoComision;
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36), primaryKey: true, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
     __metadata("design:type", String)
-], Foto.prototype, "id", void 0);
+], TipoCargoComision.prototype, "id", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)
-], Foto.prototype, "path", void 0);
+], TipoCargoComision.prototype, "valor", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.NUMBER }),
     __metadata("design:type", String)
-], Foto.prototype, "fotoable_id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
-    __metadata("design:type", String)
-], Foto.prototype, "fotoable_type", void 0);
-exports.Foto = Foto = __decorate([
-    (0, sequelize_typescript_1.Table)({
-        tableName: 'fotos',
-        underscored: true,
-        timestamps: true,
-        paranoid: true,
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_unicode_ci'
-    })
-], Foto);
-//# sourceMappingURL=foto.entity.js.map
+], TipoCargoComision.prototype, "nivel", void 0);
+exports.TipoCargoComision = TipoCargoComision = __decorate([
+    (0, sequelize_typescript_1.Table)({ tableName: 'tipo_cargo_comisions', underscored: true, timestamps: true, paranoid: false, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
+], TipoCargoComision);
+//# sourceMappingURL=tipo-cargo-comision.entity.js.map

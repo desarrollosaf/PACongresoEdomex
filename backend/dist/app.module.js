@@ -16,6 +16,7 @@ const trabajo_legislativo_module_1 = require("./trabajo_legislativo/trabajo_legi
 const comisiones_module_1 = require("./comisiones/comisiones.module");
 const diputados_module_1 = require("./diputados/diputados.module");
 const database_module_1 = require("./database/database.module");
+const mesa_module_1 = require("./mesa/mesa.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -37,7 +38,8 @@ exports.AppModule = AppModule = __decorate([
             trabajo_legislativo_module_1.TrabajoLegislativoModule,
             comisiones_module_1.ComisionesModule,
             diputados_module_1.DiputadosModule,
-            database_module_1.DatabaseModule
+            database_module_1.DatabaseModule,
+            mesa_module_1.MesaModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

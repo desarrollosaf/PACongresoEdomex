@@ -18,6 +18,8 @@ const comunicados_entity_1 = require("./entities/comunicados.entity");
 const fotos_entity_1 = require("./entities/fotos.entity");
 const descripcioncomunicados_entity_1 = require("./entities/descripcioncomunicados.entity");
 const gaceta_entity_1 = require("./entities/gaceta.entity");
+const integrante_comisions_entity_1 = require("./entities/integrante-comisions.entity");
+const tipo_cargo_comision_entity_1 = require("./entities/tipo-cargo-comision.entity");
 const legislacion_entity_1 = require("./entities/legislacion.entity");
 const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislatura_entity_1.Legislatura,
@@ -29,6 +31,8 @@ const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     fotos_entity_1.Foto,
     descripcioncomunicados_entity_1.DescripcionComunicados,
     gaceta_entity_1.Gaceta,
+    integrante_comisions_entity_1.IntegranteComision,
+    tipo_cargo_comision_entity_1.TipoCargoComision,
     legislacion_entity_1.Legislacion
 ]);
 let DatabaseModule = class DatabaseModule {

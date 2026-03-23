@@ -27,6 +27,11 @@ export class DiputadosController {
     return this.diputadosService.findOne(+id);
   }
 
+  @Get(':id/perfil')
+  getPerfil(@Param('id') id: string) {
+    return this.diputadosService.getPerfil(id);
+  }
+
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateDiputadoDto: UpdateDiputadoDto) {
     return this.diputadosService.update(+id, updateDiputadoDto);

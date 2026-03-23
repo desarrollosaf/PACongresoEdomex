@@ -7,7 +7,13 @@ import { IntegranteLegislatura } from '../database/entities/integrante-legislatu
 import { Diputado } from '../database/entities/diputado.entity';
 import { Partido } from '../database/entities/partido.entity';
 import { Distrito } from '../database/entities/distrito.entity';
-import { Foto } from '../database/entities/foto.entity';
+import { Foto } from '../database/entities/fotos.entity';
+import { AutoresComunicados } from '../database/entities/autores-comunicados.entity';
+import { Comunicados } from '../database/entities/comunicados.entity';
+import { IntegranteComision } from '../database/entities/integrante-comisions.entity';
+import { Comision } from '../database/entities/comisiones.entity';
+import { TipoCargoComision } from '../database/entities/tipo-cargo-comisiones.entity';
+import { Foto as FotosComunicado } from '../database/entities/fotos.entity';
 
 @Injectable()
 export class DiputadosService {
@@ -57,6 +63,42 @@ export class DiputadosService {
 
   findOne(id: number) {
     return `This action returns a #${id} diputado`;
+  }
+
+  async getPerfil(id: string) {
+    return this.diputadoModel.findOne({
+      where: { id },
+      include: [
+        Foto,
+        {
+          model: IntegranteLegislatura,
+          where: { fecha_fin: null },
+          required: false,
+          include: [
+            Partido,
+            Distrito,
+            {
+              model: IntegranteComision,
+              include: [
+                Comision,
+                TipoCargoComision
+              ],
+            },
+            {
+              model: AutoresComunicados,
+              required: false,
+              include: [
+                {
+                  model: Comunicados,
+                  order: [['fecha', 'DESC']],
+                  include: [{ model: FotosComunicado, as: 'fotos' }]
+                }
+              ]
+            }
+          ],
+        },
+      ],
+    });
   }
 
   update(id: number, updateDiputadoDto: UpdateDiputadoDto) {

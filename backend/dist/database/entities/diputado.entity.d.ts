@@ -1,6 +1,7 @@
 import { Model } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
-import { Foto } from './foto.entity';
+import { Foto } from './fotos.entity';
+import { AutoresComunicados } from './autores-comunicados.entity';
 export declare class Diputado extends Model {
     id: string;
     apaterno: string;
@@ -19,4 +20,5 @@ export declare class Diputado extends Model {
     telefono: string;
     integrantes: IntegranteLegislatura[];
     fotos: Foto[];
+    autores_comunicados: AutoresComunicados[];
 }

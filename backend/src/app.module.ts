@@ -7,6 +7,7 @@ import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislat
 import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
 import { DatabaseModule } from './database/database.module';
+import { MesaModule } from './mesa/mesa.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { DatabaseModule } from './database/database.module';
     TrabajoLegislativoModule,
     ComisionesModule,
     DiputadosModule,
-    DatabaseModule
+    DatabaseModule,
+    MesaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
