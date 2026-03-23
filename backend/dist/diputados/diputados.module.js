@@ -16,14 +16,14 @@ const diputado_entity_1 = require("../database/entities/diputado.entity");
 const partido_entity_1 = require("../database/entities/partido.entity");
 const distrito_entity_1 = require("../database/entities/distrito.entity");
 const integrante_legislatura_entity_1 = require("../database/entities/integrante-legislatura.entity");
-const foto_entity_1 = require("../database/entities/foto.entity");
+const fotos_entity_1 = require("../database/entities/fotos.entity");
 const gaceta_entity_1 = require("../database/entities/gaceta.entity");
 const tipo_cargo_comisiones_entity_1 = require("../database/entities/tipo-cargo-comisiones.entity");
 const integrante_comisions_entity_1 = require("../database/entities/integrante-comisions.entity");
 const autores_comunicados_entity_1 = require("../database/entities/autores-comunicados.entity");
 const comunicados_entity_1 = require("../database/entities/comunicados.entity");
 const comisiones_entity_1 = require("../database/entities/comisiones.entity");
-const fotos_entity_1 = require("../database/entities/fotos.entity");
+const fotos_entity_2 = require("../database/entities/fotos.entity");
 let DiputadosModule = class DiputadosModule {
 };
 exports.DiputadosModule = DiputadosModule;
@@ -36,14 +36,14 @@ exports.DiputadosModule = DiputadosModule = __decorate([
                 partido_entity_1.Partido,
                 distrito_entity_1.Distrito,
                 integrante_legislatura_entity_1.IntegranteLegislatura,
-                foto_entity_1.Foto,
+                fotos_entity_1.Foto,
                 gaceta_entity_1.Gaceta,
                 tipo_cargo_comisiones_entity_1.TipoCargoComision,
                 integrante_comisions_entity_1.IntegranteComision,
                 autores_comunicados_entity_1.AutoresComunicados,
                 comunicados_entity_1.Comunicados,
                 comisiones_entity_1.Comision,
-                fotos_entity_1.Foto
+                fotos_entity_2.Foto
             ]),
         ],
         controllers: [diputados_controller_1.DiputadosController],

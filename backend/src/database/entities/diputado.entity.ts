@@ -1,6 +1,6 @@
 import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
-import { Foto } from './foto.entity';
+import { Foto } from './fotos.entity';
 import { AutoresComunicados } from './autores-comunicados.entity';
 
 @Table({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })

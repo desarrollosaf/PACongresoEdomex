@@ -2,7 +2,7 @@ import { AutoresComunicados } from './autores-comunicados.entity';
 import { DescripcionComunicados } from './descripcioncomunicados.entity';
 import { Order } from 'sequelize';
 import { Model, Column, DataType, Table, HasMany } from 'sequelize-typescript';
-import { Foto } from './foto.entity';
+import { Foto } from './fotos.entity';
 
 @Table({ tableName: 'comunicados', underscored: true, timestamps: true, paranoid: true })
 export class Comunicados extends Model {

@@ -1,7 +1,7 @@
 import { AutoresComunicados } from './autores-comunicados.entity';
 import { DescripcionComunicados } from './descripcioncomunicados.entity';
 import { Model } from 'sequelize-typescript';
-import { Foto } from './foto.entity';
+import { Foto } from './fotos.entity';
 export declare class Comunicados extends Model {
     id: string;
     fecha: Date;

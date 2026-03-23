@@ -13,7 +13,7 @@ exports.Comunicados = void 0;
 const autores_comunicados_entity_1 = require("./autores-comunicados.entity");
 const descripcioncomunicados_entity_1 = require("./descripcioncomunicados.entity");
 const sequelize_typescript_1 = require("sequelize-typescript");
-const foto_entity_1 = require("./foto.entity");
+const fotos_entity_1 = require("./fotos.entity");
 let Comunicados = class Comunicados extends sequelize_typescript_1.Model {
     fotos;
     descripcion;
@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:type", String)
 ], Comunicados.prototype, "texto", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => foto_entity_1.Foto, {
+    (0, sequelize_typescript_1.HasMany)(() => fotos_entity_1.Foto, {
         foreignKey: 'fotoable_id',
         scope: {
             fotoable_type: 'App\\Models\\Comunicado',
