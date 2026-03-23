@@ -21,11 +21,22 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
   const cargo = distrito?.distrito ?? 'Diputado Plurinominal';
   const siglasPartido = partido?.siglas ?? 'S/P';
 
+  // Trim social/contact fields to avoid whitespace-only values from DB
+  const facebook = diputado.facebook?.trim() || '';
+  const twitter = diputado.twitter?.trim() || '';
+  const instagram = diputado.instagram?.trim() || '';
+  const email = diputado.email?.trim() || '';
+  const telefono = diputado.telefono?.trim() || '';
+  const ext = diputado.ext?.trim() || '';
+  const linkweb = diputado.linkweb?.trim() || '';
+
   // Comunicados
   const comunicados = diputado.autores_comunicados?.map((ac: any) => ac.comunicado) || [];
 
-  // Comisiones
-  const comisiones = integrante?.comisiones || [];
+  // Comisiones ordenadas por nivel ASC (1 = más alto cargo)
+  const comisiones = [...(integrante?.comisiones || [])].sort(
+    (a: any, b: any) => (a.tipo_cargo?.nivel ?? 99) - (b.tipo_cargo?.nivel ?? 99)
+  );
 
   return (
     <section className="main-diputados">
@@ -52,45 +63,60 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
                 <div className="w-col w-col-6">
                   <div className="div-block-16" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
                     <p className="paragraph-3">Contacto</p>
-                    {diputado.email && (
+                    {email && (
                       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                         {/* <img src="images/mail_icon.png" loading="lazy" alt="Email" className="image-4" style={{ width: '20px' }} /> */}
-                        <span>{diputado.email}</span>
+                        <a
+                          href={`mailto:${facebook}`}
+                          target="_blank" rel="noreferrer"
+                        >
+                          <img src="/images/mail_icon.png" loading="lazy" alt="" className="image-4"/>
+                        </a>
+                        
+                        
+                        {/* <span>{email}</span><img src="images/mail_icon.png" loading="lazy" alt="" className="image-4"/> */}
                       </div>
                     )}
-                    {diputado.telefono && (
-                      <div>Tel: {diputado.telefono} {diputado.ext ? `Ext. ${diputado.ext}` : ''}</div>
+                    {/* {telefono && (
+                      <div>Tel: {telefono} {ext ? `Ext. ${ext}` : ''}</div>
                     )}
-                    {diputado.linkweb && (
-                      <a href={diputado.linkweb} target="_blank" rel="noreferrer" style={{ marginTop: '4px', textDecoration: 'underline' }}>Sitio Web</a>
-                    )}
+                    {linkweb && (
+                      <a href={linkweb} target="_blank" rel="noreferrer" style={{ marginTop: '4px', textDecoration: 'underline' }}>Sitio Web</a>
+                    )} */}
                   </div>
                 </div>
-                <div className="column-5 w-col w-col-6">
-                  <div>
-                    <p className="paragraph-3">Redes Sociales</p>
+                {(facebook || twitter || instagram) && (
+                  <div className="column-5 w-col w-col-6">
+                    <div>
+                      <p className="paragraph-3">Redes Sociales</p>
+                    </div>
+                    <div className="social-media" style={{ display: 'flex', gap: '10px' }}>
+                      {facebook && (
+                        <a
+                          href={facebook.startsWith('http') ? facebook : `https://www.facebook.com/${facebook}`}
+                          target="_blank" rel="noreferrer"
+                        >
+                          <img src="/images/facebook_icon.png" loading="lazy" alt="Facebook" className="image-5" />
+                        </a>
+                      )}
+                      {twitter && (
+                        <a
+                          href={twitter.startsWith('http') ? twitter : `https://x.com/${twitter}`}
+                          target="_blank" rel="noreferrer"
+                        >
+                          <img src="/images/x_icon.png" loading="lazy" alt="X" className="image-6" />
+                        </a>
+                      )}
+                      {instagram && (
+                        <a
+                          href={instagram.startsWith('http') ? instagram : `https://www.instagram.com/${instagram}`}
+                          target="_blank" rel="noreferrer"
+                        >
+                          <img src="/images/instagram_icon.png" loading="lazy" alt="Instagram" className="image-7" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <div className="social-media" style={{ display: 'flex', gap: '10px' }}>
-                    {diputado.facebook && (
-                      <a href={diputado.facebook} target="_blank" rel="noreferrer">
-                        FB
-                        {/* <img src="images/facebook_icon.png" loading="lazy" alt="Facebook" className="image-5" /> */}
-                      </a>
-                    )}
-                    {diputado.twitter && (
-                      <a href={diputado.twitter} target="_blank" rel="noreferrer">
-                         X
-                        {/* <img src="images/x_icon.png" loading="lazy" alt="X" className="image-6" /> */}
-                      </a>
-                    )}
-                    {diputado.instagram && (
-                      <a href={diputado.instagram} target="_blank" rel="noreferrer">
-                        IG
-                        {/* <img src="images/instagram_icon.png" loading="lazy" alt="Instagram" className="image-7" /> */}
-                      </a>
-                    )}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
@@ -164,16 +190,23 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
                   <div style={{ opacity: 0.6, padding: '2rem 0' }}>No hay comisiones asignadas.</div>
                 ) : (
                   <div className="w-layout-grid grid-11">
-                    {comisiones.map((ic: any) => (
-                      <div key={ic.id} className="div-block-42">
-                         {/* Placeholder icon */}
-                        <div style={{ width: 40, height: 40, background: '#ccc', borderRadius: '50%', marginBottom: 10 }}></div>
-                        <div>
-                          <div className="texto-comision">{ic.comision?.nombre || 'Comisión'}</div>
-                          <div className="texto-bold-comision">{ic.tipo_cargo?.valor || 'Miembro'}</div>
+                    {comisiones.map((ic: any) => {
+                      const isPresidencia = ic.tipo_cargo?.nivel === 1;
+                      return (
+                        <div key={ic.id} className="div-block-42">
+                          <img
+                            loading="lazy"
+                            src={isPresidencia ? '/images/presidenta.png' : '/images/comision-general.png'}
+                            alt=""
+                            className={isPresidencia ? 'img-comision-top' : 'img-comision-general'}
+                          />
+                          <div>
+                            <div className="texto-comision">{ic.comision?.nombre || 'Comisión'}</div>
+                            <div className="texto-bold-comision">{ic.tipo_cargo?.valor || 'Miembro'}</div>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
