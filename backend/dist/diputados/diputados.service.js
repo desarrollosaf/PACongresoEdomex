@@ -21,6 +21,11 @@ const diputado_entity_1 = require("../database/entities/diputado.entity");
 const partido_entity_1 = require("../database/entities/partido.entity");
 const distrito_entity_1 = require("../database/entities/distrito.entity");
 const foto_entity_1 = require("../database/entities/foto.entity");
+const autores_comunicados_entity_1 = require("../database/entities/autores-comunicados.entity");
+const comunicados_entity_1 = require("../database/entities/comunicados.entity");
+const integrante_comisions_entity_1 = require("../database/entities/integrante-comisions.entity");
+const comisiones_entity_1 = require("../database/entities/comisiones.entity");
+const tipo_cargo_comisiones_entity_1 = require("../database/entities/tipo-cargo-comisiones.entity");
 let DiputadosService = class DiputadosService {
     legislaturaModel;
     diputadoModel;
@@ -65,6 +70,35 @@ let DiputadosService = class DiputadosService {
     }
     findOne(id) {
         return `This action returns a #${id} diputado`;
+    }
+    async getPerfil(id) {
+        return this.diputadoModel.findOne({
+            where: { id },
+            include: [
+                foto_entity_1.Foto,
+                {
+                    model: integrante_legislatura_entity_1.IntegranteLegislatura,
+                    where: { fecha_fin: null },
+                    required: false,
+                    include: [
+                        partido_entity_1.Partido,
+                        distrito_entity_1.Distrito,
+                        {
+                            model: integrante_comisions_entity_1.IntegranteComision,
+                            include: [
+                                comisiones_entity_1.Comision,
+                                tipo_cargo_comisiones_entity_1.TipoCargoComision
+                            ]
+                        }
+                    ],
+                },
+                {
+                    model: autores_comunicados_entity_1.AutoresComunicados,
+                    required: false,
+                    include: [comunicados_entity_1.Comunicados]
+                }
+            ],
+        });
     }
     update(id, updateDiputadoDto) {
         return `This action updates a #${id} diputado`;
