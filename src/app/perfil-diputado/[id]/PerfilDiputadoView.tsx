@@ -197,7 +197,7 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
                                   className="comunicado-texto"
                                 />
                               )}
-                              <a href="" className="btn-black-str w-button">Abrir Comunicado</a>
+                              <a href={`/boletines/${c.id}`}  className="btn-black-str w-button">Abrir Comunicado</a>
                             </div>
                           </div>
                         </div>
@@ -216,7 +216,7 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
                                 <img src={imgUrl} loading="lazy" className="img-boletin" alt={c.titulo} />
                               )}
                               <h4 className="titulo-comunicado-general">{c.titulo}</h4>
-                              <a href="#" className="btn-black-str w-button">Abrir Comunicado</a>
+                              <a href={`/boletines/${c.id}`}  className="btn-black-str w-button">Abrir Comunicado</a>
                             </div>
                           );
                         })}
