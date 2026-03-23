@@ -197,7 +197,7 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
                                   className="comunicado-texto"
                                 />
                               )}
-                              <a href="#" className="btn-black-str w-button">Abrir Comunicado</a>
+                              <a href="" className="btn-black-str w-button">Abrir Comunicado</a>
                             </div>
                           </div>
                         </div>
