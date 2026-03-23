@@ -6,6 +6,7 @@ import { BoletinesModule } from './boletines/boletines.module';
 import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislativo.module';
 import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { DiputadosModule } from './diputados/diputados.module';
     TrabajoLegislativoModule,
     ComisionesModule,
     DiputadosModule,
+    DatabaseModule
   ],
   controllers: [AppController],
   providers: [AppService],
