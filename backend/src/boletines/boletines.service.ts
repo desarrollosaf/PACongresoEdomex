@@ -24,7 +24,11 @@ export class BoletinesService {
     return await Comunicados.findAll({
       limit: 5,
       order: [['fecha', 'DESC']],
-      include: [Foto,
+      include: [
+        {
+          model: Foto,
+          as:"fotos"
+        },
         {
           model: DescripcionComunicados,
           as: 'descripcion', 
