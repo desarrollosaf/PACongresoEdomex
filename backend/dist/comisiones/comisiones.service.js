@@ -17,6 +17,10 @@ const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
 const comisiones_entity_1 = require("../database/entities/comisiones.entity");
 const tipo_comisiones_entity_1 = require("../database/entities/tipo-comisiones.entity");
+const integrante_comisions_entity_1 = require("../database/entities/integrante-comisions.entity");
+const integrante_legislatura_entity_1 = require("../database/entities/integrante-legislatura.entity");
+const tipo_cargo_comisiones_entity_1 = require("../database/entities/tipo-cargo-comisiones.entity");
+const diputado_entity_1 = require("../database/entities/diputado.entity");
 let ComisionesService = class ComisionesService {
     comisionModel;
     create(createComisioneDto) {
@@ -32,6 +36,31 @@ let ComisionesService = class ComisionesService {
                 {
                     model: tipo_comisiones_entity_1.TipoComision,
                     attributes: ['id', 'valor']
+                },
+                {
+                    model: integrante_comisions_entity_1.IntegranteComision,
+                    attributes: ['id'],
+                    include: [
+                        {
+                            model: integrante_legislatura_entity_1.IntegranteLegislatura,
+                            attributes: ['id'],
+                            include: [
+                                {
+                                    model: diputado_entity_1.Diputado,
+                                    attributes: [
+                                        'id',
+                                        'nombres',
+                                        'apaterno',
+                                        'amaterno'
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            model: tipo_cargo_comisiones_entity_1.TipoCargoComision,
+                            attributes: ['id', 'valor']
+                        }
+                    ]
                 }
             ]
         });

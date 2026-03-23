@@ -1,5 +1,6 @@
 import { Model } from 'sequelize-typescript';
 import { TipoComision } from './tipo-comisiones.entity';
+import { IntegranteComision } from './integrante-comisions.entity';
 export declare class Comision extends Model {
     id: string;
     nombre: string;
@@ -10,4 +11,5 @@ export declare class Comision extends Model {
     updated_at: Date;
     deleted_at: Date;
     tipo: TipoComision;
+    integrantes: IntegranteComision[];
 }
