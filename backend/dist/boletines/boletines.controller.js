@@ -28,8 +28,11 @@ let BoletinesController = class BoletinesController {
     findAll() {
         return this.boletinesService.findAll();
     }
+    random() {
+        return this.boletinesService.random();
+    }
     findOne(id) {
-        return this.boletinesService.findOne(+id);
+        return this.boletinesService.findOne(id);
     }
     update(id, updateBoletineDto) {
         return this.boletinesService.update(+id, updateBoletineDto);
@@ -52,6 +55,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], BoletinesController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('random'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], BoletinesController.prototype, "random", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),

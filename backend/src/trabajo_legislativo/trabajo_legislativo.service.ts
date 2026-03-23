@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateTrabajoLegislativoDto } from './dto/create-trabajo_legislativo.dto';
 import { UpdateTrabajoLegislativoDto } from './dto/update-trabajo_legislativo.dto';
 import { Gaceta } from '../database/entities/gaceta.entity';
+import { Legislacion } from '../database/entities/legislacion.entity';
 
 @Injectable()
 export class TrabajoLegislativoService {
@@ -10,9 +11,18 @@ export class TrabajoLegislativoService {
   }
 
   async findAll() {
-    const data = await Gaceta.findAll();
-    console.log(JSON.stringify(data, null, 2));
-    return data;
+    
+    const legislacion = await Legislacion.findAll();
+    const data = await Gaceta.findAll(
+      {
+        order: [['date', 'DESC']]
+      }
+    );
+    console.log(JSON.stringify(legislacion, null, 2));
+    return {
+      gaceta: data,
+      legislacion: legislacion
+    };
   }
 
   findOne(id: number) {

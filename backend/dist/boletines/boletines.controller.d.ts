@@ -6,7 +6,8 @@ export declare class BoletinesController {
     constructor(boletinesService: BoletinesService);
     create(createBoletineDto: CreateBoletineDto): string;
     findAll(): Promise<import("../database/entities/comunicados.entity").Comunicados[]>;
-    findOne(id: string): string;
+    random(): Promise<import("../database/entities/comunicados.entity").Comunicados[]>;
+    findOne(id: string): Promise<import("../database/entities/comunicados.entity").Comunicados | null>;
     update(id: string, updateBoletineDto: UpdateBoletineDto): string;
     remove(id: string): string;
 }

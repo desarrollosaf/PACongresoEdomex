@@ -17,9 +17,14 @@ export class BoletinesController {
     return this.boletinesService.findAll();
   }
 
-  @Get(':id')
+  @Get('random')
+  random(){
+    return this.boletinesService.random();
+  }
+
+   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.boletinesService.findOne(+id);
+    return this.boletinesService.findOne(id);
   }
 
   @Patch(':id')
