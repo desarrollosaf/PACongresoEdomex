@@ -1,11 +1,19 @@
-export default function ComisionesPage() {
+import { getComisiones } from "../service/comisiones.api";
+
+export default async function ComisionesPage() {
+  const tiposOrdenados = [
+    "Comisiones Legislativas",
+    "Comisiones Especiales",
+    "Comisiones y Comités Permanentes",
+  ];
+  const data = await getComisiones();
   return (
     <section className="max_width">
       <div>
         <h1 className="titulo-centrado">Comisiones y Comites</h1>
         <p className="subtitulo-info-centrado">
-          Las comisiones y comités son los órganos de trabajo donde se
-          analizan, dictaminan y dan seguimiento a los asuntos legislativos del Congreso.
+          Las comisiones y comités son los órganos de trabajo donde se analizan,
+          dictaminan y dan seguimiento a los asuntos legislativos del Congreso.
         </p>
       </div>
 
@@ -47,78 +55,53 @@ export default function ComisionesPage() {
             />
           </div>
         </form>
+        {tiposOrdenados.map((tipo) => {
+  const lista = data[tipo];
 
-        <div className="w-layout-grid grid-comisionesycomitespermanentes">
+  if (!lista || lista.length === 0) return null;
 
-          <div className="div-block-55">
-            <h3 className="titulo-centrado-peque-o">
-              Apoyo y Atención a las Personas Migrantes
-            </h3>
-            <div className="texto-presidente-cc">
-              Presidencia (nombre de la diputada o diputado)
-            </div>
-            <a href="#" className="btn-nav-boletin w-button">Acceder</a>
-          </div>
+  return (
+    <div key={tipo}>
+      <h3 className="titulo-centrado">{tipo}</h3>
 
-          <div className="div-block-55">
-            <h3 className="titulo-centrado-peque-o">Asuntos Indígenas</h3>
-            <div className="texto-presidente-cc">
-              Presidencia (nombre de la diputada o diputado)
-            </div>
-            <a href="#" className="btn-var-2 w-button">Acceder</a>
-          </div>
+      <div className="w-layout-grid grid-comisionesycomitespermanentes">
+        {lista.map((item: any) => {
+          
+          // 🔍 Buscar al presidente
+          const presidente = item.integrantes?.find(
+            (i: any) =>
+              i.tipo_cargo?.valor?.toLowerCase().includes('presiden')
+          );
 
-          <div className="div-block-55">
-            <h3 className="titulo-centrado-peque-o">Asuntos Internacionales</h3>
-            <div className="texto-presidente-cc">
-              Presidencia (nombre de la diputada o diputado)
-            </div>
-            <a href="#" className="btn-var-2 w-button">Acceder</a>
-          </div>
+          // 🧠 Armar nombre completo
+          const nombrePresidente = presidente
+            ? `${presidente.integrante_legislatura?.diputado?.nombres} ${presidente.integrante_legislatura?.diputado?.apaterno} ${presidente.integrante_legislatura?.diputado?.amaterno}`
+            : 'Sin presidencia';
 
-          {/* 👉 Aquí puedes seguir pegando los demás bloques igual */}
+          return (
+            <div key={item.id} className="div-block-55">
+              <h3 className="titulo-centrado-peque-o">
+                {(item.alias || item.nombre)?.replace(/\n/g, " ")}
+              </h3>
 
-        </div>
-
-        <h3 className="titulo-centrado">Comisiones Especiales</h3>
-
-        <div className="w-layout-grid grid-comisionesycomitespermanentes">
-          <div className="div-block-55">
-            <h3 className="titulo-centrado-peque-o">
-              Comisión Especial de Estudios Legislativos y Prácticas Parlamentarias
-            </h3>
-            <div className="texto-presidente-cc">
-              Presidencia (nombre de la diputada o diputado)
-            </div>
-            <a href="#" className="btn-nav-boletin w-button">Acceder</a>
-          </div>
-        </div>
-
-        <div className="div-block-54">
-          <h3 className="titulo-centrado">Comités Permanentes</h3>
-
-          <div className="w-layout-grid grid-comisionesycomitespermanentes">
-
-            <div className="div-block-55">
-              <h3 className="titulo-centrado-peque-o">Administración</h3>
+              {/* ✅ AQUÍ ya se imprime dinámico */}
               <div className="texto-presidente-cc">
-                Presidente: <br />
-                <strong>Dip. José Francisco Vázquez Rodríguez</strong>
+                Presidencia: {nombrePresidente}
               </div>
-              <a href="#" className="btn-var-2 w-button">Acceder</a>
-            </div>
 
-            <div className="div-block-55">
-              <h3 className="titulo-centrado-peque-o">Comunicación Social</h3>
-              <div className="texto-presidente-cc">
-                Presidente:<br />
-                <strong>Dip. Esteban Juárez Hernández</strong>
-              </div>
-              <a href="#" className="btn-var-2 w-button">Acceder</a>
+              <a
+                href={`/comision/${item.id}`}
+                className="btn-var-2 w-button"
+              >
+                Acceder
+              </a>
             </div>
-
-          </div>
-        </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+})}
 
         <div className="div-block-2"></div>
       </div>

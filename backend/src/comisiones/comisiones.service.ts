@@ -4,6 +4,10 @@ import { CreateComisioneDto } from './dto/create-comisione.dto';
 import { UpdateComisioneDto } from './dto/update-comisione.dto';
 import { Comision } from '../database/entities/comisiones.entity';
 import { TipoComision } from '../database/entities/tipo-comisiones.entity';
+import { IntegranteComision } from '../database/entities/integrante-comisions.entity';
+import { IntegranteLegislatura } from '../database/entities/integrante-legislatura.entity';
+import { TipoCargoComision } from '../database/entities/tipo-cargo-comisiones.entity';
+import { Diputado } from '../database/entities/diputado.entity';
 
 @Injectable()
 export class ComisionesService {
@@ -23,11 +27,35 @@ export class ComisionesService {
         {
           model: TipoComision,
           attributes: ['id', 'valor']
+        },
+        {
+          model: IntegranteComision,
+          attributes: ['id'],
+          include: [
+            {
+              model: IntegranteLegislatura,
+              attributes: ['id'],
+              include: [
+                {
+                  model: Diputado, // 👈 depende cómo lo tengas definido
+                  attributes: [
+                    'id',
+                    'nombres',
+                    'apaterno',
+                    'amaterno'
+                  ]
+                }
+              ]
+            },
+            {
+              model: TipoCargoComision,
+              attributes: ['id', 'valor']
+            }
+          ]
         }
       ]
     });
 
-    // 🔥 Agrupar por tipo
     const agrupado = comisiones.reduce((acc: any, comision: any) => {
       const tipo = comision.tipo?.valor || 'Sin tipo';
 
@@ -41,7 +69,7 @@ export class ComisionesService {
     }, {});
 
     return agrupado;
-  } 
+  }
 
   // 🔹 Obtener una por ID
   async findOne(id: string): Promise<Comision | null> {
