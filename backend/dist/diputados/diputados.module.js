@@ -23,6 +23,7 @@ const integrante_comisions_entity_1 = require("../database/entities/integrante-c
 const autores_comunicados_entity_1 = require("../database/entities/autores-comunicados.entity");
 const comunicados_entity_1 = require("../database/entities/comunicados.entity");
 const comisiones_entity_1 = require("../database/entities/comisiones.entity");
+const fotos_entity_1 = require("../database/entities/fotos.entity");
 let DiputadosModule = class DiputadosModule {
 };
 exports.DiputadosModule = DiputadosModule;
@@ -41,7 +42,8 @@ exports.DiputadosModule = DiputadosModule = __decorate([
                 integrante_comisions_entity_1.IntegranteComision,
                 autores_comunicados_entity_1.AutoresComunicados,
                 comunicados_entity_1.Comunicados,
-                comisiones_entity_1.Comision
+                comisiones_entity_1.Comision,
+                fotos_entity_1.Foto
             ]),
         ],
         controllers: [diputados_controller_1.DiputadosController],

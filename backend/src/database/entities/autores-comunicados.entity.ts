@@ -1,6 +1,6 @@
 import { Column, Model, Table, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import { Comunicados } from './comunicados.entity';
-import { Diputado } from './diputado.entity';
+import { IntegranteLegislatura } from './integrante-legislatura.entity';
 
 @Table({
   tableName: 'autores_comunicados',
@@ -34,15 +34,15 @@ export class AutoresComunicados extends Model {
   })
   tipo_autor_id: string;
 
-  @ForeignKey(() => Diputado)
+  @ForeignKey(() => IntegranteLegislatura)
   @Column({
     type: DataType.CHAR(36),
     allowNull: false
   })
   autor_id: string;
 
-  @BelongsTo(() => Diputado, { foreignKey: 'autor_id', targetKey: 'id', constraints: false })
-  autor: Diputado;
+  @BelongsTo(() => IntegranteLegislatura, { foreignKey: 'autor_id', targetKey: 'id', constraints: false })
+  autor: IntegranteLegislatura;
 
   @Column({
     type: DataType.DATE,

@@ -4,6 +4,7 @@ import { Diputado } from './diputado.entity';
 import { Partido } from './partido.entity';
 import { Distrito } from './distrito.entity';
 import { IntegranteComision } from './integrante-comisions.entity';
+import { AutoresComunicados } from './autores-comunicados.entity';
 
 @Table({ tableName: 'integrante_legislaturas', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class IntegranteLegislatura extends Model {
@@ -49,4 +50,7 @@ export class IntegranteLegislatura extends Model {
 
   @HasMany(() => IntegranteComision, { foreignKey: 'integrante_legislatura_id' })
   comisiones: IntegranteComision[];
+
+  @HasMany(() => AutoresComunicados, { foreignKey: 'autor_id' })
+  autores_comunicados: AutoresComunicados[];
 }
