@@ -14,6 +14,7 @@ import { IntegranteComision } from '../database/entities/integrante-comisions.en
 import { AutoresComunicados } from '../database/entities/autores-comunicados.entity';
 import { Comunicados } from '../database/entities/comunicados.entity';
 import { Comision } from '../database/entities/comisiones.entity';
+import { Foto as FotosComunicado } from '../database/entities/fotos.entity';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { Comision } from '../database/entities/comisiones.entity';
       IntegranteComision,
       AutoresComunicados,
       Comunicados,
-      Comision
+      Comision,
+      FotosComunicado
     ]),
   ],
   controllers: [DiputadosController],

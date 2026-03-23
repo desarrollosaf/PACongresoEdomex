@@ -4,6 +4,7 @@ import { Diputado } from './diputado.entity';
 import { Partido } from './partido.entity';
 import { Distrito } from './distrito.entity';
 import { IntegranteComision } from './integrante-comisions.entity';
+import { AutoresComunicados } from './autores-comunicados.entity';
 export declare class IntegranteLegislatura extends Model {
     id: string;
     legislatura_id: string;
@@ -18,4 +19,5 @@ export declare class IntegranteLegislatura extends Model {
     fecha_inicio: Date;
     fecha_fin: Date;
     comisiones: IntegranteComision[];
+    autores_comunicados: AutoresComunicados[];
 }

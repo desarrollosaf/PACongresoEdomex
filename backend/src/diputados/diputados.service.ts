@@ -13,6 +13,7 @@ import { Comunicados } from '../database/entities/comunicados.entity';
 import { IntegranteComision } from '../database/entities/integrante-comisions.entity';
 import { Comision } from '../database/entities/comisiones.entity';
 import { TipoCargoComision } from '../database/entities/tipo-cargo-comisiones.entity';
+import { Foto as FotosComunicado } from '../database/entities/fotos.entity';
 
 @Injectable()
 export class DiputadosService {
@@ -74,7 +75,7 @@ export class DiputadosService {
           where: { fecha_fin: null },
           required: false,
           include: [
-            Partido, 
+            Partido,
             Distrito,
             {
               model: IntegranteComision,
@@ -82,14 +83,20 @@ export class DiputadosService {
                 Comision,
                 TipoCargoComision
               ],
+            },
+            {
+              model: AutoresComunicados,
+              required: false,
+              include: [
+                {
+                  model: Comunicados,
+                  order: [['fecha', 'DESC']],
+                  include: [{ model: FotosComunicado, as: 'fotos' }]
+                }
+              ]
             }
           ],
         },
-        {
-          model: AutoresComunicados,
-          required: false,
-          include: [Comunicados]
-        }
       ],
     });
   }

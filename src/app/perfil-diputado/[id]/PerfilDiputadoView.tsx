@@ -2,6 +2,11 @@
 
 import { useState } from 'react';
 
+// Quita etiquetas HTML y espacios sobrantes del texto que viene de la BD
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 type PerfilProps = {
@@ -21,7 +26,7 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
   const cargo = distrito?.distrito ?? 'Diputado Plurinominal';
   const siglasPartido = partido?.siglas ?? 'S/P';
 
-  // Trim social/contact fields to avoid whitespace-only values from DB
+  // para quitar los espacios de las reds
   const facebook = diputado.facebook?.trim() || '';
   const twitter = diputado.twitter?.trim() || '';
   const instagram = diputado.instagram?.trim() || '';
@@ -30,8 +35,9 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
   const ext = diputado.ext?.trim() || '';
   const linkweb = diputado.linkweb?.trim() || '';
 
-  // Comunicados
-  const comunicados = diputado.autores_comunicados?.map((ac: any) => ac.comunicado) || [];
+  // Comunicados vienen del integrante_legislatura (autor_id = integrante_legislatura.id)
+  const comunicados = (integrante?.autores_comunicados?.map((ac: any) => ac.comunicado).filter(Boolean) || [])
+    .sort((a: any, b: any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
 
   // Comisiones ordenadas por nivel ASC (1 = más alto cargo)
   const comisiones = [...(integrante?.comisiones || [])].sort(
@@ -168,17 +174,54 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
                 {comunicados.length === 0 ? (
                   <div style={{ opacity: 0.6, padding: '2rem 0' }}>No hay comunicados disponibles.</div>
                 ) : (
-                  <div>
-                    <div className="w-layout-grid grid-12">
-                      {comunicados.map((c: any) => (
-                        <div key={c.id} className="div-block-43">
-                          {/* Placeholder image for news if photos relation is missing or empty */}
-                          <img src="images/140797863-45ff-49ef-abd3-b3e295d21f7b-p-500.jpg" loading="lazy" className="img-boletin" alt="Comunicado" />
-                          <h4 className="titulo-comunicado-general">{c.titulo}</h4>
-                          <a href="#" className="btn-black-str w-button">Abrir Comunicado</a>
+                <div>
+                    {/* --- Comunicado destacado (el más reciente) --- */}
+                    {(() => {
+                      const c = comunicados[0];
+                      const fotoPath = c?.fotos?.[0]?.path;
+                      const imgUrl = fotoPath ? `https://www.congresoedomex.gob.mx/${fotoPath}` : undefined;
+                      return (
+                        <div className="div-block-44">
+                          <div className="columns-14 w-row">
+                            {imgUrl && (
+                              <div className="w-col w-col-6">
+                                <img src={imgUrl} loading="lazy" className="image-28" alt={c.titulo} />
+                              </div>
+                            )}
+                            <div className={imgUrl ? 'w-col w-col-6' : 'w-col w-col-12'}>
+                              <h2 className="heading-38">{c.titulo}</h2>
+                              {c.texto && (
+                                <div
+                                  dangerouslySetInnerHTML={{ __html: c.texto }}
+                                  style={{ ['--empty-p' as any]: 'none' }}
+                                  className="comunicado-texto"
+                                />
+                              )}
+                              <a href="#" className="btn-black-str w-button">Abrir Comunicado</a>
+                            </div>
+                          </div>
                         </div>
-                      ))}
-                    </div>
+                      );
+                    })()}
+
+                    {/* --- El resto en grid --- */}
+                    {comunicados.length > 1 && (
+                      <div className="w-layout-grid grid-12">
+                        {comunicados.slice(1).map((c: any) => {
+                          const fotoPath = c?.fotos?.[0]?.path;
+                          const imgUrl = fotoPath ? `https://www.congresoedomex.gob.mx/${fotoPath}` : undefined;
+                          return (
+                            <div key={c.id} className="div-block-43">
+                              {imgUrl && (
+                                <img src={imgUrl} loading="lazy" className="img-boletin" alt={c.titulo} />
+                              )}
+                              <h4 className="titulo-comunicado-general">{c.titulo}</h4>
+                              <a href="#" className="btn-black-str w-button">Abrir Comunicado</a>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

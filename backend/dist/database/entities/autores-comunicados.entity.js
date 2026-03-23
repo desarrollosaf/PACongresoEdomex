@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AutoresComunicados = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const comunicados_entity_1 = require("./comunicados.entity");
-const diputado_entity_1 = require("./diputado.entity");
+const integrante_legislatura_entity_1 = require("./integrante-legislatura.entity");
 let AutoresComunicados = class AutoresComunicados extends sequelize_typescript_1.Model {
     comunicado_id;
     comunicado;
@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:type", String)
 ], AutoresComunicados.prototype, "tipo_autor_id", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => diputado_entity_1.Diputado),
+    (0, sequelize_typescript_1.ForeignKey)(() => integrante_legislatura_entity_1.IntegranteLegislatura),
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.CHAR(36),
         allowNull: false
@@ -57,8 +57,8 @@ __decorate([
     __metadata("design:type", String)
 ], AutoresComunicados.prototype, "autor_id", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => diputado_entity_1.Diputado, { foreignKey: 'autor_id', targetKey: 'id', constraints: false }),
-    __metadata("design:type", diputado_entity_1.Diputado)
+    (0, sequelize_typescript_1.BelongsTo)(() => integrante_legislatura_entity_1.IntegranteLegislatura, { foreignKey: 'autor_id', targetKey: 'id', constraints: false }),
+    __metadata("design:type", integrante_legislatura_entity_1.IntegranteLegislatura)
 ], AutoresComunicados.prototype, "autor", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({

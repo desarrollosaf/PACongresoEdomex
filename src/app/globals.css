@@ -212,3 +212,15 @@ body {
   font-size: 16px;
   color: #555;
 }
+
+/* Oculta párrafos vacíos que vienen del HTML almacenado en BD */
+.comunicado-texto {
+  text-align: justify;
+}
+.comunicado-texto p:empty,
+.comunicado-texto p:blank {
+  display: none;
+}
+.comunicado-texto p {
+  margin-bottom: 0.75rem;
+}
