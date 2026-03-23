@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "homestead",
+    "password": "secret",
+    "database": "congreso_bd",
+    "host": "192.168.10.10",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "homestead",
+    "password": "secret",
+    "database": "congreso_bd",
+    "host": "192.168.10.10",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "homestead",
+    "password": "secret",
+    "database": "congreso_bd",
+    "host": "192.168.10.10",
+    "dialect": "mysql"
+  }
+}
