@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Diputado = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const integrante_legislatura_entity_1 = require("./integrante-legislatura.entity");
-const foto_entity_1 = require("./foto.entity");
+const fotos_entity_1 = require("./fotos.entity");
 const autores_comunicados_entity_1 = require("./autores-comunicados.entity");
 let Diputado = class Diputado extends sequelize_typescript_1.Model {
     apaterno;
@@ -99,7 +99,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Diputado.prototype, "integrantes", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => foto_entity_1.Foto, { foreignKey: 'fotoable_id', constraints: false }),
+    (0, sequelize_typescript_1.HasMany)(() => fotos_entity_1.Foto, { foreignKey: 'fotoable_id', constraints: false }),
     __metadata("design:type", Array)
 ], Diputado.prototype, "fotos", void 0);
 __decorate([
