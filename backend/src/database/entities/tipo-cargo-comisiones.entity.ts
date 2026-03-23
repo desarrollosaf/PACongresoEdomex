@@ -40,6 +40,6 @@ export class TipoCargoComision extends Model {
   })
   declare updated_at: Date;
 
-  @HasMany(() => IntegranteComision)
+  @HasMany(() => IntegranteComision, { foreignKey: 'tipo_cargo_comision_id' })
   integrantes: IntegranteComision[];
 }

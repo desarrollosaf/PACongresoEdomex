@@ -13,12 +13,13 @@ exports.IntegranteComision = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const comisiones_entity_1 = require("./comisiones.entity");
 const integrante_legislatura_entity_1 = require("./integrante-legislatura.entity");
-const tipo_cargo_comision_entity_1 = require("./tipo-cargo-comision.entity");
+const tipo_cargo_comisiones_entity_1 = require("./tipo-cargo-comisiones.entity");
 let IntegranteComision = class IntegranteComision extends sequelize_typescript_1.Model {
     comision_id;
+    comision;
     integrante_legislatura_id;
     tipo_cargo_comision_id;
-    cargo;
+    tipo_cargo;
     integranteLegis;
 };
 exports.IntegranteComision = IntegranteComision;
@@ -32,42 +33,37 @@ __decorate([
     __metadata("design:type", String)
 ], IntegranteComision.prototype, "comision_id", void 0);
 __decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => comisiones_entity_1.Comision, { foreignKey: 'comision_id' }),
+    __metadata("design:type", comisiones_entity_1.Comision)
+], IntegranteComision.prototype, "comision", void 0);
+__decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => integrante_legislatura_entity_1.IntegranteLegislatura),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
     __metadata("design:type", String)
 ], IntegranteComision.prototype, "integrante_legislatura_id", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => tipo_cargo_comision_entity_1.TipoCargoComision),
+    (0, sequelize_typescript_1.ForeignKey)(() => tipo_cargo_comisiones_entity_1.TipoCargoComision),
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
     __metadata("design:type", String)
 ], IntegranteComision.prototype, "tipo_cargo_comision_id", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.DATE,
-        allowNull: true
-    }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE, allowNull: true }),
     __metadata("design:type", Date)
 ], IntegranteComision.prototype, "created_at", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.DATE,
-        allowNull: true
-    }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE, allowNull: true }),
     __metadata("design:type", Date)
 ], IntegranteComision.prototype, "updated_at", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.DATE,
-        allowNull: true
-    }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE, allowNull: true }),
     __metadata("design:type", Date)
 ], IntegranteComision.prototype, "deleted_at", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => tipo_cargo_comision_entity_1.TipoCargoComision),
-    __metadata("design:type", tipo_cargo_comision_entity_1.TipoCargoComision)
-], IntegranteComision.prototype, "cargo", void 0);
+    (0, sequelize_typescript_1.BelongsTo)(() => tipo_cargo_comisiones_entity_1.TipoCargoComision, { foreignKey: 'tipo_cargo_comision_id' }),
+    __metadata("design:type", tipo_cargo_comisiones_entity_1.TipoCargoComision)
+], IntegranteComision.prototype, "tipo_cargo", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => integrante_legislatura_entity_1.IntegranteLegislatura),
+    (0, sequelize_typescript_1.BelongsTo)(() => integrante_legislatura_entity_1.IntegranteLegislatura, { foreignKey: 'integrante_legislatura_id' }),
     __metadata("design:type", integrante_legislatura_entity_1.IntegranteLegislatura)
 ], IntegranteComision.prototype, "integranteLegis", void 0);
 exports.IntegranteComision = IntegranteComision = __decorate([
