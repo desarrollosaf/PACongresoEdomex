@@ -20,17 +20,20 @@ const formatearFecha = (fecha: string) => {
 export default function TrabajoLegislativoPage() {
   const [activeTab, setActiveTab] = useState('Gaceta');
   const [trabajoLegislativo, setTrabajoLegislativo] = useState<any[]>([]);
+  const [legislacion, setLegislacion] = useState<any[]>([]);
   const [busquedaTexto, setBusquedaTexto] = useState('');
 
   useEffect(() => {
     const cargarTrabajoLegislativo = async () => {
       try {
         const data = await getTrabajoLegislativo();
-        const arreglo = Array.isArray(data) ? data : [];
-        setTrabajoLegislativo(arreglo);
+
+        setTrabajoLegislativo(data.gaceta || []);
+        setLegislacion(data.legislacion || []); // nuevo estado
       } catch (error) {
         console.error('Error al obtener trabajo legislativo:', error);
         setTrabajoLegislativo([]);
+        setLegislacion([]);
       }
     };
 
@@ -222,30 +225,20 @@ export default function TrabajoLegislativoPage() {
               </div>
 
               <ul role="list" className="list-legislacion-documentos">
-                <li>
-                  <div className="div-block-30">
-                    <h4>[Titulo del documento]</h4>
-                    <a href="#" className="btn-var-2 w-button">
-                      Descargar Documento
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div className="div-block-30">
-                    <h4>[Titulo del documento]</h4>
-                    <a href="#" className="btn-var-2 w-button">
-                      Descargar Documento
-                    </a>
-                  </div>
-                </li>
-                <li>
-                  <div className="div-block-30">
-                    <h4>[Titulo del documento]</h4>
-                    <a href="#" className="btn-var-2 w-button">
-                      Descargar Documento
-                    </a>
-                  </div>
-                </li>
+                {legislacion.length > 0 ? (
+                  legislacion.map((item: any, index: number) => (
+                    <li key={item.id ?? index}>
+                      <div className="div-block-30">
+                        <h4>{item.nombre}</h4>
+                        <a href={item.path} className="btn-var-2 w-button" target="_blank">
+                          Descargar Documento
+                        </a>
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <div>No hay documentos disponibles.</div>
+                )}
               </ul>
             </div>
           )}

@@ -19,7 +19,7 @@ let TrabajoLegislativoService = class TrabajoLegislativoService {
         const data = await gaceta_entity_1.Gaceta.findAll({
             order: [['date', 'DESC']]
         });
-        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.stringify(legislacion, null, 2));
         return {
             gaceta: data,
             legislacion: legislacion
