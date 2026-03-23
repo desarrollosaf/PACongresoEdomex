@@ -1,7 +1,7 @@
-import { Column, Model, Table, ForeignKey, BelongsTo, DataType, HasMany } from 'sequelize-typescript';
+import { Column, Model, Table, ForeignKey, BelongsTo, DataType } from 'sequelize-typescript';
 import { Comision } from './comisiones.entity';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
-import { TipoCargoComision } from './tipo-cargo-comision.entity';
+import { TipoCargoComision } from './tipo-cargo-comisiones.entity';
 
 
 @Table({ tableName: 'integrante_comisions', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
@@ -13,6 +13,9 @@ export class IntegranteComision extends Model {
     @Column({ type: DataType.CHAR(36) })
     comision_id: string;
 
+    @BelongsTo(() => Comision, { foreignKey: 'comision_id' })
+    comision: Comision;
+
     @ForeignKey(() => IntegranteLegislatura)
     @Column({ type: DataType.CHAR(36) })
     integrante_legislatura_id: string;
@@ -21,28 +24,18 @@ export class IntegranteComision extends Model {
     @Column({ type: DataType.CHAR(36) })
     tipo_cargo_comision_id: string;
 
-    @Column({
-    type: DataType.DATE,
-    allowNull: true
-    })
+    @Column({ type: DataType.DATE, allowNull: true })
     declare created_at: Date;
 
-    @Column({
-        type: DataType.DATE,
-        allowNull: true
-    })
+    @Column({ type: DataType.DATE, allowNull: true })
     declare updated_at: Date;
 
-    @Column({
-        type: DataType.DATE,
-        allowNull: true
-    })
+    @Column({ type: DataType.DATE, allowNull: true })
     declare deleted_at: Date;
 
+    @BelongsTo(() => TipoCargoComision, { foreignKey: 'tipo_cargo_comision_id' })
+    tipo_cargo: TipoCargoComision;
 
-    @BelongsTo(() => TipoCargoComision)
-    cargo: TipoCargoComision;
-
-    @BelongsTo(() => IntegranteLegislatura)
+    @BelongsTo(() => IntegranteLegislatura, { foreignKey: 'integrante_legislatura_id' })
     integranteLegis: IntegranteLegislatura;
-}  
+}

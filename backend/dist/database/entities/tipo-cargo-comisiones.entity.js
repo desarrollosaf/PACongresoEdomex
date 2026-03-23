@@ -53,7 +53,7 @@ __decorate([
     __metadata("design:type", Date)
 ], TipoCargoComision.prototype, "updated_at", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => integrante_comisions_entity_1.IntegranteComision),
+    (0, sequelize_typescript_1.HasMany)(() => integrante_comisions_entity_1.IntegranteComision, { foreignKey: 'tipo_cargo_comision_id' }),
     __metadata("design:type", Array)
 ], TipoCargoComision.prototype, "integrantes", void 0);
 exports.TipoCargoComision = TipoCargoComision = __decorate([
