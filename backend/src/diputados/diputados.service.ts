@@ -81,7 +81,7 @@ export class DiputadosService {
               include: [
                 Comision,
                 TipoCargoComision
-              ]
+              ],
             }
           ],
         },

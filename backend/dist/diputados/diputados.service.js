@@ -88,7 +88,7 @@ let DiputadosService = class DiputadosService {
                             include: [
                                 comisiones_entity_1.Comision,
                                 tipo_cargo_comisiones_entity_1.TipoCargoComision
-                            ]
+                            ],
                         }
                     ],
                 },
