@@ -18,6 +18,7 @@ const comunicados_entity_1 = require("./entities/comunicados.entity");
 const fotos_entity_1 = require("./entities/fotos.entity");
 const descripcioncomunicados_entity_1 = require("./entities/descripcioncomunicados.entity");
 const gaceta_entity_1 = require("./entities/gaceta.entity");
+const legislacion_entity_1 = require("./entities/legislacion.entity");
 const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislatura_entity_1.Legislatura,
     diputado_entity_1.Diputado,
@@ -27,7 +28,8 @@ const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     comunicados_entity_1.Comunicados,
     fotos_entity_1.Foto,
     descripcioncomunicados_entity_1.DescripcionComunicados,
-    gaceta_entity_1.Gaceta
+    gaceta_entity_1.Gaceta,
+    legislacion_entity_1.Legislacion
 ]);
 let DatabaseModule = class DatabaseModule {
 };
