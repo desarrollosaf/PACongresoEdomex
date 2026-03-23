@@ -1,6 +1,7 @@
 import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
 import { Foto } from './foto.entity';
+import { AutoresComunicados } from './autores-comunicados.entity';
 
 @Table({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class Diputado extends Model {
@@ -54,4 +55,7 @@ export class Diputado extends Model {
 
   @HasMany(() => Foto, { foreignKey: 'fotoable_id', constraints: false })
   fotos: Foto[];
+
+  @HasMany(() => AutoresComunicados, { foreignKey: 'autor_id', constraints: false })
+  autores_comunicados: AutoresComunicados[];
 }

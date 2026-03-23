@@ -1,7 +1,8 @@
-import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
-import { Foto } from './fotos.entity';
+import { AutoresComunicados } from './autores-comunicados.entity';
 import { DescripcionComunicados } from './descripcioncomunicados.entity';
 import { Order } from 'sequelize';
+import { Model, Column, DataType, Table, HasMany } from 'sequelize-typescript';
+import { Foto } from './foto.entity';
 
 @Table({ tableName: 'comunicados', underscored: true, timestamps: true, paranoid: true })
 export class Comunicados extends Model {
@@ -32,4 +33,9 @@ export class Comunicados extends Model {
     foreignKey: 'comunicado_id',
   })
   descripcion: DescripcionComunicados[];
+
+  @HasMany(() => AutoresComunicados, {
+    foreignKey: 'comunicado_id',
+  })
+  autores: AutoresComunicados[];
 }

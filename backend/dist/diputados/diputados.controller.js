@@ -34,6 +34,9 @@ let DiputadosController = class DiputadosController {
     findOne(id) {
         return this.diputadosService.findOne(+id);
     }
+    getPerfil(id) {
+        return this.diputadosService.getPerfil(id);
+    }
     update(id, updateDiputadoDto) {
         return this.diputadosService.update(+id, updateDiputadoDto);
     }
@@ -69,6 +72,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], DiputadosController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)(':id/perfil'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], DiputadosController.prototype, "getPerfil", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),

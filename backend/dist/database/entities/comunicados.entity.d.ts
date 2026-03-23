@@ -1,6 +1,7 @@
-import { Model } from 'sequelize-typescript';
-import { Foto } from './fotos.entity';
+import { AutoresComunicados } from './autores-comunicados.entity';
 import { DescripcionComunicados } from './descripcioncomunicados.entity';
+import { Model } from 'sequelize-typescript';
+import { Foto } from './foto.entity';
 export declare class Comunicados extends Model {
     id: string;
     fecha: Date;
@@ -9,4 +10,5 @@ export declare class Comunicados extends Model {
     texto: string;
     fotos: Foto[];
     descripcion: DescripcionComunicados[];
+    autores: AutoresComunicados[];
 }

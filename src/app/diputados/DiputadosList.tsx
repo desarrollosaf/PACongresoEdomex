@@ -207,7 +207,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                                         <div className="gp-diputado">{siglas}</div>
                                         <div>{tipoCargo}</div>
                                     </div>
-                                    <a href={`/diputados/${diputado.fancyurl ?? diputado.id}`} className="btn-var-2 w-button">
+                                    <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button">
                                         Saber más
                                     </a>
                                 </div>
