@@ -15,6 +15,7 @@ const legislatura_entity_1 = require("./legislatura.entity");
 const diputado_entity_1 = require("./diputado.entity");
 const partido_entity_1 = require("./partido.entity");
 const distrito_entity_1 = require("./distrito.entity");
+const integrante_comisions_entity_1 = require("./integrante-comisions.entity");
 let IntegranteLegislatura = class IntegranteLegislatura extends sequelize_typescript_1.Model {
     legislatura_id;
     legislatura;
@@ -27,6 +28,7 @@ let IntegranteLegislatura = class IntegranteLegislatura extends sequelize_typesc
     fecha_ingreso;
     fecha_inicio;
     fecha_fin;
+    comisiones;
 };
 exports.IntegranteLegislatura = IntegranteLegislatura;
 __decorate([
@@ -81,6 +83,10 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATEONLY }),
     __metadata("design:type", Date)
 ], IntegranteLegislatura.prototype, "fecha_fin", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => integrante_comisions_entity_1.IntegranteComision, { foreignKey: 'integrante_legislatura_id' }),
+    __metadata("design:type", Array)
+], IntegranteLegislatura.prototype, "comisiones", void 0);
 exports.IntegranteLegislatura = IntegranteLegislatura = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: 'integrante_legislaturas', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 ], IntegranteLegislatura);

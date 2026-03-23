@@ -10,6 +10,7 @@ export declare class DiputadosService {
     findAll(): Promise<Diputado[]>;
     findIntegrantesByLegislatura(numero: string): Promise<Legislatura | null>;
     findOne(id: number): string;
+    getPerfil(id: string): Promise<Diputado | null>;
     update(id: number, updateDiputadoDto: UpdateDiputadoDto): string;
     remove(id: number): string;
 }

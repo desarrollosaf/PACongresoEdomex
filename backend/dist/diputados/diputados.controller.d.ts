@@ -8,6 +8,7 @@ export declare class DiputadosController {
     findAll(): Promise<import("../database/entities/diputado.entity").Diputado[]>;
     findIntegrantesByLegislatura(numero: string): Promise<import("../database/entities/legislatura.entity").Legislatura | null>;
     findOne(id: string): string;
+    getPerfil(id: string): Promise<import("../database/entities/diputado.entity").Diputado | null>;
     update(id: string, updateDiputadoDto: UpdateDiputadoDto): string;
     remove(id: string): string;
 }
