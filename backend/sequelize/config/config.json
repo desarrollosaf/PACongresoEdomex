@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "homestead",
-    "password": "secret",
-    "database": "congreso_bd",
-    "host": "192.168.10.10",
+    "username": "usr_congreso",
+    "password": "NAp1gMx3QB5rzwLJjGGx",
+    "database": "adminplem_congresoedomex",
+    "host": "192.168.36.58",
     "dialect": "mysql"
   },
   "test": {
-    "username": "homestead",
-    "password": "secret",
-    "database": "congreso_bd",
-    "host": "192.168.10.10",
+    "username": "usr_congreso",
+    "password": "NAp1gMx3QB5rzwLJjGGx",
+    "database": "adminplem_congresoedomex",
+    "host": "192.168.36.58",
     "dialect": "mysql"
   },
   "production": {
-    "username": "homestead",
-    "password": "secret",
-    "database": "congreso_bd",
-    "host": "192.168.10.10",
+    "username": "usr_congreso",
+    "password": "NAp1gMx3QB5rzwLJjGGx",
+    "database": "adminplem_congresoedomex",
+    "host": "192.168.36.58",
     "dialect": "mysql"
   }
 }
