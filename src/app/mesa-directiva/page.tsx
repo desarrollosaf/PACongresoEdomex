@@ -77,36 +77,42 @@ export default async function MesaPage() {
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
-                            <img src="images/MORENA-Jennifer-Nathalie-González-López.png" loading="lazy" sizes="(max-width: 1251px) 100vw, 1251px" 
-                            srcSet="images/MORENA-Jennifer-Nathalie-González-López-p-500.png 500w, 
-                            images/MORENA-Jennifer-Nathalie-González-López-p-800.png 800w, 
-                            images/MORENA-Jennifer-Nathalie-González-López-p-1080.png 1080w, 
-                            images/MORENA-Jennifer-Nathalie-González-López.png 1251w" alt="" className="img-jucopo bg-morena"/>
+                            <img src={`https://congresoedomex.gob.mx/${integrante[6].integranteLegis.diputado.fotos[0].path}`} loading="lazy" sizes="(max-width: 1251px) 100vw, 1251px" 
+                            srcSet={`
+                                https://congresoedomex.gob.mx/${integrante[6].integranteLegis.diputado.fotos[0].path} 500w, 
+                                https://congresoedomex.gob.mx/${integrante[6].integranteLegis.diputado.fotos[0].path} 800w, 
+                                https://congresoedomex.gob.mx/${integrante[6].integranteLegis.diputado.fotos[0].path} 1080w, 
+                                https://congresoedomex.gob.mx/${integrante[6].integranteLegis.diputado.fotos[0].path} 1251w`}
+                                 alt="" className="img-jucopo bg-morena"/>
                             <div className="cuerpo-info-jucopo">
-                                <h3 className="nombre-jucopo">Dip. { integrante[5].integranteLegis.diputado.nombres } { integrante[5].integranteLegis.diputado.apaterno } { integrante[5].integranteLegis.diputado.amaterno }</h3>
-                                <div className="text-block-24">{ integrante[5].tipo_cargo.valor }</div>
+                                <h3 className="nombre-jucopo">Dip. { integrante[6].integranteLegis.diputado.nombres } { integrante[6].integranteLegis.diputado.apaterno } { integrante[6].integranteLegis.diputado.amaterno }</h3>
+                                <div className="text-block-24">{ integrante[6].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
-                            <img src="images/MORENA-Zaira-Cedillo-Silva.png" loading="lazy" sizes="(max-width: 1251px) 100vw, 1251px" 
-                            srcSet="images/MORENA-Zaira-Cedillo-Silva-p-500.png 500w, 
-                            images/MORENA-Zaira-Cedillo-Silva-p-800.png 800w, 
-                            images/MORENA-Zaira-Cedillo-Silva-p-1080.png 1080w, 
-                            images/MORENA-Zaira-Cedillo-Silva.png 1251w" alt="" className="img-jucopo bg-morena"/>
+                            <img src={`https://congresoedomex.gob.mx/${integrante[7].integranteLegis.diputado.fotos[0].path}`} loading="lazy" sizes="(max-width: 1251px) 100vw, 1251px" 
+                            srcSet={`
+                                https://congresoedomex.gob.mx/${integrante[7].integranteLegis.diputado.fotos[0].path} 500w, 
+                                https://congresoedomex.gob.mx/${integrante[7].integranteLegis.diputado.fotos[0].path} 800w, 
+                                https://congresoedomex.gob.mx/${integrante[7].integranteLegis.diputado.fotos[0].path} 1080w, 
+                                https://congresoedomex.gob.mx/${integrante[7].integranteLegis.diputado.fotos[0].path} 1251w`}
+                                 alt="" className="img-jucopo bg-morena"/>
                             <div className="cuerpo-info-jucopo">
-                                <h3 className="nombre-jucopo">Dip. Zaira Cedillo Silva</h3>
-                                <div className="text-block-24">Integrante</div>
+                                <h3 className="nombre-jucopo">Dip. { integrante[7].integranteLegis.diputado.nombres } { integrante[7].integranteLegis.diputado.apaterno } { integrante[7].integranteLegis.diputado.amaterno }</h3>
+                                <div className="text-block-24">{ integrante[7].tipo_cargo.valor }</div>
                             </div>
                         </div>
                         <div className="miembro-card-jucopo">
-                            <img src="images/MORENAEstebanJuárezHernández.png" loading="lazy" sizes="(max-width: 1251px) 100vw, 1251px" 
-                            srcSet="images/MORENAEstebanJuárezHernández-p-500.png 500w, 
-                            images/MORENAEstebanJuárezHernández-p-800.png 800w, 
-                            images/MORENAEstebanJuárezHernández-p-1080.png 1080w, 
-                            images/MORENAEstebanJuárezHernández.png 1251w" alt="" className="img-jucopo bg-morena"/>
+                            <img src={`https://congresoedomex.gob.mx/${integrante[8].integranteLegis.diputado.fotos[0].path}`} loading="lazy" sizes="(max-width: 1251px) 100vw, 1251px" 
+                            srcSet={`
+                                https://congresoedomex.gob.mx/${integrante[8].integranteLegis.diputado.fotos[0].path} 500w, 
+                                https://congresoedomex.gob.mx/${integrante[8].integranteLegis.diputado.fotos[0].path} 800w, 
+                                https://congresoedomex.gob.mx/${integrante[8].integranteLegis.diputado.fotos[0].path} 1080w, 
+                                https://congresoedomex.gob.mx/${integrante[8].integranteLegis.diputado.fotos[0].path} 1251w`}
+                                alt="" className="img-jucopo bg-morena"/>
                             <div className="cuerpo-info-jucopo">
-                                <h3 className="nombre-jucopo">Dip. Esteban Juárez Hernández</h3>
-                                <div className="text-block-24">Integrante</div>
+                                <h3 className="nombre-jucopo">Dip. { integrante[8].integranteLegis.diputado.nombres } { integrante[8].integranteLegis.diputado.apaterno } { integrante[8].integranteLegis.diputado.amaterno }</h3>
+                                <div className="text-block-24">{ integrante[8].tipo_cargo.valor }</div>
                             </div>
                         </div>
                     </div>
