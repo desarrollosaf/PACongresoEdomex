@@ -1,12 +1,21 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { getComisiones } from "../service/comisiones.api";
 
-export default async function ComisionesPage() {
+export default function ComisionesPage() {
+  const [data, setData] = useState<any>({});
+  const [search, setSearch] = useState("");
+
   const tiposOrdenados = [
     "Comisiones Legislativas",
     "Comisiones Especiales",
     "Comisiones y Comités Permanentes",
   ];
-  const data = await getComisiones();
+
+  useEffect(() => {
+    getComisiones().then(setData);
+  }, []);
   return (
     <section className="max_width">
       <div>
@@ -33,7 +42,7 @@ export default async function ComisionesPage() {
       <div className="div-block-56">
         <h3 className="titulo-centrado">Comisiones Legislativas</h3>
 
-        <form action="/search" className="search w-form">
+        <form className="search w-form" onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="search" className="field-label">
             Encuentra de manera fácil y rápida la información que necesitas.
           </label>
@@ -42,66 +51,67 @@ export default async function ComisionesPage() {
             <input
               className="search-input-3 w-input"
               maxLength={256}
-              name="query"
               placeholder="Buscar"
               type="search"
-              id="search"
-              required
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
-            <input
-              type="submit"
-              className="search-button-3 w-button"
-              value="Buscar"
-            />
+
+            <button type="button" className="search-button-3 w-button">
+              Buscar
+            </button>
           </div>
         </form>
         {tiposOrdenados.map((tipo) => {
-  const lista = data[tipo];
+          const lista = data[tipo];
 
-  if (!lista || lista.length === 0) return null;
+          if (!lista || lista.length === 0) return null;
 
-  return (
-    <div key={tipo}>
-      <h3 className="titulo-centrado">{tipo}</h3>
-
-      <div className="w-layout-grid grid-comisionesycomitespermanentes">
-        {lista.map((item: any) => {
-          
-          // 🔍 Buscar al presidente
-          const presidente = item.integrantes?.find(
-            (i: any) =>
-              i.tipo_cargo?.valor?.toLowerCase().includes('presiden')
-          );
-
-          // 🧠 Armar nombre completo
-          const nombrePresidente = presidente
-            ? `${presidente.integrante_legislatura?.diputado?.nombres} ${presidente.integrante_legislatura?.diputado?.apaterno} ${presidente.integrante_legislatura?.diputado?.amaterno}`
-            : 'Sin presidencia';
+          const listaFiltrada = lista.filter((item: any) => {
+            const texto = `${item.nombre} ${item.alias}`.toLowerCase();
+            return texto.includes(search.toLowerCase());
+          });
 
           return (
-            <div key={item.id} className="div-block-55">
-              <h3 className="titulo-centrado-peque-o">
-                {(item.alias || item.nombre)?.replace(/\n/g, " ")}
-              </h3>
+            <div key={tipo}>
+              <h3 className="titulo-centrado">{tipo}</h3>
 
-              {/* ✅ AQUÍ ya se imprime dinámico */}
-              <div className="texto-presidente-cc">
-                Presidencia: {nombrePresidente}
+              <div className="w-layout-grid grid-comisionesycomitespermanentes">
+                {listaFiltrada.map((item: any) => {
+                  // 🔍 Buscar al presidente
+                  const presidente = item.integrantes?.find((i: any) =>
+                    i.tipo_cargo?.valor?.toLowerCase().includes("presiden"),
+                  );
+
+                  // 🧠 Armar nombre completo
+                  const nombrePresidente = presidente
+                    ? `${presidente.integrante_legislatura?.diputado?.nombres} ${presidente.integrante_legislatura?.diputado?.apaterno} ${presidente.integrante_legislatura?.diputado?.amaterno}`
+                    : "Sin presidencia";
+
+                  return (
+                    <div key={item.id} className="div-block-55">
+                      <h3 className="titulo-centrado-peque-o">
+                        {(item.alias || item.nombre)?.replace(/\n/g, " ")}
+                      </h3>
+
+                      {/* ✅ AQUÍ ya se imprime dinámico */}
+                      <div className="texto-presidente-cc">
+                        Presidencia: {nombrePresidente}
+                      </div>
+
+                      <a
+                        href={`/comision/${item.id}`}
+                        className="btn-var-2 w-button"
+                      >
+                        Acceder
+                      </a>
+                    </div>
+                  );
+                })}
               </div>
-
-              <a
-                href={`/comision/${item.id}`}
-                className="btn-var-2 w-button"
-              >
-                Acceder
-              </a>
             </div>
           );
         })}
-      </div>
-    </div>
-  );
-})}
 
         <div className="div-block-2"></div>
       </div>

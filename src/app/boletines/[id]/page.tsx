@@ -1,35 +1,4 @@
-async function getBoletin(id: string) {
-  try {
-    const res = await fetch(`http://localhost:4000/api/boletines/${id}`);
-     if (!res.ok) {
-      const text = await res.text();
-      console.error('Error backend:', text);
-      return null;
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.error("Failed to fetch boletin:", error);
-    return [];
-  }
-}
-
-async function getBoletinesRandom() {
-  try {
-    const res = await fetch(`http://localhost:4000/api/boletines/random`);
-     if (!res.ok) {
-      const text = await res.text();
-      console.error('Error backend:', text);
-      return null;
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.error("Failed to fetch boletin:", error);
-    return [];
-  }
-}
-
+import { getBoletin, getBoletinesRandom } from '../../service/boletines.api'
 
 export default async function BoletinesPage({ params }: { params: { id: string } }) {
     const { id } = await params;

@@ -8,6 +8,7 @@ import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
 import { DatabaseModule } from './database/database.module';
 import { MesaModule } from './mesa/mesa.module';
+import { JuntaModule } from './junta/junta.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { MesaModule } from './mesa/mesa.module';
     DiputadosModule,
     DatabaseModule,
     MesaModule,
+    JuntaModule,
   ],
   controllers: [AppController],
   providers: [AppService],

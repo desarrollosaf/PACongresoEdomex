@@ -17,6 +17,7 @@ const comisiones_module_1 = require("./comisiones/comisiones.module");
 const diputados_module_1 = require("./diputados/diputados.module");
 const database_module_1 = require("./database/database.module");
 const mesa_module_1 = require("./mesa/mesa.module");
+const junta_module_1 = require("./junta/junta.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -40,6 +41,7 @@ exports.AppModule = AppModule = __decorate([
             diputados_module_1.DiputadosModule,
             database_module_1.DatabaseModule,
             mesa_module_1.MesaModule,
+            junta_module_1.JuntaModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
