@@ -18,7 +18,7 @@ let MesaService = class MesaService {
     async findAll() {
         const comision = await comisiones_entity_1.Comision.findOne({
             where: {
-                alias: "Directiva del Segundo Periodo Ordinario de Sesiones del Segundo Año de Ejercicio Constitucional"
+                nombre: "DIP PERMANENTE DEL SEGUNDO ANO EJERCICIO CONSTITUCIONAL 03-DIC-2025 AL 31-ENE-26"
             }
         });
         return await integrante_comisions_entity_1.IntegranteComision.findAll({
@@ -48,7 +48,13 @@ let MesaService = class MesaService {
                 },
             ],
             order: [
-                [{ model: tipo_cargo_comision_entity_1.TipoCargoComision, as: 'tipo_cargo' }, 'nivel', 'ASC']
+                [
+                    {
+                        model: tipo_cargo_comision_entity_1.TipoCargoComision,
+                        as: 'tipo_cargo'
+                    },
+                    'nivel', 'ASC'
+                ]
             ]
         });
     }
