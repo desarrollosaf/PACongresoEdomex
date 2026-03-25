@@ -12,6 +12,6 @@ export default async function PerfilDiputadoPage({ params }: { params: Promise<{
       </div>
     );
   }
-a a
+
   return <PerfilDiputadoView diputado={diputado} />;
 }
