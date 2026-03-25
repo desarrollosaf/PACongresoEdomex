@@ -5,7 +5,8 @@ import { IntegranteComision } from './integrante-comisions.entity';
 @Table({
   tableName: 'comisions',
   underscored: true,
-  timestamps: false, // porque manejas created_at manual
+  timestamps: true, // porque manejas created_at manual
+  paranoid: true,
   charset: 'utf8mb4',
   collate: 'utf8mb4_unicode_ci'
 })

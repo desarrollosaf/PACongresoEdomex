@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Quita etiquetas HTML y espacios sobrantes del texto que viene de la BD
 function stripHtml(html: string): string {
@@ -13,8 +13,19 @@ type PerfilProps = {
   diputado: any;
 };
 
+type TabType = 'iniciativas' | 'comunicados' | 'comisiones';
+const VALID_TABS: TabType[] = ['iniciativas', 'comunicados', 'comisiones'];
+
 export default function PerfilDiputadoView({ diputado }: PerfilProps) {
-  const [activeTab, setActiveTab] = useState<'iniciativas' | 'comunicados' | 'comisiones'>('iniciativas');
+  const [activeTab, setActiveTab] = useState<TabType>('iniciativas');
+
+  // Leer el hash de la URL al montar para activar el tab correcto
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '') as TabType;
+    if (VALID_TABS.includes(hash)) {
+      setActiveTab(hash);
+    }
+  }, []);
 
   const integrante = diputado.integrantes?.[0];
   const partido = integrante?.partido;
