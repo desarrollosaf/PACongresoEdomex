@@ -1060,6 +1060,76 @@
   border-radius: 20px;
 }
 
+.image-15.diputado-pt:hover {
+  background-image: url('../images/PT_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+/* hola */
+.image-66 {
+  width: 100%;
+}
+
+.image-66.diputado-pan {
+  pointer-events: auto;
+  background-image: url('../images/PAN_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-66.diputado-pvem {
+  border-radius: 10px;
+}
+
+.image-66.diputado-pvem {
+  background-image: url('../images/PVEM_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-66.diputado-morena {
+  background-image: url('../images/morena_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-66.diputado-mc {
+  background-image: url('../images/MC_1.png');
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+.image-66.diputado-pri {
+  border-radius: 0;
+}
+
+.image-66.diputado-pri {
+  background-image: url('../images/PRI_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-66.diputado-prd {
+  background-image: url('../images/PRD_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.image-66.diputado-pt {
+  background-image: url('../images/PT_1.png');
+  background-position: 0 0;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+
 .grupo-de-filtro {
   margin-top: 20px;
   margin-bottom: 20px;
