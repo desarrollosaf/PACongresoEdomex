@@ -9,6 +9,7 @@ type Diputado = {
   apaterno: string;
   amaterno: string;
   email?: string;
+  descripcion?: string;
   facebook?: string;
   twitter?: string;
   instagram?: string;
@@ -32,12 +33,34 @@ export default function DiputadoHomeSection({ diputados }: Props) {
   const [perfilComunicados, setPerfilComunicados] = useState<any[]>([]);
 
   // Elegir uno random
+  const [visible, setVisible] = useState(true);
+
+  const pickRandom = (excludeId?: string) => {
+    if (diputados.length === 0) return;
+    const pool = diputados.filter(d => d.id !== excludeId);
+    const list = pool.length > 0 ? pool : diputados;
+    setRandomDiputado(list[Math.floor(Math.random() * list.length)]);
+  };
+
+  // Elegir uno random al montar
+  useEffect(() => { pickRandom(); }, [diputados]);
+
+  // Auto-rotar cada 7 s cuando no hay búsqueda activa
   useEffect(() => {
-    if (diputados.length > 0) {
-      const idx = Math.floor(Math.random() * diputados.length);
-      setRandomDiputado(diputados[idx]);
-    }
-  }, [diputados]);
+    if (query.trim()) return;
+    const interval = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setRandomDiputado(prev => {
+          const pool = diputados.filter(d => d.id !== prev?.id);
+          const list = pool.length > 0 ? pool : diputados;
+          return list[Math.floor(Math.random() * list.length)] ?? prev;
+        });
+        setVisible(true);
+      }, 400);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [query, diputados]);
 
   const found = useMemo(() => {
     if (!query.trim()) return null;
@@ -98,7 +121,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
               id="search-2"
               value={query}
               onChange={e => setQuery(e.target.value)}
-            />
+            /><input type="button" className="search-button-2 w-button" value="Buscar"/>
           </div>
         </div>
 
@@ -117,7 +140,10 @@ export default function DiputadoHomeSection({ diputados }: Props) {
           <div className="columns-2 w-row" style={{ alignItems: 'stretch' }}>
 
             {/* ── Columna izquierda: diputado ── */}
-            <div className="column-3 w-col w-col-6" style={{ minHeight: 400 }}>
+            <div
+              className="column-3 w-col w-col-6"
+              style={{ minHeight: 400, opacity: visible ? 1 : 0, transition: 'opacity 0.4s ease' }}
+            >
               {diputado ? (
                 <>
                   <div className="columns-3 w-row">
@@ -139,7 +165,11 @@ export default function DiputadoHomeSection({ diputados }: Props) {
                           <div>{cargo}</div>
                           {partido?.siglas && <div>{partido.siglas}</div>}
                         </div>
-                        <div className="div-block-11"></div>
+                        <div className="div-block-11">
+                          {diputado.descripcion?.trim() && (
+                            <p>{diputado.descripcion.trim()}</p>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
