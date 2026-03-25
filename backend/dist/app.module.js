@@ -18,6 +18,7 @@ const diputados_module_1 = require("./diputados/diputados.module");
 const mesa_module_1 = require("./mesa/mesa.module");
 const junta_module_1 = require("./junta/junta.module");
 const database_module_1 = require("./database/database.module");
+const agenda_module_1 = require("./agenda/agenda.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -41,7 +42,8 @@ exports.AppModule = AppModule = __decorate([
             diputados_module_1.DiputadosModule,
             mesa_module_1.MesaModule,
             junta_module_1.JuntaModule,
-            database_module_1.DatabaseModule
+            database_module_1.DatabaseModule,
+            agenda_module_1.AgendaModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

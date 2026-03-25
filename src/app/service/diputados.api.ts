@@ -1,10 +1,8 @@
-const isServer = typeof window === 'undefined';
-// On the server we hit localhost directly to avoid HTTPS/NAT timeout issues
-const API_URL = isServer ? 'http://localhost:4000' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000');
+
 
 export async function getDiputados() {
   try {
-    const data = await fetch(`${API_URL}/api/diputados`, {
+    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/diputados`, {
       cache: "no-store",
     });
     if (!data.ok) {
@@ -21,7 +19,7 @@ export async function getDiputados() {
 
 export async function getDiputadoPerfil(id: string) {
   try {
-    const res = await fetch(`${API_URL}/api/diputados/${id}/perfil`, {
+    const res = await fetch(`${process.env.API_URL}/api/diputados/${id}/perfil`, {
       cache: 'no-store'
     });
     if (!res.ok) {
@@ -37,7 +35,7 @@ export async function getDiputadoPerfil(id: string) {
 
 export async function getDiputadosHome() {
   try {
-    const res = await fetch(`${API_URL}/api/diputados`, { next: { revalidate: 60 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/diputados`, { next: { revalidate: 60 } });
     if (!res.ok) {
       const text = await res.text();
       console.error('Error backend en getDiputadosHome:', text);
@@ -52,7 +50,7 @@ export async function getDiputadosHome() {
 
 export async function getComunicadosHome() {
   try {
-    const res = await fetch(`${API_URL}/api/comunicados`, { next: { revalidate: 60 } });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comunicados`, { next: { revalidate: 60 } });
     if (!res.ok) return [];
     return res.json();
   } catch {

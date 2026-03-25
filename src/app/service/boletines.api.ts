@@ -1,10 +1,6 @@
-const isServer = typeof window === 'undefined';
-// On the server we hit localhost directly to avoid HTTPS/NAT timeout issues
-const API_URL = isServer ? 'http://localhost:4000' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000');
-
 export async function getBoletin(id: string) {
   try {
-    const res = await fetch(`${API_URL}/api/boletines/${id}`, {
+    const res = await fetch(`${process.env.API_URL}/api/boletines/${id}`, {
     cache: "no-store",
   });
      if (!res.ok) {
@@ -22,7 +18,7 @@ export async function getBoletin(id: string) {
 
 export async function getBoletinesRandom() {
   try {
-    const res = await fetch(`${API_URL}/api/boletines/random`);
+    const res = await fetch(`${process.env.API_URL}/api/boletines/random`);
      if (!res.ok) {
       const text = await res.text();
       console.error('Error backend:', text);
@@ -38,7 +34,7 @@ export async function getBoletinesRandom() {
 
 export async function getBoletines() {
   try {
-    const res = await fetch(`${API_URL}/api/boletines`, { next: { revalidate: 10 } });
+    const res = await fetch(`${process.env.API_URL}/api/boletines`, { next: { revalidate: 10 } });
     if (!res.ok) {
       const text = await res.text();
       console.error('Error backend:', text);

@@ -35,5 +35,6 @@ import { AgendaModule } from './agenda/agenda.module';
   ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule {}
