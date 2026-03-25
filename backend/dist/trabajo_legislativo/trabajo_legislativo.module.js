@@ -10,11 +10,15 @@ exports.TrabajoLegislativoModule = void 0;
 const common_1 = require("@nestjs/common");
 const trabajo_legislativo_service_1 = require("./trabajo_legislativo.service");
 const trabajo_legislativo_controller_1 = require("./trabajo_legislativo.controller");
+const sequelize_module_1 = require("@nestjs/sequelize/dist/sequelize.module");
 let TrabajoLegislativoModule = class TrabajoLegislativoModule {
 };
 exports.TrabajoLegislativoModule = TrabajoLegislativoModule;
 exports.TrabajoLegislativoModule = TrabajoLegislativoModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            sequelize_module_1.SequelizeModule.forFeature([]),
+        ],
         controllers: [trabajo_legislativo_controller_1.TrabajoLegislativoController],
         providers: [trabajo_legislativo_service_1.TrabajoLegislativoService],
     })

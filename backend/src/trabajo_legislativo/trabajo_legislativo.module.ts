@@ -7,7 +7,7 @@ import { SequelizeModule } from '@nestjs/sequelize/dist/sequelize.module';
 @Module({
   imports: [
       SequelizeModule.forFeature([
-        DatabaseModule
+        
       ]),
     ],
   controllers: [TrabajoLegislativoController],
