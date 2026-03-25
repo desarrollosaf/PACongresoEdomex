@@ -14,11 +14,14 @@ let AgendaService = class AgendaService {
     create(createAgendaDto) {
         return 'This action adds a new agenda';
     }
-    findAll() {
-        const agendas = agenda_entity_1.Agenda.findAll({
+    async findAll() {
+        const agendas = await agenda_entity_1.Agenda.findAll({
             order: [['fecha_hora', 'DESC']],
             include: [sede_entity_1.Sede],
+            limit: 5,
         });
+        console.log("agendas");
+        console.log(JSON.stringify(agendas, null, 2));
         return agendas;
     }
     findOne(id) {
