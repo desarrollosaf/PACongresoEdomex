@@ -86,7 +86,8 @@ exports.Comision = Comision = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: 'comisions',
         underscored: true,
-        timestamps: false,
+        timestamps: true,
+        paranoid: true,
         charset: 'utf8mb4',
         collate: 'utf8mb4_unicode_ci'
     })
