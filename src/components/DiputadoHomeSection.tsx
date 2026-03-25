@@ -167,7 +167,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
                         </div>
                         <div className="div-block-11">
                           {diputado.descripcion?.trim() && (
-                            <p>{diputado.descripcion.trim()}</p>
+                            <p style={{ textAlign: 'justify' }}>{diputado.descripcion.trim()}</p>
                           )}
                         </div>
                       </div>
