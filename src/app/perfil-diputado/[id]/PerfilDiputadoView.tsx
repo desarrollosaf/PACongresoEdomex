@@ -62,7 +62,7 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
           <div className="columns-15 w-row">
             <div className="w-col w-col-4">
               <div className="foto-de-diputado">
-                <img src={fotoUrl} loading="lazy" alt={nombreCompleto} className="image-16" />
+                <img src={fotoUrl} loading="lazy" alt={nombreCompleto} className={`image-66 diputado-${siglasPartido.toLowerCase()} no-hover`} />
               </div>
             </div>
             <div className="column-11 w-col w-col-8">
