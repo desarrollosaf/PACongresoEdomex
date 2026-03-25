@@ -3,21 +3,7 @@ import DiputadoHomeSection from "@/components/DiputadoHomeSection";
 import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.api";
 import BoletinesHomeSection from "@/components/BoletinesHomeSection";
 
-
-async function getBoletines() {
-  try {
-    const res = await fetch('http://localhost:4000/api/boletines', { next: { revalidate: 10 } });
-    if (!res.ok) {
-      const text = await res.text();
-      console.error('Error backend:', text);
-      return [];
-    }
-  return await res.json();
-  } catch (error) {
-    console.error("Failed to fetch boletines:", error);
-    return [];
-  }
-}
+import { getBoletines } from '@/app/service/boletines.api';
 
 export default async function Home() {
   const boletines = await getBoletines();
