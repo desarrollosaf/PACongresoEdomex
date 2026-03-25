@@ -20,3 +20,23 @@ export async function getDiputadoPerfil(id: string) {
     return null;
   }
 }
+
+export async function getDiputadosHome() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/diputados`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
+}
+
+export async function getComunicadosHome() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comunicados`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch {
+    return [];
+  }
+}

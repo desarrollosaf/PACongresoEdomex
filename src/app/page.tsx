@@ -1,15 +1,7 @@
 import Link from "next/link";
+import DiputadoHomeSection from "@/components/DiputadoHomeSection";
+import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.api";
 
-async function getDiputados() {
-  try {
-    const res = await fetch('http://localhost:4000/api/diputados', { next: { revalidate: 10 } });
-    if (!res.ok) return [];
-    return res.json();
-  } catch (error) {
-    console.error("Failed to fetch diputados:", error);
-    return [];
-  }
-}
 
 async function getBoletines() {
   try {
@@ -25,12 +17,12 @@ async function getBoletines() {
     return [];
   }
 }
+
 export default async function Home() {
-  // const diputados = await getDiputados();
   const boletines = await getBoletines();
-  const mainBoletines = boletines.length > 0 ? boletines : null;
-  // console.log(mainBoletines[0].fotos[0].path)
-  // const mainDiputado = diputados.length > 0 ? diputados[0] : null;
+  const mainBoletines = boletines && boletines.length >= 5 ? boletines : null;
+  const diputados = await getDiputadosHome();
+  const comunicados = await getComunicadosHome();
 
   return (
     <>
@@ -99,124 +91,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      
-      <section className="diputados max_width">
-        <div>
-          <div className="div-block-6">
-            <img src="/images/Diputad-1.gif" loading="lazy" alt="" className="image-31" />
-            <form action="/search" className="search-2 w-form">
-              <input className="search-input-2 w-input" maxLength={256} name="query" placeholder="Busca a tu diputado" type="search" id="search-2" required />
-              <input type="submit" className="search-button-2 w-button" value="Buscar" />
-            </form>
-          </div>
-          <div className="filtros-diputados grupos-parlamentarios-selector">
-            <a href="#" className="button grupo_parlamentario btn-grupo-parlamentario w-button">morena</a>
-            <a href="#" className="button grupo_parlamentario btn-pan btn-grupo-parlamentario w-button">PAN</a>
-            <a href="#" className="button grupo_parlamentario btn-pt btn-grupo-parlamentario w-button">PT</a>
-            <a href="#" className="button grupo_parlamentario btn-pri btn-grupo-parlamentario w-button">PRI</a>
-            <a href="#" className="button grupo_parlamentario btn-pvem btn-grupo-parlamentario w-button">PVEM</a>
-            <a href="#" className="button grupo_parlamentario btn-mc btn-grupo-parlamentario w-button">MC</a>
-            <a href="#" className="button grupo_parlamentario btn-prd btn-grupo-parlamentario w-button">PRD</a>
-          </div>
-          <div className="div-block-13">
-            <div className="columns-2 w-row">
-              <div className="column-3 w-col w-col-6">
-                <div className="columns-3 w-row">
-                  <div className="column-2 w-col w-col-6">
-                    {/* {mainDiputado ? (
-                      <Link href={`/diputados/${mainDiputado.id}`} className="w-inline-block">
-                        <img src={mainDiputado.image} loading="lazy" alt="" className="image-3" />
-                      </Link>
-                    ) : (
-                       <img src="/images/2PAN-Emma-Laura-Álvarez-Villavicencio-01.png" loading="lazy" alt="" className="image-3" />
-                    )} */}
-                  </div>
-                  <div className="column-4 w-col w-col-6">
-                    <div className="div-block-24">
-                      {/* {mainDiputado ? (
-                        <>
-                          <div>
-                            <h4 className="nombre-diputado-home">{mainDiputado.name}<br /></h4>
-                            <div>{mainDiputado.position}</div>
-                          </div>
-                          <div className="div-block-11">
-                            <p>{mainDiputado.description}</p>
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div>
-                            <h4 className="nombre-diputado-home">Emma Laura Álvarez<br /></h4>
-                            <div>Diputada | Distrito Plurinominal</div>
-                          </div>
-                          <div className="div-block-11">
-                            <p>Cargando datos del servidor...</p>
-                          </div>
-                        </>
-                      )} */}
-                    </div>
-                  </div>
-                </div>
-                <div className="columns-4 w-row">
-                  <div className="w-col w-col-6">
-                    <div className="div-block-16">
-                      <p className="paragraph-3">Contacto</p>
-                      <img src="/images/mail_icon.png" loading="lazy" alt="" className="image-4" />
-                    </div>
-                  </div>
-                  <div className="column-5 w-col w-col-6">
-                    <div>
-                      <p className="paragraph-3">Redes Sociales</p>
-                    </div>
-                    <div className="social-media">
-                      <img src="/images/facebook_icon.png" loading="lazy" alt="" className="image-5" />
-                      <img src="/images/x_icon.png" loading="lazy" alt="" className="image-6" />
-                      <img src="/images/instagram_icon.png" loading="lazy" alt="" className="image-7" />
-                      <img src="/images/tiktok_icono.png" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 763px) 97vw, (max-width: 767px) 741px, 24vw" srcSet="/images/tiktok_icono-p-500.png 500w, /images/tiktok_icono.png 741w" alt="" className="image-8" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-col w-col-6">
-                <div className="div-block-12">
-                  <a href="#" className="button grupo_parlamentario btn-var-1 w-button">Iniciativa</a>
-                  <a href="#" className="button grupo_parlamentario btn-var-1 w-button">Comunicados</a>
-                  <a href="#" className="button grupo_parlamentario btn-var-1 w-button">Comisiones y Comites</a>
-                </div>
-                <div className="div-block-14">
-                  <div>
-                    <div className="columns-6 w-row">
-                      <div className="column-8 w-col w-col-4">
-                        <div className="img-comunicado-home-1"></div>
-                      </div>
-                      <div className="column-7 w-col w-col-8">
-                        <div className="div-block-20">
-                          <h4>Congreso impulsa la búsqueda de personas desaparecidas en Edomex</h4>
-                        </div>
-                        <a href="#" className="button-2 btn-var2 w-button">Leer comunicado</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="columns-6 w-row">
-                      <div className="column-8 w-col w-col-4">
-                        <div className="img-comunicado-home-2"></div>
-                      </div>
-                      <div className="column-7 w-col w-col-8">
-                        <div className="div-block-20">
-                          <h4><strong>Agravar penas por delitos con antecedente de acecho, propone el ...</strong></h4>
-                        </div>
-                        <a href="#" className="button-2 btn-var2 w-button">Leer comunicado</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <a href="#" className="button-2 btn-var2 w-button">Leer todos los comunicado</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <DiputadoHomeSection diputados={diputados} />
 
       <section className="max_width">
         <div>
@@ -306,6 +181,7 @@ export default async function Home() {
           </div>
           <div>Mantente informado de todo lo que ocurre en el pleno</div>
           <div className="div-block-23">
+            {mainBoletines && (
             <div className="columns-8 w-row">
               {/* aqui va la posicion 0 de boletines */}
               <div className="column-9 w-col w-col-6">
@@ -406,6 +282,7 @@ export default async function Home() {
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       </section>
