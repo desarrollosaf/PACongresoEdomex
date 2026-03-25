@@ -1,123 +1,187 @@
-'use client';
 import Link from 'next/link';
 
-type Props = {
-    mainBoletines: any
-}
+type Boletin = {
+  id?: string | number;
+  titulo?: string;
+  fecha?: string;
+  fotos?: Array<{ path?: string }>;
+  descripcion?: Array<{ bullets?: string }>;
+};
 
-export default function BoletinesHomeSection({ mainBoletines } : Props) {
-    return (
-        <section className="max_width">
-            <div>
+type Props = {
+  mainBoletines: Boletin[] | null;
+};
+
+const BASE_IMG = 'https://congresoedomex.gob.mx/';
+
+const formatearFecha = (fecha?: string) => {
+  if (!fecha) return '';
+
+  const date = new Date(`${fecha}T00:00:00`);
+
+  if (Number.isNaN(date.getTime())) return fecha;
+
+  return date.toLocaleDateString('es-MX', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  });
+};
+
+const getImageUrl = (boletin?: Boletin) => {
+  const path = boletin?.fotos?.[0]?.path;
+  return path ? `${BASE_IMG}/${path}`.replace(/([^:]\/)\/+/g, '$1') : '/images/placeholder.png';
+};
+
+export default function BoletinesHomeSection({ mainBoletines }: Props) {
+  const boletines = Array.isArray(mainBoletines) ? mainBoletines : [];
+
+  if (boletines.length < 5) {
+    return null;
+  }
+
+  const b0 = boletines?.[0];
+  const b1 = boletines?.[1];
+  const b2 = boletines?.[2];
+  const b3 = boletines?.[3];
+  const b4 = boletines?.[4];
+
+  return (
+    <section className="max_width">
+      <div>
+        <div>
+          <h4 className="titulo-seccion">Boletínes</h4>
+        </div>
+
+        <div>Mantente informado de todo lo que ocurre en el pleno</div>
+
+        <div className="div-block-23">
+          <div className="columns-8 w-row">
+            <div className="column-9 w-col w-col-6">
+              <div className="div-block-22">
+                <img
+                  src={getImageUrl(b0)}
+                  loading="lazy"
+                  sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2666px) 48vw, 1280px"
+                  srcSet={`
+                    ${getImageUrl(b0)} 500w,
+                    ${getImageUrl(b0)} 800w,
+                    ${getImageUrl(b0)} 1080w,
+                    ${getImageUrl(b0)} 1280w
+                  `}
+                  alt={b0?.titulo || 'Boletín'}
+                  className="image-10"
+                />
+
                 <div>
-                    <h4 className="titulo-seccion">Boletínes </h4>
+                  <h4 className="heading-10">
+                    {b0?.titulo || 'Sin título'}
+                    <br />
+                  </h4>
+
+                  <p className="paragraph-4">{formatearFecha(b0?.fecha)}</p>
+
+                  <p>{b0?.descripcion?.[0]?.bullets || ''}</p>
                 </div>
-                <div>Mantente informado de todo lo que ocurre en el pleno</div>
-                <div className="div-block-23">
-                    {mainBoletines && (
-                    <div className="columns-8 w-row">
-                    {/* aqui va la posicion 0 de boletines */}
-                    <div className="column-9 w-col w-col-6">
-                        <div className="div-block-22">
-                        <img src={`https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2666px) 48vw, 1280px" 
-                        srcSet={`
-                        https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 500w, 
-                        https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 800w, 
-                        https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 1080w, 
-                        https://congresoedomex.gob.mx/${mainBoletines[0].fotos[0].path} 1280w`} alt="" className="image-10" />
-                        <div>
-                            <h4 className="heading-10"> { mainBoletines[0].titulo}  <br /></h4>
-                            <p className="paragraph-4">
-                                {new Date(mainBoletines[0].fecha+ "T00:00:00").toLocaleDateString('es-MX', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric',
-                                })}
-                            </p>
-                            <p> {mainBoletines[0].descripcion[0].bullets} </p>
-                        </div>
-                        <Link href={`/boletines/${mainBoletines[0].id}`} className="btn-var-2 w-button">Leer el boletín</Link>
-                        </div>
-                    </div>
-                    <div className="w-col w-col-6">
-                        <div>
-                        <div className="w-layout-grid">
-                            <div>
-                            <img src={`https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
-                                srcSet={`
-                                https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 500w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 800w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 1080w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[1].fotos[0].path} 1280w`} alt="" className="img-boletin" />
-                            <h5>{ mainBoletines[1].titulo}</h5>
-                            <div className="fecha-boletin">
-                                {new Date(mainBoletines[1].fecha+ "T00:00:00").toLocaleDateString('es-MX', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric',
-                                })}
-                            </div>
-                            <a href={`/boletines/${mainBoletines[1].id}`} className="btn-var-2 w-button">Leer el boletín</a>
-                            </div>
-                            <div>
-                                <img src={`https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
-                                srcSet={`
-                                https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 500w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 800w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 1080w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[2].fotos[0].path} 1280w`} alt="" className="img-boletin" />
-                            <h5>{ mainBoletines[2].titulo}</h5>
-                            <div className="fecha-boletin">
-                                {new Date(mainBoletines[2].fecha+ "T00:00:00").toLocaleDateString('es-MX', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric',
-                                })}
-                            </div>
-                            <a href={`/boletines/${mainBoletines[2].id}`} className="btn-var-2 w-button">Leer el boletín</a>
-                            </div>
-                            <div>
-                            <img src={`https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
-                                srcSet={`
-                                https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 500w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 800w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 1080w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[3].fotos[0].path} 1280w`} alt="" className="img-boletin" />
-                            
-                            <h5>{ mainBoletines[3].titulo}</h5>
-                            <div className="fecha-boletin">
-                                {new Date(mainBoletines[3].fecha+ "T00:00:00").toLocaleDateString('es-MX', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric',
-                                })}
-                                </div>
-                            <a href={`/boletines/${mainBoletines[3].id}`} className="btn-var-2 w-button">Leer el boletín</a>
-                            </div>
-                            <div>
-                            <img src={`https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path}`} loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px" 
-                                srcSet={`
-                                https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 500w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 800w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 1080w, 
-                                https://congresoedomex.gob.mx/${mainBoletines[4].fotos[0].path} 1280w`} alt="" className="img-boletin" />
-                            <h5>{ mainBoletines[4].titulo}</h5>
-                            <div className="fecha-boletin">
-                                {new Date(mainBoletines[4].fecha+ "T00:00:00").toLocaleDateString('es-MX', {
-                                    day: '2-digit',
-                                    month: 'long',
-                                    year: 'numeric',
-                                })}
-                            </div>
-                            <a href={`/boletines/${mainBoletines[4].id}`} className="btn-var-2 w-button">Leer el boletín</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    )}
-                </div>
+
+                <Link href={`/boletines/${b0?.id ?? ''}`} className="btn-var-2 w-button">
+                  Leer el boletín
+                </Link>
+              </div>
             </div>
-        </section>
-    )
+
+            <div className="w-col w-col-6">
+              <div>
+                <div className="w-layout-grid">
+                  <div>
+                    <img
+                      src={getImageUrl(b1)}
+                      loading="lazy"
+                      sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px"
+                      srcSet={`
+                        ${getImageUrl(b1)} 500w,
+                        ${getImageUrl(b1)} 800w,
+                        ${getImageUrl(b1)} 1080w,
+                        ${getImageUrl(b1)} 1280w
+                      `}
+                      alt={b1?.titulo || 'Boletín'}
+                      className="img-boletin"
+                    />
+                    <h5>{b1?.titulo || 'Sin título'}</h5>
+                    <div className="fecha-boletin">{formatearFecha(b1?.fecha)}</div>
+                    <Link href={`/boletines/${b1?.id ?? ''}`} className="btn-var-2 w-button">
+                      Leer el boletín
+                    </Link>
+                  </div>
+
+                  <div>
+                    <img
+                      src={getImageUrl(b2)}
+                      loading="lazy"
+                      sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px"
+                      srcSet={`
+                        ${getImageUrl(b2)} 500w,
+                        ${getImageUrl(b2)} 800w,
+                        ${getImageUrl(b2)} 1080w,
+                        ${getImageUrl(b2)} 1280w
+                      `}
+                      alt={b2?.titulo || 'Boletín'}
+                      className="img-boletin"
+                    />
+                    <h5>{b2?.titulo || 'Sin título'}</h5>
+                    <div className="fecha-boletin">{formatearFecha(b2?.fecha)}</div>
+                    <Link href={`/boletines/${b2?.id ?? ''}`} className="btn-var-2 w-button">
+                      Leer el boletín
+                    </Link>
+                  </div>
+
+                  <div>
+                    <img
+                      src={getImageUrl(b3)}
+                      loading="lazy"
+                      sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px"
+                      srcSet={`
+                        ${getImageUrl(b3)} 500w,
+                        ${getImageUrl(b3)} 800w,
+                        ${getImageUrl(b3)} 1080w,
+                        ${getImageUrl(b3)} 1280w
+                      `}
+                      alt={b3?.titulo || 'Boletín'}
+                      className="img-boletin"
+                    />
+                    <h5>{b3?.titulo || 'Sin título'}</h5>
+                    <div className="fecha-boletin">{formatearFecha(b3?.fecha)}</div>
+                    <Link href={`/boletines/${b3?.id ?? ''}`} className="btn-var-2 w-button">
+                      Leer el boletín
+                    </Link>
+                  </div>
+
+                  <div>
+                    <img
+                      src={getImageUrl(b4)}
+                      loading="lazy"
+                      sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2687px) 48vw, 1290px"
+                      srcSet={`
+                        ${getImageUrl(b4)} 500w,
+                        ${getImageUrl(b4)} 800w,
+                        ${getImageUrl(b4)} 1080w,
+                        ${getImageUrl(b4)} 1280w
+                      `}
+                      alt={b4?.titulo || 'Boletín'}
+                      className="img-boletin"
+                    />
+                    <h5>{b4?.titulo || 'Sin título'}</h5>
+                    <div className="fecha-boletin">{formatearFecha(b4?.fecha)}</div>
+                    <Link href={`/boletines/${b4?.id ?? ''}`} className="btn-var-2 w-button">
+                      Leer el boletín
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
