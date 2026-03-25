@@ -10,11 +10,16 @@ export class AgendaService {
     return 'This action adds a new agenda';
   }
 
-  findAll() {
-    const agendas = Agenda.findAll({
+  async findAll() {
+    const agendas = await Agenda.findAll({
       order: [['fecha_hora', 'DESC']],
       include: [Sede],
+      limit: 5,
     });
+
+    console.log("agendas");
+    console.log(JSON.stringify(agendas, null, 2));
+
     return agendas;
   }
 

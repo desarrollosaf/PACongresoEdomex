@@ -4,12 +4,15 @@ import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.ap
 import BoletinesHomeSection from "@/components/BoletinesHomeSection";
 
 import { getBoletines } from '@/app/service/boletines.api';
+import AgendaHomeSection from "@/components/AgendaHomeSections";
+import { getAgendaHome } from "@/app/service/agenda.api";
 
 export default async function Home() {
   const boletines = await getBoletines();
   const mainBoletines = boletines && boletines.length >= 5 ? boletines : null;
   const diputados = await getDiputadosHome();
   const comunicados = await getComunicadosHome();
+  const agenda = await getAgendaHome();
 
   return (
     <>
@@ -80,56 +83,7 @@ export default async function Home() {
       </section>
       <DiputadoHomeSection diputados={diputados} />
 
-      <section className="max_width">
-        <div>
-          <h4 className="heading-5 titulo-seccion">Agenda Parlamentaria del día</h4>
-        </div>
-        <div className="columns-5 w-row">
-          <div className="w-col w-col-6">
-            <div style={{ paddingTop: '56.17021276595745%' }} className="w-embed-youtubevideo youtube">
-              <iframe 
-                src="https://www.youtube.com/embed/KbfsXJrPXCU?rel=0&controls=1&autoplay=0&mute=0&start=0" 
-                frameBorder={0} 
-                style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', pointerEvents: 'auto' }} 
-                allow="autoplay; encrypted-media" 
-                allowFullScreen 
-                title="Resumen Legislativo | Semana 3 - enero | #CongresoEdomex"
-              />
-            </div>
-            <h4>Titulo del video</h4>
-          </div>
-          <div className="column-6 w-col w-col-6">
-            <div>
-              <ol role="list" className="w-list-unstyled">
-                <li className="list-item">
-                  <div className="div-block-19">
-                    <div className="text-block-3">Segunda cátedra “El Pensamiento Humanista de Sor Juana Inés de la Cruz” | Mtro. Juan Carlos Villarreal Martínez</div>
-                    <div>Lunes 05:00 p.m. -INESLE</div>
-                    <a href="#" className="btn-envivo w-button">Ir al en vivo</a>
-                  </div>
-                </li>
-                <li className="list-item">
-                  <div className="div-block-19">
-                    <div className="text-block-3">Segunda cátedra “El Pensamiento Humanista de Sor Juana Inés de la Cruz” | Mtro. Juan Carlos Villarreal Martínez</div>
-                    <div>Lunes 05:00 p.m. -INESLE</div>
-                    <a href="#" className="btn-envivo w-button">Ir al en vivo</a>
-                  </div>
-                </li>
-                <li className="list-item">
-                  <div className="div-block-19">
-                    <div className="text-block-3">Segunda cátedra “El Pensamiento Humanista de Sor Juana Inés de la Cruz” | Mtro. Juan Carlos Villarreal Martínez</div>
-                    <div>Lunes 05:00 p.m. -INESLE</div>
-                    <a href="#" className="btn-envivo w-button">Ir al en vivo</a>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </div>
-        </div>
-        <div className="div-block-37">
-          <a href="#" className="btn-envivo w-button">Ver todas las sesiones</a>
-        </div>
-      </section>
+      <AgendaHomeSection agenda={agenda} />
 
       <section className="max_width">
         <div>

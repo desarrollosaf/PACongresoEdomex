@@ -52,7 +52,7 @@ exports.Sede = Sede = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: 'sedes',
         underscored: true,
-        timestamps: true,
+        timestamps: false,
         paranoid: true,
         charset: 'utf8mb4',
         collate: 'utf8mb4_unicode_ci',
