@@ -17,6 +17,7 @@ const comisiones_module_1 = require("./comisiones/comisiones.module");
 const diputados_module_1 = require("./diputados/diputados.module");
 const mesa_module_1 = require("./mesa/mesa.module");
 const junta_module_1 = require("./junta/junta.module");
+const database_module_1 = require("./database/database.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,10 +26,10 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forRoot({
                 dialect: 'mysql',
-                host: 'localhost',
+                host: '192.168.10.10',
                 port: 3306,
-                username: 'root',
-                password: '',
+                username: 'homestead',
+                password: 'secret',
                 database: 'congreso_bd',
                 models: [],
                 autoLoadModels: true,
@@ -40,6 +41,7 @@ exports.AppModule = AppModule = __decorate([
             diputados_module_1.DiputadosModule,
             mesa_module_1.MesaModule,
             junta_module_1.JuntaModule,
+            database_module_1.DatabaseModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
