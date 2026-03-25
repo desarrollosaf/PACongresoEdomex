@@ -32,6 +32,9 @@ let ComisionesService = class ComisionesService {
     async findAll() {
         const comisiones = await this.comisionModel.findAll({
             attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
+            where: {
+                deleted_at: null
+            },
             include: [
                 {
                     model: tipo_comisiones_entity_1.TipoComision,
