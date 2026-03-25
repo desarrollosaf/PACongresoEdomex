@@ -10,7 +10,7 @@ import { Agenda } from './agenda.entity';
 @Table({
   tableName: 'sedes',
   underscored: true,
-  timestamps: true,
+  timestamps: false,
   paranoid: true,
   charset: 'utf8mb4',
   collate: 'utf8mb4_unicode_ci',
