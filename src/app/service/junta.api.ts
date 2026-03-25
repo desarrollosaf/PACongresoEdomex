@@ -1,6 +1,6 @@
 export async function getJunta() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/junta`, {
+    const res = await fetch(`${process.env.API_URL}/api/junta`, {
     cache: "no-store",
   });
     if (!res.ok) return [];

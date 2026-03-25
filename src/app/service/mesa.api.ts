@@ -1,6 +1,6 @@
 export async function getMesa() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/mesa`, {
+    const res = await fetch(`${process.env.API_URL}/api/mesa`, {
     cache: 'no-store',
     });
      if (!res.ok) {
