@@ -9,6 +9,7 @@ import { DiputadosModule } from './diputados/diputados.module';
 import { DatabaseModule } from './database/database.module';
 import { MesaModule } from './mesa/mesa.module';
 import { JuntaModule } from './junta/junta.module';
+import { AgendaModule } from './agenda/agenda.module';
 
 @Module({
   imports: [
@@ -30,6 +31,8 @@ import { JuntaModule } from './junta/junta.module';
     DatabaseModule,
     MesaModule,
     JuntaModule,
+    DatabaseModule,
+    AgendaModule
   ],
   controllers: [AppController],
   providers: [AppService],
