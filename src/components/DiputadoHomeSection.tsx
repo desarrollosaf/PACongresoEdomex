@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
+import { getDiputadoPerfil } from '@/app/service/diputados.api';
 
 type Diputado = {
   id: string;
@@ -187,17 +188,16 @@ export default function DiputadoHomeSection({ diputados }: Props) {
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  // Obtener comunicados de un diputado
+  // Obtener comunicados de un diputado a través del API centralizado
   const fetchComunicados = async (id: string): Promise<any[]> => {
     try {
-      const r = await fetch(`${API}/api/diputados/${id}/perfil`, { cache: 'no-store' });
-      if (!r.ok) return [];
-      const data = await r.json();
-      const integrante = data.integrantes?.[0];
+      const data = await getDiputadoPerfil(id);
+      const integrante = data?.integrantes?.[0];
       return (integrante?.autores_comunicados?.map((ac: any) => ac.comunicado).filter(Boolean) || [])
         .sort((a: any, b: any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
         .slice(0, 2);
-    } catch {
+    } catch (err) {
+      console.error('Error fetching comunicados in Home:', err);
       return [];
     }
   };
