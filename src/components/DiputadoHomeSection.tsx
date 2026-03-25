@@ -54,10 +54,10 @@ function DiputadoCard({
   const com2Img = com2?.fotos?.[0]?.path ? `${BASE_IMG}${com2.fotos[0].path}` : null;
 
   return (
-    <div className="columns-2 w-row" style={{ alignItems: 'stretch' }}>
+    <div className="columns-2 w-row" style={{ alignItems: 'stretch', margin: 0 }}>
 
       {/* ── Columna izquierda ── */}
-      <div className="column-3 w-col w-col-6" style={{ minHeight: 400 }}>
+      <div className="column-3 w-col w-col-6" style={{ minHeight: 400, padding: '0 10px' }}>
         <div className="columns-3 w-row">
           <div className="column-2 w-col w-col-6">
             <Link href={`/perfil-diputado/${diputado.id}`} className="w-inline-block">
@@ -310,47 +310,48 @@ export default function DiputadoHomeSection({ diputados }: Props) {
           Al transicionar: current baja su opacidad, next sube la suya.
           Ambas comparten position:absolute dentro de un relative con altura fija.
         */}
-        <div className="div-block-13" style={{ position: 'relative', minHeight: 420, overflow: 'hidden' }}>
+        <div className="div-block-13-wrapper" style={{ overflow: 'hidden', padding: '1px' }}>
+          <div className="div-block-13" style={{ position: 'relative', minHeight: 420 }}>
+            {/* Capa NEXT — se monta debajo, empieza invisible */}
+            {next && (
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  opacity: transitioning ? 1 : 0,
+                  transform: transitioning ? 'translateY(0)' : 'translateY(12px)',
+                  transition: transitioning
+                    ? 'opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1)'
+                    : 'none',
+                  pointerEvents: 'none',
+                  zIndex: 1,
+                }}
+              >
+                <DiputadoCard diputado={next} comunicados={nextComunicados} />
+              </div>
+            )}
 
-          {/* Capa NEXT — se monta debajo, empieza invisible */}
-          {next && (
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                opacity: transitioning ? 1 : 0,
-                transform: transitioning ? 'translateY(0)' : 'translateY(12px)',
-                transition: transitioning
-                  ? 'opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1)'
-                  : 'none',
-                pointerEvents: 'none',
-                zIndex: 1,
-              }}
-            >
-              <DiputadoCard diputado={next} comunicados={nextComunicados} />
-            </div>
-          )}
+            {/* Capa CURRENT — siempre encima, sale cuando transiciona */}
+            {displayDiputado && (
+              <div
+                style={{
+                  position: 'relative',
+                  opacity: transitioning ? 0 : 1,
+                  transform: transitioning ? 'translateY(-12px)' : 'translateY(0)',
+                  transition: transitioning
+                    ? 'opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1)'
+                    : 'none',
+                  zIndex: 2,
+                }}
+              >
+                <DiputadoCard diputado={displayDiputado} comunicados={displayComunicados} />
+              </div>
+            )}
 
-          {/* Capa CURRENT — siempre encima, sale cuando transiciona */}
-          {displayDiputado && (
-            <div
-              style={{
-                position: 'relative',
-                opacity: transitioning ? 0 : 1,
-                transform: transitioning ? 'translateY(-12px)' : 'translateY(0)',
-                transition: transitioning
-                  ? 'opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1)'
-                  : 'none',
-                zIndex: 2,
-              }}
-            >
-              <DiputadoCard diputado={displayDiputado} comunicados={displayComunicados} />
-            </div>
-          )}
-
-          {!displayDiputado && (
-            <div style={{ padding: '2rem 0', opacity: 0.6 }}>Cargando diputado...</div>
-          )}
+            {!displayDiputado && (
+              <div style={{ padding: '2rem 0', opacity: 0.6 }}>Cargando diputado...</div>
+            )}
+          </div>
         </div>
       </div>
     </section>
