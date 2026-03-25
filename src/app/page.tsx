@@ -2,16 +2,6 @@ import Link from "next/link";
 import DiputadoHomeSection from "@/components/DiputadoHomeSection";
 import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.api";
 
-async function getDiputados() {
-  try {
-    const res = await fetch('http://localhost:4000/api/diputados', { next: { revalidate: 10 } });
-    if (!res.ok) return [];
-    return res.json();
-  } catch (error) {
-    console.error("Failed to fetch diputados:", error);
-    return [];
-  }
-}
 
 async function getBoletines() {
   try {
