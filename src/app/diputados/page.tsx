@@ -3,6 +3,7 @@ import DiputadosList from './DiputadosList';
 import ParliamentaryStats from './ParliamentaryStats';
 import { getDiputados } from '../service/diputados.api';
 
+export const dynamic = 'force-dynamic';
 
 export default async function DiputadosPage() {
     const diputados = await getDiputados();
