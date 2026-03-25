@@ -349,7 +349,9 @@ export default function DiputadoHomeSection({ diputados }: Props) {
             )}
 
             {!displayDiputado && (
-              <div style={{ padding: '2rem 0', opacity: 0.6 }}>Cargando diputado...</div>
+              <div style={{ padding: '2rem 0', opacity: 0.6 }}>
+                {diputados.length === 0 ? 'No se encontraron diputados activos.' : 'Cargando diputado...'}
+              </div>
             )}
           </div>
         </div>
