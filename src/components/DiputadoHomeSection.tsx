@@ -85,7 +85,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
           .sort((a: any, b: any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
         setPerfilComunicados(comunicados.slice(0, 2));
       })
-      .catch(() => {});
+      .catch(() => { });
   }, [diputado?.id]);
 
   const integrante = diputado?.integrantes?.[0];
@@ -121,7 +121,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
               id="search-2"
               value={query}
               onChange={e => setQuery(e.target.value)}
-            /><input type="button" className="search-button-2 w-button" value="Buscar"/>
+            /><input type="button" className="search-button-2 w-button" value="Buscar" />
           </div>
         </div>
 
@@ -219,44 +219,42 @@ export default function DiputadoHomeSection({ diputados }: Props) {
                 <Link href={`/perfil-diputado/${diputado?.id}#comisiones`} className="button grupo_parlamentario btn-var-1 w-button">Comisiones y Comites</Link>
               </div>
 
-              <div className="div-block-14">
+              <div className="div-block-14" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {/* Comunicado 1 */}
-                <div>
-                  <div className="columns-6 w-row">
-                    <div className="column-8 w-col w-col-4">
-                      {com1Img
-                        ? <img src={com1Img} loading="lazy" alt={com1?.titulo} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
-                        : <div className="img-comunicado-home-1" style={{ minHeight: 90, background: '#eee' }}></div>
-                      }
+                <div style={{ display: 'flex', gap: 8, alignItems: 'stretch', minHeight: 100 }}>
+                  <div style={{ width: '35%', flexShrink: 0, minHeight: 90 }}>
+                    {com1Img
+                      ? <img src={com1Img} loading="lazy" alt={com1?.titulo} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      : <div className="img-comunicado-home-1" style={{ width: '100%', height: '100%', minHeight: 90, background: '#eee' }}></div>
+                    }
+                  </div>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 90 }}>
+                    <div style={{ overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                      <h4 style={{ margin: 0 }}>{com1?.titulo ?? (perfilComunicados.length === 0 && diputado ? 'Sin comunicados' : '...')}</h4>
                     </div>
-                    <div className="column-7 w-col w-col-8">
-                      <div className="div-block-20">
-                        <h4>{com1?.titulo ?? (perfilComunicados.length === 0 && diputado ? 'Sin comunicados' : '...')}</h4>
-                      </div>
+                    <div style={{ marginTop: 'auto', paddingTop: 4 }}>
                       {com1 && <a href={`/boletines/${com1?.id}`} className="button-2 btn-var2 w-button">Leer comunicado</a>}
                     </div>
                   </div>
                 </div>
 
                 {/* Comunicado 2 */}
-                {com2 && (
-                  <div>
-                    <div className="columns-6 w-row">
-                      <div className="column-8 w-col w-col-4">
-                        {com2Img
-                          ? <img src={com2Img} loading="lazy" alt={com2?.titulo} style={{ width: '100%', height: 90, objectFit: 'cover', display: 'block' }} />
-                          : <div className="img-comunicado-home-2" style={{ minHeight: 90, background: '#eee' }}></div>
-                        }
-                      </div>
-                      <div className="column-7 w-col w-col-8">
-                        <div className="div-block-20">
-                          <h4><strong>{com2.titulo}</strong></h4>
-                        </div>
-                        <a href={`/boletines/${com2?.id}`} className="button-2 btn-var2 w-button">Leer comunicado</a>
-                      </div>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'stretch', minHeight: 100 }}>
+                  <div style={{ width: '35%', flexShrink: 0, minHeight: 90 }}>
+                    {com2Img
+                      ? <img src={com2Img} loading="lazy" alt={com2?.titulo} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      : <div className="img-comunicado-home-2" style={{ width: '100%', height: '100%', minHeight: 90, background: '#eee' }}></div>
+                    }
+                  </div>
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 90 }}>
+                    <div style={{ overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                      {com2 && <h4 style={{ margin: 0 }}><strong>{com2.titulo}</strong></h4>}
+                    </div>
+                    <div style={{ marginTop: 'auto', paddingTop: 4 }}>
+                      {com2 && <a href={`/boletines/${com2?.id}`} className="button-2 btn-var2 w-button">Leer comunicado</a>}
                     </div>
                   </div>
-                )}
+                </div>
               </div>
 
               <Link href={`/perfil-diputado/${diputado?.id}#comunicados`} className="button-2 btn-var2 w-button">Leer todos los comunicado</Link>
