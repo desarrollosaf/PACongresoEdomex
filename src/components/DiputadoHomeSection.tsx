@@ -212,7 +212,10 @@ export default function DiputadoHomeSection({ diputados }: Props) {
             </div>
 
             {/* ── Columna derecha: comunicados del diputado ── */}
-            <div className="w-col w-col-6" style={{ minHeight: 400 }}>
+            <div
+              className="w-col w-col-6"
+              style={{ minHeight: 400, opacity: visible ? 1 : 0, transition: 'opacity 0.4s ease' }}
+            >
               <div className="div-block-12">
                 <Link href={`/perfil-diputado/${diputado?.id}#iniciativas`} className="button grupo_parlamentario btn-var-1 w-button">Iniciativa</Link>
                 <Link href={`/perfil-diputado/${diputado?.id}#comunicados`} className="button grupo_parlamentario btn-var-1 w-button">Comunicados</Link>
