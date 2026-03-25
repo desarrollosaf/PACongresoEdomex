@@ -8,15 +8,17 @@ import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
 import { MesaModule } from './mesa/mesa.module';
 import { JuntaModule } from './junta/junta.module';
+import { DatabaseModule } from './database/database.module';
+import { AgendaModule } from './agenda/agenda.module';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
+      host: '192.168.10.10',
       port: 3306,
-      username: 'root',
-      password: '',
+      username: 'homestead',
+      password: 'secret',
       database: 'congreso_bd',
       models: [],
       autoLoadModels: true, 
@@ -28,8 +30,11 @@ import { JuntaModule } from './junta/junta.module';
     DiputadosModule,
     MesaModule,
     JuntaModule,
+    DatabaseModule,
+    AgendaModule
   ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule {}
