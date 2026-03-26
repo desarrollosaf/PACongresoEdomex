@@ -19,3 +19,27 @@ export async function getComisionById(id: string) {
     return null;
   }
 }
+
+export async function getIniciativasByComision(id: string) {
+  try {
+    const res = await fetch(
+      `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/comision/iniciativas?id=${id}`,
+      {
+        cache: "no-store",
+      }
+    );
+
+    if (!res.ok) {
+      console.error("Error HTTP:", res.status);
+      return null;
+    }
+
+    const text = await res.text();
+    if (!text) return null;
+
+    return JSON.parse(text);
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+}
