@@ -24,14 +24,14 @@ export default function EstadisticasHomeSection({ estadisticas } : Props) {
                 <div className="text-block color_oro">+</div>
                 <div className="text-block">{ estadisticas.data.puntos_acuerdo.total }</div>
               </div>
-              <div className="descripcion_dato">Puntos de acuerdo.</div>
+              <div className="descripcion_dato">Puntos de acuerdo aprobados.</div>
             </div>
             <div data-w-id="af7be9bb-144f-dc65-90c9-24c8f7af929a" className="numeralia_columna w-col w-col-3">
               <div data-w-id="b99290fd-c327-f819-16b9-c78bc4212308" className="div-block-5">
                 <div className="text-block color_oro">+</div>
                 <div className="text-block">{ estadisticas.data.minutas.aprobadas }</div>
               </div>
-              <div className="descripcion_dato">Minutas.</div>
+              <div className="descripcion_dato">Minutas aprobadas.</div>
             </div>
           </div>
     )
