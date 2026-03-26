@@ -137,7 +137,7 @@ export default function SearchClientView({
               <div className="skeleton-box" style={{ width: '250px', height: '30px', borderRadius: '4px' }}></div>
             </h2>
             <div className="w-layout-grid grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '30px', marginBottom: '40px' }}>
-               {Array.from({length: 3}).map((_, i) => (
+               {Array.from({length: 4}).map((_, i) => (
                   <div key={`skd-${i}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
                     <div className="skeleton-box" style={{ width: '120px', height: '120px', borderRadius: '20%' }}></div>
                     <div className="skeleton-box" style={{ width: '80%', height: '20px', marginTop: '15px', borderRadius: '4px' }}></div>
@@ -151,7 +151,7 @@ export default function SearchClientView({
               <div className="skeleton-box" style={{ width: '280px', height: '30px', borderRadius: '4px' }}></div>
             </h2>
             <div className="w-layout-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '30px' }}>
-               {Array.from({length: 3}).map((_, i) => (
+               {Array.from({length: 4}).map((_, i) => (
                   <div key={`skc-${i}`} style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.08)' }}>
                     <div className="skeleton-box" style={{ width: '100%', height: '200px' }}></div>
                     <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
