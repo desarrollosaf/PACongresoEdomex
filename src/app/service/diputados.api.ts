@@ -72,3 +72,41 @@ export async function getComunicadosHome() {
     return [];
   }
 }
+
+export async function getAllComunicadosFromProfiles(arrDiputados: any[]) {
+  try {
+    const extractedComunicados: any[] = [];
+    const apiUrl = getApiUrl();
+    
+    // Chunking de 10 en 10 para evitar rechazos del servidor (ECONNRESET o fallos de fetch)
+    const chunkSize = 10;
+    for (let i = 0; i < arrDiputados.length; i += chunkSize) {
+      const chunk = arrDiputados.slice(i, i + chunkSize);
+      
+      const chunkPromises = chunk.map((d: any) => 
+        fetch(`${apiUrl}/api/diputados/${d.id}/perfil`, { next: { revalidate: 60 } })
+          .then(res => res.ok ? res.json() : null)
+          .catch(() => null)
+      );
+      
+      const chunkProfiles = await Promise.all(chunkPromises);
+      
+      chunkProfiles.forEach(profile => {
+        if (profile?.integrantes?.[0]?.autores_comunicados) {
+          profile.integrantes[0].autores_comunicados.forEach((ac: any) => {
+            if (ac.comunicado && ac.comunicado.id) {
+              extractedComunicados.push(ac.comunicado);
+            }
+          });
+        }
+      });
+    }
+
+    const uniqueMap = new Map();
+    extractedComunicados.forEach(c => uniqueMap.set(c.id, c));
+    return Array.from(uniqueMap.values());
+  } catch (error) {
+    console.error('Error extrayendo comunicados completos:', error);
+    return [];
+  }
+}
