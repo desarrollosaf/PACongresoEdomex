@@ -11,18 +11,19 @@ export default function ComisionesPage() {
         </p>
       </div>
 
-      <div className="hero-img-comisiones">
-        <div className="columns-19 w-row">
-          <div className="column-24 w-col w-col-6">
-            <h2 className="numero-de-cc">45</h2>
-            <div className="text-centrado-cc">Comisiones</div>
-          </div>
-          <div className="column-25 w-col w-col-6">
-            <h2 className="numero-de-cc">5</h2>
-            <div className="text-centrado-cc">Comités</div>
-          </div>
-        </div>
-      </div>
+<div className="hero-img-comisiones">
+  <div className="grid-cc">
+    <div>
+      <h2 className="numero-de-cc">45</h2>
+      <div className="text-centrado-cc">Comisiones</div>
+    </div>
+
+    <div>
+      <h2 className="numero-de-cc">5</h2>
+      <div className="text-centrado-cc">Comités</div>
+    </div>
+  </div>
+</div>
 
       <div className="div-block-56">
         <h3 className="titulo-centrado">Comisiones Legislativas</h3>
