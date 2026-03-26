@@ -28,10 +28,10 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forRoot({
                 dialect: 'mysql',
-                host: 'localhost',
+                host: '192.168.10.10',
                 port: 3306,
-                username: 'root',
-                password: '',
+                username: 'homestead',
+                password: 'secret',
                 database: 'congreso_bd',
                 models: [],
                 autoLoadModels: true,
