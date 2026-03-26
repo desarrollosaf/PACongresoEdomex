@@ -23,6 +23,7 @@ const tipo_cargo_comision_entity_1 = require("./entities/tipo-cargo-comision.ent
 const legislacion_entity_1 = require("./entities/legislacion.entity");
 const agenda_entity_1 = require("./entities/agenda.entity");
 const sede_entity_1 = require("./entities/sede.entity");
+const banners_entity_1 = require("./entities/banners.entity");
 const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislatura_entity_1.Legislatura,
     diputado_entity_1.Diputado,
@@ -37,7 +38,8 @@ const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     tipo_cargo_comision_entity_1.TipoCargoComision,
     legislacion_entity_1.Legislacion,
     agenda_entity_1.Agenda,
-    sede_entity_1.Sede
+    sede_entity_1.Sede,
+    banners_entity_1.Banners
 ]);
 let DatabaseModule = class DatabaseModule {
 };
