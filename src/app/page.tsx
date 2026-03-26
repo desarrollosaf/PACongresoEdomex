@@ -4,6 +4,11 @@ import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.ap
 import BoletinesHomeSection from "@/components/BoletinesHomeSection";
 
 import { getBoletines } from '@/app/service/boletines.api';
+import { getBannersHome } from '@/app/service/banners.api';
+
+import AgendaHomeSection from "@/components/AgendaHomeSections";
+import { getAgendaHome } from "@/app/service/agenda.api";
+import BannersHomeSection from "@/components/BannersHomeSections";
 import { getAgendaHome } from "@/app/service/agenda.api";
 import SearchForm from "@/components/SearchForm";
 import AgendaHomeSection from "@/components/AgendaHomeSections";
@@ -14,6 +19,7 @@ export default async function Home() {
   const diputados = await getDiputadosHome();
   const comunicados = await getComunicadosHome();
   const agenda = await getAgendaHome();
+  const banners = await getBannersHome();
 
   return (
     <>
@@ -113,12 +119,7 @@ export default async function Home() {
       <section className="max_width">
         <h4 className="titulo-seccion titulo-center">Información de Interés</h4>
         <div>
-          <div className="w-layout-grid grid-2">
-            <img src="/images/Banner-500x500-oratoria.gif" loading="lazy" alt="" className="image-13 banner-info" />
-            <img src="/images/banner-notas-HxH.gif" loading="lazy" alt="" className="image-14 banner-info" />
-            <img src="/images/Banner-Correo-500x500.gif" loading="lazy" alt="" className="banner-info" />
-            <img src="/images/Banner-Correo-500x500.png" loading="lazy" alt="" className="banner-info" />
-          </div>
+          <BannersHomeSection banners = { banners }></BannersHomeSection>
         </div>
       </section>
     </>
