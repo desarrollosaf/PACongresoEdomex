@@ -7,15 +7,23 @@ export async function getComisiones() {
 
 export async function getComisionById(id: string) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/comisiones/${id}`, {
+    const baseUrl =
+      typeof window === "undefined"
+        ? process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+        : process.env.NEXT_PUBLIC_API_URL;
+
+    const res = await fetch(`${baseUrl}/api/comisiones/${id}`, {
       cache: "no-store",
     });
 
-    if (!res.ok) return null;
-    
+    if (!res.ok) {
+      console.error("Error HTTP getComisionById:", res.status);
+      return null;
+    }
+
     return await res.json();
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error getComisionById:", error);
     return null;
   }
 }
