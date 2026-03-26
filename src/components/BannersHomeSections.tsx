@@ -3,9 +3,7 @@ import Link from 'next/link';
 type Props = {
     banners: any;
 };
-
-const BASE_IMG = 'https://congresoedomex.gob.mx/';
-
+const BASE_IMG = 'https://congresoedomex.gob.mx/'
 export default function BannersHomeSection({ banners } : Props) {
     return (
         <div className="w-layout-grid grid-2">
