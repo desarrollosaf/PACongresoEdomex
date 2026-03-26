@@ -65,7 +65,9 @@ export class Comision extends Model {
   @BelongsTo(() => TipoComision)
   declare tipo: TipoComision;
 
-  @HasMany(() => IntegranteComision)
-  integrantes: IntegranteComision[];
+ @HasMany(() => IntegranteComision, {
+  foreignKey: 'comision_id',
+})
+integrantes: IntegranteComision[];
 
 }

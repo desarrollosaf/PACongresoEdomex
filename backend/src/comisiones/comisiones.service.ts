@@ -8,6 +8,9 @@ import { IntegranteComision } from '../database/entities/integrante-comisions.en
 import { IntegranteLegislatura } from '../database/entities/integrante-legislatura.entity';
 import { TipoCargoComision } from '../database/entities/tipo-cargo-comisiones.entity';
 import { Diputado } from '../database/entities/diputado.entity';
+import { Partido } from '../database/entities/partido.entity';
+import { Foto } from '../database/entities/fotos.entity';
+
 
 @Injectable()
 export class ComisionesService {
@@ -75,8 +78,52 @@ export class ComisionesService {
   }
 
   // 🔹 Obtener una por ID
-  async findOne(id: string): Promise<Comision | null> {
-    return this.comisionModel.findByPk(id);
+  async findOne(id: string) {
+    const comision = await this.comisionModel.findOne({
+      where: {
+        id,
+        deleted_at: null,
+      },
+      attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
+      include: [
+        {
+          model: TipoComision,
+          attributes: ['id', 'valor'],
+        },
+        {
+          model: IntegranteComision,
+          attributes: ['id'],
+          include: [
+            {
+              model: IntegranteLegislatura,
+              attributes: ['id'],
+              include: [
+                {
+                  model: Diputado,
+                  attributes: ['id', 'nombres', 'apaterno', 'amaterno'],
+                  include:[
+                    {
+                      model: Foto,
+                      attributes: ['id', 'path'],
+                    }
+                  ],
+                },
+                {
+                model: Partido,
+                attributes: ['id', 'nombre', 'siglas'],
+              },
+              ],
+            },
+            {
+              model: TipoCargoComision,
+              attributes: ['id', 'valor'],
+            },
+          ],
+        },
+      ],
+    });
+
+    return comision;
   }
 
 
