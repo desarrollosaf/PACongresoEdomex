@@ -5,15 +5,15 @@ import { UpdateComisioneDto } from './dto/update-comisione.dto';
 
 @Controller('comisiones')
 export class ComisionesController {
-  constructor(private readonly comisionesService: ComisionesService) {}
+  constructor(private readonly comisionesService: ComisionesService) { }
 
-   // 👉 GET /comisiones
+  // 👉 GET /comisiones
   @Get()
   findAll() {
     return this.comisionesService.findAll();
   }
 
-  // 👉 GET /comisiones/:id
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.comisionesService.findOne(id);

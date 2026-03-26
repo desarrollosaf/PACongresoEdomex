@@ -4,8 +4,9 @@ import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.ap
 import BoletinesHomeSection from "@/components/BoletinesHomeSection";
 
 import { getBoletines } from '@/app/service/boletines.api';
-import AgendaHomeSection from "@/components/AgendaHomeSections";
 import { getAgendaHome } from "@/app/service/agenda.api";
+import SearchForm from "@/components/SearchForm";
+import AgendaHomeSection from "@/components/AgendaHomeSections";
 
 export default async function Home() {
   const boletines = await getBoletines();
@@ -31,15 +32,7 @@ export default async function Home() {
         </div>
         <div data-w-id="0103c995-5e1d-dcc5-e0e3-47ae2562f79a" className="div-block hero-information">
           <h1 className="heading">Tu Congreso conectado y transparente</h1>
-          <div className="div-block-2">
-            <form action="/search" className="search w-form">
-              <label htmlFor="search" className="field-label">Encuentra de manera fácil y rápida la información que necesitas.</label>
-              <div className="div-block-3">
-                <input className="search-input w-input" maxLength={256} name="query" placeholder="Buscar" type="search" id="search" required />
-                <input type="submit" className="search-button w-button" value="Buscar" />
-              </div>
-            </form>
-          </div>
+          <SearchForm />
         </div>
       </section>
       
