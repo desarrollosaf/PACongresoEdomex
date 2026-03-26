@@ -60,9 +60,13 @@ export default function Comisiones() {
                   i.tipo_cargo?.valor?.toLowerCase().includes("presiden"),
                 );
 
-                const nombrePresidente = presidente
-                  ? `${presidente.integrante_legislatura?.diputado?.nombres} ${presidente.integrante_legislatura?.diputado?.apaterno} ${presidente.integrante_legislatura?.diputado?.amaterno}`
+                const diputado = presidente?.integranteLegis?.diputado;
+
+                const nombrePresidente = diputado
+                  ? `${diputado.nombres} ${diputado.apaterno} ${diputado.amaterno}`
                   : "Sin presidencia";
+
+                console.log(presidente);
 
                 return (
                   <div key={item.id} className="div-block-55">
@@ -75,7 +79,7 @@ export default function Comisiones() {
                     </div>
 
                     <a
-                      href={`/comision/${item.id}`}
+                      href={`/comisiones/${item.id}`}
                       className="btn-var-2 w-button"
                     >
                       Acceder

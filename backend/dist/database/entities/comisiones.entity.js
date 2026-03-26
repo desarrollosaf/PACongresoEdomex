@@ -79,7 +79,9 @@ __decorate([
     __metadata("design:type", tipo_comisiones_entity_1.TipoComision)
 ], Comision.prototype, "tipo", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => integrante_comisions_entity_1.IntegranteComision),
+    (0, sequelize_typescript_1.HasMany)(() => integrante_comisions_entity_1.IntegranteComision, {
+        foreignKey: 'comision_id',
+    }),
     __metadata("design:type", Array)
 ], Comision.prototype, "integrantes", void 0);
 exports.Comision = Comision = __decorate([

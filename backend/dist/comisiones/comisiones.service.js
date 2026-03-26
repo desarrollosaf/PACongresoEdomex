@@ -21,6 +21,8 @@ const integrante_comisions_entity_1 = require("../database/entities/integrante-c
 const integrante_legislatura_entity_1 = require("../database/entities/integrante-legislatura.entity");
 const tipo_cargo_comisiones_entity_1 = require("../database/entities/tipo-cargo-comisiones.entity");
 const diputado_entity_1 = require("../database/entities/diputado.entity");
+const partido_entity_1 = require("../database/entities/partido.entity");
+const fotos_entity_1 = require("../database/entities/fotos.entity");
 let ComisionesService = class ComisionesService {
     comisionModel;
     create(createComisioneDto) {
@@ -78,7 +80,50 @@ let ComisionesService = class ComisionesService {
         return agrupado;
     }
     async findOne(id) {
-        return this.comisionModel.findByPk(id);
+        const comision = await this.comisionModel.findOne({
+            where: {
+                id,
+                deleted_at: null,
+            },
+            attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
+            include: [
+                {
+                    model: tipo_comisiones_entity_1.TipoComision,
+                    attributes: ['id', 'valor'],
+                },
+                {
+                    model: integrante_comisions_entity_1.IntegranteComision,
+                    attributes: ['id'],
+                    include: [
+                        {
+                            model: integrante_legislatura_entity_1.IntegranteLegislatura,
+                            attributes: ['id'],
+                            include: [
+                                {
+                                    model: diputado_entity_1.Diputado,
+                                    attributes: ['id', 'nombres', 'apaterno', 'amaterno'],
+                                    include: [
+                                        {
+                                            model: fotos_entity_1.Foto,
+                                            attributes: ['id', 'path'],
+                                        }
+                                    ],
+                                },
+                                {
+                                    model: partido_entity_1.Partido,
+                                    attributes: ['id', 'nombre', 'siglas'],
+                                },
+                            ],
+                        },
+                        {
+                            model: tipo_cargo_comisiones_entity_1.TipoCargoComision,
+                            attributes: ['id', 'valor'],
+                        },
+                    ],
+                },
+            ],
+        });
+        return comision;
     }
     update(id, updateComisioneDto) {
         return `This action updates a #${id} comisione`;
