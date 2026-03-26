@@ -19,6 +19,7 @@ const mesa_module_1 = require("./mesa/mesa.module");
 const junta_module_1 = require("./junta/junta.module");
 const database_module_1 = require("./database/database.module");
 const agenda_module_1 = require("./agenda/agenda.module");
+const banners_module_1 = require("./banners/banners.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -27,10 +28,10 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forRoot({
                 dialect: 'mysql',
-                host: '192.168.10.10',
+                host: 'localhost',
                 port: 3306,
-                username: 'homestead',
-                password: 'secret',
+                username: 'root',
+                password: '',
                 database: 'congreso_bd',
                 models: [],
                 autoLoadModels: true,
@@ -43,7 +44,8 @@ exports.AppModule = AppModule = __decorate([
             mesa_module_1.MesaModule,
             junta_module_1.JuntaModule,
             database_module_1.DatabaseModule,
-            agenda_module_1.AgendaModule
+            agenda_module_1.AgendaModule,
+            banners_module_1.BannersModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

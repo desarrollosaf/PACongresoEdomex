@@ -16,6 +16,7 @@ import { TipoCargoComision } from './entities/tipo-cargo-comision.entity';
 import { Legislacion } from './entities/legislacion.entity';
 import { Agenda } from './entities/agenda.entity';
 import { Sede } from './entities/sede.entity';
+import { Banners } from './entities/banners.entity';
 
 const sequelizeFeatures = SequelizeModule.forFeature([
   Legislatura,
@@ -31,7 +32,8 @@ const sequelizeFeatures = SequelizeModule.forFeature([
   TipoCargoComision,
   Legislacion,
   Agenda,
-  Sede
+  Sede,
+  Banners
 ]);
 
 @Global()
