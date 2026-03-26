@@ -10,6 +10,7 @@ import { MesaModule } from './mesa/mesa.module';
 import { JuntaModule } from './junta/junta.module';
 import { DatabaseModule } from './database/database.module';
 import { AgendaModule } from './agenda/agenda.module';
+import { BannersModule } from './banners/banners.module';
 
 @Module({
   imports: [
@@ -31,7 +32,8 @@ import { AgendaModule } from './agenda/agenda.module';
     MesaModule,
     JuntaModule,
     DatabaseModule,
-    AgendaModule
+    AgendaModule,
+    BannersModule
   ],
   controllers: [AppController],
   providers: [AppService],
