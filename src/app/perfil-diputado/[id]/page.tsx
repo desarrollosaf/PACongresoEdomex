@@ -1,9 +1,13 @@
 import PerfilDiputadoView from './PerfilDiputadoView';
-import { getDiputadoPerfil } from '../../service/diputados.api';
+import { getDiputadoPerfil, fetchIniciativasDiputado } from '../../service/diputados.api';
 
 export default async function PerfilDiputadoPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const diputado = await getDiputadoPerfil(id);
+  
+  const [diputado, iniciativasArray] = await Promise.all([
+    getDiputadoPerfil(id),
+    fetchIniciativasDiputado(id)
+  ]);
 
   if (!diputado) {
     return (
@@ -13,5 +17,5 @@ export default async function PerfilDiputadoPage({ params }: { params: Promise<{
     );
   }
 
-  return <PerfilDiputadoView diputado={diputado} />;
+  return <PerfilDiputadoView diputado={diputado} serverIniciativas={iniciativasArray || []} />;
 }
