@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import IniciativasTab from './IniciativasTab';
 
 // Quita etiquetas HTML y espacios sobrantes del texto que viene de la BD
 function stripHtml(html: string): string {
@@ -11,12 +12,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 type PerfilProps = {
   diputado: any;
+  serverIniciativas?: any[];
 };
 
 type TabType = 'iniciativas' | 'comunicados' | 'comisiones';
 const VALID_TABS: TabType[] = ['iniciativas', 'comunicados', 'comisiones'];
 
-export default function PerfilDiputadoView({ diputado }: PerfilProps) {
+export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }: PerfilProps) {
   const [activeTab, setActiveTab] = useState<TabType>('iniciativas');
 
   // Leer el hash de la URL al montar para activar el tab correcto
@@ -171,13 +173,7 @@ export default function PerfilDiputadoView({ diputado }: PerfilProps) {
           </div>
           <div className="w-tab-content">
             {activeTab === 'iniciativas' && (
-              <div className="tab-area w-tab-pane w--tab-active">
-                <div className="div-block-67">
-                  <div style={{ opacity: 0.6, padding: '2rem 0' }}>
-                    Aún no hay iniciativas registradas para este diputado.
-                  </div>
-                </div>
-              </div>
+              <IniciativasTab diputadoId={diputado.id} serverIniciativas={serverIniciativas} />
             )}
             
             {activeTab === 'comunicados' && (

@@ -1,3 +1,4 @@
+import * as https from 'https';
 
 function getApiUrl() {
   if (typeof window === 'undefined') {
@@ -109,4 +110,67 @@ export async function getAllComunicadosFromProfiles(arrDiputados: any[]) {
     console.error('Error extrayendo comunicados completos:', error);
     return [];
   }
+}
+
+export async function fetchIniciativasDiputado(diputadoId: string, page: number = 1): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const data = JSON.stringify({ id: diputadoId });
+
+    const options = {
+      hostname: 'parlamentario.congresoedomex.gob.mx',
+      port: 443,
+      path: '/backend/api/estadistico/diputado/iniciativas',
+      method: 'GET', // The API expects GET but requires a JSON body for filters
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(data),
+      },
+    };
+
+    const req = https.request(options, (res) => {
+      let responseBody = '';
+
+      res.on('data', (chunk) => {
+        responseBody += chunk;
+      });
+
+      res.on('end', () => {
+        
+        try {
+          // Attempt to parse JSON
+          const result = JSON.parse(responseBody);
+          if (result && result.ok && result.data) {
+            const autor_ella = result.data.autor_ella?.data || [];
+            const autor_grupo = result.data.autor_grupo?.data || [];
+            
+            const map = new Map();
+            autor_ella.forEach((i: any) => map.set(i.id, i));
+            autor_grupo.forEach((i: any) => map.set(i.id, i));
+            
+            const allItems = Array.from(map.values())
+              .sort((a, b) => new Date(b.fecha_evento_raw).getTime() - new Date(a.fecha_evento_raw).getTime());
+              
+            resolve(allItems);
+          } else if (result && result.api && result.api.exito) {
+            // fallback for the general layout
+            resolve(result.api.respuesta.iniciativas || []);
+          } else {
+            resolve([]);
+          }
+        } catch (error) {
+          console.error('Error parsing iniciativas response:', error);
+          resolve(null);
+        }
+      });
+    });
+
+    req.on('error', (error) => {
+      console.error('Error fetching iniciativas:', error);
+      resolve(null);
+    });
+
+    // Write the JSON body
+    req.write(data);
+    req.end();
+  });
 }
