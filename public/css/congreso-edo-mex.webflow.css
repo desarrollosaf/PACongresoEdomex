@@ -2167,19 +2167,29 @@
 }
 
 .img-jucopo.bg-pt {
-  background-image: linear-gradient(127deg, #bb945c80, #fff);
   max-width: 180px;
 }
 
 .img-jucopo.bg-pt:hover {
   background-image: url('../images/PT_1.png'), linear-gradient(127deg, #bb945c80, #fff);
-  background-position: 0 0, 0 0;
+  background-position: 50% 0, 0 0;
   background-size: cover, auto;
 }
 
 .img-jucopo.bg-pan {
   max-width: 180px;
 }
+
+.img-integrantes-cc.bg-pt {
+  background-color: #f1f1f1;
+}
+
+.img-integrantes-cc.bg-pt:hover {
+  background-image: url('../images/PT_1.png');
+  background-position: 0 0;
+  background-size: cover;
+}
+
 
 .img-jucopo.bg-pan:hover {
   background-image: url('../images/PAN_1.png'), linear-gradient(127deg, #bb945c80, #fff);
