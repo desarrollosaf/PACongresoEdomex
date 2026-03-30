@@ -20,6 +20,7 @@ const VALID_TABS: TabType[] = ['iniciativas', 'comunicados', 'comisiones'];
 
 export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }: PerfilProps) {
   const [activeTab, setActiveTab] = useState<TabType>('iniciativas');
+  const [pageComunicados, setPageComunicados] = useState(1);
 
   // Leer el hash de la URL al montar para activar el tab correcto
   useEffect(() => {
@@ -212,23 +213,59 @@ export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }:
                     })()}
 
                     {/* --- El resto en grid --- */}
-                    {comunicados.length > 1 && (
-                      <div className="w-layout-grid grid-12">
-                        {comunicados.slice(1).map((c: any) => {
-                          const fotoPath = c?.fotos?.[0]?.path;
-                          const imgUrl = fotoPath ? `https://www.congresoedomex.gob.mx/${fotoPath}` : undefined;
-                          return (
-                            <div key={c.id} className="div-block-43">
-                              {imgUrl && (
-                                <img src={imgUrl} loading="lazy" className="img-boletin" alt={c.titulo} />
-                              )}
-                              <h4 className="titulo-comunicado-general">{c.titulo}</h4>
-                              <a href={`/boletines/${c.id}`}  className="btn-black-str w-button">Abrir Comunicado</a>
+                    {comunicados.length > 1 && (() => {
+                      const restComunicados = comunicados.slice(1);
+                      const ITEMS_PER_PAGE = 8;
+                      const totalPages = Math.ceil(restComunicados.length / ITEMS_PER_PAGE);
+                      const paginatedComunicados = restComunicados.slice((pageComunicados - 1) * ITEMS_PER_PAGE, pageComunicados * ITEMS_PER_PAGE);
+
+                      return (
+                        <>
+                          <div className="w-layout-grid grid-12">
+                            {paginatedComunicados.map((c: any) => {
+                              const fotoPath = c?.fotos?.[0]?.path;
+                              const imgUrl = fotoPath ? `https://www.congresoedomex.gob.mx/${fotoPath}` : undefined;
+                              return (
+                                <div key={c.id} className="div-block-43">
+                                  {imgUrl && (
+                                    <img src={imgUrl} loading="lazy" className="img-boletin" alt={c.titulo} />
+                                  )}
+                                  <h4 className="titulo-comunicado-general">{c.titulo}</h4>
+                                  <a href={`/boletines/${c.id}`}  className="btn-black-str w-button">Abrir Comunicado</a>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          {totalPages > 1 && (
+                            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', alignItems: 'center', marginTop: '30px', paddingBottom: '20px' }}>
+                              <button 
+                                onClick={() => {
+                                  setPageComunicados(p => Math.max(1, p - 1));
+                                  window.scrollTo({ top: document.querySelector('.grid-12')?.getBoundingClientRect().top! + window.pageYOffset - 100, behavior: 'smooth' });
+                                }}
+                                disabled={pageComunicados === 1}
+                                className="btn-black-str w-button"
+                                style={{ opacity: pageComunicados === 1 ? 0.5 : 1, padding: '8px 16px', background: '#333', color: '#fff' }}
+                              >
+                                Anterior
+                              </button>
+                              <span style={{ fontWeight: '500' }}>Página {pageComunicados} de {totalPages}</span>
+                              <button 
+                                onClick={() => {
+                                  setPageComunicados(p => Math.min(totalPages, p + 1));
+                                  window.scrollTo({ top: document.querySelector('.grid-12')?.getBoundingClientRect().top! + window.pageYOffset - 100, behavior: 'smooth' });
+                                }}
+                                disabled={pageComunicados === totalPages}
+                                className="btn-black-str w-button"
+                                style={{ opacity: pageComunicados === totalPages ? 0.5 : 1, padding: '8px 16px', background: '#333', color: '#fff' }}
+                              >
+                                Siguiente
+                              </button>
                             </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
                 )}
               </div>
