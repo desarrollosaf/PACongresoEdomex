@@ -14,6 +14,7 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const integrante_legislatura_entity_1 = require("./integrante-legislatura.entity");
 const fotos_entity_1 = require("./fotos.entity");
 const autores_comunicados_entity_1 = require("./autores-comunicados.entity");
+const gender_entity_1 = require("./gender.entity");
 let Diputado = class Diputado extends sequelize_typescript_1.Model {
     apaterno;
     amaterno;
@@ -22,6 +23,7 @@ let Diputado = class Diputado extends sequelize_typescript_1.Model {
     shortname;
     fancyurl;
     gender_id;
+    genero;
     email;
     ext;
     facebook;
@@ -63,9 +65,13 @@ __decorate([
     __metadata("design:type", String)
 ], Diputado.prototype, "fancyurl", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.INTEGER }),
-    __metadata("design:type", Number)
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.CHAR(36) }),
+    __metadata("design:type", String)
 ], Diputado.prototype, "gender_id", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => gender_entity_1.Gender, 'gender_id'),
+    __metadata("design:type", gender_entity_1.Gender)
+], Diputado.prototype, "genero", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)

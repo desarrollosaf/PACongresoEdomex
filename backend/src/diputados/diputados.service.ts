@@ -14,6 +14,7 @@ import { IntegranteComision } from '../database/entities/integrante-comisions.en
 import { Comision } from '../database/entities/comisiones.entity';
 import { TipoCargoComision } from '../database/entities/tipo-cargo-comisiones.entity';
 import { Foto as FotosComunicado } from '../database/entities/fotos.entity';
+import { Gender } from '../database/entities/gender.entity';
 
 @Injectable()
 export class DiputadosService {
@@ -32,6 +33,7 @@ export class DiputadosService {
       order: [['apaterno', 'ASC']],
       include: [
         Foto,
+        Gender,
         {
           model: IntegranteLegislatura,
           where: { fecha_fin: null },
@@ -70,6 +72,7 @@ export class DiputadosService {
       where: { id },
       include: [
         Foto,
+        Gender,
         {
           model: IntegranteLegislatura,
           where: { fecha_fin: null },

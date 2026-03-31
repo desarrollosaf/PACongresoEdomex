@@ -24,6 +24,7 @@ const legislacion_entity_1 = require("./entities/legislacion.entity");
 const agenda_entity_1 = require("./entities/agenda.entity");
 const sede_entity_1 = require("./entities/sede.entity");
 const banners_entity_1 = require("./entities/banners.entity");
+const gender_entity_1 = require("./entities/gender.entity");
 const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislatura_entity_1.Legislatura,
     diputado_entity_1.Diputado,
@@ -39,7 +40,8 @@ const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislacion_entity_1.Legislacion,
     agenda_entity_1.Agenda,
     sede_entity_1.Sede,
-    banners_entity_1.Banners
+    banners_entity_1.Banners,
+    gender_entity_1.Gender
 ]);
 let DatabaseModule = class DatabaseModule {
 };

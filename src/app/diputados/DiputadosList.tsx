@@ -26,7 +26,11 @@ type Diputado = {
     amaterno: string;
     nombres: string;
     fancyurl?: string;
-    gender_id?: number;
+    gender_id?: string;
+    genero?: {
+        id: string;
+        genero: string;
+    };
     fotos?: Foto[];
     integrantes?: Integrante[];
 };
@@ -34,6 +38,21 @@ type Diputado = {
 const BASE_URL = 'https://www.congresoedomex.gob.mx/';
 
 const PARTIDOS = ['morena', 'PAN', 'PT', 'PRI', 'PVEM', 'MC', 'PRD'];
+const PARTIDO_LOGOS: Record<string, string> = {
+    morena: 'images/morena.png',
+    pt: 'images/PT.png',
+    pvem: 'images/PVEM.png',
+    pri: 'images/PRI.png',
+    pan: 'images/Pan.png',
+    mc: 'images/MC.png',
+    prd: 'images/PRD.png',
+};
+
+const getTitulo = (diputado: Diputado): string => {
+    if (diputado.id === '40f129de-671d-41ac-8d1a-da9609fd0bf3') return 'Diputade';
+    if (diputado.gender_id === 'bbd00c65-de34-4257-a939-7fc79eacc479') return 'Diputada';
+    return 'Diputado';
+};
 
 type SortKey = '' | 'nombre' | 'apellido' | 'genero' | 'distrito';
 
@@ -77,7 +96,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
         } else if (orden === 'apellido') {
             lista.sort((a, b) => (a.apaterno ?? '').localeCompare(b.apaterno ?? ''));
         } else if (orden === 'genero') {
-            lista.sort((a, b) => (a.gender_id ?? 0) - (b.gender_id ?? 0));
+            lista.sort((a, b) => (a.genero?.genero ?? '').localeCompare(b.genero?.genero ?? ''));
         } else if (orden === 'distrito') {
             lista.sort((a, b) => {
                 const da = a.integrantes?.[0]?.distrito?.distrito ?? '';
@@ -145,7 +164,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                         </nav>
                     </div>
 
-    
+
                     <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown">
                         <div className="filtro-grupoparlamentario w-dropdown-toggle">
                             <div className="w-icon-dropdown-toggle"></div>
@@ -179,7 +198,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
 
             <div className="grupo-de-filtro">
                 <div>
-                    <div className="w-layout-grid grid-3">
+                    <div className="w-layout-grid grid-66">
                         {resultado.length === 0 ? (
                             <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', opacity: 0.6 }}>
                                 No se encontraron diputados con ese criterio.
@@ -195,21 +214,39 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                             const tipoCargo = distrito?.distrito ?? 'Plurinominal';
 
                             return (
-                                <div key={diputado.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                    <img
-                                        src={fotoUrl ?? 'images/placeholder-diputado.png'}
-                                        loading="lazy"
-                                        alt={nombreCompleto}
-                                        className={`image-15 diputado-${siglas.toLowerCase()}`}
-                                    />
-                                    <div className="info-diputado-basica" style={{ flex: 1, width: '100%' }}>
-                                        <h4 className="nombre-diputado">{nombreCompleto}</h4>
-                                        <div className="gp-diputado">{siglas}</div>
-                                        <div>{tipoCargo}</div>
+                                <div key={diputado.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+
+                                    <div className={`card-diputado partido-${siglas.toLowerCase()}`} style={{ width: '100%' }}>
+
+                                        {/* Foto */}
+                                        <img
+                                            src={fotoUrl ?? 'images/placeholder-diputado.png'}
+                                            loading="lazy"
+                                            alt={nombreCompleto}
+                                            className={`image-15 diputado-${siglas.toLowerCase()}`}
+                                            style={{ display: 'block', width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}
+                                        />
+
+                                        {/* Logo del partido arriba derecha */}
+                                        <img
+                                            src={PARTIDO_LOGOS[siglas.toLowerCase()] ?? ''}
+                                            alt={siglas}
+                                            className="partido-logo"
+                                        />
+
+                                        {/* Overlay con info */}
+                                        <div className="card-overlay">
+                                            <div className="overlay-tag">{getTitulo(diputado)}</div>
+                                            <div className="overlay-nombre">{nombreCompleto}</div>
+                                            <div className="overlay-distrito">{tipoCargo}</div>
+                                        </div>
                                     </div>
-                                    <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button">
+
+                                    {/* Botón fuera de la card */}
+                                    <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button" style={{ width: '100%', textAlign: 'center', boxSizing: 'border-box' }}>
                                         Saber más
                                     </a>
+
                                 </div>
                             );
                         })}
