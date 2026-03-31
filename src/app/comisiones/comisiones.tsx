@@ -4,93 +4,97 @@ import { useState, useEffect } from "react";
 import { getComisiones } from "../service/comisiones.api";
 
 export default function Comisiones() {
-  const [data, setData] = useState<any>({});
-  const [search, setSearch] = useState("");
+    const [data, setData] = useState<any>({});
+    const [search, setSearch] = useState("");
 
-  const tiposOrdenados = [
-    "Comisiones Legislativas",
-    "Comisiones Especiales",
-    "Comisiones y Comités Permanentes",
-  ];
+    const tiposOrdenados = [
+        "Comisiones Legislativas",
+        "Comisiones Especiales",
+        "Comisiones y Comités Permanentes",
+    ];
 
-  useEffect(() => {
-    getComisiones().then(setData);
-  }, []);
+    useEffect(() => {
+        getComisiones().then(setData);
+    }, []);
 
-  return (
-    <>
-      <form className="search w-form" onSubmit={(e) => e.preventDefault()}>
-        <label htmlFor="search" className="field-label">
-          Encuentra de manera fácil y rápida la información que necesitas.
-        </label>
+    return (
+        <>
+            <form className="search w-form" onSubmit={(e) => e.preventDefault()}>
+                <label htmlFor="search" className="field-label">
+                    Encuentra de manera fácil y rápida la información que necesitas.
+                </label>
+                <div className="div-block-3">
+                    <input
+                        className="search-input-3 w-input"
+                        maxLength={256}
+                        placeholder="Buscar"
+                        type="search"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button type="submit" className="search-button-3 w-button">
+                        Buscar
+                    </button>
+                </div>
+            </form>
 
-        <div className="div-block-3">
-          <input
-            className="search-input-3 w-input"
-            maxLength={256}
-            placeholder="Buscar"
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+            {tiposOrdenados.map((tipo) => {
+                const lista = data[tipo];
+                if (!lista || lista.length === 0) return null;
 
-          <button type="submit" className="search-button-3 w-button">
-            Buscar
-          </button>
-        </div>
-      </form>
+                const listaFiltrada = lista.filter((item: any) => {
+                    const texto = `${item.nombre} ${item.alias}`.toLowerCase();
+                    return texto.includes(search.toLowerCase());
+                });
 
-      {tiposOrdenados.map((tipo) => {
-        const lista = data[tipo];
-
-        if (!lista || lista.length === 0) return null;
-
-        const listaFiltrada = lista.filter((item: any) => {
-          const texto = `${item.nombre} ${item.alias}`.toLowerCase();
-          return texto.includes(search.toLowerCase());
-        });
-
-        return (
-          <div key={tipo}>
-            <h3 className="titulo-centrado">{tipo}</h3>
-
-            <div className="w-layout-grid grid-comisionesycomitespermanentes">
-              {listaFiltrada.map((item: any) => {
-                const presidente = item.integrantes?.find((i: any) =>
-                  i.tipo_cargo?.valor?.toLowerCase().includes("presiden"),
-                );
-
-                const diputado = presidente?.integranteLegis?.diputado;
-
-                const nombrePresidente = diputado
-                  ? `${diputado.nombres} ${diputado.apaterno} ${diputado.amaterno}`
-                  : "Sin presidencia";
-
-                console.log(presidente);
+                if (listaFiltrada.length === 0) return null;
 
                 return (
-                  <div key={item.id} className="div-block-55">
-                    <h3 className="titulo-centrado-peque-o">
-                      {(item.alias || item.nombre)?.replace(/\n/g, " ")}
-                    </h3>
+                    <div key={tipo}>
+                        <h3 className="comision-seccion-titulo">{tipo}</h3>
 
-                    <div className="texto-presidente-cc">
-                      Presidencia: {nombrePresidente}
+                        <div className="w-layout-grid grid-comisionesycomitespermanentes">
+                            {listaFiltrada.map((item: any) => {
+                                const presidente = item.integrantes?.find((i: any) =>
+                                    i.tipo_cargo?.valor?.toLowerCase().includes("presiden")
+                                );
+                                const diputado = presidente?.integranteLegis?.diputado;
+                                const nombrePresidente = diputado
+                                    ? `${diputado.nombres} ${diputado.apaterno} ${diputado.amaterno}`
+                                    : "Sin presidencia asignada";
+
+                                return (
+                                    <div key={item.id} className="comision-card">
+
+                                        <div className="comision-card-top">
+                                         
+                                            <h3 className="comision-card-nombre">
+                                                {(item.alias || item.nombre)?.replace(/\n/g, " ")}
+                                            </h3>
+                                        </div>
+
+                                        <div className="comision-card-presidencia">
+                                            <svg viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="12" cy="7" r="4"/>
+                                            </svg>
+                                            <div className="comision-presidencia-texto">
+                                                <span className="comision-presidencia-label">Presidencia</span>
+                                                <span className="comision-presidencia-nombre">{nombrePresidente}</span>
+                                            </div>
+                                        </div>
+
+                                        <a href={`/comisiones/${item.id}`} className="comision-card-btn">
+                                            Ver comisión →
+                                        </a>
+
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
-
-                    <a
-                      href={`/comisiones/${item.id}`}
-                      className="btn-var-2 w-button"
-                    >
-                      Acceder
-                    </a>
-                  </div>
                 );
-              })}
-            </div>
-          </div>
-        );
-      })}
-    </>
-  );
+            })}
+        </>
+    );
 }
