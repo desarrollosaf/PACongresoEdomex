@@ -1,7 +1,8 @@
-import { Column, Model, Table, HasMany, DataType } from 'sequelize-typescript';
+import { Column, Model, Table, HasMany, DataType, BelongsTo } from 'sequelize-typescript';
 import { IntegranteLegislatura } from './integrante-legislatura.entity';
 import { Foto } from './fotos.entity';
 import { AutoresComunicados } from './autores-comunicados.entity';
+import { Gender } from './gender.entity';
 
 @Table({ tableName: 'diputados', underscored: true, timestamps: true, paranoid: true, charset: 'utf8mb4', collate: 'utf8mb4_unicode_ci' })
 export class Diputado extends Model {
@@ -26,8 +27,11 @@ export class Diputado extends Model {
   @Column({ type: DataType.STRING })
   fancyurl: string; 
 
-  @Column({ type: DataType.INTEGER })
-  gender_id: number;
+  @Column({ type: DataType.CHAR(36) })
+  gender_id: string;
+
+  @BelongsTo(() => Gender, 'gender_id')
+  genero: Gender;
 
   @Column({ type: DataType.STRING })
   email: string;

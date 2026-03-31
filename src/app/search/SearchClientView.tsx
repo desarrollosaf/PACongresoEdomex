@@ -44,7 +44,7 @@ export default function SearchClientView({
     router.push(`/search?query=${encodeURIComponent(query)}`);
   };
 
-  const ITEMS_PER_PAGE = 9;
+  const ITEMS_PER_PAGE = 8;
   const totalPages = Math.ceil(comunicados.length / ITEMS_PER_PAGE);
   const paginatedComunicados = comunicados.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
@@ -210,7 +210,7 @@ export default function SearchClientView({
       )}
 
       {!isSearching && comunicados.length > 0 && (
-        <section className="max_width" style={{ marginTop: '40px', marginBottom: '80px', padding: '20px 20px' }}>
+        <section id="comunicados-section" className="max_width" style={{ marginTop: '40px', marginBottom: '80px', padding: '20px 20px' }}>
           <div>
             <h2 className="titulo-seccion">Comunicados Encontrados ({comunicados.length})</h2>
           </div>
@@ -243,7 +243,10 @@ export default function SearchClientView({
             {totalPages > 1 && (
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '40px', gap: '15px' }}>
                 <button 
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  onClick={() => {
+                    setCurrentPage(p => Math.max(1, p - 1));
+                    document.getElementById('comunicados-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   disabled={currentPage === 1}
                   className="btn-var-2 w-button"
                   style={{ opacity: currentPage === 1 ? 0.5 : 1, padding: '10px 20px', minWidth: '120px' }}
@@ -254,7 +257,10 @@ export default function SearchClientView({
                   Página {currentPage} de {totalPages}
                 </div>
                 <button 
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  onClick={() => {
+                    setCurrentPage(p => Math.min(totalPages, p + 1));
+                    document.getElementById('comunicados-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   disabled={currentPage === totalPages}
                   className="btn-var-2 w-button"
                   style={{ opacity: currentPage === totalPages ? 0.5 : 1, padding: '10px 20px', minWidth: '120px' }}
