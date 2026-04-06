@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type Tab = "integrantes" | "iniciativas" | "dictamenes" | "acuerdos";
+type Tab = "integrantes" | "iniciativas" | "dictamenes" | "acuerdos" | "reuniones";
 
 const partidoColorMap: Record<string, string> = {
   morena: "bg-morena",
@@ -105,6 +105,7 @@ export default function ComisionPage({
     { key: "iniciativas" as Tab, label: "Iniciativas" },
     { key: "dictamenes" as Tab, label: "Dictámenes" },
     { key: "acuerdos" as Tab, label: "Acuerdos" },
+    { key: "reuniones" as Tab, label: "Reuniones" },
   ];
 
   return (
@@ -251,6 +252,11 @@ export default function ComisionPage({
             {tabActiva === "acuerdos" && (
               <div className="w-tab-pane w--tab-active">
                 <h1 className="titulo-seccion">Acuerdos</h1>
+              </div>
+            )}
+            {tabActiva === "reuniones" && (
+              <div className="w-tab-pane w--tab-active">
+                <h1 className="titulo-seccion">Reuniones</h1>
               </div>
             )}
           </div>

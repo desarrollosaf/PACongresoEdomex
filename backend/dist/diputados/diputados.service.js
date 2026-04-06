@@ -27,6 +27,7 @@ const integrante_comisions_entity_1 = require("../database/entities/integrante-c
 const comisiones_entity_1 = require("../database/entities/comisiones.entity");
 const tipo_cargo_comisiones_entity_1 = require("../database/entities/tipo-cargo-comisiones.entity");
 const fotos_entity_2 = require("../database/entities/fotos.entity");
+const gender_entity_1 = require("../database/entities/gender.entity");
 let DiputadosService = class DiputadosService {
     legislaturaModel;
     diputadoModel;
@@ -42,6 +43,7 @@ let DiputadosService = class DiputadosService {
             order: [['apaterno', 'ASC']],
             include: [
                 fotos_entity_1.Foto,
+                gender_entity_1.Gender,
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
                     where: { fecha_fin: null },
@@ -77,6 +79,7 @@ let DiputadosService = class DiputadosService {
             where: { id },
             include: [
                 fotos_entity_1.Foto,
+                gender_entity_1.Gender,
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
                     where: { fecha_fin: null },
