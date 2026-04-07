@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import IniciativasComisionTab from "./IniciativasComisionTab";
 
 type Tab = "integrantes" | "iniciativas" | "dictamenes" | "acuerdos";
 
@@ -168,80 +169,7 @@ export default function ComisionPage({
               </div>
             )}
             {tabActiva === "iniciativas" && (
-              <div className="w-tab-pane w--tab-active">
-                {tabActiva === "iniciativas" && (
-                  <div className="w-tab-pane w--tab-active">
-                    <h1 className="titulo-seccion">Iniciativas</h1>
-                    <div className="w-layout-grid grid-iniciativas">
-                      {iniciativas.length === 0 && (
-                        <p className="texto-comunicado">
-                          No hay iniciativas registradas.
-                        </p>
-                      )}
-                      {iniciativas.map((ini: any) => (
-                        <div key={ini.id} className="div-iniciativas">
-                          {/* Título */}
-                          <div className="columnas-titulo-iniciativa w-row">
-                            <div className="column-27 w-col w-col-3">
-                              <img
-                                src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png"
-                                loading="lazy"
-                                alt=""
-                                className="img-btn-titulo"
-                              />
-                            </div>
-                            <div className="w-col w-col-9">
-                              <h3 className="titulo-iniciativa">
-                                {/* {ini.iniciativa} */}
-                              </h3>
-                            </div>
-                          </div>
-
-                          {/* Materia */}
-                          <p className="texto-iniciativas">{ini.materia}</p>
-
-                          {/* Datos */}
-                          <div className="w-layout-grid grid-iniciativa-1">
-                            <div className="div-block-60">
-                              <p className="titulo-dato-iniciativas">
-                                Proponente
-                              </p>
-                              <strong>{ini.autor}</strong>
-                            </div>
-                            <div className="div-block-60">
-                              <p className="titulo-dato-iniciativas">
-                                Diputado
-                              </p>
-                              <span>{ini.diputado}</span>
-                            </div>
-                            <div className="div-block-60">
-                              <p className="titulo-dato-iniciativas">
-                                Presentación
-                              </p>
-                              <span>{ini.presentac}</span>
-                            </div>
-                          </div>
-
-                          <div className="w-layout-grid grid-iniciativa-2">
-                            <div className="div-block-60">
-                              <p className="titulo-dato-iniciativas">
-                                Comisión
-                              </p>
-                              <span>{ini.comisiones}</span>
-                            </div>
-                            <div className="div-block-60">
-                              <p className="titulo-dato-iniciativas">Status</p>
-                              <p className="texto-status-aprobada">
-                                <strong>{ini.observac}</strong>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <IniciativasComisionTab comisionId={comision?.id || 'comision'} serverIniciativas={iniciativas} />
             )}
             {tabActiva === "dictamenes" && (
               <div className="w-tab-pane w--tab-active">
