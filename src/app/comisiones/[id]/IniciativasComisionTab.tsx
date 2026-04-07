@@ -21,10 +21,9 @@ type Iniciativa = {
   fecha_aprobacion?: string;
 };
 
-type IniciativasTabProps = {
-  diputadoId: string;
+type IniciativasComisionTabProps = {
+  comisionId: string;
   serverIniciativas: Iniciativa[];
-  title?: string;
 };
 
 type FilterStatus = 'todas' | 'aprobada' | 'en estudio';
@@ -54,7 +53,7 @@ const FILTROS: { key: FilterStatus; label: string; cls: string }[] = [
 
 const ITEMS_PER_PAGE = 6;
 
-export default function IniciativasTab({ diputadoId, serverIniciativas, title }: IniciativasTabProps) {
+export default function IniciativasComisionTab({ comisionId, serverIniciativas }: IniciativasComisionTabProps) {
   const [page, setPage] = useState(1);
   const [filterStatus, setFilterStatus] = useState<FilterStatus>('todas');
 
@@ -63,8 +62,8 @@ export default function IniciativasTab({ diputadoId, serverIniciativas, title }:
   if (iniciativas.length === 0) {
     return (
       <div className="tab-area w-tab-pane w--tab-active" data-w-tab="iniciativas">
-        {title && <h1 className="titulo-seccion">{title}</h1>}
-        <div className="div-block-67" style={{ opacity: 0.6, padding: '2rem 0', marginTop: title ? '2rem' : undefined }}>
+        <h1 className="titulo-seccion">Iniciativas</h1>
+        <div className="div-block-67" style={{ opacity: 0.6, padding: '2rem 0', marginTop: '2rem' }}>
           Aún no hay iniciativas registradas.
         </div>
       </div>
@@ -91,11 +90,12 @@ export default function IniciativasTab({ diputadoId, serverIniciativas, title }:
 
   return (
     <div className="tab-area w-tab-pane w--tab-active" data-w-tab="iniciativas">
-      {title && <h1 className="titulo-seccion">{title}</h1>}
-      <div className="div-block-67" style={{ marginTop: title ? '2rem' : undefined }}>
+      <br/>  
+      <h1 className="titulo-seccion">Iniciativas</h1>
+      <div className="div-block-67" style={{ marginTop: '2rem' }}>
 
         {/* Filtros */}
-        <div className="ini-filtros">
+       <div className="ini-filtros">
           {FILTROS.map(({ key, label, cls }) => {
             const count = key === 'todas'
               ? iniciativas.length
