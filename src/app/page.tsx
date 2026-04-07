@@ -10,6 +10,7 @@ import BannersHomeSection from "@/components/BannersHomeSections";
 import SearchForm from "@/components/SearchForm";
 import { getEstadisticasHome } from "./service/estadisticas.api";
 import EstadisticasHomeSection from "@/components/EstadisticasHomeSections";
+import ChatWidget from "@/components/ChatWidget";
 
 export default async function Home() {
   const boletines = await getBoletines();
@@ -93,6 +94,8 @@ export default async function Home() {
           <BannersHomeSection banners = { banners }></BannersHomeSection>
         </div>
       </section>
+
+       <ChatWidget /> 
     </>
   );
 }
