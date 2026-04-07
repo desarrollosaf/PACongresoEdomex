@@ -1,4 +1,8 @@
-import { getComisionById, getIniciativasByComision } from "@/app/service/comisiones.api";
+import {
+  getComisionById,
+  getIniciativasByComision,
+  getEventosByComision,
+} from "@/app/service/comisiones.api";
 import ComisionPage from "./ComisionPage";
 
 export const dynamic = "force-dynamic";
@@ -10,9 +14,10 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  const [comision, iniciativasData] = await Promise.all([
+  const [comision, iniciativasData, eventosData] = await Promise.all([
     getComisionById(id),
     getIniciativasByComision(id),
+    getEventosByComision(id),
   ]);
 
   if (!comision) {
@@ -23,6 +28,7 @@ export default async function Page({
     <ComisionPage
       comision={comision}
       iniciativas={iniciativasData?.data?.iniciativas ?? []}
+      eventos={eventosData?.data?.eventos ?? []}
     />
   );
 }

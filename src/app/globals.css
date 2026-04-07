@@ -301,3 +301,173 @@ body {
 .comunicado-texto p {
   margin-bottom: 0.75rem;
 }
+
+/* ── Eventos ───────────────────────────── */
+.evt-header {
+  margin-bottom: 1.5rem;
+}
+.evt-total-badge {
+  font-size: 0.85rem;
+  color: #5f687f;
+  background: #f0f2f7;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.grid-eventos {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.evt-card {
+  display: flex;
+  border: 1px solid #e2e6ef;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: box-shadow 0.2s;
+}
+.evt-card:hover,
+.evt-card--abierto {
+  box-shadow: 0 4px 16px rgba(95, 104, 127, 0.12);
+}
+
+/* Franja lateral de fecha */
+.evt-fecha-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  background: #1a2340;
+  color: #fff;
+  padding: 1.2rem 0.8rem;
+  gap: 2px;
+}
+.evt-dia {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+.evt-mes {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+.evt-anio {
+  font-size: 0.72rem;
+  opacity: 0.6;
+}
+
+/* Cuerpo */
+.evt-card-body {
+  flex: 1;
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.evt-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.evt-tipo-badge {
+  font-size: 0.72rem;
+  background: #e8eaf6;
+  color: #3949ab;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.evt-puntos-badge {
+  font-size: 0.72rem;
+  background: #f0f2f7;
+  color: #5f687f;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+.evt-liga-btn {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: #e53935;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: opacity 0.15s;
+}
+.evt-liga-btn:hover { opacity: 0.75; }
+
+.evt-descripcion {
+  font-size: 0.9rem;
+  color: #2d3748;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Orden del día */
+.evt-orden-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: #5f687f;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  padding: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.evt-orden-count {
+  font-weight: 600;
+}
+.evt-orden-list {
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-left: 3px solid #e2e6ef;
+  padding-left: 1rem;
+}
+.evt-orden-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.evt-orden-num {
+  font-weight: 700;
+  color: #1a2340;
+  font-size: 0.8rem;
+}
+.evt-orden-desc {
+  font-size: 0.83rem;
+  color: #4a5568;
+  line-height: 1.4;
+}
+.evt-orden-tags {
+  display: flex;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+.evt-tag {
+  font-size: 0.68rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.evt-tag--voto   { background: #e8f5e9; color: #2e7d32; }
+.evt-tag--tribuna { background: #fff3e0; color: #e65100; }
+.evt-tag--dispensa { background: #fce4ec; color: #c62828; }

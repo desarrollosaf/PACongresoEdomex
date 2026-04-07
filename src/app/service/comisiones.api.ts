@@ -52,3 +52,28 @@ export async function getIniciativasByComision(id: string) {
     return null;
   }
 }
+
+export async function getEventosByComision(id: string) {
+  try {
+    const res = await fetch(
+      `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/comision/eventos?id=${id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      }
+    );
+
+    if (!res.ok) {
+      console.error("Error HTTP:", res.status);
+      return null;
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+}

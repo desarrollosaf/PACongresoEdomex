@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import IniciativasComisionTab from "./IniciativasComisionTab";
+import EventosComisionTab from "./EventosComisionTab";
 
 type Tab = "integrantes" | "iniciativas" | "dictamenes" | "acuerdos" | "reuniones";
 
@@ -77,9 +78,11 @@ function MiembroCard({ item }: { item: any }) {
 export default function ComisionPage({
   comision,
   iniciativas,
+  eventos,
 }: {
   comision: any;
   iniciativas: any;
+  eventos: any;
 }) {
   const [tabActiva, setTabActiva] = useState<Tab>("integrantes");
 
@@ -183,9 +186,7 @@ export default function ComisionPage({
               </div>
             )}
             {tabActiva === "reuniones" && (
-              <div className="w-tab-pane w--tab-active">
-                <h1 className="titulo-seccion">Reuniones</h1>
-              </div>
+              <EventosComisionTab serverEventos={eventos} />
             )}
           </div>
         </div>
