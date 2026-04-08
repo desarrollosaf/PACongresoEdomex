@@ -12,6 +12,11 @@ type OrdenDelDia = {
   tiene_iniciativas: boolean;
 };
 
+type ComisionUnida = {
+  comision_id: string;
+  nombre: string;
+};
+
 type Evento = {
   evento_id: string;
   fecha: string;
@@ -19,6 +24,8 @@ type Evento = {
   descripcion: string;
   liga: string | null;
   tipo_evento: string;
+  es_unida: boolean;
+  comisiones_unidas: ComisionUnida[];
   total_puntos: number;
   total_iniciativas: number;
   votadas: number;
@@ -28,22 +35,12 @@ type Evento = {
 
 type Props = {
   serverEventos: Evento[];
+  comisionPrincipal: string;
 };
-
-function formatDate(isoString: string, fallback: string) {
-  if (!isoString) return fallback;
-  try {
-    const d = new Date(isoString);
-    if (isNaN(d.getTime())) return fallback;
-    return `${d.getDate()} de ${d.toLocaleString('es-MX', { month: 'long' })}, ${d.getFullYear()}`;
-  } catch {
-    return fallback;
-  }
-}
 
 const ITEMS_PER_PAGE = 10;
 
-export default function EventosComisionTab({ serverEventos }: Props) {
+export default function EventosComisionTab({ serverEventos, comisionPrincipal }: Props) {
   const [page, setPage] = useState(1);
   const [expandido, setExpandido] = useState<string | null>(null);
 
@@ -78,7 +75,6 @@ export default function EventosComisionTab({ serverEventos }: Props) {
       <h1 className="titulo-seccion">Reuniones</h1>
       <div className="div-block-67" style={{ marginTop: '2rem' }}>
 
-        {/* Contador */}
         <div className="evt-header">
           <span className="evt-total-badge">{eventos.length} reunión{eventos.length !== 1 ? 'es' : ''} registrada{eventos.length !== 1 ? 's' : ''}</span>
         </div>
@@ -86,20 +82,22 @@ export default function EventosComisionTab({ serverEventos }: Props) {
         <div className="grid-eventos">
           {paginados.map((evt) => {
             const abierto = expandido === evt.evento_id;
+
+            // Deduplicar comisiones unidas
+            const comisionesUnicas = evt.comisiones_unidas?.filter(
+              (c, i, arr) => arr.findIndex(x => x.comision_id === c.comision_id) === i
+            ) ?? [];
+
             return (
               <div key={evt.evento_id} className={`evt-card ${abierto ? 'evt-card--abierto' : ''}`}>
 
                 {/* Franja de fecha lateral */}
                 <div className="evt-fecha-strip">
-                  <span className="evt-dia">
-                    {new Date(evt.fecha).getDate()}
-                  </span>
+                  <span className="evt-dia">{new Date(evt.fecha).getDate()}</span>
                   <span className="evt-mes">
                     {new Date(evt.fecha).toLocaleString('es-MX', { month: 'short' }).replace('.', '')}
                   </span>
-                  <span className="evt-anio">
-                    {new Date(evt.fecha).getFullYear()}
-                  </span>
+                  <span className="evt-anio">{new Date(evt.fecha).getFullYear()}</span>
                 </div>
 
                 {/* Contenido principal */}
@@ -111,9 +109,26 @@ export default function EventosComisionTab({ serverEventos }: Props) {
                         {evt.total_puntos} punto{evt.total_puntos !== 1 ? 's' : ''}
                       </span>
                     )}
+                    {evt.liga && evt.liga !== '0' && (
+                      <a href={evt.liga} target="_blank" rel="noopener noreferrer" className="evt-liga-btn">
+                        ▶ Ver grabación
+                      </a>
+                    )}
                   </div>
 
-                  <p className="evt-descripcion">{evt.descripcion}</p>
+                  {/* Comisiones unidas */}
+                  {evt.es_unida && comisionesUnicas.length > 0 && (
+                    <div className="evt-comisiones-unidas">
+                      <span className="evt-comisiones-label">Comisiones legislativas de: </span><br></br>
+                      <span className="evt-comision-unida-nombre">{comisionPrincipal} </span><br></br>
+                      {comisionesUnicas.map((c) => (
+                        <span key={c.comision_id} className="evt-comision-unida-nombre">
+                          {c.nombre}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
 
                   {/* Orden del día expandible */}
                   {evt.orden_del_dia.length > 0 && (

@@ -186,7 +186,8 @@ export default function ComisionPage({
               </div>
             )}
             {tabActiva === "reuniones" && (
-              <EventosComisionTab serverEventos={eventos} />
+              <EventosComisionTab serverEventos={eventos} 
+              comisionPrincipal={comision?.nombre ?? comision?.alias ?? ''}/>
             )}
           </div>
         </div>
