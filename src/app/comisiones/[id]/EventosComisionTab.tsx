@@ -103,18 +103,22 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                 {/* Contenido principal */}
                 <div className="evt-card-body">
                   
-                  {/* Comisiones unidas */}
-                  {evt.es_unida && comisionesUnicas.length > 0 && (
-                    <div className="evt-comisiones-unidas">
-                      <span className="evt-comisiones-label">Comisiones legislativas de: </span><br></br>
-                      <span className="evt-comision-unida-nombre">{comisionPrincipal} </span><br></br>
-                      {comisionesUnicas.map((c) => (
-                        <span key={c.comision_id} className="evt-comision-unida-nombre">
-                          {c.nombre}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                {/* Comisiones unidas */}
+                {evt.es_unida && comisionesUnicas.length > 0 ? (
+                  <div className="evt-comisiones-unidas">
+                    <span className="evt-comisiones-label">Comisiones legislativas de: </span><br />
+                    <span className="evt-comision-unida-nombre">{comisionPrincipal}</span><br />
+                    {comisionesUnicas.map((c) => (
+                      <span key={c.comision_id} className="evt-comision-unida-nombre">
+                        {c.nombre}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="evt-comisiones-unidas">
+                    <span className="evt-comision-unida-nombre">{comisionPrincipal}</span>
+                  </div>
+                )}
 
                   {/* Orden del día expandible */}
                   {evt.orden_del_dia.length > 0 && (

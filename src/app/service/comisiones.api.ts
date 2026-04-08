@@ -34,14 +34,13 @@ export async function getIniciativasByComision(id: string) {
       `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/comision/iniciativas?id=${id}`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         cache: "no-store",
       }
     );
 
     if (!res.ok) {
+      if (res.status === 404) return { data: { iniciativas: [] } };
       console.error("Error HTTP:", res.status);
       return null;
     }
@@ -59,14 +58,13 @@ export async function getEventosByComision(id: string) {
       `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/comision/eventos?id=${id}`,
       {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         cache: "no-store",
       }
     );
 
     if (!res.ok) {
+      if (res.status === 404) return { data: { eventos: [] } };
       console.error("Error HTTP:", res.status);
       return null;
     }

@@ -14,11 +14,11 @@ export default async function Page({
 }) {
   const { id } = await params;
 
-  const [comision, iniciativasData, eventosData] = await Promise.all([
-    getComisionById(id),
-    getIniciativasByComision(id),
-    getEventosByComision(id),
-  ]);
+const [comision, iniciativasData, eventosData] = await Promise.all([
+  getComisionById(id),
+  getIniciativasByComision(id).catch(() => null),
+  getEventosByComision(id).catch(() => null),
+]);
 
   if (!comision) {
     return <p>No se encontró la comisión</p>;
