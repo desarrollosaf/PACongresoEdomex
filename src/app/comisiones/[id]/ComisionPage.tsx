@@ -16,6 +16,25 @@ const partidoColorMap: Record<string, string> = {
   prd: "bg-prd",
 };
 
+function normalizar(str: string): string {
+  return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+const ORDEN_CARGOS: Record<string, number> = {
+  "presidencia": 1,
+  "vicepresidencia": 2,
+  "secretaria": 3,
+  "prosecretaria": 4,
+  "vocal": 5,
+  "miembro": 6,
+  "suplente": 7,
+};
+
+function getOrdenCargo(cargo: string): number {
+  const c = normalizar(cargo);
+  return ORDEN_CARGOS[c] ?? 99;
+}
+
 function getPartidoColor(siglas?: string): string {
   if (!siglas) return "bg-morena";
   const key = siglas.toLowerCase();
@@ -23,19 +42,6 @@ function getPartidoColor(siglas?: string): string {
     if (key.includes(partido)) return partidoColorMap[partido];
   }
   return "bg-morena";
-}
-
-const CARGOS_PRIMERA_FILA = [
-  "presidencia",
-  "vicepresidencia",
-  "secretaría",
-  "prosecretaría",
-];
-
-function getCargoPrioridad(cargo: string): number {
-  const c = cargo.toLowerCase();
-  const idx = CARGOS_PRIMERA_FILA.findIndex((k) => c.includes(k));
-  return idx === -1 ? 99 : idx;
 }
 
 function MiembroCard({ item }: { item: any }) {
@@ -51,11 +57,7 @@ function MiembroCard({ item }: { item: any }) {
   return (
     <div className="integrante-comision">
       <img
-        src={
-          foto
-            ? `https://congresoedomex.gob.mx/${foto}`
-            : "/images/default-user.png"
-        }
+        src={foto ? `https://congresoedomex.gob.mx/${foto}` : "/images/default-user.png"}
         alt={nombre || "Diputado"}
         className={`img-integrantes-cc ${colorClass}`}
       />
@@ -65,10 +67,7 @@ function MiembroCard({ item }: { item: any }) {
         </h4>
         <div className="texto-comision">{cargo}</div>
       </div>
-      <a
-        href={`/perfil-diputado/${diputado.id}`}
-        className="btn-var-2 w-button"
-      >
+      <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button">
         Saber más
       </a>
     </div>
@@ -88,21 +87,11 @@ export default function ComisionPage({
 
   const integrantes: any[] = comision.integrantes ?? [];
 
-  const primeraFila = integrantes
-    .filter((item) => {
-      const cargo = item.tipo_cargo?.valor?.toLowerCase() ?? "";
-      return CARGOS_PRIMERA_FILA.some((k) => cargo.includes(k));
-    })
-    .sort(
-      (a, b) =>
-        getCargoPrioridad(a.tipo_cargo?.valor ?? "") -
-        getCargoPrioridad(b.tipo_cargo?.valor ?? ""),
-    );
-
-  const segundaFila = integrantes.filter((item) => {
-    const cargo = item.tipo_cargo?.valor?.toLowerCase() ?? "";
-    return !CARGOS_PRIMERA_FILA.some((k) => cargo.includes(k));
-  });
+  const integrantesOrdenados = [...integrantes].sort(
+    (a, b) =>
+      getOrdenCargo(a.tipo_cargo?.valor ?? "") -
+      getOrdenCargo(b.tipo_cargo?.valor ?? "")
+  );
 
   const tabs = [
     { key: "integrantes" as Tab, label: "Integrantes" },
@@ -119,7 +108,7 @@ export default function ComisionPage({
           <div className="w-col w-col-6">
             <div className="descripcion_dato-izq">Comisión</div>
             <h1 className="titulo-seccion">
-              {comision.alias || comision.nombre}
+              {comision.nombre}
             </h1>
             {comision.descripcion && (
               <p className="texto-comunicado">{comision.descripcion}</p>
@@ -144,11 +133,7 @@ export default function ComisionPage({
                 key={tab.key}
                 onClick={() => setTabActiva(tab.key)}
                 className={[
-                  i === 0
-                    ? "tab-cc-1"
-                    : i === tabs.length - 1
-                      ? "tab-final"
-                      : "tab-cc",
+                  i === 0 ? "tab-cc-1" : i === tabs.length - 1 ? "tab-final" : "tab-cc",
                   "w-inline-block w-tab-link",
                   tabActiva === tab.key ? "w--current" : "",
                 ].join(" ")}
@@ -163,10 +148,7 @@ export default function ComisionPage({
               <div className="w-tab-pane w--tab-active">
                 <h1 className="titulo-seccion">Integrantes</h1>
                 <div className="w-layout-grid grid-integrante-cc">
-                  {primeraFila.map((item) => (
-                    <MiembroCard key={item.id} item={item} />
-                  ))}
-                  {segundaFila.map((item) => (
+                  {integrantesOrdenados.map((item) => (
                     <MiembroCard key={item.id} item={item} />
                   ))}
                 </div>
@@ -186,8 +168,10 @@ export default function ComisionPage({
               </div>
             )}
             {tabActiva === "reuniones" && (
-              <EventosComisionTab serverEventos={eventos} 
-              comisionPrincipal={comision?.nombre ?? comision?.alias ?? ''}/>
+              <EventosComisionTab
+                serverEventos={eventos}
+                comisionPrincipal={comision?.nombre ?? ''}
+              />
             )}
           </div>
         </div>
