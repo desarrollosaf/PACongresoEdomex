@@ -102,20 +102,7 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
 
                 {/* Contenido principal */}
                 <div className="evt-card-body">
-                  <div className="evt-card-top">
-                    <span className="evt-tipo-badge">{evt.tipo_evento}</span>
-                    {evt.total_puntos > 0 && (
-                      <span className="evt-puntos-badge">
-                        {evt.total_puntos} punto{evt.total_puntos !== 1 ? 's' : ''}
-                      </span>
-                    )}
-                    {evt.liga && evt.liga !== '0' && (
-                      <a href={evt.liga} target="_blank" rel="noopener noreferrer" className="evt-liga-btn">
-                        ▶ Ver grabación
-                      </a>
-                    )}
-                  </div>
-
+                  
                   {/* Comisiones unidas */}
                   {evt.es_unida && comisionesUnicas.length > 0 && (
                     <div className="evt-comisiones-unidas">
