@@ -102,20 +102,7 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
 
                 {/* Contenido principal */}
                 <div className="evt-card-body">
-                  <div className="evt-card-top">
-                    <span className="evt-tipo-badge">{evt.tipo_evento}</span>
-                    {evt.total_puntos > 0 && (
-                      <span className="evt-puntos-badge">
-                        {evt.total_puntos} punto{evt.total_puntos !== 1 ? 's' : ''}
-                      </span>
-                    )}
-                    {evt.liga && evt.liga !== '0' && (
-                      <a href={evt.liga} target="_blank" rel="noopener noreferrer" className="evt-liga-btn">
-                        ▶ Ver grabación
-                      </a>
-                    )}
-                  </div>
-
+                  
                   {/* Comisiones unidas */}
                   {evt.es_unida && comisionesUnicas.length > 0 && (
                     <div className="evt-comisiones-unidas">
@@ -128,7 +115,6 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                       ))}
                     </div>
                   )}
-
 
                   {/* Orden del día expandible */}
                   {evt.orden_del_dia.length > 0 && (
@@ -146,7 +132,7 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                           {evt.orden_del_dia.map((punto) => (
                             <li key={punto.punto_id} className="evt-orden-item">
                               <span className="evt-orden-num">{punto.nopunto}.</span>
-                              <span className="evt-orden-desc">{punto.descripcion}</span>
+                              <span className="evt-orden-desc jusitify">{punto.descripcion}</span>
                               <div className="evt-orden-tags">
                                 {punto.voto && <span className="evt-tag evt-tag--voto">Votación</span>}
                                 {punto.tribuna && <span className="evt-tag evt-tag--tribuna">Tribuna</span>}
@@ -158,7 +144,18 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                       )}
                     </div>
                   )}
+
+                  {/* Botones */}
+                  <div className="evt-btns">
+                    <a href={`/eventos/${evt.evento_id}/asistencia`} className="evt-btn evt-btn--asistencia">
+                      Asistencia
+                    </a>
+                    <a href={`/eventos/${evt.evento_id}/version`} className="evt-btn evt-btn--version">
+                      Versión
+                    </a>
+                  </div>
                 </div>
+                
 
               </div>
             );
