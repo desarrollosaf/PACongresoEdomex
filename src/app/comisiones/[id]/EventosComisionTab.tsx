@@ -116,7 +116,6 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                     </div>
                   )}
 
-
                   {/* Orden del día expandible */}
                   {evt.orden_del_dia.length > 0 && (
                     <div className="evt-orden-wrapper">
@@ -133,7 +132,7 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                           {evt.orden_del_dia.map((punto) => (
                             <li key={punto.punto_id} className="evt-orden-item">
                               <span className="evt-orden-num">{punto.nopunto}.</span>
-                              <span className="evt-orden-desc">{punto.descripcion}</span>
+                              <span className="evt-orden-desc jusitify">{punto.descripcion}</span>
                               <div className="evt-orden-tags">
                                 {punto.voto && <span className="evt-tag evt-tag--voto">Votación</span>}
                                 {punto.tribuna && <span className="evt-tag evt-tag--tribuna">Tribuna</span>}
@@ -145,7 +144,18 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                       )}
                     </div>
                   )}
+
+                  {/* Botones */}
+                  <div className="evt-btns">
+                    <a href={`/eventos/${evt.evento_id}/asistencia`} className="evt-btn evt-btn--asistencia">
+                      Asistencia
+                    </a>
+                    <a href={`/eventos/${evt.evento_id}/version`} className="evt-btn evt-btn--version">
+                      Versión
+                    </a>
+                  </div>
                 </div>
+                
 
               </div>
             );
