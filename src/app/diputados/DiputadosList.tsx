@@ -209,7 +209,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                             const distrito = integrante?.distrito;
                             const foto = diputado.fotos?.[0];
                             const fotoUrl = foto?.path ? `${BASE_URL}${foto.path}` : 'images/placeholder-diputado.png';
-                            const nombreCompleto = `${diputado.apaterno ?? ''} ${diputado.nombres ?? ''}`.trim();
+                            const nombreCompleto = `${diputado.apaterno ?? ''} ${diputado.amaterno ?? ''} ${diputado.nombres ?? ''}`.trim();
                             const siglas = partido?.siglas ?? '';
                             const tipoCargo = distrito?.distrito ?? 'Plurinominal';
 
