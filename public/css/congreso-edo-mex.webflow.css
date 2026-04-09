@@ -4015,7 +4015,7 @@
 
 @media screen and (max-width: 479px) {
   .body {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .div-block {
@@ -4931,5 +4931,59 @@
   .comunicado-main,
   .comunicado-2_3 {
     flex-flow: column;
+  }
+}
+
+/* Menú móvil */
+@media screen and (max-width: 767px) {
+  .div-block-9 {
+    display: none;
+    flex-flow: column;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+  }
+
+  .div-block-9.menu-movil-abierto {
+    display: flex;
+  }
+}
+
+/* ── Dropdowns en móvil ──────────────────────────────── */
+@media screen and (max-width: 767px) {
+  .w-dropdown {
+    width: 100%;
+  }
+
+  .w-dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    width: 100%;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  .dropdown-list.w--open {
+    position: static !important;
+    background-color: #f9f9f9;
+    border-radius: 0 0 10px 10px;
+    border: none;
+    padding: 5px 0;
+    width: 100%;
+  }
+
+  .w-dropdown-link,
+  .link-nav-menu.w-dropdown-link {
+    display: block;
+    padding: 10px 25px;
+    border-bottom: 1px solid #f1f1f1;
+    font-size: 14px;
+  }
+
+  .div-block-9.menu-movil-abierto {
+    border-top: 1px solid #f1f1f1;
+    margin-top: 10px;
+    padding-top: 5px;
   }
 }
