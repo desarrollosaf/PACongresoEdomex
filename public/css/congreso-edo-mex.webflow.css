@@ -4502,3 +4502,434 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* +++++++++++++++++++++++++++++++++++NUEVOS++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ============================================================
+   CLASES NUEVAS DEL ARCHIVO 2 — agregar al final de tu CSS
+   (No estaban en tu versión modificada)
+   ============================================================ */
+
+.fecha-boletin-centrada {
+  color: #c7c7c7;
+  text-align: center;
+}
+
+.hero-boletines {
+  max-width: 1200px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.body-16 {
+  color: #454545;
+  background-color: #f2f4f5;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.paragraph-15 {
+  text-align: center;
+}
+
+.ultimo-boletin {
+  justify-content: space-between;
+  align-items: center;
+  max-width: none;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.boletin-big {
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.image-34 {
+  border-radius: 10px;
+}
+
+.titulo-boletin-main {
+  color: #fff;
+}
+
+.info-bolet-n-last {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  background-image: linear-gradient(0deg, #000000e6, #fff0 25%), url('../images/emma-comunicado1.jpg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+  border-radius: 10px;
+  flex-flow: column;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1000px;
+  height: 450px;
+  min-height: 0;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+}
+
+.button-3 {
+  display: block;
+}
+
+.btn-boletin-open {
+  color: #fff;
+  text-align: center;
+  background-color: #3898ec00;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+  display: inline-flex;
+}
+
+.btn-boletin-open:hover {
+  color: #bb945c;
+}
+
+.grid-doble {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 40px;
+}
+
+.div-block-72 {
+  max-width: 1400px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comunicado {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.comunicado:hover {
+  border: 0 solid #cecece;
+}
+
+.img-comunicado {
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  max-width: none;
+  height: auto;
+  margin-bottom: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+.titulo-boletin {
+  color: #454545;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.btn-boletin {
+  color: #bb945c;
+  background-color: #fff;
+  border: 1px solid #bb945c;
+  border-radius: 5px;
+}
+
+.btn-boletin:hover {
+  color: #fff;
+  -webkit-text-stroke-color: white;
+  background-color: #bb945c;
+  border-color: #bb945c;
+}
+
+.grid-boletin-2-4 {
+  flex-flow: column;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.comunicado_2-4 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.image-35 {
+  height: auto;
+  max-height: 100px;
+}
+
+.img-comunicado_2-4 {
+  background-image: url('../images/emma-comunicado1.jpg');
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+.column-29 {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  display: flex;
+}
+
+.div-block-73 {
+  width: 100%;
+}
+
+.info-comunicado {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.grid-tetra {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  max-width: 1400px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid-triple {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 1400px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comunicado_1-2 {
+  max-width: 1400px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comunicado_small {
+  grid-column-gap: 13px;
+  grid-row-gap: 13px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  max-height: none;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.comunicado_small:hover {
+  border: 0 solid #cecece;
+}
+
+.img-comunicado_tetra {
+  border-radius: 10px;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.image-36 {
+  border-radius: 10px;
+}
+
+.column-30 {
+  height: auto;
+}
+
+.img-comunicado-main {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.img-comunicado-lista {
+  border-radius: 10px;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+.img-comunicado-lista-vertical {
+  border-radius: 10px;
+  width: auto;
+  height: 100%;
+}
+
+.column-31 {
+  flex-flow: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 100%;
+  display: flex;
+  overflow: visible;
+}
+
+.columns-23 {
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 100%;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  display: flex;
+}
+
+.comunicado-main {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.comunicado-main:hover {
+  border: 0 solid #cecece;
+}
+
+.img-comunicado-lista-doble {
+  border-radius: 10px;
+  width: auto;
+  max-width: none;
+  height: 10%;
+  max-height: none;
+  display: block;
+  overflow: visible;
+}
+
+.div-block-74 {
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+}
+
+.num_page {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.comunicado-2_3 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-flow: row;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.comunicado-2_3:hover {
+  border: 0 solid #cecece;
+}
+
+.section-11 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* ── Responsive — clases nuevas ──────────────────────── */
+
+@media screen and (max-width: 767px) {
+  .grid-tetra {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-triple {
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+  }
+
+  .comunicado-main {
+    flex-flow: column;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .comunicado {
+    flex-flow: column;
+  }
+
+  .grid-tetra,
+  .grid-triple {
+    grid-template-columns: 1fr;
+  }
+
+  .column-30 {
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+  }
+
+  .comunicado-main,
+  .comunicado-2_3 {
+    flex-flow: column;
+  }
+}
