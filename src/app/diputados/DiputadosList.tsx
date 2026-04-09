@@ -198,7 +198,7 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
 
             <div className="grupo-de-filtro">
                 <div>
-                    <div className="w-layout-grid grid-66">
+                    <div className="w-layout-grid grid-3">
                         {resultado.length === 0 ? (
                             <div style={{ gridColumn: '1 / -1', padding: '2rem', textAlign: 'center', opacity: 0.6 }}>
                                 No se encontraron diputados con ese criterio.
@@ -208,45 +208,27 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                             const partido = integrante?.partido;
                             const distrito = integrante?.distrito;
                             const foto = diputado.fotos?.[0];
-                            const fotoUrl = foto?.path ? `${BASE_URL}${foto.path}` : undefined;
-                            const nombreCompleto = `${diputado.apaterno ?? ''} ${diputado.amaterno ?? ''} ${diputado.nombres ?? ''}`.trim();
+                            const fotoUrl = foto?.path ? `${BASE_URL}${foto.path}` : 'images/placeholder-diputado.png';
+                            const nombreCompleto = `${diputado.apaterno ?? ''} ${diputado.nombres ?? ''}`.trim();
                             const siglas = partido?.siglas ?? '';
                             const tipoCargo = distrito?.distrito ?? 'Plurinominal';
 
                             return (
-                                <div key={diputado.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-
-                                    <div className={`card-diputado partido-${siglas.toLowerCase()}`} style={{ width: '100%' }}>
-
-                                        {/* Foto */}
-                                        <img
-                                            src={fotoUrl ?? 'images/placeholder-diputado.png'}
-                                            loading="lazy"
-                                            alt={nombreCompleto}
-                                            className={`image-15 diputado-${siglas.toLowerCase()}`}
-                                            style={{ display: 'block', width: '100%', aspectRatio: '3/4', objectFit: 'cover' }}
-                                        />
-
-                                        {/* Logo del partido arriba derecha */}
-                                        <img
-                                            src={PARTIDO_LOGOS[siglas.toLowerCase()] ?? ''}
-                                            alt={siglas}
-                                            className="partido-logo"
-                                        />
-
-                                        {/* Overlay con info */}
-                                        <div className="card-overlay">
-                                            <div className="overlay-tag">{getTitulo(diputado)}</div>
-                                            <div className="overlay-nombre">{nombreCompleto}</div>
-                                            <div className="overlay-distrito">{tipoCargo}</div>
-                                        </div>
+                                <div key={diputado.id} style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <img
+                                        src={fotoUrl}
+                                        loading="lazy"
+                                        alt={nombreCompleto}
+                                        className={`image-15 diputado-${siglas.toLowerCase()}`}
+                                    />
+                                    <div className="info-diputado-basica" style={{ flex: 1, minHeight: '80px' }}>
+                                        <h4 className="nombre-diputado">{nombreCompleto}</h4>
+                                        <div className="gp-diputado">{siglas}</div>
+                                        <div>{tipoCargo}</div>
                                     </div>
-
-                                    {/* Botón fuera de la card */}
-                                    <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button" style={{ width: '100%', textAlign: 'center', boxSizing: 'border-box' }}>
+                                    <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button">
                                         Saber más
                                     </a>
-
                                 </div>
                             );
                         })}
