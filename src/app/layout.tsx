@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingChat from "@/components/Chatbot/FloatingChat";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="es" data-wf-page="68dd617b668359798a899405" data-wf-site="68dd617a668359798a8993c6" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link href="/css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="/css/webflow.css" rel="stylesheet" type="text/css" />
         <link href="/css/congreso-edo-mex.webflow.css" rel="stylesheet" type="text/css" />
@@ -34,6 +36,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FloatingChat />
         <Script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=68dd617a668359798a8993c6" strategy="beforeInteractive" crossOrigin="anonymous" />
         <Script src="/js/webflow.js" strategy="lazyOnload" />
       </body>

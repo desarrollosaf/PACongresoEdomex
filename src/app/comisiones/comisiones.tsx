@@ -3,6 +3,13 @@
 import { useState, useEffect } from "react";
 import { getComisiones } from "../service/comisiones.api";
 
+
+function normalizar(str: string): string {
+  return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+
+
 export default function Comisiones() {
     const [data, setData] = useState<any>({});
     const [search, setSearch] = useState("");
@@ -13,9 +20,13 @@ export default function Comisiones() {
         "Comisiones y Comités Permanentes",
     ];
 
+
     useEffect(() => {
         getComisiones().then(setData);
     }, []);
+
+    
+
 
     return (
         <>
@@ -55,13 +66,15 @@ export default function Comisiones() {
 
                         <div className="w-layout-grid grid-comisionesycomitespermanentes">
                             {listaFiltrada.map((item: any) => {
-                                const presidente = item.integrantes?.find((i: any) =>
-                                    i.tipo_cargo?.valor?.toLowerCase().includes("presiden")
-                                );
-                                const diputado = presidente?.integranteLegis?.diputado;
-                                const nombrePresidente = diputado
-                                    ? `${diputado.nombres} ${diputado.apaterno} ${diputado.amaterno}`
-                                    : "Sin presidencia asignada";
+                                    const presidente = item.integrantes?.find((i: any) =>
+                                        i.tipo_cargo?.valor === "Presidencia"
+                                    );
+                                    const diputado = presidente?.integranteLegis?.diputado;
+                                    const nombrePresidente = diputado
+                                        ? [diputado.nombres, diputado.apaterno, diputado.amaterno]
+                                            .filter(Boolean)
+                                            .join(" ")
+                                        : "Sin presidencia asignada";
 
                                 return (
                                     <div key={item.id} className="comision-card">
@@ -69,7 +82,7 @@ export default function Comisiones() {
                                         <div className="comision-card-top">
                                          
                                             <h3 className="comision-card-nombre">
-                                                {(item.alias || item.nombre)?.replace(/\n/g, " ")}
+                                                {item.nombre?.replace(/\n/g, " ")}
                                             </h3>
                                         </div>
 
