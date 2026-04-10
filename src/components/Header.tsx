@@ -9,11 +9,13 @@ type DropdownKey = 'congreso' | 'legislatura' | 'transparencia' | 'comunicacion'
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState<DropdownKey>(null);
+  const [menuOpen, setMenuOpen] = useState(false); // ← estado del menú móvil
   const headerRef = useRef<HTMLElement>(null);
 
   // Cerrar dropdown al cambiar de ruta
   useEffect(() => {
     setOpen(null);
+    setMenuOpen(false); // ← también cerrar menú móvil al navegar
   }, [pathname]);
 
   // Cerrar al hacer click fuera del header
@@ -21,6 +23,7 @@ export default function Header() {
     function handleClickOutside(e: MouseEvent) {
       if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
         setOpen(null);
+        setMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -56,7 +59,9 @@ export default function Header() {
             className="image"
           />
         </Link>
-        <div className="div-block-9">
+
+        {/* Menú desktop — se oculta en móvil con CSS */}
+        <div className={`div-block-9 ${menuOpen ? 'menu-movil-abierto' : ''}`}>
           <Dropdown id="congreso" label="Tu Congreso">
             <Link href="/que-es-el-congreso" className="link-nav-menu w-dropdown-link">¿Que es el Congreso?</Link>
             <Link href="/dependencias" className="link-nav-menu w-dropdown-link">Dependencias</Link>
@@ -95,7 +100,16 @@ export default function Header() {
             <Link href="#" className="link-nav-menu w-dropdown-link">Directorio Telefónico</Link>
           </Dropdown>
         </div>
-        <img src="/images/menu_24dp_96134B_FILL0_wght400_GRAD0_opsz24.png" loading="lazy" alt="" className="image-12" />
+
+        {/* Botón hamburguesa — solo visible en móvil */}
+        <img
+          src="/images/menu_24dp_96134B_FILL0_wght400_GRAD0_opsz24.png"
+          loading="lazy"
+          alt="Menú"
+          className="image-12"
+          onClick={() => setMenuOpen(prev => !prev)}
+          style={{ cursor: 'pointer' }}
+        />
       </div>
     </header>
   );

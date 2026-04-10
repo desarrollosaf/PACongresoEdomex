@@ -1,0 +1,50 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "listame las comisiones"
+        }
+      ],
+      "id": "1iBpPcmYId0t88xA"
+    },
+    {
+      "id": "sAswNRfWu7XKOhcj",
+      "role": "assistant",
+      "parts": [
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "tool-listar_comisiones",
+          "toolCallId": "xfpm6j9rm",
+          "state": "output-available",
+          "input": {},
+          "output": {
+            "error": "No hay comisiones listadas"
+          }
+        },
+        {
+          "type": "step-start"
+        },
+        {
+          "type": "text",
+          "text": "Lo siento, pero parece que no hay comisiones listadas disponibles. Si lo deseas, puedo buscar comisiones por su nombre o acronimo. ¿Quieres intentar una búsqueda por nombre o acronimo de alguna comisión en particular?",
+          "state": "done"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "type": "text",
+          "text": "listame los diputados"
+        }
+      ],
+      "id": "FZW53tNpYP1UjCKR"
+    }
+  ]
+}
