@@ -101,6 +101,24 @@ let BoletinesService = class BoletinesService {
             ]
         });
     }
+    async boletinesAll(pagina) {
+        return await comunicados_entity_1.Comunicados.findAndCountAll({
+            offset: (pagina - 1) * 12,
+            limit: 12,
+            order: [['fecha', 'DESC']],
+            include: [
+                {
+                    model: fotos_entity_1.Foto,
+                    as: "fotos"
+                },
+                {
+                    model: descripcioncomunicados_entity_1.DescripcionComunicados,
+                    as: 'descripcion',
+                    order: [['orden', 'ASC']]
+                }
+            ],
+        });
+    }
 };
 exports.BoletinesService = BoletinesService;
 exports.BoletinesService = BoletinesService = __decorate([

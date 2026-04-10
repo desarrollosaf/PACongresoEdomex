@@ -102,4 +102,23 @@ export class BoletinesService {
     ]
   });
   }
+
+  async boletinesAll(pagina: number){
+  return await Comunicados.findAndCountAll({
+      offset: (pagina - 1) * 12,
+      limit: 12,
+      order: [['fecha', 'DESC']],
+      include: [
+        {
+          model: Foto,
+          as:"fotos"
+        },
+        {
+          model: DescripcionComunicados,
+          as: 'descripcion', 
+          order: [['orden', 'ASC']]
+        }
+      ],
+    })
+  }
 }
