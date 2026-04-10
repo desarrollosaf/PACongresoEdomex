@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { BoletinesService } from './boletines.service';
 import { CreateBoletineDto } from './dto/create-boletine.dto';
 import { UpdateBoletineDto } from './dto/update-boletine.dto';
@@ -15,6 +15,12 @@ export class BoletinesController {
 @Get()
   findAll() {
     return this.boletinesService.findAll();
+  }
+
+@Get('boletinesAll/:pagina')
+  async boletinesAll(@Param('pagina', ParseIntPipe) pagina: number){
+    const page = Number(pagina) || 1;
+    return this.boletinesService.boletinesAll(page);
   }
 
   @Get('random')

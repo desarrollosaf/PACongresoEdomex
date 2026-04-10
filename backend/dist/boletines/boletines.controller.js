@@ -28,6 +28,10 @@ let BoletinesController = class BoletinesController {
     findAll() {
         return this.boletinesService.findAll();
     }
+    async boletinesAll(pagina) {
+        const page = Number(pagina) || 1;
+        return this.boletinesService.boletinesAll(page);
+    }
     random() {
         return this.boletinesService.random();
     }
@@ -55,6 +59,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], BoletinesController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('boletinesAll/:pagina'),
+    __param(0, (0, common_1.Param)('pagina', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BoletinesController.prototype, "boletinesAll", null);
 __decorate([
     (0, common_1.Get)('random'),
     __metadata("design:type", Function),
