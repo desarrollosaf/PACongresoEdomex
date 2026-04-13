@@ -4,6 +4,7 @@ import { Diputado } from 'src/database/entities/diputado.entity';
 import { Foto } from 'src/database/entities/fotos.entity';
 import { IntegranteComision } from 'src/database/entities/integrante-comisions.entity';
 import { IntegranteLegislatura } from 'src/database/entities/integrante-legislatura.entity';
+import { Partido } from 'src/database/entities/partido.entity';
 import { TipoCargoComision } from 'src/database/entities/tipo-cargo-comision.entity';
 
 @Injectable()
@@ -39,6 +40,10 @@ export class MesaService {
                             }
                         ]
                         },
+                        {
+                            model: Partido,
+                            as: "partido"
+                        }
                     ]
                 }, 
             ],

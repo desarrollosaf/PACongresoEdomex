@@ -61,15 +61,15 @@ return (
 
             <div className="bg-gradient-gris">
             <div className="w-layout-grid div-mesa-direciva">
-                {renderCard(integrante[0], 'bg-morena')}
-                {renderCard(integrante[1], 'bg-pt')}
-                {renderCard(integrante[2], 'bg-pvedm')}
+                {renderCard(integrante[0], `image-15 diputado-${integrante[0].integranteLegis.partido.siglas.toLowerCase()}`)}
+                {renderCard(integrante[1], `image-15 diputado-${integrante[1].integranteLegis.partido.siglas.toLowerCase()}`)}
+                {renderCard(integrante[2], `image-15 diputado-${integrante[2].integranteLegis.partido.siglas.toLowerCase()}`)}
             </div>
 
             <div className="w-layout-grid div-mesa-direciva">
-                {renderCard(integrante[3], 'bg-pri')}
-                {renderCard(integrante[4], 'bg-morena')}
-                {renderCard(integrante[5], 'bg-mc')}
+                {renderCard(integrante[3], `image-15 diputado-${integrante[3].integranteLegis.partido.siglas.toLowerCase()}`)}
+                {renderCard(integrante[4], `image-15 diputado-${integrante[4].integranteLegis.partido.siglas.toLowerCase()}`)}
+                {renderCard(integrante[5], `image-15 diputado-${integrante[5].integranteLegis.partido.siglas.toLowerCase()}`)}
             </div>
             </div>
 
