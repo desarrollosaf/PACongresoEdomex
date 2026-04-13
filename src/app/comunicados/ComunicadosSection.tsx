@@ -3,15 +3,29 @@ import { useState } from "react";
 
 
 type Props = {
-    boletines: any
+    boletines: any,
+    loading: boolean
 };
 
-export default function ComunicadosSection({ boletines } : Props) {
-const isLoading = !boletines || boletines.length === 0;
-const principal = boletines[0];
-const bloque1 = boletines.slice(1, 5);
-const bloque2 = boletines.slice(5, 8);
-const bloque3 = boletines.slice(8, 12);
+type Descripcion = {
+  bullets?: string;
+};
+
+type bloque = {
+    id?: string;
+    fecha?: string;
+    titulo?: string;
+    descripcion?: Descripcion[];
+    foto?: { path?: string }[];
+};
+
+
+export default function ComunicadosSection({ boletines, loading } : Props) {
+const isLoading = loading && boletines.length === 0;
+const principal = boletines?.[0];
+const bloque1: bloque[] = boletines.slice(1, 5);
+const bloque2: bloque[] = boletines.slice(5, 8);
+const bloque3: bloque[] = boletines.slice(8, 12);
 
 const skeletonStyles = `
     .skeleton-box {
@@ -36,7 +50,10 @@ const skeletonStyles = `
 
     return (
     <>
-    <section className="section-11">
+        <section className="section-11"  style={{
+        opacity: loading ? 0.5 : 1,
+        transition: 'opacity 0.3s ease'
+        }}>
             <div className="hero-boletines">
                 <h1 className="titulo-seccion">Boletines </h1>
                 <div className="div-block-2">
@@ -46,7 +63,7 @@ const skeletonStyles = `
                 </div>
             </div>
         </section>
-      <style>{skeletonStyles}</style>
+        <style>{skeletonStyles}</style>
         <section className="section-11" style={{ padding: '60px 20px', backgroundColor: '#f9f9f9' }}>
             <div className="ultimo-boletin">
                 <div className="comunicado-main">
@@ -75,9 +92,9 @@ const skeletonStyles = `
                             </>
                         ) : (
                             <>
-                                <div className="fecha-boletin">{ principal.fecha } </div>
-                                <h3 className="titulo-boletin"> { principal.titulo }</h3>
-                                { principal.descripcion[0].bullets }
+                                <div className="fecha-boletin">{ principal?.fecha } </div>
+                                <h3 className="titulo-boletin"> { principal?.titulo }</h3>
+                                { principal?.descripcion[0].bullets }
                                 <a href={`/boletines/${principal?.id ?? ''}`}  className="btn-boletin w-button">Abrir Comunicado</a>
                             </>
                         )}
@@ -86,7 +103,7 @@ const skeletonStyles = `
             </div>
             <div className="div-block-72">
                 <div className="w-layout-grid grid-tetra">
-                    {(isLoading ? Array(4).fill(0) : bloque1).map((item, index) => (
+                    {(isLoading ? Array(4).fill(0) : bloque1).map((item: bloque, index) => (
                         <div className="comunicado_small" key={index}>
                             <div className="img-comunicado_tetra">
                                 {isLoading ? (
@@ -108,11 +125,11 @@ const skeletonStyles = `
                                         <div className="skeleton-box" style={{ width: '90%', height: 20 }} />
                                         <div className="skeleton-box" style={{ width: '100%', height: 40 }} />
                                     </>
-                                ) : (
+                                ) : ( 
                                     <>
-                                        <div className="fecha-boletin"> { item.fecha }</div>
-                                        <h3 className="titulo-boletin"> { item.titulo } </h3>
-                                        <p> { item.descripcion[0].bullets }</p>
+                                        <div className="fecha-boletin"> { item?.fecha }</div>
+                                        <h3 className="titulo-boletin"> { item?.titulo } </h3>
+                                        <p> { item?.descripcion?.[0]?.bullets }</p>
                                         <a href={`/boletines/${item?.id ?? ''}`} className="btn-boletin w-button">Abrir Comunicado</a>
                                     </>
                                 )}
@@ -123,7 +140,7 @@ const skeletonStyles = `
             </div>
         
             <div className="w-layout-grid grid-triple">
-                 {(isLoading ? Array(3).fill(0) : bloque2).map((item, index) => (
+                 {(isLoading ? Array(3).fill(0) : bloque2).map((item: bloque, index) => (
                     <div className="comunicado_small" key={index}>
                         <div className="img-comunicado">
                              {isLoading ? (
@@ -141,9 +158,9 @@ const skeletonStyles = `
                                 </>
                             ) : (
                                 <>
-                                    <div className="fecha-boletin">{ item.fecha }</div>
-                                    <h3 className="titulo-boletin">{ item.titulo }</h3>
-                                    <p> {item.descripcion[0].bullets} </p>
+                                    <div className="fecha-boletin">{ item?.fecha }</div>
+                                    <h3 className="titulo-boletin">{ item?.titulo }</h3>
+                                    <p> {item?.descripcion?.[0]?.bullets} </p>
                                     <a href={`/boletines/${item?.id ?? ''}`} className="btn-boletin w-button">Abrir Comunicado</a>
                                 </>
                             )}
@@ -153,7 +170,7 @@ const skeletonStyles = `
             </div>
 
             <div className="w-layout-grid grid-tetra">
-                {(isLoading ? Array(4).fill(0) : bloque3).map((item, index) => (
+                {(isLoading ? Array(4).fill(0) : bloque3).map((item: bloque, index) => (
                         <div className="comunicado_small" key={index}>
                             <div className="img-comunicado_tetra">
                                 {isLoading ? (
@@ -177,9 +194,9 @@ const skeletonStyles = `
                                     </>
                                 ) : (
                                     <>
-                                        <div className="fecha-boletin"> { item.fecha }</div>
-                                        <h3 className="titulo-boletin"> { item.titulo } </h3>
-                                        <p> { item.descripcion[0].bullets }</p>
+                                        <div className="fecha-boletin"> { item?.fecha }</div>
+                                        <h3 className="titulo-boletin"> { item?.titulo } </h3>
+                                        <p> { item?.descripcion?.[0]?.bullets }</p>
                                         <a href={`/boletines/${item?.id ?? ''}`} className="btn-boletin w-button">Abrir Comunicado</a>
                                     </>
                                 )}

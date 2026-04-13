@@ -13,10 +13,12 @@ import { getBoletinesAll } from '../service/comunicados.api';
         const fetchData = async () => {
             setLoading(true);
             const data = await getBoletinesAll(paginaActual);
+           setTimeout(() => {
             setBoletines(data.rows);
             setTotal(data.count);
             setLoading(false);
-        };
+        }, 400);
+    }
         fetchData();
     }, [paginaActual]); 
 
@@ -56,7 +58,7 @@ import { getBoletinesAll } from '../service/comunicados.api';
     
     return (
         <div>
-            <ComunicadosSection boletines = { boletines }></ComunicadosSection>
+            <ComunicadosSection boletines = { boletines } loading={ loading }></ComunicadosSection>
                 <div className="ini-paginacion">
                     {getPaginas().map((item, index) => (
                         <span
