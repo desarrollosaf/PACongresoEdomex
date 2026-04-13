@@ -48,7 +48,6 @@ export default async function DiputadosPage() {
                     </div>
                 </div>
             </section>
-
             <section className="max_width seccion-de-diputados">
                 <DiputadosList diputados={diputados} />
             </section>
