@@ -42,7 +42,7 @@ export default async function DiputadosPage() {
                     </div> */}
                     <div className="div-block-26">
                         <a href="#" className="btn-var-2 w-button">Grupos Parlamentarios</a>
-                        <a href="/mesa-directiva" className="btn-var-2 w-button">Diputación Permanente</a>
+                        <a href="/mesa-directiva" className="btn-var-2 w-button">Mesa Directiva</a>
                         <a href="/junta-de-coordinacion-politica" className="btn-var-2 w-button">Junta de Coordinación Politica</a>
                         <a href="/comisiones" className="btn-var-2 w-button">Comisiones y Comités</a>
                     </div>
