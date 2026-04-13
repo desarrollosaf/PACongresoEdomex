@@ -1,27 +1,97 @@
 'use client';
 
+import { useState } from "react";
+import { createPortal } from "react-dom";
+
 type Props = {
   boletin: any;
   boletines: any;
 };
 
 export default function BoletinesSection({ boletin, boletines } : Props) {
+    const [selected, setSelected] = useState<string | null>(null);
+    const fotos = boletin?.fotos || [];
+    const descargarTXT = () => {
+        const contenido = `
+        Título: ${boletin?.titulo}
+        Comunicado: ${boletin?.comunicado}
+        Fecha: ${boletin?.fecha}
+        Contenido:
+        ${boletin?.descripcion?.map((item: any) => item.bullets).join('\n')}
+        ${boletin.texto}
+        `;
+
+        const blob = new Blob([contenido], { type: "text/plain;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `boletin_${boletin?.titulo}.txt`;
+        link.click();
+
+        URL.revokeObjectURL(url);
+        };
+
+        const descargarWord = () => {
+        const contenido = `
+        <html>
+            <head>
+                <meta charset="UTF-8">
+            </head>
+            <body>
+                <h1>${boletin?.titulo}</h1>
+                <strong>Comunicado: </strong> ${boletin?.comunicado} <br>
+                <strong>Fecha: </strong>${boletin?.fecha}<br><br>
+                ${boletin?.descripcion?.map((item: any) => `${item.bullets}`)}
+                ${boletin.texto}
+            </body>
+        </html>`;
+            
+
+        const blob = new Blob([contenido], {
+            type: "application/msword;charset=utf-8;",
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `boletin_${boletin?.titulo}.doc`;
+        link.click();
+
+        URL.revokeObjectURL(url);
+        };
+    
     return (
+    <>
     <section className="section-8">
         <section className="encabezado-bole-n">
             <h1 className="heading-36"> {boletin.titulo} </h1>
             <div>
                 <div className="columna-informativa-blog w-row">
                     <div className="w-col w-col-6">
-                        <div className="fecha-boletin">Comunicado {boletin.comunicado} </div>
+                        <div className="fecha-boletin-centrada">Comunicado {boletin.comunicado} </div>
                     </div>
                     <div className="w-col w-col-6">
-                        <div className="fecha-boletin">  
+                        <div className="fecha-boletin-centrada">  
                             {new Date(boletin.fecha+ "T00:00:00").toLocaleDateString('es-MX', {
                                 day: '2-digit',
                                 month: 'long',
                                 year: 'numeric',
                             })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div className="columna-informativa-blog w-row">
+                    <div className="w-col w-col-6">
+                    </div>
+                    <div className="w-col w-col-6">
+                        <div className="fecha-boletin-centrada">  
+                            <a  title="Descargar" className="btn-boletin w-button"> PDF</a>
+                            <a onClick={descargarWord} title="Descargar" className="btn-boletin w-button"> WORD</a>
+                            <a onClick={descargarTXT} title="Descargar" className="btn-boletin w-button"> TXT</a>
                         </div>
                     </div>
                 </div>
@@ -40,12 +110,12 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                         https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 500w, 
                         https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 800w, 
                         https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 1080w, 
-                        https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 1280w`} alt="" className="image-25" />
+                        https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 1280w`} alt="" className="image-25"  onClick={() => setSelected(boletin.fotos[0].path )}/>
             
                 {boletin.fotos.length > 1 && (
                     <div className="div-block-40">
                         {boletin?.fotos?.slice(1).map((item:any, index: any) => (
-                            <img key={index} src={`https://sistema.congresoedomex.gob.mx/${item.path}`} className="img-lightbox-under" />
+                            <img key={index} src={`https://sistema.congresoedomex.gob.mx/${item.path}`} loading="lazy"  className="img-lightbox-under" onClick={() => setSelected(item.path)} />
                         ))}
                     </div>
                 )}
@@ -130,5 +200,23 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
             </div>
         </section>
     </section>
+    {selected !== null && (
+        <div className="img-lightbox"  onClick={() => setSelected(null)}>
+            <span className="close" onClick={() => setSelected(null)}>✕</span>
+            <button className="nav left" onClick={(e) => e.stopPropagation()}>
+                ◀
+            </button>
+            <img className="lightbox-main" src={`https://sistema.congresoedomex.gob.mx/${selected}`} />
+            <button className="nav right" onClick={(e) => e.stopPropagation()}>
+                ▶
+            </button>
+            <div className="lightbox-thumbs">
+                {fotos.map((item:any, index: any) => (
+                    <img key={index} className="thumb" src={`https://sistema.congresoedomex.gob.mx/${item.path}`} />
+                ))}
+            </div>
+        </div>
+    )}
+    </>
   )
 }
