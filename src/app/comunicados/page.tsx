@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 import ComunicadosSection from "./ComunicadosSection";
 import { getBoletinesAll } from '../service/comunicados.api';
 
- export default function ComunicadosPage() {
+export const dynamic = 'force-dynamic';
+
+export default function ComunicadosPage() {
+    
     const [paginaActual, setPaginaActual] = useState(1);
     const [boletines, setBoletines] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -11,6 +14,7 @@ import { getBoletinesAll } from '../service/comunicados.api';
     const totalPaginas = Math.ceil(total / 12);
      useEffect(() => {
         const fetchData = async () => {
+            setBoletines([]);
             setLoading(true);
             const data = await getBoletinesAll(paginaActual);
            setTimeout(() => {

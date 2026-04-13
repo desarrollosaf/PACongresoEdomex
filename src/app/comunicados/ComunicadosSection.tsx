@@ -1,6 +1,4 @@
 'use client';
-import { useState } from "react";
-
 
 type Props = {
     boletines: any,
@@ -63,6 +61,8 @@ const skeletonStyles = `
                 </div>
             </div>
         </section>
+
+        
         <style>{skeletonStyles}</style>
         <section className="section-11" style={{ padding: '60px 20px', backgroundColor: '#f9f9f9' }}>
             <div className="ultimo-boletin">
@@ -143,11 +143,11 @@ const skeletonStyles = `
                  {(isLoading ? Array(3).fill(0) : bloque2).map((item: bloque, index) => (
                     <div className="comunicado_small" key={index}>
                         <div className="img-comunicado">
-                             {isLoading ? (
-                                    <div className="skeleton-box" style={{ height: 150 }} />
-                                ) : (
-                                    <img src={getFoto(item)} loading="lazy" alt="" className="image-36"/>
-                                )}
+                            {isLoading ? (
+                                <div className="skeleton-box" style={{ height: 150 }} />
+                            ) : (
+                                <img src={getFoto(item)} loading="lazy" alt="" className="image-36"/>
+                            )}
                         </div>
                         <div className="info-comunicado">
                             {isLoading ? (
@@ -176,13 +176,13 @@ const skeletonStyles = `
                                 {isLoading ? (
                                     <div className="skeleton-box" style={{ height: 150 }} />
                                 ) : (
-                                    <img src={getFoto(item)} loading="lazy" sizes="(max-width: 1600px) 100vw, 1600px" 
-                                        srcSet={`
-                                        ${getFoto(item)} 500w,
-                                        ${getFoto(item)} 800w,
-                                        ${getFoto(item)} 1080w,
-                                        ${getFoto(item)} 1600w`} alt="" className="img-comunicado-lista"/>
-                                    )}
+                                <img src={getFoto(item)} loading="lazy" sizes="(max-width: 1600px) 100vw, 1600px" 
+                                    srcSet={`
+                                    ${getFoto(item)} 500w,
+                                    ${getFoto(item)} 800w,
+                                    ${getFoto(item)} 1080w,
+                                    ${getFoto(item)} 1600w`} alt="" className="img-comunicado-lista"/>
+                                )}
                             </div>
 
                             <div className="info-comunicado">
