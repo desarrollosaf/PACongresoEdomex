@@ -33,6 +33,20 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
         };
 
         const descargarWord = () => {
+        const imagenes = boletin?.fotos?.length > 1
+            ? boletin.fotos
+                .slice(1)
+                .map(
+                    (item: any) => `
+                    <img 
+                    src="https://sistema.congresoedomex.gob.mx/${item.path}" 
+                    width="100" height = "100"
+                    style="margin-bottom:10px;"
+                    />
+                `
+                )
+                .join('')
+        : '';
         const contenido = `
         <html>
             <head>
@@ -42,7 +56,9 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                 <h1>${boletin?.titulo}</h1>
                 <strong>Comunicado: </strong> ${boletin?.comunicado} <br>
                 <strong>Fecha: </strong>${boletin?.fecha}<br><br>
-                ${boletin?.descripcion?.map((item: any) => `${item.bullets}`)}
+                ${boletin?.descripcion?.map((item: any) => `${item.bullets}`)}<br><br>
+                 <img src="https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path}" width="150" height = "150" /><br><br>
+                ${imagenes}
                 ${boletin.texto}
             </body>
         </html>`;
@@ -52,15 +68,15 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
             type: "application/msword;charset=utf-8;",
         });
 
-        const url = URL.createObjectURL(blob);
+            const url = URL.createObjectURL(blob);
 
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = `boletin_${boletin?.titulo}.doc`;
-        link.click();
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `boletin_${boletin?.titulo}.doc`;
+            link.click();
 
-        URL.revokeObjectURL(url);
-        };
+            URL.revokeObjectURL(url);
+            };
     
     return (
     <>
