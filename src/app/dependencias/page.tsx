@@ -4,7 +4,7 @@
         <div>
         <h1 className="titulo-seccion-legislativo">Dependencias</h1>
         </div>
-        <div>Encuentra toda la información sobre la organización interna del poder legislativo</div>
+        <div>Encuentra toda la información sobre la organización interna del Poder Legislativo</div>
         <div>
         <div className="w-layout-grid grid-8">
             <div className="div-block-34">
