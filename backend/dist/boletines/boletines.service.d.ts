@@ -10,4 +10,8 @@ export declare class BoletinesService {
     update(id: number, updateBoletineDto: UpdateBoletineDto): string;
     remove(id: number): string;
     random(): Promise<Comunicados[]>;
+    boletinesAll(pagina: number): Promise<{
+        rows: Comunicados[];
+        count: number;
+    }>;
 }
