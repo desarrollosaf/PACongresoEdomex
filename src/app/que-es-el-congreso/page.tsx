@@ -6,7 +6,7 @@ export default function QueEsElCongreso() {
                     <div>
                         <div className="columns-17 w-row">
                             <div className="column-21 w-col w-col-6">
-                                <h1 className="titulo-gigante">¿Que es el congreso?</h1>
+                                <h1 className="titulo-gigante">¿Qué es el congreso?</h1>
                                 <p>El <strong>Congreso del Estado de México</strong> es la institución del <strong>Poder Legislativo</strong> de la entidad. Su función principal es <strong>representar a la ciudadanía</strong>, <strong>crear y reformar las leyes</strong> y <strong>vigilar el actuar del Poder Ejecutivo</strong>, para asegurar que el gobierno funcione con legalidad, equilibrio y transparencia.El Congreso es un espacio de diálogo y pluralidad, donde se analizan y deciden asuntos que impactan la vida diaria de las y los mexiquenses.</p>
                             </div>
                             <div className="w-col w-col-6"><img src="images/congreso-comic-2.JPG" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2600px) 48vw, 1248px" srcSet="images/congreso-comic-2-p-500.jpg 500w, images/congreso-comic-2-p-800.jpg 800w, images/congreso-comic-2-p-1080.jpg 1080w, images/congreso-comic-2.JPG 1248w" alt="" className="img-boletin" /></div>
@@ -70,7 +70,7 @@ export default function QueEsElCongreso() {
                 </div>
                 <div className="que_es_un_diputado w-row">
                     <div className="column-21 w-col w-col-6">
-                        <h1 className="titulo-gigante titulo-centrado">¿Que hace un diputado?</h1>
+                        <h1 className="titulo-gigante titulo-centrado">¿Qué hace un diputado?</h1>
                         <p className="texto-centrado">El <strong>Congreso del Estado de México</strong> es la institución del <strong>Poder Legislativo</strong> de la entidad. Su función principal es <strong>representar a la ciudadanía</strong>, <strong>crear y reformar las leyes</strong> y <strong>vigilar el actuar del Poder Ejecutivo</strong>, para asegurar que el gobierno funcione con legalidad, equilibrio y transparencia.El Congreso es un espacio de diálogo y pluralidad, donde se analizan y deciden asuntos que impactan la vida diaria de las y los mexiquenses.</p>
                     </div>
                     <div className="w-col w-col-6"><img src="images/congreso-comic-2.JPG" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2600px) 48vw, 1248px" srcSet="images/congreso-comic-2-p-500.jpg 500w, images/congreso-comic-2-p-800.jpg 800w, images/congreso-comic-2-p-1080.jpg 1080w, images/congreso-comic-2.JPG 1248w" alt="" className="img-boletin" /></div>
