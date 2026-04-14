@@ -79,7 +79,7 @@ export default function Header() {
             <div className="menu-option">Actividad Legislativa</div>
           </Link>
 
-          <Dropdown id="transparencia" label="Transparencia">
+          {/* <Dropdown id="transparencia" label="Transparencia">
             <Link href="/unidad-de-informacion" className="w-dropdown-link">Unidad de Información</Link>
             <Link href="#" className="link-nav-menu w-dropdown-link">Transparencia Proactiva</Link>
             <Link href="#" className="link-nav-menu w-dropdown-link">Gaceta Parlamentaria</Link>
@@ -87,7 +87,7 @@ export default function Header() {
             <Link href="#" className="link-nav-menu w-dropdown-link">Fiscalización Superior</Link>
             <Link href="#" className="link-nav-menu w-dropdown-link">Remuneraciones</Link>
             <Link href="#" className="link-nav-menu w-dropdown-link">Solicitudes de Información</Link>
-          </Dropdown>
+          </Dropdown> */}
 
           <Dropdown id="comunicacion" label="Comunicación">
             <Link href="/comunicados" className="link-nav-menu w-dropdown-link">Comunicados</Link>
