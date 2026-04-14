@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 type Iniciativa = {
   id: string;
@@ -188,10 +189,15 @@ export default function IniciativasTab({ diputadoId, serverIniciativas, title }:
                         </a>
                       )}
                       {ini.observac?.toLowerCase() === 'aprobada' && (
-                        <a href="#" className="ini-btn ini-btn-secondary">
+                        <Link
+                          href={`/votaciones/${ini.id}`}
+                          className="ini-btn ini-btn-secondary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <img src="/images/how_to_vote_24dp_5F687F_FILL0_wght400_GRAD0_opsz24-1.png" alt="" />
                           Votación
-                        </a>
+                        </Link>
                       )}
                     </div>
                   </div>

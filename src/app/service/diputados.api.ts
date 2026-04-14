@@ -7,6 +7,13 @@ function getApiUrl() {
   return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 }
 
+function getExternalApiUrl() {
+  if (typeof window === 'undefined') {
+    return process.env.EXTERNAL_API_URL || 'http://localhost:3013';
+  }
+  return process.env.NEXT_PUBLIC_EXTERNAL_API_URL || 'http://localhost:3013';
+}
+
 export async function getDiputados() {
   try {
     const data = await fetch(`${getApiUrl()}/api/diputados`, {
@@ -173,4 +180,21 @@ export async function fetchIniciativasDiputado(diputadoId: string, page: number 
     req.write(data);
     req.end();
   });
+}
+
+
+export async function getVotosPunto(id: string | number) {
+  try {
+    const res = await fetch(`/api/votaciones/${id}`, {
+      cache: 'no-store',
+    });
+    if (!res.ok) {
+      console.error('Error backend en getVotosPunto:', await res.text());
+      return null;
+    }
+    return await res.json();
+  } catch (error) {
+    console.error('Error de red en getVotosPunto:', error);
+    return null;
+  }
 }
