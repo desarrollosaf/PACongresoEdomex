@@ -4988,3 +4988,232 @@
   }
 }
 
+/* +++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.filtros-diputados.grupos-parlamentarios-selector {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+}
+
+.link-nav-menu.w--current {
+  color: #bb945c;
+}
+
+.section-4 {
+  margin-top: 80px;
+}
+
+.titulo-tab {
+  max-width: 1440px;
+}
+
+.que_es_un_diputado {
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.columns-21 {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.div-block-34 {
+  flex-flow: column;
+  justify-content: space-between;
+  display: flex;
+}
+
+.features-wrapper {
+  flex-wrap: wrap;
+}
+
+.features-block {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.div-block-37 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  display: flex;
+}
+
+.btn-black-str {
+  color: #454545;
+}
+
+.btn-pdf-dwn {
+  color: #fff;
+  text-align: center;
+  -webkit-text-stroke-color: #454545;
+  background-color: #94134a;
+  border: 0 solid #454545;
+  border-radius: 5px;
+  max-width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-pdf-dwn:hover {
+  color: #fff;
+  background-color: #bb955c;
+}
+
+.texto-general {
+  text-align: justify;
+}
+
+.columnas-lista-legis {
+  border: 1px solid #e4e4e4;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.texto-general-list {
+  text-align: justify;
+  margin-top: 10px;
+}
+
+.column-btn {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.body-17 {
+  color: #454545;
+  background-color: #f2f4f5;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.img-grupo_parlamentario-logo,
+.img-grupo_parlamentario-logo:hover {
+  max-width: 120px;
+}
+
+.btn-var-dip {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  flex: 0 auto;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.btn-var-dip.w--current {
+  color: #fff;
+  background-color: #bb945c;
+}
+
+.features-gp {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  text-align: center;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-self: auto;
+  align-items: center;
+  display: flex;
+}
+
+.columns-24 {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.body_grupos-parlamentarios {
+  background-color: #f1f1f1;
+  flex-flow: column;
+  justify-content: space-between;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  display: flex;
+}
+
+.div-block-75 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  display: flex;
+}
+
+.columnas-lista-sesion {
+  background-color: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 10px;
+  display: flex;
+}
+
+.columns-25 {
+  flex-flow: column;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-start;
+  display: flex;
+}
+
+.div-block-76 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.list {
+  width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+  .btn-var-dip {
+    flex: none;
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .btn-var-dip {
+    flex: none;
+  }
+
+  .features-gp {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+
+  .btn-pdf-dwn {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .body_grupos-parlamentarios {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
