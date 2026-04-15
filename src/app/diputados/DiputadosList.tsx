@@ -59,7 +59,9 @@ type SortKey = '' | 'nombre' | 'apellido' | 'genero' | 'distrito';
 export default function DiputadosList({ diputados }: { diputados: Diputado[] }) {
     const [busqueda, setBusqueda] = useState('');
     const [partidoFiltro, setPartidoFiltro] = useState('');
+    const [partidoOpen, setPartidoOpen] = useState(false);
     const [orden, setOrden] = useState<SortKey>('');
+    const [ordenOpen, setOrdenOpen] = useState(false);
 
     const resultado = useMemo(() => {
         let lista = [...diputados];
@@ -135,27 +137,31 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
             </div>
             <div>
                 <div className="div-block-26">
-                    <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown">
-                        <div className="filtro-grupoparlamentario w-dropdown-toggle">
+                    <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown" onClick={() => setPartidoOpen(!partidoOpen)}>
+                        <div className={`filtro-grupoparlamentario w-dropdown-toggle ${partidoOpen ? 'w--open' : ''}`}>
                             <div className="w-icon-dropdown-toggle"></div>
                             <div>
                                 {partidoFiltro ? partidoFiltro.toUpperCase() : 'Grupo parlamentario'}
                                 {partidoFiltro && (
                                     <button
-                                        onClick={() => setPartidoFiltro('')}
+                                        onClick={(e) => { e.stopPropagation(); setPartidoFiltro(''); }}
                                         style={{ marginLeft: 8, background: 'none', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}
                                         title="Quitar filtro"
                                     >×</button>
                                 )}
                             </div>
                         </div>
-                        <nav className="dropdown-list-2 w-dropdown-list">
+                        <nav className={`dropdown-list-2 w-dropdown-list ${partidoOpen ? 'w--open' : ''}`}>
                             {PARTIDOS.map((p) => (
                                 <a
                                     key={p}
                                     href="#"
                                     className="filtro-grupoparlamentario opcion-de-grupo w-dropdown-link"
-                                    onClick={(e) => { e.preventDefault(); setPartidoFiltro(p === partidoFiltro ? '' : p); }}
+                                    onClick={(e) => { 
+                                        e.preventDefault(); 
+                                        setPartidoFiltro(p === partidoFiltro ? '' : p); 
+                                        setPartidoOpen(false); 
+                                    }}
                                     style={{ fontWeight: p.toLowerCase() === partidoFiltro.toLowerCase() ? 'bold' : undefined }}
                                 >
                                     {p}
@@ -165,18 +171,22 @@ export default function DiputadosList({ diputados }: { diputados: Diputado[] }) 
                     </div>
 
 
-                    <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown">
-                        <div className="filtro-grupoparlamentario w-dropdown-toggle">
+                    <div data-hover="false" data-delay="0" className="dropdown-grupo-parlamentario w-dropdown" onClick={() => setOrdenOpen(!ordenOpen)}>
+                        <div className={`filtro-grupoparlamentario w-dropdown-toggle ${ordenOpen ? 'w--open' : ''}`}>
                             <div className="w-icon-dropdown-toggle"></div>
                             <div>{orden ? `Orden: ${orden}` : 'Orden'}</div>
                         </div>
-                        <nav className="dropdown-list-2 w-dropdown-list">
+                        <nav className={`dropdown-list-2 w-dropdown-list ${ordenOpen ? 'w--open' : ''}`}>
                             {(['nombre', 'apellido', 'genero', 'distrito'] as SortKey[]).map((op) => (
                                 <a
                                     key={op}
                                     href="#"
                                     className="filtro-grupoparlamentario opcion-de-grupo w-dropdown-link"
-                                    onClick={(e) => { e.preventDefault(); setOrden(op === orden ? '' : op); }}
+                                    onClick={(e) => { 
+                                        e.preventDefault(); 
+                                        setOrden(op === orden ? '' : op); 
+                                        setOrdenOpen(false);
+                                    }}
                                     style={{ fontWeight: op === orden ? 'bold' : undefined, textTransform: 'capitalize' }}
                                 >
                                     {op.charAt(0).toUpperCase() + op.slice(1)}
