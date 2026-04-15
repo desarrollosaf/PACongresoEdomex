@@ -28,6 +28,7 @@ const comisiones_entity_1 = require("../database/entities/comisiones.entity");
 const tipo_cargo_comisiones_entity_1 = require("../database/entities/tipo-cargo-comisiones.entity");
 const fotos_entity_2 = require("../database/entities/fotos.entity");
 const gender_entity_1 = require("../database/entities/gender.entity");
+const sequelize_2 = require("sequelize");
 let DiputadosService = class DiputadosService {
     legislaturaModel;
     diputadoModel;
@@ -41,6 +42,21 @@ let DiputadosService = class DiputadosService {
     async findAll() {
         return this.diputadoModel.findAll({
             order: [['apaterno', 'ASC']],
+            include: [
+                fotos_entity_1.Foto,
+                gender_entity_1.Gender,
+                {
+                    model: integrante_legislatura_entity_1.IntegranteLegislatura,
+                    where: { fecha_fin: null },
+                    include: [partido_entity_1.Partido, distrito_entity_1.Distrito],
+                },
+            ],
+        });
+    }
+    async findAll2() {
+        return this.diputadoModel.findAll({
+            limit: 20,
+            order: sequelize_2.Sequelize.literal('RAND()'),
             include: [
                 fotos_entity_1.Foto,
                 gender_entity_1.Gender,
@@ -109,6 +125,49 @@ let DiputadosService = class DiputadosService {
                 },
             ],
         });
+    }
+    async getPerfil2(id) {
+        const perfil = await this.diputadoModel.findOne({
+            where: { id },
+            include: [
+                fotos_entity_1.Foto,
+                {
+                    model: integrante_legislatura_entity_1.IntegranteLegislatura,
+                    where: { fecha_fin: null },
+                    required: false,
+                    include: [
+                        partido_entity_1.Partido,
+                        distrito_entity_1.Distrito,
+                        {
+                            model: autores_comunicados_entity_1.AutoresComunicados,
+                            required: false,
+                            include: [
+                                {
+                                    model: comunicados_entity_1.Comunicados,
+                                    order: [['fecha', 'DESC']],
+                                    include: [{ model: fotos_entity_2.Foto, as: 'fotos' }]
+                                }
+                            ]
+                        }
+                    ],
+                },
+            ],
+        });
+        const perfilJson = perfil?.toJSON();
+        if (perfilJson?.integrantes) {
+            perfilJson.integrantes.forEach((leg) => {
+                if (leg.autores_comunicados) {
+                    leg.autores_comunicados = leg.autores_comunicados
+                        .sort((a, b) => {
+                        const fechaA = new Date(a.comunicado?.fecha || 0).getTime();
+                        const fechaB = new Date(b.comunicado?.fecha || 0).getTime();
+                        return fechaB - fechaA;
+                    })
+                        .slice(0, 2);
+                }
+            });
+        }
+        return perfilJson;
     }
     update(id, updateDiputadoDto) {
         return `This action updates a #${id} diputado`;

@@ -109,7 +109,7 @@ export default function IniciativasTab({ diputadoId, serverIniciativas, title }:
                 style={{ fontFamily: 'Regestogrotesk, Arial, sans-serif' }}
               >
                 {label}
-                <span className="ini-filtro-count">{count}</span>
+                {/* <span className="ini-filtro-count">{count}</span> */}
               </button>
             );
           })}

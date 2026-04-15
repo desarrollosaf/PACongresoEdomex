@@ -28,6 +28,9 @@ let DiputadosController = class DiputadosController {
     findAll() {
         return this.diputadosService.findAll();
     }
+    findAll2() {
+        return this.diputadosService.findAll2();
+    }
     findIntegrantesByLegislatura(numero) {
         return this.diputadosService.findIntegrantesByLegislatura(numero);
     }
@@ -36,6 +39,9 @@ let DiputadosController = class DiputadosController {
     }
     getPerfil(id) {
         return this.diputadosService.getPerfil(id);
+    }
+    getPerfil2(id) {
+        return this.diputadosService.getPerfil2(id);
     }
     update(id, updateDiputadoDto) {
         return this.diputadosService.update(+id, updateDiputadoDto);
@@ -59,6 +65,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], DiputadosController.prototype, "findAll", null);
 __decorate([
+    (0, common_1.Get)('all'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], DiputadosController.prototype, "findAll2", null);
+__decorate([
     (0, common_1.Get)('legislatura/:numero'),
     __param(0, (0, common_1.Param)('numero')),
     __metadata("design:type", Function),
@@ -79,6 +91,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], DiputadosController.prototype, "getPerfil", null);
+__decorate([
+    (0, common_1.Get)(':id/perfil2'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], DiputadosController.prototype, "getPerfil2", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
