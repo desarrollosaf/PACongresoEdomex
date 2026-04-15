@@ -275,7 +275,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
   return (
     <section className="diputados max_width">
       <div>
-        <div className="div-block-6">
+        {/* <div className="div-block-6">
           <img src="images/Diputad-1.gif" loading="lazy" alt="" className="image-31" />
           <div className="search-2 w-form">
             <input
@@ -290,7 +290,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
             />
             <input type="button" className="search-button-2 w-button" value="Buscar" />
           </div>
-        </div>
+        </div> */}
 
         {/* Filtros partido */}
         <div className="filtros-diputados grupos-parlamentarios-selector">
