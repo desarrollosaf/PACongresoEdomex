@@ -5,7 +5,7 @@ import BoletinesHomeSection from "@/components/BoletinesHomeSection";
 import { getBoletines } from '@/app/service/boletines.api';
 import { getBannersHome } from '@/app/service/banners.api';
 import AgendaHomeSection from "@/components/AgendaHomeSections";
-import { getAgendaHome } from "@/app/service/agenda.api";
+import { getAgendaHome, getSesionReciente } from "@/app/service/agenda.api";
 import BannersHomeSection from "@/components/BannersHomeSections";
 import SearchForm from "@/components/SearchForm";
 import { getEstadisticasHome } from "./service/estadisticas.api";
@@ -16,6 +16,7 @@ export default async function Home() {
   const diputados = await getDiputadosHome();
   const comunicados = await getComunicadosHome();
   const agenda = await getAgendaHome();
+  const sesionUltima = await getSesionReciente();
   const banners = await getBannersHome();
   const estadisticas = await getEstadisticasHome();
 
@@ -52,7 +53,7 @@ export default async function Home() {
       </section>
       <DiputadoHomeSection diputados={diputados} />
 
-      <AgendaHomeSection agenda={agenda} />
+      <AgendaHomeSection agenda={agenda}  ultimaSesion={sesionUltima?.[0]} />
 
       <section className="max_width">
         <div>
