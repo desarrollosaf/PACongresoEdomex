@@ -15,6 +15,7 @@ import { Comision } from '../database/entities/comisiones.entity';
 import { TipoCargoComision } from '../database/entities/tipo-cargo-comisiones.entity';
 import { Foto as FotosComunicado } from '../database/entities/fotos.entity';
 import { Gender } from '../database/entities/gender.entity';
+import { Sequelize } from 'sequelize';
 
 @Injectable()
 export class DiputadosService {
@@ -23,7 +24,7 @@ export class DiputadosService {
     private legislaturaModel: typeof Legislatura,
     @InjectModel(Diputado)
     private diputadoModel: typeof Diputado,
-  ) {}
+  ) { }
   create(createDiputadoDto: CreateDiputadoDto) {
     return 'This action adds a new diputado';
   }
@@ -31,6 +32,22 @@ export class DiputadosService {
   async findAll() {
     return this.diputadoModel.findAll({
       order: [['apaterno', 'ASC']],
+      include: [
+        Foto,
+        Gender,
+        {
+          model: IntegranteLegislatura,
+          where: { fecha_fin: null },
+          include: [Partido, Distrito],
+        },
+      ],
+    });
+  }
+
+  async findAll2() {
+    return this.diputadoModel.findAll({
+      limit: 20,
+      order: Sequelize.literal('RAND()'), // 👈 random
       include: [
         Foto,
         Gender,
@@ -103,6 +120,59 @@ export class DiputadosService {
       ],
     });
   }
+
+
+  async getPerfil2(id: string) {
+
+    const perfil = await this.diputadoModel.findOne({
+      where: { id },
+      include: [
+        Foto,
+        {
+          model: IntegranteLegislatura,
+          where: { fecha_fin: null },
+          required: false,
+          include: [
+            Partido,
+            Distrito,
+            {
+              model: AutoresComunicados,
+              required: false,
+              include: [
+                {
+                  model: Comunicados,
+                  order: [['fecha', 'DESC']],
+                  include: [{ model: FotosComunicado, as: 'fotos' }]
+                }
+              ]
+            }
+          ],
+        },
+      ],
+    });
+
+    const perfilJson = perfil?.toJSON();
+
+    if (perfilJson?.integrantes) {
+      perfilJson.integrantes.forEach((leg: any) => {
+        if (leg.autores_comunicados) {
+          leg.autores_comunicados = leg.autores_comunicados
+            .sort((a: any, b: any) => {
+              const fechaA = new Date(a.comunicado?.fecha || 0).getTime();
+              const fechaB = new Date(b.comunicado?.fecha || 0).getTime();
+              return fechaB - fechaA;
+            })
+            .slice(0, 2);
+        }
+      });
+    }
+
+    return perfilJson;
+
+
+
+  }
+
 
   update(id: number, updateDiputadoDto: UpdateDiputadoDto) {
     return `This action updates a #${id} diputado`;
