@@ -63,14 +63,14 @@ export default function Header() {
         {/* Menú desktop — se oculta en móvil con CSS */}
         <div className={`div-block-9 ${menuOpen ? 'menu-movil-abierto' : ''}`}>
           <Dropdown id="congreso" label="Tu Congreso">
-            <Link href="/que-es-el-congreso" className="link-nav-menu w-dropdown-link">¿Que es el Congreso?</Link>
+            <Link href="/que-es-el-congreso" className="link-nav-menu w-dropdown-link">¿Qué es el Congreso?</Link>
             <Link href="/dependencias" className="link-nav-menu w-dropdown-link">Dependencias</Link>
           </Dropdown>
 
           <Dropdown id="legislatura" label="Legislatura">
             <Link href="/diputados" className="link-nav-menu w-dropdown-link">Integrantes</Link>
-            <Link href="#" className="link-nav-menu w-dropdown-link">Grupos Parlamentarios</Link>
-            <Link href="/mesa-directiva" className="link-nav-menu w-dropdown-link">Diputación Permanente</Link>
+            {/* <Link href="#" className="link-nav-menu w-dropdown-link">Grupos Parlamentarios</Link> */}
+            <Link href="/mesa-directiva" className="link-nav-menu w-dropdown-link">Mesa Directiva</Link>
             <Link href="/junta-de-coordinacion-politica" className="link-nav-menu w-dropdown-link">Junta de Coordinación Política</Link>
             <Link href="/comisiones" className="link-nav-menu w-dropdown-link">Comisiones y Comités</Link>
           </Dropdown>
@@ -96,9 +96,9 @@ export default function Header() {
             <Link href="#" className="link-nav-menu w-dropdown-link">Notas Hora x Hora</Link>
           </Dropdown>
 
-          <Dropdown id="contacto" label="Contacto">
+          {/* <Dropdown id="contacto" label="Contacto">
             <Link href="#" className="link-nav-menu w-dropdown-link">Directorio Telefónico</Link>
-          </Dropdown>
+          </Dropdown> */}
         </div>
 
         {/* Botón hamburguesa — solo visible en móvil */}

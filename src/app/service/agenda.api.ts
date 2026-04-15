@@ -50,7 +50,7 @@ export async function getSesionReciente() {
 
 export async function getOrdeDiaSesion(id: string | number) {
   try {
-    const res = await fetch('https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/getordendia');
+    const res = await fetch('https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/iniciativas/resumen');
     if (!res.ok) {
       const text = await res.text();
       console.error('Error backend:', text);
