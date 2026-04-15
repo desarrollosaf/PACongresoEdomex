@@ -24,6 +24,12 @@ import { BannersModule } from './banners/banners.module';
       models: [],
       autoLoadModels: true, 
       synchronize: true,  
+      pool: {
+        max: 12,  
+        min: 3,
+        idle: 10000,
+        acquire: 30000,
+      }
     }),
     BoletinesModule,
     TrabajoLegislativoModule,
