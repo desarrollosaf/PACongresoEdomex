@@ -37,7 +37,7 @@ exports.AppModule = AppModule = __decorate([
                 autoLoadModels: true,
                 synchronize: true,
                 pool: {
-                    max: 16,
+                    max: 14,
                     min: 3,
                     idle: 10000,
                     acquire: 30000,
