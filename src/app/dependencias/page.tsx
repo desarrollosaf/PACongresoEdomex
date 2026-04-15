@@ -4,7 +4,7 @@
         <div>
         <h1 className="titulo-seccion-legislativo">Dependencias</h1>
         </div>
-        <div>Encuentra toda la información sobre la organización interna del poder legislativo</div>
+        <div>Encuentra toda la información sobre la organización interna del Poder Legislativo</div>
         <div>
         <div className="w-layout-grid grid-8">
             <div className="div-block-34">
@@ -16,8 +16,8 @@
                 images/OSFEM.png 1920w" alt="" className="imagen-dependencias"/>
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Órgano Superior de Fiscalización del Estado de México</h4>
-                <div>DireCalle Mariano Matamoros No. 124, Col. Centro - CP 50000 Toluca, Estado de México.</div>
-                <div>Tel. conmutador: 722 167 8450</div>
+                <div>Calle Mariano Matamoros No. 124, Col. Centro - CP 50000 Toluca, Estado de México.</div>
+                <div>Tel. 722 279 6400 / 722 279 6500</div>
             </div>
             <a href="https://www.osfem.gob.mx/" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
@@ -31,7 +31,7 @@
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Secretaría de Asuntos Parlamentarios</h4>
                 <div>Av. Lerdo Pte. No. 222, Col. Centro - CP 50000 Toluca, Estado de México</div>
-                <div>Tel. conmutador: 722 167 8450</div>
+                <div>Tel. 722 279 6400 / 722 279 6500 </div>
             </div>
             <a href="https://legislacion.congresoedomex.gob.mx/asuntosparlamentarios" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
@@ -44,7 +44,7 @@
                 images/contraloria.png 1920w" alt="" className="imagen-dependencias"/>
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Contraloría del Poder Legislativo del Estado de México</h4>
-                <div>Av. Independencia No.102, Col. Centro - CP 50000 Toluca, Estado de México</div>
+                <div>Av. Independencia No. 102, Col. Centro - CP 50000 Toluca, Estado de México</div>
                 <div>Tel. 722 276 2320</div>
             </div>
             <a href="https://www.contraloriadelpoderlegislativo.gob.mx/" target="_blank" className="btn-var-2 w-button">Micrositio</a>
@@ -59,7 +59,7 @@
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Secretaría de Administración y Finanzas</h4>
                 <div>Av. Independencia No. 102, Col. Centro - CP 50000 Toluca, Estado de México</div>
-                <div><em>Tel. 722 279 6400</em></div>
+                <div>Tel. 722 279 6400 / 722 279 6500</div>
             </div>
             <a href="https://administracionyfinanzasplem.gob.mx/" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
@@ -72,7 +72,7 @@
                 images/DGCS.png 1920w" alt="" className="imagen-dependencias"/>
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Dirección General de Comunicación Social</h4>
-                <div>v. Lerdo Pte. 410, Col. Centro - CP 50000 Toluca, Estado de México</div>
+                <div>Calle Pedro Ascencio Núm. 100, Colonia La Merced (Alameda), delegación o localidad Centro Histórico, Toluca, Estado de México, CP 50080</div>
                 <div>Tel. 722 779 6400</div>
             </div>
             <a href="https://sistema.congresoedomex.gob.mx/boletin" target="_blank" className="btn-var-2 w-button">Micrositio</a>
@@ -87,7 +87,7 @@
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Instituto de Estudios Legislativos INESLE</h4>
                 <div>Av. Hidalgo No. 313, Col. Merced-Alameda - CP 50080 Toluca, Estado de México</div>
-                <div>Tel. 722 214 1952 / 722 214 1627</div>
+                <div>Tel. 722 279 6400 / 722 279 6500</div>
             </div>
             <a href="https://inesle.gob.mx/" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
@@ -114,8 +114,8 @@
                 images/voluntariado.png 1920w" alt="" className="imagen-dependencias"/>
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Voluntariado</h4>
-                <div>Plutarco González No.111, Col. La Merced y Alameda - CP 50080 Toluca, Estado de México</div>
-                <div><em>Tel. 722 279 64 99<br/>‍</em></div>
+                <div>Plutarco González No. 111, Col. La Merced y Alameda - CP 50080 Toluca, Estado de México</div>
+                <div>Tel. 722 279 6499<br/></div>
             </div>
             <a href="https://voluntariado.congresoedomex.gob.mx/" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>

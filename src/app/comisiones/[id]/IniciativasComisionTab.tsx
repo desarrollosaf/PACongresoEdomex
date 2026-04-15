@@ -108,7 +108,7 @@ export default function IniciativasComisionTab({ comisionId, serverIniciativas }
                 style={{ fontFamily: 'Regestogrotesk, Arial, sans-serif' }}
               >
                 {label}
-                <span className="ini-filtro-count">{count}</span>
+                {/* <span className="ini-filtro-count">{count}</span> */}
               </button>
             );
           })}

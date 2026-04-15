@@ -1,6 +1,6 @@
 import Link from "next/link";
 import DiputadoHomeSection from "@/components/DiputadoHomeSection";
-import { getDiputadosHome, getComunicadosHome } from "@/app/service/diputados.api";
+import { getDiputados2, getComunicadosHome } from "@/app/service/diputados.api";
 import BoletinesHomeSection from "@/components/BoletinesHomeSection";
 import { getBoletines } from '@/app/service/boletines.api';
 import { getBannersHome } from '@/app/service/banners.api';
@@ -13,7 +13,7 @@ import EstadisticasHomeSection from "@/components/EstadisticasHomeSections";
 export default async function Home() {
   const boletines = await getBoletines();
   const mainBoletines = boletines && boletines.length >= 5 ? boletines : null;
-  const diputados = await getDiputadosHome();
+  const diputados = await getDiputados2();
   const comunicados = await getComunicadosHome();
   const agenda = await getAgendaHome();
   const sesionUltima = await getSesionReciente();

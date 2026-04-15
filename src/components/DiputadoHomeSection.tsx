@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
-import { getDiputadoPerfil } from '@/app/service/diputados.api';
+import { getDiputadoPerfil2 } from '@/app/service/diputados.api';
 
 type Diputado = {
   id: string;
@@ -191,7 +191,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
   // Obtener comunicados de un diputado a través del API centralizado
   const fetchComunicados = async (id: string): Promise<any[]> => {
     try {
-      const data = await getDiputadoPerfil(id);
+      const data = await getDiputadoPerfil2(id);
       const integrante = data?.integrantes?.[0];
       return (integrante?.autores_comunicados?.map((ac: any) => ac.comunicado).filter(Boolean) || [])
         .sort((a: any, b: any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
@@ -275,7 +275,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
   return (
     <section className="diputados max_width">
       <div>
-        <div className="div-block-6">
+        {/* <div className="div-block-6">
           <img src="images/Diputad-1.gif" loading="lazy" alt="" className="image-31" />
           <div className="search-2 w-form">
             <input
@@ -290,7 +290,7 @@ export default function DiputadoHomeSection({ diputados }: Props) {
             />
             <input type="button" className="search-button-2 w-button" value="Buscar" />
           </div>
-        </div>
+        </div> */}
 
         {/* Filtros partido */}
         <div className="filtros-diputados grupos-parlamentarios-selector">

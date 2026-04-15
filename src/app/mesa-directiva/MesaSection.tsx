@@ -62,17 +62,14 @@ return (
             <div className="bg-gradient-gris">
             <div className="w-layout-grid div-mesa-direciva">
                 {renderCard(integrante[0], 'bg-morena')}
-                {renderCard(integrante[1], 'bg-pri')}
-                {renderCard(integrante[2], 'bg-pt')}
+                {renderCard(integrante[1], 'bg-pt')}
+                {renderCard(integrante[2], 'bg-pvedm')}
             </div>
 
             <div className="w-layout-grid div-mesa-direciva">
-                {renderCard(integrante[3], 'bg-pan')}
-                {renderCard(integrante[4], 'bg-mc')}
-                {renderCard(integrante[5], 'bg-morena')}
-                {renderCard(integrante[6], 'bg-morena')}
-                {renderCard(integrante[7], 'bg-morena')}
-                {renderCard(integrante[8], 'bg-morena')}
+                {renderCard(integrante[3], 'bg-pri')}
+                {renderCard(integrante[4], 'bg-morena')}
+                {renderCard(integrante[5], 'bg-mc')}
             </div>
             </div>
 
