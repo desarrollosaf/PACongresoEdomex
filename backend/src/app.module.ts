@@ -25,7 +25,7 @@ import { BannersModule } from './banners/banners.module';
       autoLoadModels: true, 
       synchronize: true,  
       pool: {
-        max: 12,  
+        max: 16,  
         min: 3,
         idle: 10000,
         acquire: 30000,
