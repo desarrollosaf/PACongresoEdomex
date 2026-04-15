@@ -18,7 +18,6 @@ export const dynamic = 'force-dynamic';
 
 export default async function MesaPage() {
   const integrante: MesaItem[] = await getMesa();
-
   return (
     <MesaSection 
     integrante = { integrante }></MesaSection>
