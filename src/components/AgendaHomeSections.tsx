@@ -14,9 +14,22 @@ type AgendaItem = {
   };
 };
 
+
+type UltimaSesion = {
+  id?: string;
+  fecha?: string;
+  descripcion?: string;
+  sede?: { sede?: string };
+  tipoevento?: { nombre?: string };
+};
+
+
 type Props = {
   agenda: AgendaItem[] | null;
+  ultimaSesion?: UltimaSesion | null;
 };
+
+
 
 const extraerYoutubeSrc = (iframeString?: string) => {
   if (!iframeString) return null;
@@ -52,7 +65,7 @@ const formatearHora = (fecha?: string) => {
   });
 };
 
-export default function AgendaHomeSection({ agenda }: Props) {
+export default function AgendaHomeSection({ agenda, ultimaSesion  }: Props) {
   const agendas = Array.isArray(agenda) ? agenda : [];
 
   const agendaPrincipal = agendas?.[0];
@@ -67,6 +80,48 @@ export default function AgendaHomeSection({ agenda }: Props) {
       <div>
         <h4 className="heading-5 titulo-seccion">Agenda Parlamentaria del día</h4>
       </div>
+
+      {ultimaSesion && (
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '0.5rem',
+          margin: '1.5rem 0 2rem',
+          padding: '1.25rem 2rem',
+          borderRight: '4px solid #8B0000',
+          backgroundColor: '#fafafa',
+          borderRadius: '8px 0 0 8px',
+          width: '100%',
+        }}>
+          <span style={{
+            fontSize: '0.75rem',
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: '#8B0000',
+          }}>
+            Última Sesión
+          </span>
+
+          <p style={{ fontWeight: 700, fontSize: '1.1rem', margin: 0 }}>
+            {ultimaSesion.tipoevento?.nombre} — {ultimaSesion.descripcion}
+          </p>
+
+          <p style={{ margin: 0, color: '#555', fontSize: '0.9rem' }}>
+            {formatearFechaHora(ultimaSesion.fecha)}
+            {ultimaSesion.sede?.sede ? ` ·  ${ultimaSesion.sede.sede}` : ''}
+          </p>
+
+          <Link
+            href={`/ordeDia/${ultimaSesion.id}`}
+            className="btn-envivo w-button"
+            style={{ marginTop: '0.5rem' }}
+          >
+            Ver Orden del Día 
+          </Link>
+        </div>
+      )}
 
       <div className="columns-5 w-row">
         <div className="w-col w-col-6">
