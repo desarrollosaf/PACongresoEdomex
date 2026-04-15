@@ -52,6 +52,42 @@ export async function getDiputadoPerfil(id: string) {
   }
 }
 
+export async function getDiputados2() {
+  try {
+    const data = await fetch(`${getApiUrl()}/api/diputados/all`, {
+      cache: "no-store",
+    });
+    if (!data.ok) {
+      const text = await data.text();
+      console.error('Error backend en getDiputados:', text);
+      return [];
+    }
+    return await data.json();
+  } catch (error) {
+    console.error('Error de red en getDiputados:', error);
+    return [];
+  }
+}
+
+export async function getDiputadoPerfil2(id: string) {
+  try {
+
+    const res = await fetch(`${getApiUrl()}/api/diputados/${id}/perfil2`, {
+
+      cache: 'no-store'
+    });
+    if (!res.ok) {
+      if (res.status === 404) return null;
+      throw new Error('Failed to fetch data');
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Error de red en getDiputadoPerfil:', error);
+    return null;
+  }
+}
+
+
 export async function getDiputadosHome() {
   try {
 

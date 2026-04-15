@@ -8,9 +8,11 @@ export declare class DiputadosService {
     constructor(legislaturaModel: typeof Legislatura, diputadoModel: typeof Diputado);
     create(createDiputadoDto: CreateDiputadoDto): string;
     findAll(): Promise<Diputado[]>;
+    findAll2(): Promise<Diputado[]>;
     findIntegrantesByLegislatura(numero: string): Promise<Legislatura | null>;
     findOne(id: number): string;
     getPerfil(id: string): Promise<Diputado | null>;
+    getPerfil2(id: string): Promise<any>;
     update(id: number, updateDiputadoDto: UpdateDiputadoDto): string;
     remove(id: number): string;
 }
