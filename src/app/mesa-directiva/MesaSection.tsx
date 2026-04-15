@@ -47,12 +47,12 @@ return (
     <section className="mesa-directiva max_width">
         <div className="div-block-52">
             <div className="div-block-53">
-            <h1 className="titulo-centrado">Diputación Permanente</h1>
-            <p className="subtitulo-info-centrado">
+            <h1 className="titulo-centrado">Mesa Directiva</h1>
+            {/* <p className="subtitulo-info-centrado">
                 Grupo de legisladoras y legisladores que trabajan durante los periodos de receso de la
                 Legislatura. Puede convocar a todas y todos los legisladores a un periodo extraordinario
                 para resolver asuntos que lo ameriten.
-            </p>
+            </p> */}
             </div>
         </div>
 

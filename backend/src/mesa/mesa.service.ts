@@ -12,7 +12,7 @@ export class MesaService {
     async findAll() {
         const comision = await Comision.findOne({
             where:{
-                nombre: "DIP PERMANENTE DEL SEGUNDO ANO EJERCICIO CONSTITUCIONAL 03-DIC-2025 AL 31-ENE-26"
+                nombre: "Directiva del Segundo Periodo Ordinario de Sesiones del Segundo Año de Ejercicio Constitucional"
             }
         })
 

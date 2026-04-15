@@ -144,7 +144,7 @@ export default function TrabajoLegislativo() {
             <div>Legislación</div>
           </button>
 
-          <button
+          {/* <button
             type="button"
             onClick={() => setActiveTab('diario_de_debates')}
             className={`btn-var-2 w-inline-block w-tab-link ${
@@ -162,7 +162,7 @@ export default function TrabajoLegislativo() {
             }`}
           >
             <div className="text-block-10">Minuta del Congreso</div>
-          </button>
+          </button> */}
         </div>
 
       {/* CONTENIDO */}
@@ -216,10 +216,10 @@ export default function TrabajoLegislativo() {
                       >
                         <img
                           className="gaceta-img"
-                          sizes="(max-width: 1004px) 100vw, 1004px, 100vw"
-                          srcSet="/images/gaceta-example-4-p-500.jpeg 500w, /images/gaceta-example-4-p-800.jpeg 800w, /images/gaceta-example-4.jpeg 1004w"
+                          sizes="(max-width: 890px) 100vw, 1004px, 100vw"
+                          srcSet="/images/gacetaNPortal.jpeg 500w, /images/gacetaNPortal.jpeg 800w, /images/gacetaNPortal.jpeg 1004w"
                           alt="Portada gaceta"
-                          src="/images/gaceta-example-4.jpeg"
+                          src="/images/gacetaNPortal.jpeg"
                           loading="lazy"
                         />
 
@@ -313,7 +313,7 @@ export default function TrabajoLegislativo() {
           )}
 
 
-          {activeTab === 'diario_de_debates' && (
+          {/* {activeTab === 'diario_de_debates' && (
             <div data-w-tab="diario_de_debates" className="w-tab-pane w--tab-active">
               <div className="titulo-tab">
                 <h2>Diario de Debates</h2>
@@ -335,7 +335,7 @@ export default function TrabajoLegislativo() {
                 </div>
               </div>
             </div>
-          )}
+          )} */}
 
           
             </div>
