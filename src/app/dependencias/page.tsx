@@ -75,7 +75,7 @@
                 <div>v. Lerdo Pte. 410, Col. Centro - CP 50000 Toluca, Estado de México</div>
                 <div>Tel. 722 779 6400</div>
             </div>
-            <a href="https://www.congresoedomex.gob.mx/boletin" target="_blank" className="btn-var-2 w-button">Micrositio</a>
+            <a href="https://sistema.congresoedomex.gob.mx/boletin" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
             <div className="div-block-34">
                 <img src="images/INESLE.png" loading="lazy" sizes="(max-width: 1920px) 100vw, 1920px" 
