@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/components/SearchForm';
 
-const BASE_URL = 'https://www.congresoedomex.gob.mx/';
+const BASE_URL = 'https://sistema.congresoedomex.gob.mx/';
 
 // Quita etiquetas HTML y limita a 150 caracteres para un resumen limpio
 function truncateHtml(html: string): string {
