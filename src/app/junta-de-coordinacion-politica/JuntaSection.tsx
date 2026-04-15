@@ -34,7 +34,7 @@ const getNombreCompleto = (item?: JuntaItem) => {
 const getFoto = (item?: JuntaItem) => {
   const path = item?.integranteLegis?.diputado?.fotos?.[0]?.path;
   return path
-    ? `https://congresoedomex.gob.mx/${path}`
+    ? `https://sistema.congresoedomex.gob.mx/${path}`
     : '/images/default-user.png';
 };
 

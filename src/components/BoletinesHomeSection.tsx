@@ -12,7 +12,7 @@ type Props = {
   mainBoletines: Boletin[] | null;
 };
 
-const BASE_IMG = 'https://congresoedomex.gob.mx/';
+const BASE_IMG = 'https://sistema.congresoedomex.gob.mx/';
 
 const formatearFecha = (fecha?: string) => {
   if (!fecha) return '';

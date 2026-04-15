@@ -57,7 +57,7 @@ function MiembroCard({ item }: { item: any }) {
   return (
     <div className="integrante-comision">
       <img
-        src={foto ? `https://congresoedomex.gob.mx/${foto}` : "/images/default-user.png"}
+        src={foto ? `https://sistema.congresoedomex.gob.mx/${foto}` : "/images/default-user.png"}
         alt={nombre || "Diputado"}
         className={`img-integrantes-cc ${colorClass}`}
       />
