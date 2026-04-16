@@ -37,6 +37,12 @@ exports.AppModule = AppModule = __decorate([
                 models: [],
                 autoLoadModels: true,
                 synchronize: true,
+                pool: {
+                    max: 14,
+                    min: 3,
+                    idle: 10000,
+                    acquire: 30000,
+                }
             }),
             boletines_module_1.BoletinesModule,
             trabajo_legislativo_module_1.TrabajoLegislativoModule,
