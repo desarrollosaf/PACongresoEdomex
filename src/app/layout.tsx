@@ -25,6 +25,7 @@ export default function RootLayout({
         <link href="/css/congreso-edo-mex.webflow.css" rel="stylesheet" type="text/css" />
         <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon" />
         <link href="/images/webclip.png" rel="apple-touch-icon" />
+        <link rel="shortcut icon" href="https://sistema.congresoedomex.gob.mx/storage/images/favicon.svg"></link>
         <script
           dangerouslySetInnerHTML={{
             __html: `!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);`,
