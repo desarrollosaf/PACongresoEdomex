@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { path: string[] } }
+  { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const filePath = params.path.join('/');
+  const { path } = await params;
+  const filePath = path.join('/');
   const externalUrl = `${process.env.EXTERNAL_API_URL}/${filePath}`;
 
   try {
