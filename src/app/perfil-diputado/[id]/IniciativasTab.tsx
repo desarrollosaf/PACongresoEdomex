@@ -20,6 +20,7 @@ type Iniciativa = {
   grupo_parlamentario: string;
   decreto?: string;
   fecha_aprobacion?: string;
+  documento?:string
 };
 
 type IniciativasTabProps = {
@@ -176,7 +177,10 @@ export default function IniciativasTab({ diputadoId, serverIniciativas, title }:
 
                     <div className="ini-side-btns">
                       <a
-                        href={ini.id ? `/iniciativas/${ini.id}` : '#'}
+                      href={ini.documento ? `/api/documentos${ini.documento.startsWith('/') ? '' : '/'}${ini.documento}` : '#'}
+                        // href={ini.documento ? `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}${ini.documento.startsWith('/') ? '' : '/'}${ini.documento}` : '#'}
+                        target={ini.documento ? "_blank" : undefined}
+                        rel={ini.documento ? "noopener noreferrer" : undefined}
                         className="ini-btn ini-btn-primary"
                       >
                         <img src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png" alt="" />
