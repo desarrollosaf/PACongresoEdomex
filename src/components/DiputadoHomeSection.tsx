@@ -166,7 +166,7 @@ function DiputadoCard({
           </div>
         </div>
 
-        <Link href={`/perfil-diputado/${diputado.id}#comunicados`} className="button-2 btn-var2 w-button">Leer todos los comunicado</Link>
+        <Link href={`/perfil-diputado/${diputado.id}#comunicados`} className="button-2 btn-var2 w-button">Leer todos los comunicados</Link>
       </div>
 
     </div>
