@@ -11,6 +11,7 @@ import { JuntaModule } from './junta/junta.module';
 import { DatabaseModule } from './database/database.module';
 import { AgendaModule } from './agenda/agenda.module';
 import { BannersModule } from './banners/banners.module';
+import { EstadisticasModule } from './estadisticas/estadisticas.module';
 
 @Module({
   imports: [
@@ -33,7 +34,8 @@ import { BannersModule } from './banners/banners.module';
     JuntaModule,
     DatabaseModule,
     AgendaModule,
-    BannersModule
+    BannersModule,
+    EstadisticasModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -18,6 +18,9 @@ import { Agenda } from './entities/agenda.entity';
 import { Sede } from './entities/sede.entity';
 import { Banners } from './entities/banners.entity';
 import { Gender } from './entities/gender.entity';
+import { VisitaPagina } from './entities/visita-pagina.entity';
+import { EncuestaSatisfaccion } from './entities/encuesta-satisfaccion.entity';
+import { EncuestaSatisfaccionDetallada } from './entities/encuesta-satisfaccion-detallada.entity';
 
 const sequelizeFeatures = SequelizeModule.forFeature([
   Legislatura,
@@ -35,7 +38,10 @@ const sequelizeFeatures = SequelizeModule.forFeature([
   Agenda,
   Sede,
   Banners,
-  Gender
+  Gender,
+  VisitaPagina,
+  EncuestaSatisfaccion,
+  EncuestaSatisfaccionDetallada
 ]);
 
 @Global()

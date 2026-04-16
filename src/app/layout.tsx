@@ -3,6 +3,7 @@ import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingChat from "@/components/Chatbot/FloatingChat";
+import FeedbackWidget from "@/components/FeedbackWidget";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FeedbackWidget />
         {/* <FloatingChat /> */}
         <Script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=68dd617a668359798a8993c6" strategy="beforeInteractive" crossOrigin="anonymous" />
         <Script src="/js/webflow.js" strategy="lazyOnload" />
