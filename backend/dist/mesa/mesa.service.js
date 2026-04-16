@@ -13,6 +13,7 @@ const diputado_entity_1 = require("../database/entities/diputado.entity");
 const fotos_entity_1 = require("../database/entities/fotos.entity");
 const integrante_comisions_entity_1 = require("../database/entities/integrante-comisions.entity");
 const integrante_legislatura_entity_1 = require("../database/entities/integrante-legislatura.entity");
+const partido_entity_1 = require("../database/entities/partido.entity");
 const tipo_cargo_comision_entity_1 = require("../database/entities/tipo-cargo-comision.entity");
 let MesaService = class MesaService {
     async findAll() {
@@ -44,6 +45,10 @@ let MesaService = class MesaService {
                                 }
                             ]
                         },
+                        {
+                            model: partido_entity_1.Partido,
+                            as: "partido"
+                        }
                     ]
                 },
             ],

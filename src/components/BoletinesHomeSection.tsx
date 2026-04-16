@@ -50,7 +50,7 @@ export default function BoletinesHomeSection({ mainBoletines }: Props) {
     <section className="max_width">
       <div>
         <div>
-          <h4 className="titulo-seccion">Boletínes</h4>
+          <h4 className="titulo-seccion">Boletines</h4>
         </div>
 
         <div>Mantente informado de todo lo que ocurre en el pleno</div>
