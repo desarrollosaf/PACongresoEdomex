@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useRef } from 'react';
+import Link from 'next/link';
 
 type Foto = {
     path: string;
@@ -255,9 +256,9 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
                                                 <div className="gp-diputado">{siglas.toUpperCase()}</div>
                                                 <div>{tipoCargo}</div>
                                             </div>
-                                            <a href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button">
+                                            <Link href={`/perfil-diputado/${diputado.id}`} className="btn-var-2 w-button">
                                                 Saber más
-                                            </a>
+                                            </Link>
                                         </div>
                                     );
                                 })}

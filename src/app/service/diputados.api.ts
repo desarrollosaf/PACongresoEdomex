@@ -18,9 +18,7 @@ export async function getDiputados() {
   try {
     const data = await fetch(`${getApiUrl()}/api/diputados`, {
 
-
-
-      cache: "no-store",
+      next: { revalidate: 60 }
     });
     if (!data.ok) {
       const text = await data.text();
@@ -38,8 +36,7 @@ export async function getDiputadoPerfil(id: string) {
   try {
 
     const res = await fetch(`${getApiUrl()}/api/diputados/${id}/perfil`, {
-
-      cache: 'no-store'
+      next: { revalidate: 60 }
     });
     if (!res.ok) {
       if (res.status === 404) return null;
@@ -55,7 +52,7 @@ export async function getDiputadoPerfil(id: string) {
 export async function getDiputados2() {
   try {
     const data = await fetch(`${getApiUrl()}/api/diputados/all`, {
-      cache: "no-store",
+      next: { revalidate: 60 }
     });
     if (!data.ok) {
       const text = await data.text();
@@ -73,8 +70,7 @@ export async function getDiputadoPerfil2(id: string) {
   try {
 
     const res = await fetch(`${getApiUrl()}/api/diputados/${id}/perfil2`, {
-
-      cache: 'no-store'
+      next: { revalidate: 60 }
     });
     if (!res.ok) {
       if (res.status === 404) return null;

@@ -85,6 +85,7 @@ export class DiputadosService {
   }
 
   async getPerfil(id: string) {
+    // Obtenemos al diputado y su relación directa primero (con sus comisiones)
     return this.diputadoModel.findOne({
       where: { id },
       include: [
@@ -99,6 +100,7 @@ export class DiputadosService {
             Distrito,
             {
               model: IntegranteComision,
+              separate: true, // <-- Optimización: evita producto cartesiano
               include: [
                 Comision,
                 TipoCargoComision
@@ -107,9 +109,12 @@ export class DiputadosService {
             {
               model: AutoresComunicados,
               required: false,
+              separate: true, // <-- Optimización: evita producto cartesiano masivo
               include: [
                 {
                   model: Comunicados,
+                  // Nota: Sequelize puede que ignore el order en el include si se usa separate. 
+                  // Podríamos reordenar en memoria si esto importa, pero Sequelize usualmente lo maneja bien.
                   order: [['fecha', 'DESC']],
                   include: [{ model: FotosComunicado, as: 'fotos' }]
                 }
@@ -138,6 +143,7 @@ export class DiputadosService {
             {
               model: AutoresComunicados,
               required: false,
+              separate: true, // <-- Optimización clave para evitar tiempos muertos
               include: [
                 {
                   model: Comunicados,

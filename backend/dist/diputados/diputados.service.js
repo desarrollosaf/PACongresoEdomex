@@ -105,6 +105,7 @@ let DiputadosService = class DiputadosService {
                         distrito_entity_1.Distrito,
                         {
                             model: integrante_comisions_entity_1.IntegranteComision,
+                            separate: true,
                             include: [
                                 comisiones_entity_1.Comision,
                                 tipo_cargo_comisiones_entity_1.TipoCargoComision
@@ -113,6 +114,7 @@ let DiputadosService = class DiputadosService {
                         {
                             model: autores_comunicados_entity_1.AutoresComunicados,
                             required: false,
+                            separate: true,
                             include: [
                                 {
                                     model: comunicados_entity_1.Comunicados,
@@ -141,6 +143,7 @@ let DiputadosService = class DiputadosService {
                         {
                             model: autores_comunicados_entity_1.AutoresComunicados,
                             required: false,
+                            separate: true,
                             include: [
                                 {
                                     model: comunicados_entity_1.Comunicados,
