@@ -101,6 +101,17 @@ export default function FeedbackWidget() {
             alignItems: 'flex-end',
             gap: '10px'
         }}>
+            <style dangerouslySetInnerHTML={{__html: `
+              /* Forzamos que los botones de feedback siempre se vean en la esquina */
+              @media screen and (max-width: 768px) {
+                  .feedback-btn {
+                      display: flex !important;
+                      visibility: visible !important;
+                      opacity: 1 !important;
+                      transform: none !important;
+                  }
+              }
+            `}} />
             
             {/* NUEVA ENCUESTA FLOTANTE */}
             {isSurveyOpen && (
@@ -276,8 +287,8 @@ export default function FeedbackWidget() {
                 </div>
             )}
 
-            {/* BOTÓN NUEVA ENCUESTA (Arriba del ojito) */}
             <button
+                className="feedback-btn"
                 onClick={() => {
                     setIsSurveyOpen(!isSurveyOpen);
                     if (!isSurveyOpen) setSurveyPage(0);
@@ -312,6 +323,7 @@ export default function FeedbackWidget() {
 
             {/* BOTÓN VISITAS (Ojito) - Se comenta setIsOpen para que ya no abra las caritas */}
             <button
+                className="feedback-btn"
                 onClick={() => {
                    // setIsOpen(!isOpen); // COMENTADO a petición
                 }}
