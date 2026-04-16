@@ -20,6 +20,12 @@ export default function RootLayout({
     <html lang="es" data-wf-page="68dd617b668359798a899405" data-wf-site="68dd617a668359798a8993c6" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta property="og:type" content="website"/>
+       <meta property="og:image" content="href=https://congresoedomex.gob.mx/storage/images/favicon.svg"/>
+        <meta property="og:image:type" content="image/png"/>
+        <meta property="og:image:width" content="1024"/>
+        <meta property="og:image:height" content="683"/>
+        
         <link href="/css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="/css/webflow.css" rel="stylesheet" type="text/css" />
         <link href="/css/congreso-edo-mex.webflow.css" rel="stylesheet" type="text/css" />
