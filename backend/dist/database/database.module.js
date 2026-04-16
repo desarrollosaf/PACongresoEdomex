@@ -25,6 +25,9 @@ const agenda_entity_1 = require("./entities/agenda.entity");
 const sede_entity_1 = require("./entities/sede.entity");
 const banners_entity_1 = require("./entities/banners.entity");
 const gender_entity_1 = require("./entities/gender.entity");
+const visita_pagina_entity_1 = require("./entities/visita-pagina.entity");
+const encuesta_satisfaccion_entity_1 = require("./entities/encuesta-satisfaccion.entity");
+const encuesta_satisfaccion_detallada_entity_1 = require("./entities/encuesta-satisfaccion-detallada.entity");
 const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     legislatura_entity_1.Legislatura,
     diputado_entity_1.Diputado,
@@ -41,7 +44,10 @@ const sequelizeFeatures = sequelize_1.SequelizeModule.forFeature([
     agenda_entity_1.Agenda,
     sede_entity_1.Sede,
     banners_entity_1.Banners,
-    gender_entity_1.Gender
+    gender_entity_1.Gender,
+    visita_pagina_entity_1.VisitaPagina,
+    encuesta_satisfaccion_entity_1.EncuestaSatisfaccion,
+    encuesta_satisfaccion_detallada_entity_1.EncuestaSatisfaccionDetallada
 ]);
 let DatabaseModule = class DatabaseModule {
 };
