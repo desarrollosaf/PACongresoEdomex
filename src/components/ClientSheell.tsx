@@ -14,20 +14,21 @@ export default function ClientShell({
 }) {
   const pathname = usePathname();
   const isConvocatoria = pathname.startsWith("/convocatoria");
+  const isReconocimiento = pathname.startsWith("/reconocimientodocente");
 
   return (
     <>
-      {!isConvocatoria && <Header />}
+      {!isConvocatoria && !isReconocimiento && <Header />}
 
       <main className="flex-1">
         {children}
       </main>
 
-      {!isConvocatoria && <Footer />}
-      {!isConvocatoria && <FeedbackWidget />}
+      {!isConvocatoria && !isReconocimiento && <Footer />}
+      {!isConvocatoria && !isReconocimiento && <FeedbackWidget />}
       {/* {!isConvocatoria && <FloatingChat />} */}
 
-      {!isConvocatoria && (
+      {!isConvocatoria && !isReconocimiento && (
         <>
           <Script
             src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=68dd617a668359798a8993c6"
