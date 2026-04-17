@@ -55,7 +55,7 @@ export async function getIniciativasByComision(id: string) {
 export async function getEventosByComision(id: string) {
   try {
     const res = await fetch(
-      `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/comision/eventos?id=${id}`,
+      `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/comision/eventos/?id=${id}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
