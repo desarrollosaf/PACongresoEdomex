@@ -13,7 +13,7 @@ export default function ClientShell({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isConvocatoria = pathname.startsWith("/convocatoria");
+  const isConvocatoria = pathname.startsWith("/consulta");
   const isReconocimiento = pathname.startsWith("/reconocimientodocente");
 
   return (
