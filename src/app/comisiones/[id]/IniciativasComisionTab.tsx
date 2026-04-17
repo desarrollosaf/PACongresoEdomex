@@ -19,6 +19,7 @@ type Iniciativa = {
   grupo_parlamentario: string;
   decreto?: string;
   fecha_aprobacion?: string;
+  documento?: string;
 };
 
 type IniciativasComisionTabProps = {
@@ -175,7 +176,7 @@ export default function IniciativasComisionTab({ comisionId, serverIniciativas }
 
                     <div className="ini-side-btns">
                       <a
-                        href={ini.id ? `/iniciativas/${ini.id}` : '#'}
+                        href={ini.documento ? `/api/documentos${ini.documento.startsWith('/') ? '' : '/'}${ini.documento}` : '#'}
                         className="ini-btn ini-btn-primary"
                       >
                         <img src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png" alt="" />
