@@ -110,7 +110,7 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                     <span className="evt-comision-unida-nombre">{comisionPrincipal}</span><br />
                     {comisionesUnicas.map((c) => (
                       <span key={c.comision_id} className="evt-comision-unida-nombre">
-                        {c.nombre}
+                        {c.nombre}<br />
                       </span>
                     ))}
                   </div>
@@ -150,14 +150,14 @@ export default function EventosComisionTab({ serverEventos, comisionPrincipal }:
                   )}
 
                   {/* Botones */}
-                  <div className="evt-btns">
+                  {/* <div className="evt-btns">
                     <a href={`/eventos/${evt.evento_id}/asistencia`} className="evt-btn evt-btn--asistencia">
                       Asistencia
                     </a>
                     <a href={`/eventos/${evt.evento_id}/version`} className="evt-btn evt-btn--version">
                       Versión
                     </a>
-                  </div>
+                  </div> */}
                 </div>
                 
 
