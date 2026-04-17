@@ -38,7 +38,7 @@ export default function EstadisticasHomeSection({ estadisticas }: Props) {
           {/* <div className="text-block color_oro">+</div> */}
           <div className="text-block">  {  estadisticas.data.totales_generales.total_sesiones}</div>
         </div>
-        <div className="descripcion_dato">Reuniones de Sesiones</div>
+        <div className="descripcion_dato">Sesiones</div>
       </div>
     </div>
   )
