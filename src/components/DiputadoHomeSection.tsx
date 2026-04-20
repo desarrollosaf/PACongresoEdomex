@@ -294,13 +294,13 @@ export default function DiputadoHomeSection({ diputados }: Props) {
 
         {/* Filtros partido */}
         <div className="filtros-diputados grupos-parlamentarios-selector">
-          <a href="#" className="button grupo_parlamentario btn-grupo-parlamentario w-button">morena</a>
-          <a href="#" className="button grupo_parlamentario btn-pan btn-grupo-parlamentario w-button">PAN</a>
-          <a href="#" className="button grupo_parlamentario btn-pt btn-grupo-parlamentario w-button">PT</a>
-          <a href="#" className="button grupo_parlamentario btn-pri btn-grupo-parlamentario w-button">PRI</a>
-          <a href="#" className="button grupo_parlamentario btn-pvem btn-grupo-parlamentario w-button">PVEM</a>
-          <a href="#" className="button grupo_parlamentario btn-mc btn-grupo-parlamentario w-button">MC</a>
-          <a href="#" className="button grupo_parlamentario btn-prd btn-grupo-parlamentario w-button">PRD</a>
+          <Link href="/parlamentarios?partido=morena" className="button grupo_parlamentario btn-grupo-parlamentario w-button">morena</Link>
+          <Link href="/parlamentarios?partido=pan" className="button grupo_parlamentario btn-pan btn-grupo-parlamentario w-button">PAN</Link>
+          <Link href="/parlamentarios?partido=pt" className="button grupo_parlamentario btn-pt btn-grupo-parlamentario w-button">PT</Link>
+          <Link href="/parlamentarios?partido=pri" className="button grupo_parlamentario btn-pri btn-grupo-parlamentario w-button">PRI</Link>
+          <Link href="/parlamentarios?partido=pvem" className="button grupo_parlamentario btn-pvem btn-grupo-parlamentario w-button">PVEM</Link>
+          <Link href="/parlamentarios?partido=mc" className="button grupo_parlamentario btn-mc btn-grupo-parlamentario w-button">MC</Link>
+          <Link href="/parlamentarios?partido=prd" className="button grupo_parlamentario btn-prd btn-grupo-parlamentario w-button">PRD</Link>
         </div>
 
         {/*
