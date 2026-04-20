@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
 
 type Foto = {
@@ -58,6 +58,19 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
 
     const resultadosRef = useRef<HTMLDivElement>(null);
     const botonesRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const p = params.get('partido');
+            if (p) {
+                setPartidoSeleccionado(p);
+                setTimeout(() => {
+                    resultadosRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+        }
+    }, []);
 
     const handleSelectPartido = (partidoId: string) => {
         setPartidoSeleccionado(partidoId);
