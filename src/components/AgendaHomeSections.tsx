@@ -35,8 +35,17 @@ type Props = {
 const extraerYoutubeSrc = (iframeString?: string) => {
   if (!iframeString) return null;
 
-  const match = iframeString.match(/src="([^"]+)"/i);
-  return match?.[1] || null;
+  // Intenta extraer src de un iframe
+  const srcMatch = iframeString.match(/src="([^"]+)"/i);
+  if (srcMatch?.[1]) return srcMatch[1];
+
+  // Convierte URLs directas de YouTube al formato embed
+  const ytMatch = iframeString.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/))([a-zA-Z0-9_-]{11})/
+  );
+  if (ytMatch?.[1]) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+
+  return null;
 };
 
 const formatearFechaHora = (fecha?: string) => {
@@ -72,9 +81,7 @@ export default function AgendaHomeSection({ agenda, ultimaSesion, transmision }:
   const agendaPrincipal = transmision || agendas?.[0];
   const agendaLista = agendas.slice(1, 5);
 
-  const videoSrc =
-    extraerYoutubeSrc(agendaPrincipal?.liga) ||
-    'https://www.youtube.com/embed/KbfsXJrPXCU?rel=0&controls=1&autoplay=0&mute=0&start=0';
+  const videoSrc = extraerYoutubeSrc(agendaPrincipal?.liga) ?? null;
 
   return (
     <section className="max_width">
@@ -130,21 +137,23 @@ export default function AgendaHomeSection({ agenda, ultimaSesion, transmision }:
             style={{ paddingTop: '56.17021276595745%' }}
             className="w-embed-youtubevideo youtube"
           >
-            <iframe
-              src={videoSrc}
-              frameBorder={0}
-              style={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                width: '100%',
-                height: '100%',
-                pointerEvents: 'auto',
-              }}
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title={agendaPrincipal?.descripcion || 'Agenda Parlamentaria'}
-            />
+            {videoSrc ? (
+              <iframe
+                src={videoSrc}
+                frameBorder={0}
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'auto',
+                }}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title={agendaPrincipal?.descripcion || 'Agenda Parlamentaria'}
+              />
+            ) : null}
           </div>
 
           <h4>{agendaPrincipal?.descripcion || 'Sin evento destacado'}</h4>
