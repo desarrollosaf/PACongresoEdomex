@@ -14,11 +14,6 @@ export class AgendaService {
   async findAll() {
     const date = new Date();
     const agendas = await Agenda.findAll({
-      where: {
-        fecha_hora: {
-          [Op.lt]: date,
-        },
-      },
       order: [['fecha_hora', 'DESC']],
       include: [Sede],
       limit: 5,
