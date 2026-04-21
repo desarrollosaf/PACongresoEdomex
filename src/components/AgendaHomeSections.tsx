@@ -37,15 +37,17 @@ const extraerYoutubeSrc = (iframeString?: string) => {
 
   // Intenta extraer src de un iframe
   const srcMatch = iframeString.match(/src="([^"]+)"/i);
-  if (srcMatch?.[1]) return srcMatch[1];
+  const rawUrl = srcMatch?.[1] ?? null;
 
   // Convierte URLs directas de YouTube al formato embed
-  const ytMatch = iframeString.match(
+  const urlToProcess = rawUrl ?? iframeString.trim();
+  const ytMatch = urlToProcess.match(
     /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/))([a-zA-Z0-9_-]{11})/
   );
-  if (ytMatch?.[1]) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+  if (!ytMatch?.[1]) return null;
 
-  return null;
+  // Elimina el parámetro "si" de tracking que puede causar Error 153
+  return `https://www.youtube.com/embed/${ytMatch[1]}`;
 };
 
 const formatearFechaHora = (fecha?: string) => {
