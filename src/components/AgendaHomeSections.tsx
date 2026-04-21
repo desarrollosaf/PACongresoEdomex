@@ -26,6 +26,7 @@ type UltimaSesion = {
 
 type Props = {
   agenda: AgendaItem[] | null;
+  transmision?: AgendaItem | null;
   ultimaSesion?: UltimaSesion | null;
 };
 
@@ -65,10 +66,10 @@ const formatearHora = (fecha?: string) => {
   });
 };
 
-export default function AgendaHomeSection({ agenda, ultimaSesion  }: Props) {
+export default function AgendaHomeSection({ agenda, ultimaSesion, transmision }: Props) {
   const agendas = Array.isArray(agenda) ? agenda : [];
 
-  const agendaPrincipal = agendas?.[0];
+  const agendaPrincipal = transmision || agendas?.[0];
   const agendaLista = agendas.slice(1, 5);
 
   const videoSrc =

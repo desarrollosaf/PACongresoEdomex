@@ -15,7 +15,7 @@ export default async function Home() {
   const mainBoletines = boletines && boletines.length >= 5 ? boletines : null;
   const diputados = await getDiputados2();
   const comunicados = await getComunicadosHome();
-  const agenda = await getAgendaHome();
+  const { agenda, transmision } = await getAgendaHome();
   const sesionUltima = await getSesionReciente();
   const banners = await getBannersHome();
   const estadisticas = await getEstadisticasHome();
@@ -53,7 +53,7 @@ export default async function Home() {
       </section>
       <DiputadoHomeSection diputados={diputados} />
 
-      <AgendaHomeSection agenda={agenda}  ultimaSesion={sesionUltima?.[0]} />
+      <AgendaHomeSection agenda={agenda}  ultimaSesion={sesionUltima?.[0]} transmision={transmision} />
 
       <section className="max_width">
         <div>
