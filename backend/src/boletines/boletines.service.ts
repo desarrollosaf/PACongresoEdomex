@@ -159,24 +159,33 @@ export class BoletinesService {
   }
 
   async boletinesAll(pagina: number){
-  return await Comunicados.findAndCountAll({
+    const legis = await Legislatura.findOne({ where: { numero: 'LXII' } });
+    const legisId = legis?.id || '';
+
+    return await Comunicados.findAndCountAll({
+      where: {
+        publicado: 0
+      },
       offset: (pagina - 1) * 12,
       limit: 12,
-      order: [['fecha', 'DESC']],
-    include: [
-      {
-        model: Foto,
-        as: "fotos",
-        separate: true,
-        order: [['path', 'ASC']]
-      },
-      {
-        model: DescripcionComunicados,
-        as: 'descripcion',
-        separate: true,
-        order: [['orden', 'ASC']]
-      }
-    ]
-    })
+      order: [
+        [literal(`legislatura_id = '${legisId}'`), 'DESC'],
+        [literal('CAST(comunicado AS UNSIGNED)'), 'DESC']
+      ],
+      include: [
+        {
+          model: Foto,
+          as: "fotos",
+          separate: true,
+          order: [['path', 'ASC']]
+        },
+        {
+          model: DescripcionComunicados,
+          as: 'descripcion',
+          separate: true,
+          order: [['orden', 'ASC']]
+        }
+      ]
+    });
   }
 }
