@@ -7,6 +7,7 @@ import { response } from 'express';
 import { Foto } from 'src/database/entities/fotos.entity';
 import { DescripcionComunicados } from 'src/database/entities/descripcioncomunicados.entity';
 import { Op, literal } from 'sequelize';
+import { Legislatura } from 'src/database/entities/legislatura.entity';
 
 
 @Injectable()
@@ -21,21 +22,71 @@ export class BoletinesService {
   }
 
   async findAll() {
-    return await Comunicados.findAll({
-      limit: 5,
-      order: [['fecha', 'DESC']],
+    const legis = await Legislatura.findOne({ where: { numero: 'LXII' } });
+
+    const comunicados2 = await Comunicados.findAll({
+      limit: 9,
+      where: {
+        legislatura_id: legis?.id || null,
+        publicado: 0
+      },
+      order: [[literal('CAST(comunicado AS UNSIGNED)'), 'DESC']],
       include: [
         {
           model: Foto,
-          as:"fotos"
+          as: "fotos",
+          separate: true,
+          order: [['path', 'ASC']]
         },
         {
           model: DescripcionComunicados,
           as: 'descripcion', 
+          separate: true,
           order: [['orden', 'ASC']]
         }
       ]
-    })
+    });
+
+    const comunicadosd = await Comunicados.findAll({
+      limit: 9,
+      where: {
+        publicado: 0
+      },
+      order: [[literal('CAST(comunicado AS UNSIGNED)'), 'DESC']],
+      include: [
+        {
+          model: Foto,
+          as: "fotos",
+          separate: true,
+          order: [['path', 'ASC']]
+        },
+        {
+          model: DescripcionComunicados,
+          as: 'descripcion', 
+          separate: true,
+          order: [['orden', 'ASC']]
+        }
+      ]
+    });
+
+    const map = new Map();
+    const merged = [];
+    
+    for (const c of comunicados2) {
+      if (!map.has(c.id)) {
+        map.set(c.id, true);
+        merged.push(c);
+      }
+    }
+    
+    for (const c of comunicadosd) {
+      if (!map.has(c.id)) {
+        map.set(c.id, true);
+        merged.push(c);
+      }
+    }
+
+    return merged.slice(0, 9);
   }
 
   async findOne(id: string) {
@@ -43,7 +94,9 @@ export class BoletinesService {
       include: [
         {
           model: Foto,
-          as: "fotos"
+          as: "fotos",
+          separate: true,
+          order: [['path', 'ASC']]
         },
         {
           model: DescripcionComunicados,
@@ -91,7 +144,9 @@ export class BoletinesService {
     include: [
       {
         model: Foto,
-        as:"fotos"
+        as:"fotos",
+        separate: true,
+        order: [['path', 'ASC']]
       },
       {
         model: DescripcionComunicados,
@@ -108,17 +163,20 @@ export class BoletinesService {
       offset: (pagina - 1) * 12,
       limit: 12,
       order: [['fecha', 'DESC']],
-      include: [
-        {
-          model: Foto,
-          as:"fotos"
-        },
-        {
-          model: DescripcionComunicados,
-          as: 'descripcion', 
-          order: [['orden', 'ASC']]
-        }
-      ],
+    include: [
+      {
+        model: Foto,
+        as: "fotos",
+        separate: true,
+        order: [['path', 'ASC']]
+      },
+      {
+        model: DescripcionComunicados,
+        as: 'descripcion',
+        separate: true,
+        order: [['orden', 'ASC']]
+      }
+    ]
     })
   }
 }
