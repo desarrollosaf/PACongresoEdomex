@@ -3,7 +3,10 @@ import { UpdateAgendaDto } from './dto/update-agenda.dto';
 import { Agenda } from 'src/database/entities/agenda.entity';
 export declare class AgendaService {
     create(createAgendaDto: CreateAgendaDto): string;
-    findAll(): Promise<Agenda[]>;
+    findAll(): Promise<{
+        agendas: Agenda[];
+        transmision: Agenda | null;
+    }>;
     findOne(id: number): string;
     update(id: number, updateAgendaDto: UpdateAgendaDto): string;
     remove(id: number): string;

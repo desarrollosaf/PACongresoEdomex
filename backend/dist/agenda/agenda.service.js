@@ -10,19 +10,33 @@ exports.AgendaService = void 0;
 const common_1 = require("@nestjs/common");
 const agenda_entity_1 = require("../database/entities/agenda.entity");
 const sede_entity_1 = require("../database/entities/sede.entity");
+const sequelize_1 = require("sequelize");
 let AgendaService = class AgendaService {
     create(createAgendaDto) {
         return 'This action adds a new agenda';
     }
     async findAll() {
+        const date = new Date();
         const agendas = await agenda_entity_1.Agenda.findAll({
             order: [['fecha_hora', 'DESC']],
             include: [sede_entity_1.Sede],
             limit: 5,
         });
+        const transmision = await agenda_entity_1.Agenda.findOne({
+            where: {
+                transmision: 1,
+                fecha_hora: {
+                    [sequelize_1.Op.lt]: date,
+                },
+            },
+            order: [['fecha_hora', 'DESC']],
+        });
         console.log("agendas");
         console.log(JSON.stringify(agendas, null, 2));
-        return agendas;
+        return {
+            agendas,
+            transmision,
+        };
     }
     findOne(id) {
         return `This action returns a #${id} agenda`;
