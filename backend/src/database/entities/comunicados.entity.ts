@@ -21,6 +21,12 @@ export class Comunicados extends Model {
   @Column({ type: DataType.TEXT })
   declare texto: string;
 
+  @Column({ type: DataType.INTEGER })
+  declare publicado: number;
+
+  @Column({ type: DataType.STRING })
+  declare legislatura_id: string;
+
   @HasMany(() => Foto, {
     foreignKey: 'fotoable_id',
     scope: {
