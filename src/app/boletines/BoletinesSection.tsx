@@ -97,7 +97,106 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
             link.click();
 
             URL.revokeObjectURL(url);
-            };
+        };
+
+    const generarPDF = async () => {
+        const imagenesHTML = boletin?.fotos?.map((item: any, index: number) => {
+            return `
+            <div style="flex: 1 1 30%; margin: 8px; text-align: center; page-break-inside: avoid; break-inside: avoid;">
+                <img src="/api/proxy-image?url=https://sistema.congresoedomex.gob.mx/${item.path}" style="width: 100%; max-width: 250px; height: 180px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
+            </div>
+            `;
+        }).join('') || '';
+
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'absolute';
+        wrapper.style.left = '-9999px';
+        wrapper.style.top = '0';
+        wrapper.style.width = '800px'; 
+        wrapper.style.background = 'white';
+
+        wrapper.innerHTML = `
+            <div id="pdf-content-boletin" style="padding: 40px; font-family: Arial, Helvetica, sans-serif; color: #333;">
+                <style>
+                    .pdf-text-content p, .pdf-text-content div {
+                        page-break-inside: avoid;
+                        break-inside: avoid;
+                        margin-bottom: 12px;
+                    }
+                </style>
+                <!-- Encabezado -->
+                <div style="page-break-inside: avoid; break-inside: avoid;">
+                    <h1 style="font-size: 26px; color: #222; text-align: left; margin-bottom: 20px; font-weight: bold; line-height: 1.3;">
+                        ${boletin?.titulo || ''}
+                    </h1>
+                    
+                    <div style="display: flex; justify-content: space-between; border-top: 2px solid #a32a32; border-bottom: 1px solid #eee; padding: 15px 0; margin-bottom: 30px; font-size: 13px; color: #666; font-weight: bold;">
+                        <div style="color: #a32a32;">COMUNICADO ${boletin?.comunicado || ''}</div>
+                        <div>${new Date((boletin?.fecha || '') + "T00:00:00").toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' })}</div>
+                    </div>
+                </div>
+
+                <!-- Bullets si existen -->
+                <div style="font-size: 16px; line-height: 1.6; color: #444; font-weight: 500; font-style: italic; margin-bottom: 25px;">
+                    ${boletin?.descripcion?.map((item: any) => `<p style="margin: 0 0 10px 0; page-break-inside: avoid; break-inside: avoid;">• ${item.bullets}</p>`).join('') || ''}
+                </div>
+
+                <!-- Bloque único de imágenes -->
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 30px; page-break-inside: avoid; break-inside: avoid;">
+                    ${imagenesHTML}
+                </div>
+
+                <!-- Contenedor del texto -->
+                <div style="font-size: 15px; line-height: 1.8; text-align: justify; color: #333; margin-bottom: 40px;" class="pdf-text-content">
+                    ${boletin?.texto || ''}
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(wrapper);
+
+        const images = wrapper.querySelectorAll('img');
+        const loadPromises = Array.from(images).map((img) => {
+            return new Promise((resolve) => {
+                if (img.complete) {
+                    resolve(true);
+                } else {
+                    img.onload = () => resolve(true);
+                    img.onerror = () => resolve(true); // Evita quedarse colgado si falla una imagen
+                }
+            });
+        });
+
+        await Promise.all(loadPromises);
+
+        const opt = {
+            margin:       [15, 10, 15, 10], // superior, izquierda, inferior, derecha (mm)
+            filename:     `boletin_${boletin?.titulo?.substring(0, 30) || 'congreso'}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2, useCORS: true, logging: false },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+        };
+
+        // Generar y descargar, después limpiar DOM
+        (window as any).html2pdf().set(opt).from(wrapper.firstElementChild).save().then(() => {
+            document.body.removeChild(wrapper);
+        });
+    };
+
+    const descargarPDF = (e: React.MouseEvent) => {
+        e.preventDefault();
+        
+        // Si el estado de carga o la libreria se ocupan, lo manejamos rápido aquí:
+        if (typeof window !== 'undefined' && !(window as any).html2pdf) {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+            script.onload = generarPDF;
+            document.head.appendChild(script);
+        } else {
+            generarPDF();
+        }
+    };
     
     return (
     <>
@@ -126,7 +225,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                     </div>
                     <div className="w-col w-col-6">
                         <div className="fecha-boletin-centrada">  
-                            <a  title="Descargar" className="btn-boletin w-button"> PDF</a>
+                            <a href="#" onClick={descargarPDF} title="Descargar PDF" className="btn-boletin w-button"> PDF</a>
                             <a onClick={descargarWord} title="Descargar" className="btn-boletin w-button"> WORD</a>
                             <a onClick={descargarTXT} title="Descargar" className="btn-boletin w-button"> TXT</a>
                         </div>
