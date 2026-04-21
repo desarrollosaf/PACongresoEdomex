@@ -19,6 +19,7 @@ const sequelize_1 = require("@nestjs/sequelize");
 const fotos_entity_1 = require("../database/entities/fotos.entity");
 const descripcioncomunicados_entity_1 = require("../database/entities/descripcioncomunicados.entity");
 const sequelize_2 = require("sequelize");
+const legislatura_entity_1 = require("../database/entities/legislatura.entity");
 let BoletinesService = class BoletinesService {
     comunicadosModel;
     constructor(comunicadosModel) {
@@ -28,28 +29,74 @@ let BoletinesService = class BoletinesService {
         return 'This action adds a new boletine';
     }
     async findAll() {
-        return await comunicados_entity_1.Comunicados.findAll({
-            limit: 5,
-            order: [['fecha', 'DESC']],
+        const legis = await legislatura_entity_1.Legislatura.findOne({ where: { numero: 'LXII' } });
+        const comunicados2 = await comunicados_entity_1.Comunicados.findAll({
+            limit: 9,
+            where: {
+                legislatura_id: legis?.id || null,
+                publicado: 0
+            },
+            order: [[(0, sequelize_2.literal)('CAST(comunicado AS UNSIGNED)'), 'DESC']],
             include: [
                 {
                     model: fotos_entity_1.Foto,
-                    as: "fotos"
+                    as: "fotos",
+                    separate: true,
+                    order: [['path', 'ASC']]
                 },
                 {
                     model: descripcioncomunicados_entity_1.DescripcionComunicados,
                     as: 'descripcion',
+                    separate: true,
                     order: [['orden', 'ASC']]
                 }
             ]
         });
+        const comunicadosd = await comunicados_entity_1.Comunicados.findAll({
+            limit: 9,
+            where: {
+                publicado: 0
+            },
+            order: [[(0, sequelize_2.literal)('CAST(comunicado AS UNSIGNED)'), 'DESC']],
+            include: [
+                {
+                    model: fotos_entity_1.Foto,
+                    as: "fotos",
+                    separate: true,
+                    order: [['path', 'ASC']]
+                },
+                {
+                    model: descripcioncomunicados_entity_1.DescripcionComunicados,
+                    as: 'descripcion',
+                    separate: true,
+                    order: [['orden', 'ASC']]
+                }
+            ]
+        });
+        const map = new Map();
+        const merged = [];
+        for (const c of comunicados2) {
+            if (!map.has(c.id)) {
+                map.set(c.id, true);
+                merged.push(c);
+            }
+        }
+        for (const c of comunicadosd) {
+            if (!map.has(c.id)) {
+                map.set(c.id, true);
+                merged.push(c);
+            }
+        }
+        return merged.slice(0, 9);
     }
     async findOne(id) {
         return await comunicados_entity_1.Comunicados.findByPk(id, {
             include: [
                 {
                     model: fotos_entity_1.Foto,
-                    as: "fotos"
+                    as: "fotos",
+                    separate: true,
+                    order: [['path', 'ASC']]
                 },
                 {
                     model: descripcioncomunicados_entity_1.DescripcionComunicados,
@@ -90,7 +137,9 @@ let BoletinesService = class BoletinesService {
             include: [
                 {
                     model: fotos_entity_1.Foto,
-                    as: "fotos"
+                    as: "fotos",
+                    separate: true,
+                    order: [['path', 'ASC']]
                 },
                 {
                     model: descripcioncomunicados_entity_1.DescripcionComunicados,
@@ -109,14 +158,17 @@ let BoletinesService = class BoletinesService {
             include: [
                 {
                     model: fotos_entity_1.Foto,
-                    as: "fotos"
+                    as: "fotos",
+                    separate: true,
+                    order: [['path', 'ASC']]
                 },
                 {
                     model: descripcioncomunicados_entity_1.DescripcionComunicados,
                     as: 'descripcion',
+                    separate: true,
                     order: [['orden', 'ASC']]
                 }
-            ],
+            ]
         });
     }
 };

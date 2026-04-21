@@ -8,6 +8,8 @@ export declare class Comunicados extends Model {
     comunicado: string;
     titulo: string;
     texto: string;
+    publicado: number;
+    legislatura_id: string;
     fotos: Foto[];
     descripcion: DescripcionComunicados[];
     autores: AutoresComunicados[];
