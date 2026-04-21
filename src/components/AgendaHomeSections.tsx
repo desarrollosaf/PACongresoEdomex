@@ -32,6 +32,19 @@ type Props = {
 
 
 
+const extraerYoutubeId = (iframeString?: string) => {
+  if (!iframeString) return null;
+  const match = iframeString.match(
+    /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|live\/|shorts\/))([a-zA-Z0-9_-]{11})/
+  );
+  return match?.[1] ?? null;
+};
+
+const extraerYoutubeWatch = (iframeString?: string) => {
+  const id = extraerYoutubeId(iframeString);
+  return id ? `https://www.youtube.com/watch?v=${id}` : null;
+};
+
 const extraerYoutubeSrc = (iframeString?: string) => {
   if (!iframeString) return null;
 
@@ -184,7 +197,7 @@ export default function AgendaHomeSection({ agenda, ultimaSesion, transmision }:
 
                       {item.liga ? (
                         <a
-                          href={extraerYoutubeSrc(item.liga) || '#'}
+                          href={extraerYoutubeWatch(item.liga) || '#'}
                           target="_blank"
                           rel="noreferrer"
                           className="btn-envivo w-button"
