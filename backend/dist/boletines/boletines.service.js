@@ -151,10 +151,18 @@ let BoletinesService = class BoletinesService {
         });
     }
     async boletinesAll(pagina) {
+        const legis = await legislatura_entity_1.Legislatura.findOne({ where: { numero: 'LXII' } });
+        const legisId = legis?.id || '';
         return await comunicados_entity_1.Comunicados.findAndCountAll({
+            where: {
+                publicado: 0
+            },
             offset: (pagina - 1) * 12,
             limit: 12,
-            order: [['fecha', 'DESC']],
+            order: [
+                [(0, sequelize_2.literal)(`legislatura_id = '${legisId}'`), 'DESC'],
+                [(0, sequelize_2.literal)('CAST(comunicado AS UNSIGNED)'), 'DESC']
+            ],
             include: [
                 {
                     model: fotos_entity_1.Foto,
