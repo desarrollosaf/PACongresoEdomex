@@ -38,6 +38,22 @@
   font-display: swap;
 }
 
+.w-embed-youtubevideo {
+  background-image: url('https://d3e54v103j8qbb.cloudfront.net/static/youtube-placeholder.2b05e7d68d.svg');
+  background-position: 50%;
+  background-size: cover;
+  width: 100%;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+}
+
+.w-embed-youtubevideo:empty {
+  min-height: 75px;
+  padding-bottom: 56.25%;
+}
+
 .section-2 {
   text-align: center;
   background-color: #fff;
@@ -380,6 +396,14 @@
   margin-left: 0;
   margin-right: 0;
   display: block;
+}
+
+.youtube {
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 991px) {
