@@ -55,7 +55,7 @@ let DiputadosService = class DiputadosService {
     }
     async findAll2() {
         return this.diputadoModel.findAll({
-            limit: 20,
+            limit: 25,
             order: sequelize_2.Sequelize.literal('RAND()'),
             include: [
                 fotos_entity_1.Foto,
@@ -94,7 +94,11 @@ let DiputadosService = class DiputadosService {
         return this.diputadoModel.findOne({
             where: { id },
             include: [
-                fotos_entity_1.Foto,
+                {
+                    model: fotos_entity_1.Foto,
+                    separate: true,
+                    order: [['path', 'ASC']]
+                },
                 gender_entity_1.Gender,
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
@@ -119,7 +123,12 @@ let DiputadosService = class DiputadosService {
                                 {
                                     model: comunicados_entity_1.Comunicados,
                                     order: [['fecha', 'DESC']],
-                                    include: [{ model: fotos_entity_2.Foto, as: 'fotos' }]
+                                    include: [{
+                                            model: fotos_entity_2.Foto,
+                                            as: 'fotos',
+                                            separate: true,
+                                            order: [['path', 'ASC']]
+                                        }]
                                 }
                             ]
                         }
@@ -132,7 +141,11 @@ let DiputadosService = class DiputadosService {
         const perfil = await this.diputadoModel.findOne({
             where: { id },
             include: [
-                fotos_entity_1.Foto,
+                {
+                    model: fotos_entity_1.Foto,
+                    separate: true,
+                    order: [['path', 'ASC']]
+                },
                 {
                     model: integrante_legislatura_entity_1.IntegranteLegislatura,
                     where: { fecha_fin: null },
@@ -148,7 +161,12 @@ let DiputadosService = class DiputadosService {
                                 {
                                     model: comunicados_entity_1.Comunicados,
                                     order: [['fecha', 'DESC']],
-                                    include: [{ model: fotos_entity_2.Foto, as: 'fotos' }]
+                                    include: [{
+                                            model: fotos_entity_2.Foto,
+                                            as: 'fotos',
+                                            separate: true,
+                                            order: [['path', 'ASC']]
+                                        }]
                                 }
                             ]
                         }

@@ -46,7 +46,7 @@ export class DiputadosService {
 
   async findAll2() {
     return this.diputadoModel.findAll({
-      limit: 20,
+      limit: 25,
       order: Sequelize.literal('RAND()'), // 👈 random
       include: [
         Foto,
@@ -89,7 +89,11 @@ export class DiputadosService {
     return this.diputadoModel.findOne({
       where: { id },
       include: [
-        Foto,
+        {
+          model: Foto,
+          separate: true,
+          order: [['path', 'ASC']]
+        },
         Gender,
         {
           model: IntegranteLegislatura,
@@ -116,7 +120,12 @@ export class DiputadosService {
                   // Nota: Sequelize puede que ignore el order en el include si se usa separate. 
                   // Podríamos reordenar en memoria si esto importa, pero Sequelize usualmente lo maneja bien.
                   order: [['fecha', 'DESC']],
-                  include: [{ model: FotosComunicado, as: 'fotos' }]
+                  include: [{
+                    model: FotosComunicado,
+                    as: 'fotos',
+                    separate: true,
+                    order: [['path', 'ASC']]
+                  }]
                 }
               ]
             }
@@ -132,7 +141,11 @@ export class DiputadosService {
     const perfil = await this.diputadoModel.findOne({
       where: { id },
       include: [
-        Foto,
+        {
+          model: Foto,
+          separate: true,
+          order: [['path', 'ASC']]
+        },
         {
           model: IntegranteLegislatura,
           where: { fecha_fin: null },
@@ -148,7 +161,12 @@ export class DiputadosService {
                 {
                   model: Comunicados,
                   order: [['fecha', 'DESC']],
-                  include: [{ model: FotosComunicado, as: 'fotos' }]
+                  include: [{
+                    model: FotosComunicado,
+                    as: 'fotos',
+                    separate: true,
+                    order: [['path', 'ASC']]
+                  }]
                 }
               ]
             }
