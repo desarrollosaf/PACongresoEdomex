@@ -531,16 +531,29 @@
   }
 
   .columns-7 {
-    grid-column-gap: 40px;
-    grid-row-gap: 40px;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
     flex-flow: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .columns-7 > .w-col:first-child,
+  .columns-7 > .w-col:last-child {
+    display: none;
+  }
+
+  .columns-7 .column-10 {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .footer-text {
-    font-size: 30px;
-    line-height: 30px;
+    font-size: 22px;
+    line-height: 1.35;
   }
 
   .aviso-privacidad {
