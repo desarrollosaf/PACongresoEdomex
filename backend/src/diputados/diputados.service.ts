@@ -46,7 +46,7 @@ export class DiputadosService {
 
   async findAll2() {
     return this.diputadoModel.findAll({
-      limit: 25,
+      limit: 35,
       order: Sequelize.literal('RAND()'), // 👈 random
       include: [
         Foto,
