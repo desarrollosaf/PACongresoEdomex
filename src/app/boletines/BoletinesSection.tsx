@@ -120,7 +120,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
 
         const parrafos = textoLimpio.split('\n')
             .map((l: string) => l.trim()).filter((l: string) => l.length > 0)
-            .map((l: string) => `<p style="margin:0 0 10px 0;">${l}</p>`)
+            .map((l: string) => `<p style="margin:0 0 10px 0; page-break-inside:avoid; break-inside:avoid; orphans:4; widows:4;">${l}</p>`)
             .join('');
 
         const descripcion = (boletin?.descripcion || [])
@@ -166,12 +166,12 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
         ));
 
         const opt = {
-            margin:      [10, 10, 10, 10],
+            margin:      [14, 10, 14, 10],
             filename:    `boletin_${(boletin?.titulo || 'congreso').substring(0, 40)}.pdf`,
             image:       { type: 'jpeg', quality: 0.95 },
             html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0 },
             jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:   { mode: ['css', 'legacy'] }
+            pagebreak:   { mode: ['avoid-all', 'css'] }
         };
 
         (window as any).html2pdf().set(opt).from(el).save().then(() => {
