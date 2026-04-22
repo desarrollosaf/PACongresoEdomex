@@ -10,6 +10,7 @@ type Props = {
 
 export default function BoletinesSection({ boletin, boletines } : Props) {
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+    const [descargando, setDescargando] = useState<'pdf' | 'word' | 'txt' | null>(null);
     const fotos = boletin?.fotos || [];
 
     useEffect(() => {
@@ -54,140 +55,136 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
         };
 
         const descargarWord = () => {
-        const imagenes = boletin?.fotos?.length > 1
-            ? boletin.fotos
-                .slice(1)
-                .map(
-                    (item: any) => `
-                    <img 
-                    src="https://sistema.congresoedomex.gob.mx/${item.path}" 
-                    width="100" height = "100"
-                    style="margin-bottom:10px;"
-                    />
-                `
-                )
-                .join('')
-        : '';
-        const contenido = `
-        <html>
-            <head>
-                <meta charset="UTF-8">
-            </head>
-            <body>
-                <h1>${boletin?.titulo}</h1>
-                <strong>Comunicado: </strong> ${boletin?.comunicado} <br>
-                <strong>Fecha: </strong>${boletin?.fecha}<br><br>
-                ${boletin?.descripcion?.map((item: any) => `${item.bullets}`)}<br><br>
-                ${boletin?.fotos?.length > 0 ? `<img src="https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path}" width="150" height="150" /><br><br>` : ''}
-                ${imagenes}
-                ${boletin.texto}
-            </body>
-        </html>`;
-            
+            const imagenes = boletin?.fotos?.length > 1
+                ? boletin.fotos.slice(1).map((item: any) =>
+                    `<img src="https://sistema.congresoedomex.gob.mx/${item.path}" width="100" height="100" style="margin-bottom:10px;" />`
+                ).join('')
+                : '';
 
-        const blob = new Blob([contenido], {
-            type: "application/msword;charset=utf-8;",
-        });
+            const contenido = `
+            <html>
+                <head><meta charset="UTF-8"></head>
+                <body>
+                    <h1>${boletin?.titulo}</h1>
+                    <strong>Comunicado: </strong> ${boletin?.comunicado} <br>
+                    <strong>Fecha: </strong>${boletin?.fecha}<br><br>
+                    ${boletin?.descripcion?.map((item: any) => `${item.bullets}`)}<br><br>
+                    ${boletin?.fotos?.length > 0 ? `<img src="https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path}" width="150" height="150" /><br><br>` : ''}
+                    ${imagenes}
+                    ${boletin.texto}
+                </body>
+            </html>`;
 
+            const blob = new Blob([contenido], { type: 'application/msword;charset=utf-8;' });
             const url = URL.createObjectURL(blob);
-
-            const link = document.createElement("a");
+            const link = document.createElement('a');
             link.href = url;
             link.download = `boletin_${boletin?.titulo}.doc`;
             link.click();
-
             URL.revokeObjectURL(url);
         };
 
+
     const generarPDF = async () => {
-        const imagenesHTML = boletin?.fotos?.map((item: any, index: number) => {
-            return `
-            <div style="flex: 1 1 30%; margin: 8px; text-align: center; page-break-inside: avoid; break-inside: avoid;">
-                <img src="/api/proxy-image?url=https://sistema.congresoedomex.gob.mx/${item.path}" style="width: 100%; max-width: 250px; height: 180px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" />
-            </div>
-            `;
-        }).join('') || '';
+        const BASE = 'https://sistema.congresoedomex.gob.mx/';
+        const fotos = boletin?.fotos || [];
 
+        // Tamaño de imágenes según cuántas hay (máx 3 por fila)
+        const COLS = fotos.length === 1 ? 1 : fotos.length === 2 ? 2 : 3;
+        const IMG_W = fotos.length === 1 ? 300 : fotos.length === 2 ? 200 : 140;
+        const IMG_H = Math.round(IMG_W * 0.68);
+
+        // Filas de imágenes en tabla para evitar cortes
+        const rows: string[] = [];
+        for (let i = 0; i < fotos.length; i += COLS) {
+            const cells = fotos.slice(i, i + COLS).map((f: any) =>
+                `<td style="padding:4px; text-align:center;">
+                    <img src="/api/proxy-image?url=${BASE}${f.path}"
+                         width="${IMG_W}" height="${IMG_H}"
+                         style="display:block; width:${IMG_W}px; height:${IMG_H}px; object-fit:cover; border-radius:6px;" />
+                </td>`
+            ).join('');
+            rows.push(`<tr>${cells}</tr>`);
+        }
+        const tablaImagenes = rows.length > 0
+            ? `<table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse; margin-bottom:16px;">${rows.join('')}</table>`
+            : '';
+
+        // Limpiar HTML del texto y convertir a párrafos simples
+        const textoLimpio = (boletin?.texto || '')
+            .replace(/<\/p>/gi, '\n').replace(/<br\s*\/?>/gi, '\n')
+            .replace(/<\/div>/gi, '\n').replace(/<\/h[1-6]>/gi, '\n\n')
+            .replace(/<\/li>/gi, '\n').replace(/<[^>]+>/g, '')
+            .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+            .replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"');
+
+        const parrafos = textoLimpio.split('\n')
+            .map((l: string) => l.trim()).filter((l: string) => l.length > 0)
+            .map((l: string) => `<p style="margin:0 0 10px 0;">${l}</p>`)
+            .join('');
+
+        const descripcion = (boletin?.descripcion || [])
+            .map((d: any) => `<p style="margin:0 0 6px 0; font-style:italic; color:#555;">• ${d.bullets}</p>`)
+            .join('');
+
+        const fecha = new Date((boletin?.fecha || '') + 'T00:00:00')
+            .toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' });
+
+        // Crear el contenedor - el wrapper es invisible, el content es lo que se pasa a html2pdf
         const wrapper = document.createElement('div');
-        wrapper.style.position = 'absolute';
-        wrapper.style.left = '-9999px';
-        wrapper.style.top = '0';
-        wrapper.style.width = '800px'; 
-        wrapper.style.background = 'white';
+        wrapper.style.cssText = 'position:fixed; top:0; left:0; opacity:0; pointer-events:none; z-index:-1; background:white;';
 
-        wrapper.innerHTML = `
-            <div id="pdf-content-boletin" style="padding: 40px; font-family: Arial, Helvetica, sans-serif; color: #333;">
-                <style>
-                    .pdf-text-content p, .pdf-text-content div {
-                        page-break-inside: avoid;
-                        break-inside: avoid;
-                        margin-bottom: 12px;
-                    }
-                </style>
-                <!-- Encabezado -->
-                <div style="page-break-inside: avoid; break-inside: avoid;">
-                    <h1 style="font-size: 26px; color: #222; text-align: left; margin-bottom: 20px; font-weight: bold; line-height: 1.3;">
-                        ${boletin?.titulo || ''}
-                    </h1>
-                    
-                    <div style="display: flex; justify-content: space-between; border-top: 2px solid #a32a32; border-bottom: 1px solid #eee; padding: 15px 0; margin-bottom: 30px; font-size: 13px; color: #666; font-weight: bold;">
-                        <div style="color: #a32a32;">COMUNICADO ${boletin?.comunicado || ''}</div>
-                        <div>${new Date((boletin?.fecha || '') + "T00:00:00").toLocaleDateString('es-MX', { day: '2-digit', month: 'long', year: 'numeric' })}</div>
-                    </div>
-                </div>
+        const el = document.createElement('div');
+        el.style.cssText = [
+            'width:718px', 'background:white',
+            'font-family:Arial,Helvetica,sans-serif', 'color:#333',
+            'padding:20px', 'box-sizing:border-box', 'overflow:hidden'
+        ].join(';');
 
-                <!-- Bullets si existen -->
-                <div style="font-size: 16px; line-height: 1.6; color: #444; font-weight: 500; font-style: italic; margin-bottom: 25px;">
-                    ${boletin?.descripcion?.map((item: any) => `<p style="margin: 0 0 10px 0; page-break-inside: avoid; break-inside: avoid;">• ${item.bullets}</p>`).join('') || ''}
-                </div>
-
-                <!-- Bloque único de imágenes -->
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 30px; page-break-inside: avoid; break-inside: avoid;">
-                    ${imagenesHTML}
-                </div>
-
-                <!-- Contenedor del texto -->
-                <div style="font-size: 15px; line-height: 1.8; text-align: justify; color: #333; margin-bottom: 40px;" class="pdf-text-content">
-                    ${boletin?.texto || ''}
-                </div>
-            </div>
+        el.innerHTML = `
+            <h1 style="font-size:20px; font-weight:bold; margin:0 0 12px 0; line-height:1.35; color:#1a1a1a;">${boletin?.titulo || ''}</h1>
+            <table width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse; border-top:2px solid #a32a32; border-bottom:1px solid #ddd; margin-bottom:16px;">
+                <tr>
+                    <td style="padding:8px 0; font-size:12px; font-weight:bold; color:#a32a32;">COMUNICADO ${boletin?.comunicado || ''}</td>
+                    <td style="padding:8px 0; font-size:12px; font-weight:bold; color:#666; text-align:right;">${fecha}</td>
+                </tr>
+            </table>
+            ${descripcion ? `<div style="font-size:13px; line-height:1.6; margin-bottom:14px;">${descripcion}</div>` : ''}
+            ${tablaImagenes}
+            <div style="font-size:13px; line-height:1.75; text-align:justify;">${parrafos}</div>
         `;
-        
+
+        wrapper.appendChild(el);
         document.body.appendChild(wrapper);
 
-        const images = wrapper.querySelectorAll('img');
-        const loadPromises = Array.from(images).map((img) => {
-            return new Promise((resolve) => {
-                if (img.complete) {
-                    resolve(true);
-                } else {
-                    img.onload = () => resolve(true);
-                    img.onerror = () => resolve(true); // Evita quedarse colgado si falla una imagen
-                }
-            });
-        });
-
-        await Promise.all(loadPromises);
+        // Esperar imágenes
+        await Promise.all(Array.from(el.querySelectorAll('img')).map(img =>
+            new Promise(res => {
+                if ((img as HTMLImageElement).complete) res(true);
+                else { img.onload = () => res(true); img.onerror = () => res(true); }
+            })
+        ));
 
         const opt = {
-            margin:       [15, 10, 15, 10], // superior, izquierda, inferior, derecha (mm)
-            filename:     `boletin_${boletin?.titulo?.substring(0, 30) || 'congreso'}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2, useCORS: true, logging: false },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            margin:      [10, 10, 10, 10],
+            filename:    `boletin_${(boletin?.titulo || 'congreso').substring(0, 40)}.pdf`,
+            image:       { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, useCORS: true, logging: false, scrollY: 0 },
+            jsPDF:       { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:   { mode: ['css', 'legacy'] }
         };
 
-        // Generar y descargar, después limpiar DOM
-        (window as any).html2pdf().set(opt).from(wrapper.firstElementChild).save().then(() => {
+        (window as any).html2pdf().set(opt).from(el).save().then(() => {
             document.body.removeChild(wrapper);
+            setDescargando(null);
         });
     };
 
+
     const descargarPDF = (e: React.MouseEvent) => {
         e.preventDefault();
-        
-        // Si el estado de carga o la libreria se ocupan, lo manejamos rápido aquí:
+        if (descargando) return;
+        setDescargando('pdf');
         if (typeof window !== 'undefined' && !(window as any).html2pdf) {
             const script = document.createElement('script');
             script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
@@ -196,6 +193,18 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
         } else {
             generarPDF();
         }
+    };
+
+    const descargarWordConSpinner = (e: React.MouseEvent) => {
+        if (descargando) return;
+        setDescargando('word');
+        setTimeout(() => { descargarWord(); setDescargando(null); }, 300);
+    };
+
+    const descargarTXTConSpinner = (e: React.MouseEvent) => {
+        if (descargando) return;
+        setDescargando('txt');
+        setTimeout(() => { descargarTXT(); setDescargando(null); }, 300);
     };
     
     return (
@@ -224,10 +233,20 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                     <div className="w-col w-col-6">
                     </div>
                     <div className="w-col w-col-6">
-                        <div className="fecha-boletin-centrada">  
-                            <a href="#" onClick={descargarPDF} title="Descargar PDF" className="btn-boletin w-button"> PDF</a>
-                            <a onClick={descargarWord} title="Descargar" className="btn-boletin w-button"> WORD</a>
-                            <a onClick={descargarTXT} title="Descargar" className="btn-boletin w-button"> TXT</a>
+                        <div className="fecha-boletin-centrada" style={{ display: 'flex', gap: '15px', justifyContent: 'center', alignItems: 'center' }}>  
+                            <a href="#" onClick={descargarPDF} title="Descargar PDF" className="btn-boletin w-button" style={{ display: 'flex', alignItems: 'center', gap: 6, opacity: descargando && descargando !== 'pdf' ? 0.5 : 1, pointerEvents: descargando ? 'none' : 'auto' }}>
+                                {descargando === 'pdf' ? <span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid currentColor', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} /> : null}
+                                PDF
+                            </a>
+                            <a onClick={descargarWordConSpinner} title="Descargar Word" className="btn-boletin w-button" style={{ display: 'flex', alignItems: 'center', gap: 6, opacity: descargando && descargando !== 'word' ? 0.5 : 1, pointerEvents: descargando ? 'none' : 'auto' }}>
+                                {descargando === 'word' ? <span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid currentColor', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} /> : null}
+                                WORD
+                            </a>
+                            <a onClick={descargarTXTConSpinner} title="Descargar TXT" className="btn-boletin w-button" style={{ display: 'flex', alignItems: 'center', gap: 6, opacity: descargando && descargando !== 'txt' ? 0.5 : 1, pointerEvents: descargando ? 'none' : 'auto' }}>
+                                {descargando === 'txt' ? <span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid currentColor', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} /> : null}
+                                TXT
+                            </a>
+                            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
                         </div>
                     </div>
                 </div>

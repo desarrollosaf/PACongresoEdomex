@@ -55,7 +55,7 @@ let DiputadosService = class DiputadosService {
     }
     async findAll2() {
         return this.diputadoModel.findAll({
-            limit: 25,
+            limit: 35,
             order: sequelize_2.Sequelize.literal('RAND()'),
             include: [
                 fotos_entity_1.Foto,
