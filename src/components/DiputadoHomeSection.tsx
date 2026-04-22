@@ -19,6 +19,7 @@ type Diputado = {
     distrito?: { distrito?: string };
   }>;
   fotos?: Array<{ path: string }>;
+  genero?: { genero?: string };
 };
 
 type Props = {
@@ -42,7 +43,18 @@ function DiputadoCard({
   const fotoPath = diputado.fotos?.[0]?.path;
   const fotoUrl = fotoPath ? `${BASE_IMG}${fotoPath}` : '/images/placeholder-diputado.png';
   const nombreCompleto = `${diputado.nombres ?? ''} ${diputado.apaterno ?? ''} ${diputado.amaterno ?? ''}`.trim();
-  const cargo = distrito?.distrito ? `Diputado | ${distrito.distrito}` : 'Diputado | Plurinominal';
+
+  let tituloCargo = 'Diputado';
+  if (diputado.id === '40f129de-671d-41ac-8d1a-da9609fd0bf3') {
+    tituloCargo = 'Diputade';
+  } else {
+    const gen = diputado.genero?.genero?.toLowerCase() || '';
+    if (gen === 'femenino' || gen === 'f' || gen === 'mujer') {
+      tituloCargo = 'Diputada';
+    }
+  }
+
+  const cargo = distrito?.distrito ? `${tituloCargo} | ${distrito.distrito}` : `${tituloCargo} | Plurinominal`;
 
   const facebook = diputado.facebook?.trim() || '';
   const twitter = diputado.twitter?.trim() || '';

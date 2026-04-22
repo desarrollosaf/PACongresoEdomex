@@ -17,8 +17,30 @@ export default function FeedbackWidget() {
     const [surveyPage, setSurveyPage] = useState(0); // 0: intro, 1: form, 2: exito
     const [respuestas, setRespuestas] = useState<{ [key: string]: number }>({});
     const [enviandoSurvey, setEnviandoSurvey] = useState(false);
+    
+    // Estado para saber si el usuario ya contestó la encuesta
+    const [encuestaCompletada, setEncuestaCompletada] = useState(false);
+    
+    // NUEVO: Estado para saber si ya terminamos de leer localStorage
+    // Empieza en true (está cargando) para NO renderizar el botón hasta saber si debe mostrarse
+    const [cargandoEstado, setCargandoEstado] = useState(true);
 
     const pathname = usePathname();
+
+    // Al cargar, revisar si ya contestó la encuesta antes
+    useEffect(() => {
+        try {
+            const yaContesto = localStorage.getItem('encuesta_detallada_completada');
+            if (yaContesto === 'true') {
+                setEncuestaCompletada(true);
+            }
+        } catch (e) {
+            console.error("Error leyendo localStorage:", e);
+        } finally {
+            // NUEVO: marcar que ya terminó la carga, ya sea exitosa o no
+            setCargandoEstado(false);
+        }
+    }, []);
 
     useEffect(() => {
         const path = window.location.pathname;
@@ -59,10 +81,8 @@ export default function FeedbackWidget() {
 
     // Función de la nueva encuesta
     const handleRevisarRespuestas = async () => {
-        // Validar que se respondieron todas (opcional, o enviar lo que tengan)
         setEnviandoSurvey(true);
         try {
-            // Se llamará a un endpoint nuevo (que deberá ser implementado en backend)
             await guardarEncuestaDetallada('/', respuestas);
         } catch(e) {
             console.error("Error enviando encuesta detallada:", e);
@@ -70,10 +90,20 @@ export default function FeedbackWidget() {
         setTimeout(() => {
             setEnviandoSurvey(false);
             setSurveyPage(2); // Éxito
+            
+            // Guardar en localStorage
+            try {
+                localStorage.setItem('encuesta_detallada_completada', 'true');
+            } catch (e) {
+                console.error("Error guardando en localStorage:", e);
+            }
+            
             setTimeout(() => {
                 setIsSurveyOpen(false);
                 setSurveyPage(0);
                 setRespuestas({});
+                // Ocultar el botón flotante
+                setEncuestaCompletada(true);
             }, 3000);
         }, 800);
     };
@@ -287,39 +317,41 @@ export default function FeedbackWidget() {
                 </div>
             )}
 
-            <button
-                className="feedback-btn"
-                onClick={() => {
-                    setIsSurveyOpen(!isSurveyOpen);
-                    if (!isSurveyOpen) setSurveyPage(0);
-                    // setIsOpen(false); // Opcional: Cerrar la otra si estuviera abierta
-                }}
-                style={{
-                    background: '#94134A', /* Color institucional */
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '20px',
-                    padding: '10px 18px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 10px rgba(148,19,74,0.3)',
-                    transition: 'all 0.2s',
-                    fontWeight: 'bold',
-                    fontSize: '0.9rem'
-                }}
-                onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 6px 14px rgba(148,19,74,0.4)';
-                }}
-                onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 10px rgba(148,19,74,0.3)';
-                }}
-            >
-                <span style={{ fontSize: '1.1rem' }}>📝</span> Danos tu opinión
-            </button>
+            {/* MODIFICADO: Sólo mostrar el botón cuando ya terminó la carga Y no ha completado la encuesta */}
+            {!cargandoEstado && !encuestaCompletada && (
+                <button
+                    className="feedback-btn"
+                    onClick={() => {
+                        setIsSurveyOpen(!isSurveyOpen);
+                        if (!isSurveyOpen) setSurveyPage(0);
+                    }}
+                    style={{
+                        background: '#94134A', /* Color institucional */
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '20px',
+                        padding: '10px 18px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 10px rgba(148,19,74,0.3)',
+                        transition: 'all 0.2s',
+                        fontWeight: 'bold',
+                        fontSize: '0.9rem'
+                    }}
+                    onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 6px 14px rgba(148,19,74,0.4)';
+                    }}
+                    onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = '0 4px 10px rgba(148,19,74,0.3)';
+                    }}
+                >
+                    <span style={{ fontSize: '1.1rem' }}>📝</span> Danos tu opinión
+                </button>
+            )}
 
             {/* BOTÓN VISITAS (Ojito) - Se comenta setIsOpen para que ya no abra las caritas */}
             <button
