@@ -70,10 +70,15 @@ export default function QueEsElCongreso() {
                 </div>
                 <div className="que_es_un_diputado w-row">
                     <div className="column-21 w-col w-col-6">
-                        <h1 className="titulo-gigante titulo-centrado">¿Qué hace un diputado?</h1>
-                        <p className="texto-centrado">El <strong>Congreso del Estado de México</strong> es la institución del <strong>Poder Legislativo</strong> de la entidad. Su función principal es <strong>representar a la ciudadanía</strong>, <strong>crear y reformar las leyes</strong> y <strong>vigilar el actuar del Poder Ejecutivo</strong>, para asegurar que el gobierno funcione con legalidad, equilibrio y transparencia. El Congreso es un espacio de diálogo y pluralidad, donde se analizan y deciden asuntos que impactan la vida diaria de las y los mexiquenses.</p>
+                        <h1 className="titulo-gigante">Características de la LXII Legislatura mexiquense</h1>
+                        <p className="texto-general">Incluyente y paritaria<br/></p>
+                        <p className="texto-general">La LXII Legislatura del Estado de México tiene una serie de cualidades que le dan una dimensión histórica. Es la primera en la historia, por ejemplo, con una integración auténticamente paritaria, toda vez que se integra por 37 diputadas, 37 diputados y une diputade. Adicionalmente, por acciones afirmativas, cuenta con representantes de los pueblos y comunidades indígenas, afrodescendientes y población LGBTTTIQ+ (lesbianas, gais, bisexuales, transgénero, travestis, transexuales, intersexuales, queer y más).</p>
+                        <p className="texto-general"><strong>De diálogo y consenso</strong><br/></p>
+                        <p className="texto-general">El consenso entre los grupos parlamentarios de morena, PVEM, PT, PRI, PAN, MC y PRD ha distinguido el procesamiento y aprobación del 95 % de las iniciativas por unanimidad, de acuerdo con el informe del diputado José Francisco Vázquez Rodríguez (morena), presidente de la Junta de Coordinación Política (Jucopo), correspondiente al primer año de trabajo legislativo.</p>
+                        <p className="texto-general"><strong>Atenta y organizada</strong><br/></p>
+                        <p className="texto-general">Organizada en 38 comisiones permanentes, cinco comisiones especiales y cinco comités, la LXII Legislatura mexiquense ha priorizado un debate profundo sobre el alcance y las posibles repercusiones de reformas, leyes o acuerdos, conforme a criterios técnicos y con base en las necesidades prácticas de las y los mexiquenses; por lo tanto, ha contado con la participación de personas servidoras públicas, activistas y ciudadanía involucrada durante las reuniones deliberativas de estos órganos parlamentarios.</p>
                     </div>
-                    <div className="w-col w-col-6"><img src="images/congreso-comic-2.JPG" loading="lazy" sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 2600px) 48vw, 1248px" srcSet="images/congreso-comic-2-p-500.jpg 500w, images/congreso-comic-2-p-800.jpg 800w, images/congreso-comic-2-p-1080.jpg 1080w, images/congreso-comic-2.JPG 1248w" alt="" className="img-boletin" /></div>
+                <div className="w-col w-col-6"><img src="images/FRAMES7-1.jpg" loading="lazy" alt="" className="img-boletin" /></div>
                 </div>
             </section>
         </>

@@ -12,19 +12,23 @@ export default function ComunicadosPage() {
     const [loading, setLoading] = useState(false);
     const [total, setTotal] = useState(0);
     const totalPaginas = Math.ceil(total / 12);
-     useEffect(() => {
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }, []);
+
+    useEffect(() => {
         const fetchData = async () => {
             setBoletines([]);
             setLoading(true);
             const data = await getBoletinesAll(paginaActual);
-           setTimeout(() => {
-            setBoletines(data.rows);
-            setTotal(data.count);
-            setLoading(false);
-        }, 400);
-    }
+            setTimeout(() => {
+                setBoletines(data.rows);
+                setTotal(data.count);
+                setLoading(false);
+            }, 400);
+        };
         fetchData();
-    }, [paginaActual]); 
+    }, [paginaActual]);
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
