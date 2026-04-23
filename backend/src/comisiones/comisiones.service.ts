@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { Op } from 'sequelize';
 import { CreateComisioneDto } from './dto/create-comisione.dto';
 import { UpdateComisioneDto } from './dto/update-comisione.dto';
 import { Comision } from '../database/entities/comisiones.entity';
@@ -27,7 +28,8 @@ export class ComisionesService {
     const comisiones = await this.comisionModel.findAll({
       attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
       where: {
-        deleted_at: null
+        deleted_at: null,
+        nombre: { [Op.ne]: 'Junta de Coordinación Política (Jucopo)' },
       },
       include: [
         {

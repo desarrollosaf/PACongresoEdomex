@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComisionesService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
+const sequelize_2 = require("sequelize");
 const comisiones_entity_1 = require("../database/entities/comisiones.entity");
 const tipo_comisiones_entity_1 = require("../database/entities/tipo-comisiones.entity");
 const integrante_comisions_entity_1 = require("../database/entities/integrante-comisions.entity");
@@ -35,7 +36,8 @@ let ComisionesService = class ComisionesService {
         const comisiones = await this.comisionModel.findAll({
             attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
             where: {
-                deleted_at: null
+                deleted_at: null,
+                nombre: { [sequelize_2.Op.ne]: 'Junta de Coordinación Política (Jucopo)' },
             },
             include: [
                 {
