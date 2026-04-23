@@ -66,7 +66,7 @@ const styles = `
   .punto-text {
     font-size: 14px;
     line-height: 1.7;
-    color: #94134A ;
+    color: #1e293b;
     margin: 0;
     white-space: pre-line;
   }
@@ -155,7 +155,7 @@ export default function OrdenDiaPage() {
             borderRadius: '16px', padding: '40px 48px', maxWidth: '480px',
           }}>
             <div style={{ fontSize: '48px', marginBottom: '12px' }}>📋</div>
-            <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#94134A ', margin: '0 0 8px' }}>
+            <h2 style={{ fontSize: '20px', fontWeight: '700', color: '#1e293b', margin: '0 0 8px' }}>
               Orden del día no disponible
             </h2>
             <p style={{ fontSize: '14px', color: '#64748b', margin: '0 0 24px', lineHeight: '1.6' }}>
@@ -210,7 +210,7 @@ export default function OrdenDiaPage() {
                 </span>
               </div>
 
-              <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#94134A ', margin: '0 0 12px' }}>
+              <h2 style={{ fontSize: '18px', fontWeight: '700', color: '#1e293b', margin: '0 0 12px' }}>
                 {evento?.descripcion}
               </h2>
 
@@ -231,7 +231,7 @@ export default function OrdenDiaPage() {
                       textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '4px' }}>
                       {icono} {label}
                     </div>
-                    <div style={{ fontSize: '13px', color: '#94134A ', fontWeight: '600' }}>
+                    <div style={{ fontSize: '13px', color: '#1e293b', fontWeight: '600' }}>
                       {valor}
                     </div>
                   </div>
