@@ -22,7 +22,7 @@ const styles = `
     transition: background 0.15s;
   }
   .fila-punto:last-child { border-bottom: none; }
-  .fila-punto:hover { background: #f8fafc; }
+  .fila-punto:hover { background: #fdf0f5; }
 
   .fila-header {
     display: grid;
@@ -192,8 +192,8 @@ export default function OrdenDiaPage() {
             <h1 className="h4-centrado" style={{ marginBottom: '1.25rem' }}>Orden del Día</h1>
 
             <div style={{
-              background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
-              border: '1px solid #e2e8f0',
+              background: 'linear-gradient(135deg, #fdf4f7 0%, #f7e8ef 100%)',
+              border: '1px solid #e8c4d4',
               borderLeft: '4px solid #94134A',
               borderRadius: '8px',
               padding: '20px 28px',
