@@ -28,7 +28,7 @@ export default function MesaSection({ integrante } : Props) {
     return (
       <div className="miembro-card-jucopo">
         <img
-          src={foto ? `http:/127.0.0.1:8088/${foto}` : '/images/default-user.png'}
+          src={foto ? `https://sistema.congresoedomex.gob.mx/${foto}` : '/images/default-user.png'}
           loading="lazy"
           alt={nombre || 'Diputado'}
           className={`img-jucopo ${bgClass}`}
