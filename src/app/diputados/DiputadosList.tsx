@@ -36,7 +36,7 @@ type Diputado = {
     integrantes?: Integrante[];
 };
 
-const BASE_URL = 'http:/127.0.0.1:8088/';
+const BASE_URL = 'https://sistema.congresoedomex.gob.mx/';
 
 const PARTIDOS = ['morena', 'PAN', 'PT', 'PRI', 'PVEM', 'MC', 'PRD'];
 const PARTIDO_LOGOS: Record<string, string> = {
