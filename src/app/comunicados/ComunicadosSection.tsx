@@ -42,7 +42,7 @@ const skeletonStyles = `
     const getFoto = (item?: any) => {
         const path = item?.fotos?.[0]?.path;
         return path
-            ? `https://sistema.congresoedomex.gob.mx/${path}`
+            ? `http:/127.0.0.1:8088/${path}`
             : '/images/default-user.png';
     };
 

@@ -34,7 +34,7 @@ export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }:
   const partido = integrante?.partido;
   const distrito = integrante?.distrito;
   const foto = diputado.fotos?.[0];
-  const fotoUrl = foto?.path ? `https://sistema.congresoedomex.gob.mx/${foto.path}` : 'images/placeholder-diputado.png';
+  const fotoUrl = foto?.path ? `http:/127.0.0.1:8088/${foto.path}` : 'images/placeholder-diputado.png';
 
   const nombreCompleto = `${diputado.nombres ?? ''} ${diputado.apaterno ?? ''} ${diputado.amaterno ?? ''}`.trim();
   const cargo = distrito?.distrito ?? 'Diputado Plurinominal';
@@ -188,7 +188,7 @@ export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }:
                     {(() => {
                       const c = comunicados[0];
                       const fotoPath = c?.fotos?.[0]?.path;
-                      const imgUrl = fotoPath ? `https://sistema.congresoedomex.gob.mx/${fotoPath}` : undefined;
+                      const imgUrl = fotoPath ? `http:/127.0.0.1:8088/${fotoPath}` : undefined;
                       return (
                         <div className="div-block-44">
                           <div className="columns-14 w-row">
@@ -225,7 +225,7 @@ export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }:
                           <div className="w-layout-grid grid-12">
                             {paginatedComunicados.map((c: any) => {
                               const fotoPath = c?.fotos?.[0]?.path;
-                              const imgUrl = fotoPath ? `https://sistema.congresoedomex.gob.mx/${fotoPath}` : undefined;
+                              const imgUrl = fotoPath ? `http:/127.0.0.1:8088/${fotoPath}` : undefined;
                               return (
                                 <div key={c.id} className="div-block-43">
                                   {imgUrl && (
