@@ -113,7 +113,7 @@ export default function ParliamentaryStats() {
                 loading="lazy"
                 sizes="(max-width: 1666px) 100vw, 1666px"
                 alt=""
-                srcSet="images/grupo-parlamentario-2-p-500.png 500w, images/grupo-parlamentario-2-p-800.png 800w, images/grupo-parlamentario-2-p-1080.png 1080w, images/grupo-parlamentario-2-p-1600.png 1600w, images/grupo-parlamentario-2.png 1666w"
+                srcSet="images/grupo-parlamentario-2.png 500w, images/grupo-parlamentario-2.png 800w, images/grupo-parlamentario-2.png 1080w, images/grupo-parlamentario-2.png 1600w, images/grupo-parlamentario-2.png 1666w"
                 className="img-parlamentaria img-parlamentaria-anim"
             />
             <div className="features-wrapper">

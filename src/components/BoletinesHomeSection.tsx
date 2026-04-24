@@ -181,6 +181,13 @@ export default function BoletinesHomeSection({ mainBoletines }: Props) {
             </div>
           </div>
         </div>
+
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', marginTop: '2rem' }}>
+          <p className="heading-4" style={{ fontWeight: 'bold', textAlign: 'center', margin: 0 }}>Conoce más de nuestro trabajo legislativo</p>
+          <Link href="/comunicados" className="btn-var-2 w-button">
+            Ver todos los boletines
+          </Link>
+        </div>
       </div>
     </section>
   );

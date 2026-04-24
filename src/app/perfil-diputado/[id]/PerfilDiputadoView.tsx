@@ -84,14 +84,15 @@ export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }:
                   <div className="div-block-16" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
                     <p className="paragraph-3">Contacto</p>
                     {email && (
+
                       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                         <a
-                          href={`mailto:${facebook}`}
+                          href={`mailto:${email}`}
                           target="_blank" rel="noreferrer"
                         >
                           <img src="/images/mail_icon.png" loading="lazy" alt="" className="image-4"/>
                         </a>
-                        
+                        {email}
                         
                         {/* <span>{email}</span><img src="images/mail_icon.png" loading="lazy" alt="" className="image-4"/> */}
                       </div>

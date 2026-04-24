@@ -3,7 +3,7 @@ import "./globals.css";
 import ClientShell from "@/components/ClientSheell";
 
 export const metadata: Metadata = {
-  title: "Congreso_Edo_Mex",
+  title: "Congreso del Estado de México",
   description: "Tu Congreso conectado y transparente",
 };
 
