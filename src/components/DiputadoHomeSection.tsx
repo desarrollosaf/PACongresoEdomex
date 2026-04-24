@@ -26,7 +26,7 @@ type Props = {
   diputados: Diputado[];
 };
 
-const BASE_IMG = 'https://sistema.congresoedomex.gob.mx/';
+const BASE_IMG = 'http:/127.0.0.1:8088/';
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 // ── Subcomponente: tarjeta de un diputado ──────────────────────────────────

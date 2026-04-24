@@ -75,7 +75,7 @@
                 <div>Calle Pedro Ascencio Núm. 100, Colonia La Merced (Alameda), delegación o localidad Centro Histórico, Toluca, Estado de México, CP 50080</div>
                 <div>Tel. 722 779 6400</div>
             </div>
-            <a href="https://sistema.congresoedomex.gob.mx/boletin" target="_blank" className="btn-var-2 w-button">Micrositio</a>
+            <a href="http:/127.0.0.1:8088/boletin" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
             <div className="div-block-34">
                 <img src="images/INESLE.png" loading="lazy" sizes="(max-width: 1920px) 100vw, 1920px" 

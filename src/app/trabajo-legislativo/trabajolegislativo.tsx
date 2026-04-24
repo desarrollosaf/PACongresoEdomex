@@ -229,7 +229,7 @@ export default function TrabajoLegislativo() {
 
                           <div className="gaceta-meta">
                             {item?.year && <span>Año: {item.year}</span>}
-                            {item?.tomo && <span>Tomo: {item.tomo}</span>}
+                            {/* {item?.tomo && <span>Tomo: {item.tomo}</span>} */}
                           </div>
                         </div>
                       </div>

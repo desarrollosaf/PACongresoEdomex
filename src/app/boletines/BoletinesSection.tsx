@@ -57,7 +57,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
         const descargarWord = () => {
             const imagenes = boletin?.fotos?.length > 1
                 ? boletin.fotos.slice(1).map((item: any) =>
-                    `<img src="https://sistema.congresoedomex.gob.mx/${item.path}" width="100" height="100" style="margin-bottom:10px;" />`
+                    `<img src="http:/127.0.0.1:8088/${item.path}" width="100" height="100" style="margin-bottom:10px;" />`
                 ).join('')
                 : '';
 
@@ -69,7 +69,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                     <strong>Comunicado: </strong> ${boletin?.comunicado} <br>
                     <strong>Fecha: </strong>${boletin?.fecha}<br><br>
                     ${boletin?.descripcion?.map((item: any) => `${item.bullets}`)}<br><br>
-                    ${boletin?.fotos?.length > 0 ? `<img src="https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path}" width="150" height="150" /><br><br>` : ''}
+                    ${boletin?.fotos?.length > 0 ? `<img src="http:/127.0.0.1:8088/${boletin.fotos[0].path}" width="150" height="150" /><br><br>` : ''}
                     ${imagenes}
                     ${boletin.texto}
                 </body>
@@ -86,7 +86,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
 
 
     const generarPDF = async () => {
-        const BASE = 'https://sistema.congresoedomex.gob.mx/';
+        const BASE = 'http:/127.0.0.1:8088/';
         const fotos = boletin?.fotos || [];
 
         // Tamaño de imágenes según cuántas hay (máx 3 por fila)
@@ -259,20 +259,20 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
             {boletin?.fotos?.length > 0 && (
                 <a href="#" className="lightbox-link w-inline-block w-lightbox" onClick={(e) => e.preventDefault()}>
                     <img
-                        src={`https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path}`}
+                        src={`http:/127.0.0.1:8088/${boletin.fotos[0].path}`}
                         loading="lazy"
                         sizes="(max-width: 1280px) 100vw, 1280px"
                         srcSet={`
-                            https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 500w, 
-                            https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 800w, 
-                            https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 1080w, 
-                            https://sistema.congresoedomex.gob.mx/${boletin.fotos[0].path} 1280w`} alt="" className="image-25"  onClick={() => setSelectedIndex(0)}/>
+                            http:/127.0.0.1:8088/${boletin.fotos[0].path} 500w, 
+                            http:/127.0.0.1:8088/${boletin.fotos[0].path} 800w, 
+                            http:/127.0.0.1:8088/${boletin.fotos[0].path} 1080w, 
+                            http:/127.0.0.1:8088/${boletin.fotos[0].path} 1280w`} alt="" className="image-25"  onClick={() => setSelectedIndex(0)}/>
                 
                     {boletin.fotos.length > 1 && (
                         <div className="div-block-40">
                             {boletin?.fotos?.slice(1).map((item:any, index: any) => (
                                 <div key={index} style={{cursor: 'pointer'}} onClick={(e) => { e.preventDefault(); setSelectedIndex(index + 1); }}>
-                                    <img src={`https://sistema.congresoedomex.gob.mx/${item.path}`} loading="lazy" className="img-lightbox-under" />
+                                    <img src={`http:/127.0.0.1:8088/${item.path}`} loading="lazy" className="img-lightbox-under" />
                                 </div>
                             ))}
                         </div>
@@ -291,12 +291,12 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                 {boletines?.slice(0, 4).map((bol: any, idx: number) => bol ? (
                     <div key={idx}>
                         {bol?.fotos?.length > 0 ? (
-                            <img src={`https://sistema.congresoedomex.gob.mx/${bol.fotos[0].path}`} loading="lazy" sizes="(max-width: 1600px) 100vw, 1600px"
+                            <img src={`http:/127.0.0.1:8088/${bol.fotos[0].path}`} loading="lazy" sizes="(max-width: 1600px) 100vw, 1600px"
                             srcSet={`
-                            https://sistema.congresoedomex.gob.mx/${bol.fotos[0].path} 500w, 
-                            https://sistema.congresoedomex.gob.mx/${bol.fotos[0].path} 800w, 
-                            https://sistema.congresoedomex.gob.mx/${bol.fotos[0].path} 1080w, 
-                            https://sistema.congresoedomex.gob.mx/${bol.fotos[0].path} 1200w`} alt="" className="img-boletin" />
+                            http:/127.0.0.1:8088/${bol.fotos[0].path} 500w, 
+                            http:/127.0.0.1:8088/${bol.fotos[0].path} 800w, 
+                            http:/127.0.0.1:8088/${bol.fotos[0].path} 1080w, 
+                            http:/127.0.0.1:8088/${bol.fotos[0].path} 1200w`} alt="" className="img-boletin" />
                         ) : (
                             <div className="img-boletin" style={{ backgroundColor: '#eee', height: '200px' }} />
                         )}
@@ -383,7 +383,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
 
             <div style={{ maxWidth: '90%', maxHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={(e) => e.stopPropagation()}>
                 <img 
-                    src={`https://sistema.congresoedomex.gob.mx/${fotos[selectedIndex].path}`} 
+                    src={`http:/127.0.0.1:8088/${fotos[selectedIndex].path}`} 
                     style={{ 
                         maxWidth: '100%', 
                         maxHeight: '80vh', 
@@ -415,7 +415,7 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
                         <img 
                             key={index} 
                             className={`lb-thumb ${index === selectedIndex ? 'active' : ''}`}
-                            src={`https://sistema.congresoedomex.gob.mx/${item.path}`} 
+                            src={`http:/127.0.0.1:8088/${item.path}`} 
                             onClick={(e) => { e.stopPropagation(); setSelectedIndex(index); }}
                         />
                     ))}

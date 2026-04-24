@@ -36,7 +36,7 @@ type Diputado = {
     integrantes?: Integrante[];
 };
 
-const BASE_URL = 'https://sistema.congresoedomex.gob.mx/';
+const BASE_URL = 'http:/127.0.0.1:8088/';
 
 const PARTIDOS = [
     { id: 'morena', nombre: 'Morena', clase: '', logo: 'images/morena.png' },
