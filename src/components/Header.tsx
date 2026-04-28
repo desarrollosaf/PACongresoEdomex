@@ -70,7 +70,7 @@ export default function Header() {
           <Dropdown id="legislatura" label="Legislatura">
             <Link href="/diputados" className="link-nav-menu w-dropdown-link">Integrantes</Link>
             <Link href="/parlamentarios" className="link-nav-menu w-dropdown-link">Grupos Parlamentarios</Link>
-            <Link href="/mesa-directiva" className="link-nav-menu w-dropdown-link">Mesa Directiva</Link>
+            <Link href="/mesa-directiva" className="link-nav-menu w-dropdown-link">Directiva</Link>
             <Link href="/junta-de-coordinacion-politica" className="link-nav-menu w-dropdown-link">Junta de Coordinación Política</Link>
             <Link href="/comisiones" className="link-nav-menu w-dropdown-link">Comisiones y Comités</Link>
           </Dropdown>
