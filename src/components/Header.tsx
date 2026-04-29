@@ -82,6 +82,8 @@ export default function Header() {
           <Link href="https://transparenciaplem.gob.mx/" className="link-block-3 w-inline-block" onClick={() => setOpen(null)}>
             <div className="menu-option">Transparencia</div>
           </Link>
+
+        
           {/* <Dropdown id="transparencia" label="Transparencia">
             <Link href="/unidad-de-informacion" className="w-dropdown-link">Unidad de Información</Link>
             <Link href="#" className="link-nav-menu w-dropdown-link">Transparencia Proactiva</Link>
@@ -99,9 +101,9 @@ export default function Header() {
             <Link href="#" className="link-nav-menu w-dropdown-link">Notas Hora x Hora</Link>
           </Dropdown>
 
-          {/* <Dropdown id="contacto" label="Contacto">
-            <Link href="#" className="link-nav-menu w-dropdown-link">Directorio Telefónico</Link>
-          </Dropdown> */}
+           <Link href="https://administracionyfinanzasplem.gob.mx/directorio/directorio" className="link-block-3 w-inline-block" onClick={() => setOpen(null)}>
+            <div className="menu-option">Directorio</div>
+          </Link>
         </div>
 
         {/* Botón hamburguesa — solo visible en móvil */}
