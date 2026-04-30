@@ -10,6 +10,8 @@ import BannersHomeSection from "@/components/BannersHomeSections";
 import SearchForm from "@/components/SearchForm";
 import { getEstadisticasHome } from "./service/estadisticas.api";
 import EstadisticasHomeSection from "@/components/EstadisticasHomeSections";
+import VideoBackground from "@/components/VideoBackground";
+
 export default async function Home() {
   const boletines = await getBoletines();
   const mainBoletines = boletines && boletines.length >= 5 ? boletines : null;
@@ -23,17 +25,8 @@ export default async function Home() {
   return (
     <>
       <section className="section-3">
-        <div className="code-embed w-embed w-iframe">
-          <iframe 
-            width="130%" 
-            height="2035" 
-            src="https://www.youtube.com/embed/j3bP2q4YWro?autoplay=1&mute=1&loop=1&playlist=j3bP2q4YWro" 
-            title="Tu Congreso de Resultados" 
-            frameBorder={0} 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerPolicy="strict-origin-when-cross-origin" 
-            allowFullScreen
-          />
+        <div className="code-embed w-embed w-iframe" style={{ width: "100%", height: "100%" }}>
+          <VideoBackground />
         </div>
         <div data-w-id="0103c995-5e1d-dcc5-e0e3-47ae2562f79a" className="div-block hero-information">
           <h1 className="heading">Tu Congreso conectado y transparente</h1>
