@@ -452,8 +452,8 @@ export default function TrabajoLegislativo() {
                 >
                   <option value="">Todos los años</option>
                   {[...Array(11)].map((_, i) => {
-                    const year = new Date().getFullYear() + 2 - i;
-                    return <option key={year} value={year}>{year}</option>;
+                  const year = new Date().getFullYear() - i;
+                  return <option key={year} value={year}>{year}</option>;
                   })}
                 </select>
 
