@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useRouter } from "next/navigation";
 
 type Props = {
   boletin: any;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export default function BoletinesSection({ boletin, boletines } : Props) {
+    const router = useRouter();
     const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
     const [descargando, setDescargando] = useState<'pdf' | 'word' | 'txt' | null>(null);
     const fotos = boletin?.fotos || [];
@@ -211,6 +213,30 @@ export default function BoletinesSection({ boletin, boletines } : Props) {
     <>
     <section className="section-8">
         <section className="encabezado-bole-n">
+            <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', justifyContent: 'flex-start' }}>
+                <button 
+                    onClick={() => router.back()} 
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        color: '#000',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        padding: '0',
+                        marginBottom: '15px'
+                    }}
+                >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Regresar
+                </button>
+            </div>
             <h1 className="heading-36"> {boletin.titulo} </h1>
             <div>
                 <div className="columna-informativa-blog w-row">

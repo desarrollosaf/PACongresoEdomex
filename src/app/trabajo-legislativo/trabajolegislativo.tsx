@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { getTrabajoLegislativo } from '../service/trabajo_legislativo.service';
+import { getTrabajoLegislativo, getOrdenes } from '../service/trabajo_legislativo.service';
 
 const formatearFecha = (fecha: string) => {
   if (!fecha) return '';
@@ -22,6 +22,51 @@ export default function TrabajoLegislativo() {
   const [legislacion, setLegislacion] = useState<any[]>([]);
   const [busquedaTexto, setBusquedaTexto] = useState('');
   const [busquedaLegislacion, setBusquedaLegislacion] = useState('');
+
+  // Estados para Orden del día
+  const [todasLasOrdenes, setTodasLasOrdenes] = useState<any[]>([]);
+  const [mesOrden, setMesOrden] = useState('');
+  const [anioOrden, setAnioOrden] = useState('');
+  const [paginaOrden, setPaginaOrden] = useState(1);
+  const [isLoadingOrdenes, setIsLoadingOrdenes] = useState(false);
+
+  const fetchOrdenes = async () => {
+    setIsLoadingOrdenes(true);
+    try {
+      // The API returns all 114 items regardless of query parameters, so we fetch once without params
+      const response = await getOrdenes();
+      if (response && response.eventos) {
+        setTodasLasOrdenes(response.eventos);
+      }
+    } catch (error) {
+      console.error('Error al obtener ordenes del dia:', error);
+    } finally {
+      setIsLoadingOrdenes(false);
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === 'orden_del_dia' && todasLasOrdenes.length === 0) {
+      fetchOrdenes();
+    }
+  }, [activeTab]);
+
+  const ordenesFiltradas = useMemo(() => {
+    return todasLasOrdenes.filter(orden => {
+      if (!orden.fecha) return false;
+      const [yyyy, mm] = orden.fecha.split('T')[0].split('-');
+      const matchMes = mesOrden ? parseInt(mm).toString() === mesOrden : true;
+      const matchAnio = anioOrden ? yyyy === anioOrden : true;
+      return matchMes && matchAnio;
+    });
+  }, [todasLasOrdenes, mesOrden, anioOrden]);
+
+  const ordenesPaginadas = useMemo(() => {
+    const limit = 10;
+    const start = (paginaOrden - 1) * limit;
+    return ordenesFiltradas.slice(start, start + limit);
+  }, [ordenesFiltradas, paginaOrden]);
+
 
   useEffect(() => {
     const cargarTrabajoLegislativo = async () => {
@@ -142,6 +187,16 @@ export default function TrabajoLegislativo() {
             }`}
           >
             <div>Legislación</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('orden_del_dia')}
+            className={`btn-var-2 w-inline-block w-tab-link ${
+              activeTab === 'orden_del_dia' ? 'w--current' : ''
+            }`}
+          >
+            <div>Orden del día</div>
           </button>
 
           {/* <button
@@ -337,12 +392,153 @@ export default function TrabajoLegislativo() {
             </div>
           )} */}
 
-          
+        {/* ORDEN DEL DÍA */}
+        {activeTab === 'orden_del_dia' && (
+          <div data-w-tab="orden_del_dia" className="w-tab-pane w--tab-active">
+            <div className="titulo-tab">
+              <h2>Ordenes del día</h2>
+              <div>Conoce más sobre lo que ocurre cada semana en la cámara de diputados</div>
+              
+              {/* FILTROS */}
+              <div className="div-filtro-fechas-sintesis" style={{ display: 'flex', gap: '10px', marginTop: '15px' }}>
+                <select 
+                  value={mesOrden} 
+                  onChange={(e) => { setMesOrden(e.target.value); setPaginaOrden(1); }}
+                  className="filtro-sintesis w-dropdown-toggle"
+                  style={{ 
+                    background: 'white', 
+                    border: '1px solid #e8eaf0', 
+                    padding: '8px 15px', 
+                    borderRadius: '8px',
+                    color: '#5f687f',
+                    minWidth: '150px',
+                    appearance: 'none',
+                    backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%235f687f\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 15px center'
+                  }}
+                >
+                  <option value="">Todos los meses</option>
+                  <option value="1">Enero</option>
+                  <option value="2">Febrero</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Mayo</option>
+                  <option value="6">Junio</option>
+                  <option value="7">Julio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
+                </select>
+
+                <select 
+                  value={anioOrden} 
+                  onChange={(e) => { setAnioOrden(e.target.value); setPaginaOrden(1); }}
+                  className="filtro-sintesis w-dropdown-toggle"
+                  style={{ 
+                    background: 'white', 
+                    border: '1px solid #e8eaf0', 
+                    padding: '8px 15px', 
+                    borderRadius: '8px',
+                    color: '#5f687f',
+                    minWidth: '120px',
+                    appearance: 'none',
+                    backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%235f687f\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right 15px center'
+                  }}
+                >
+                  <option value="">Todos los años</option>
+                  {[...Array(11)].map((_, i) => {
+                  const year = new Date().getFullYear() - i;
+                  return <option key={year} value={year}>{year}</option>;
+                  })}
+                </select>
+
+              </div>
             </div>
 
-         </div>
-      
-      
-    </>
+            <div className="div-block-78">
+              <div className="w-layout-grid grid-minuta-ordendeldia">
+                {isLoadingOrdenes ? (
+                  // SKELETON LOADER
+                  Array.from({ length: 4 }).map((_, idx) => (
+                    <div key={`sk-${idx}`} className="minuta_leg" style={{ pointerEvents: 'none', background: '#fff', borderRadius: '14px', border: '1px solid #e8eaf0', padding: '20px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
+                      <div className="div-block-81" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', flex: 1, minWidth: 0 }}>
+                        <div style={{ width: '70px', height: '70px', borderRadius: '10px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', flexShrink: 0 }} />
+                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px', minWidth: 0 }}>
+                          <div style={{ width: '60%', height: '16px', borderRadius: '4px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: '80%', height: '16px', borderRadius: '4px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: '40%', height: '14px', borderRadius: '4px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', marginTop: '5px' }} />
+                        </div>
+                      </div>
+                      <div style={{ width: '120px', height: '40px', borderRadius: '8px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', flexShrink: 0 }} />
+                    </div>
+                  ))
+                ) : (
+                  // ORDENES DATA
+                  ordenesPaginadas.map((orden) => (
+                    <div key={orden.id} className="minuta_leg" style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e8eaf0', padding: '15px 20px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '15px', transition: 'box-shadow 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
+                      <div className="div-block-81" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', flex: 1, minWidth: 0 }}>
+                        <img src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png" loading="lazy" alt="" className="img-70px" style={{ background: '#f8f9fa', padding: '10px', borderRadius: '10px', flexShrink: 0 }} />
+                        <div style={{ minWidth: 0, overflow: 'hidden' }}>
+                          <h4 className="subtitulo-info" style={{ color: '#8B1A1A', marginBottom: '5px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Orden del día</h4>
+                          <h4 className="subtitulo-info" style={{ fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{orden.descripcion || 'Sesión parlamentaria'}</h4>
+                          <div className="texto-general" style={{ color: '#666', marginTop: '5px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{formatearFecha(orden.fecha?.split('T')[0])}</div>
+                        </div>
+                      </div>
+                      <a href={`/ordenes/${orden.id}`} className="btn-var-2-orden_del_dia w-button" style={{ textAlign: 'center', background: '#8B1A1A', color: 'white', borderRadius: '8px', padding: '10px 15px', flexShrink: 0, fontSize: '13px' }}>Ver Orden del día</a>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* PAGINACIÓN */}
+            {ordenesFiltradas.length > 0 && (
+              <div className="numeralia-centrado" style={{ display: 'flex', gap: '5px', justifyContent: 'center', marginTop: '20px' }}>
+                <button 
+                  disabled={paginaOrden === 1} 
+                  onClick={() => {
+                    setPaginaOrden(prev => Math.max(prev - 1, 1));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  style={{ cursor: paginaOrden === 1 ? 'not-allowed' : 'pointer', padding: '5px 10px', background: paginaOrden === 1 ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >
+                  Anterior
+                </button>
+                <span style={{ padding: '5px 10px' }}>Página {paginaOrden} de {Math.ceil(ordenesFiltradas.length / 10)}</span>
+                <button 
+                  disabled={paginaOrden >= Math.ceil(ordenesFiltradas.length / 10)}
+                  onClick={() => {
+                    setPaginaOrden(prev => prev + 1);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  style={{ cursor: paginaOrden >= Math.ceil(ordenesFiltradas.length / 10) ? 'not-allowed' : 'pointer', padding: '5px 10px', background: paginaOrden >= Math.ceil(ordenesFiltradas.length / 10) ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >
+                  Siguiente
+                </button>
+              </div>
+            )}
+            {!isLoadingOrdenes && ordenesFiltradas.length === 0 && (
+              <div style={{ textAlign: 'center', padding: '40px', background: '#f8f9fa', borderRadius: '14px', border: '1px dashed #ccc', marginTop: '20px' }}>
+                <div style={{ fontSize: '18px', color: '#5f687f', marginBottom: '10px' }}>No hay ordenes del día para mostrar.</div>
+                <div style={{ color: '#888' }}>Intenta ajustando los filtros de búsqueda.</div>
+              </div>
+            )}
+          </div>
+        )}
+
+      </div>
+    </div>
+    <style jsx global>{`
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+    `}</style>
+  </>
   );
 }
