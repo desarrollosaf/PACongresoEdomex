@@ -489,7 +489,7 @@ export default function TrabajoLegislativo() {
                           <div className="texto-general" style={{ color: '#666', marginTop: '5px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{formatearFecha(orden.fecha?.split('T')[0])}</div>
                         </div>
                       </div>
-                      <a href={`/ordenes/${orden.id}`} className="btn-var-2-orden_del_dia w-button" style={{ textAlign: 'center', background: '#8B1A1A', color: 'white', borderRadius: '8px', padding: '10px 15px', flexShrink: 0, fontSize: '13px' }}>Ver Orden del día</a>
+                      <a href={`/ordeDia/${orden.id}`} className="btn-var-2-orden_del_dia w-button" style={{ textAlign: 'center', background: '#8B1A1A', color: 'white', borderRadius: '8px', padding: '10px 15px', flexShrink: 0, fontSize: '13px' }}>Ver Orden del día</a>
                     </div>
                   ))
                 )}
