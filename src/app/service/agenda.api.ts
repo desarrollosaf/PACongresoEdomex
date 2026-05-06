@@ -50,16 +50,16 @@ export async function getSesionReciente() {
 
 export async function getOrdeDiaSesion(id: string | number) {
   try {
-    const res = await fetch(`https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/getordendia?id=${id}`);
+    const res = await fetch(`/api/orden-dia?id=${id}`);
     if (!res.ok) {
       const text = await res.text();
-      console.error('Error backend:', text);
-      return [];
+      console.error('Error proxy orden-dia:', text);
+      return null;
     }
-  return await res.json();
+    return await res.json();
   } catch (error) {
-    console.error("Failed to fetch banners:", error);
-    return [];
+    console.error("Failed to fetch orden del día:", error);
+    return null;
   }
 }
 
