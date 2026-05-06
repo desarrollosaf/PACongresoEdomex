@@ -4,6 +4,9 @@ type Props = {
 
 type MesaItem = {
   integranteLegis?: {
+    partido?: {
+      siglas?: string;
+    };
     diputado?: {
       nombres?: string;
       apaterno?: string;
@@ -17,16 +20,19 @@ type MesaItem = {
 };
 
 export default function MesaSection({ integrante } : Props) {
-  const renderCard = (item?: MesaItem, bgClass = 'bg-morena') => {
+  const renderCard = (item?: MesaItem, key?: string | number) => {
+    if (!item) return null;
     const diputado = item?.integranteLegis?.diputado;
     const foto = diputado?.fotos?.[0]?.path;
     const nombre = [diputado?.nombres, diputado?.apaterno, diputado?.amaterno]
       .filter(Boolean)
       .join(' ');
     const cargo = item?.tipo_cargo?.valor ?? 'Sin cargo';
+    const siglas = item?.integranteLegis?.partido?.siglas;
+    const bgClass = siglas ? `image-15 diputado-${siglas.toLowerCase()}` : 'image-15 bg-morena';
 
     return (
-      <div className="miembro-card-jucopo">
+      <div key={key} className="miembro-card-jucopo">
         <img
           src={foto ? `https://sistema.congresoedomex.gob.mx/${foto}` : '/images/default-user.png'}
           loading="lazy"
@@ -59,18 +65,70 @@ return (
         <div className="cuerpo-jucopo">
             <h3 className="titulo-centrado">Integrantes</h3>
 
-            <div className="bg-gradient-gris">
-            <div className="w-layout-grid div-mesa-direciva">
-                {renderCard(integrante[0], `image-15 diputado-${integrante[0].integranteLegis.partido.siglas.toLowerCase()}`)}
-                {renderCard(integrante[1], `image-15 diputado-${integrante[1].integranteLegis.partido.siglas.toLowerCase()}`)}
-                {renderCard(integrante[2], `image-15 diputado-${integrante[2].integranteLegis.partido.siglas.toLowerCase()}`)}
-            </div>
+            <style dangerouslySetInnerHTML={{__html: `
+              .secretarios-container-custom {
+                display: grid !important;
+                gap: 20px !important;
+                width: 100% !important;
+                justify-items: center !important;
+                align-items: stretch !important;
+                margin-bottom: 20px !important;
+              }
+              @media screen and (min-width: 992px) {
+                .secretarios-container-custom {
+                  grid-template-columns: repeat(4, 1fr) !important;
+                }
+              }
+              @media screen and (min-width: 768px) and (max-width: 991px) {
+                .secretarios-container-custom {
+                  grid-template-columns: repeat(2, 1fr) !important;
+                }
+              }
+              @media screen and (max-width: 767px) {
+                .secretarios-container-custom {
+                  grid-template-columns: 1fr !important;
+                }
+              }
+            `}} />
 
-            <div className="w-layout-grid div-mesa-direciva">
-                {renderCard(integrante[3], `image-15 diputado-${integrante[3].integranteLegis.partido.siglas.toLowerCase()}`)}
-                {renderCard(integrante[4], `image-15 diputado-${integrante[4].integranteLegis.partido.siglas.toLowerCase()}`)}
-                {renderCard(integrante[5], `image-15 diputado-${integrante[5].integranteLegis.partido.siglas.toLowerCase()}`)}
-            </div>
+            <div className="bg-gradient-gris">
+            {(() => {
+                if (!integrante || !Array.isArray(integrante)) return null;
+                
+                const normalizeString = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+                const secretarios = integrante.filter((item: any) => {
+                  const cargo = item?.tipo_cargo?.valor || '';
+                  return normalizeString(cargo).includes('secretari');
+                });
+                const otros = integrante.filter((item: any) => {
+                  const cargo = item?.tipo_cargo?.valor || '';
+                  return !normalizeString(cargo).includes('secretari');
+                });
+
+                return (
+                  <>
+                    {otros.reduce((resultArray: any[], item: any, index: number) => {
+                      const chunkIndex = Math.floor(index / 3);
+                      if (!resultArray[chunkIndex]) {
+                        resultArray[chunkIndex] = [];
+                      }
+                      resultArray[chunkIndex].push(item);
+                      return resultArray;
+                    }, []).map((chunk: any[], chunkIndex: number) => (
+                      <div key={`otros-${chunkIndex}`} className="w-layout-grid div-mesa-direciva">
+                          {chunk.map((item, itemIndex) => renderCard(item, `otros-item-${chunkIndex}-${itemIndex}`))}
+                      </div>
+                    ))}
+
+                    {secretarios.length > 0 && (
+                      <div className="secretarios-container-custom">
+                          {secretarios.map((item, index) => renderCard(item, `sec-${index}`))}
+                      </div>
+                    )}
+                  </>
+                );
+            })()}
+            <br />
             </div>
 
             <div className="que_es_jucopo">

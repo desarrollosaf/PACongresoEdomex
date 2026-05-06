@@ -5216,3 +5216,10 @@
     margin-right: 10px;
   }
 }
+
+/* Added for Mesa Directiva */
+@media screen and (min-width: 992px) {
+  div.w-layout-grid.div-mesa-direciva.grid-4-cols {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
