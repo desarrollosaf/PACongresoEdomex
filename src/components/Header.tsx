@@ -96,7 +96,7 @@ export default function Header() {
             <Link href="/comunicados" className="link-nav-menu w-dropdown-link">Comunicados</Link>
             <Link href="#" className="link-nav-menu w-dropdown-link">Síntesis informativa</Link>
             <a href="https://dialogo.congresoedomex.gob.mx/" target="_blank" rel="noreferrer" className="link-nav-menu w-dropdown-link">Diálogo</a>
-            <Link href="#" className="link-nav-menu w-dropdown-link">Notas Hora x Hora</Link>
+            <Link href="/notas-hora-por-hora" className="link-nav-menu w-dropdown-link">Notas Hora x Hora</Link>
           </Dropdown>
 
           {/* <Dropdown id="contacto" label="Contacto">

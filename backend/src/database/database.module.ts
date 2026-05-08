@@ -21,6 +21,7 @@ import { Gender } from './entities/gender.entity';
 import { VisitaPagina } from './entities/visita-pagina.entity';
 import { EncuestaSatisfaccion } from './entities/encuesta-satisfaccion.entity';
 import { EncuestaSatisfaccionDetallada } from './entities/encuesta-satisfaccion-detallada.entity';
+import { Monitoreo } from './entities/monitoreo.entity';
 
 const sequelizeFeatures = SequelizeModule.forFeature([
   Legislatura,
@@ -41,7 +42,8 @@ const sequelizeFeatures = SequelizeModule.forFeature([
   Gender,
   VisitaPagina,
   EncuestaSatisfaccion,
-  EncuestaSatisfaccionDetallada
+  EncuestaSatisfaccionDetallada,
+  Monitoreo
 ]);
 
 @Global()
