@@ -15,7 +15,9 @@ type Nota = {
 
 const formatearFecha = (fecha?: string | null) => {
   if (!fecha) return "";
-  const d = new Date(fecha);
+  // Quitar la "Z" y los milisegundos para que JS lo trate como hora local
+  const limpia = fecha.replace(" ", "T").replace(/\.\d+Z?$/, "").replace(/Z$/, "");
+  const d = new Date(limpia);
   if (isNaN(d.getTime())) return fecha;
   return d.toLocaleDateString("es-MX", {
     weekday: "long",
@@ -24,6 +26,7 @@ const formatearFecha = (fecha?: string | null) => {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "America/Mexico_City",
   });
 };
 
