@@ -21,6 +21,7 @@ const database_module_1 = require("./database/database.module");
 const agenda_module_1 = require("./agenda/agenda.module");
 const banners_module_1 = require("./banners/banners.module");
 const estadisticas_module_1 = require("./estadisticas/estadisticas.module");
+const monitoreo_module_1 = require("./monitoreo/monitoreo.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -53,7 +54,8 @@ exports.AppModule = AppModule = __decorate([
             database_module_1.DatabaseModule,
             agenda_module_1.AgendaModule,
             banners_module_1.BannersModule,
-            estadisticas_module_1.EstadisticasModule
+            estadisticas_module_1.EstadisticasModule,
+            monitoreo_module_1.MonitoreoModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
