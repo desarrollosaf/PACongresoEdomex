@@ -12,6 +12,7 @@ import { JuntaModule } from './junta/junta.module';
 import { AgendaModule } from './agenda/agenda.module';
 import { BannersModule } from './banners/banners.module';
 import { EstadisticasModule } from './estadisticas/estadisticas.module';
+import { MonitoreoModule } from './monitoreo/monitoreo.module';
 
 @Module({
   imports: [
@@ -42,7 +43,8 @@ import { EstadisticasModule } from './estadisticas/estadisticas.module';
     DatabaseModule,
     AgendaModule,
     BannersModule,
-    EstadisticasModule
+    EstadisticasModule,
+    MonitoreoModule
   ],
   controllers: [AppController],
   providers: [AppService],
