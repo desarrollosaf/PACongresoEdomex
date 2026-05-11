@@ -4,12 +4,12 @@ export async function getEstadisticasHome() {
     if (!res.ok) {
       const text = await res.text();
       console.error('Error backend:', text);
-      return null;
+      return [];
     }
-    return await res.json();
+  return await res.json();
   } catch (error) {
-    console.error("Failed to fetch estadisticas:", error);
-    return null;
+    console.error("Failed to fetch banners:", error);
+    return [];
   }
 }
 
