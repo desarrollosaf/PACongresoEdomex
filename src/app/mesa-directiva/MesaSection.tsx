@@ -1,3 +1,8 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
 type Props = {
     integrante: any;
 };
@@ -20,6 +25,16 @@ type MesaItem = {
 };
 
 export default function MesaSection({ integrante } : Props) {
+  const router = useRouter();
+  const isDiputacionPermanente = Array.isArray(integrante) && integrante.length > 0 && integrante[0]?.comision?.nombre === "Diputación Permanente";
+  const tituloSeccion = isDiputacionPermanente ? "Diputación Permanente" : "Mesa Directiva";
+
+  useEffect(() => {
+    if (isDiputacionPermanente) {
+      router.replace('/diputacion-permanente');
+    }
+  }, [isDiputacionPermanente, router]);
+
   const renderCard = (item?: MesaItem, key?: string | number) => {
     if (!item) return null;
     const diputado = item?.integranteLegis?.diputado;
@@ -53,7 +68,7 @@ return (
     <section className="mesa-directiva max_width">
         <div className="div-block-52">
             <div className="div-block-53">
-            <h1 className="titulo-centrado">Mesa Directiva</h1>
+            <h1 className="titulo-centrado">{tituloSeccion}</h1>
             {/* <p className="subtitulo-info-centrado">
                 Grupo de legisladoras y legisladores que trabajan durante los periodos de receso de la
                 Legislatura. Puede convocar a todas y todos los legisladores a un periodo extraordinario
@@ -96,6 +111,28 @@ return (
                 if (!integrante || !Array.isArray(integrante)) return null;
                 
                 const normalizeString = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+                const isDiputacionPermanente = integrante.length > 0 && integrante[0]?.comision?.nombre === "Diputación Permanente";
+
+                if (isDiputacionPermanente) {
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                      <br />
+                      {integrante.reduce((resultArray: any[], item: any, index: number) => {
+                        const chunkIndex = Math.floor(index / 4);
+                        if (!resultArray[chunkIndex]) {
+                          resultArray[chunkIndex] = [];
+                        }
+                        resultArray[chunkIndex].push(item);
+                        return resultArray;
+                      }, []).map((chunk: any[], chunkIndex: number) => (
+                        <div key={`dip-perm-${chunkIndex}`} style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                            {chunk.map((item, itemIndex) => renderCard(item, `dip-perm-item-${chunkIndex}-${itemIndex}`))}
+                        </div>
+                      ))}
+                    </div>
+                  );
+                }
+
                 const secretarios = integrante.filter((item: any) => {
                   const cargo = item?.tipo_cargo?.valor || '';
                   return normalizeString(cargo).includes('secretari');
