@@ -9,19 +9,23 @@ import { TipoCargoComision } from 'src/database/entities/tipo-cargo-comision.ent
 
 @Injectable()
 export class MesaService {
-
+// Directiva del Segundo Periodo Ordinario de Sesiones del Segundo Año de Ejercicio Constitucional
     async findAll() {
         const comision = await Comision.findOne({
             where:{
-                nombre: "Directiva del Segundo Periodo Ordinario de Sesiones del Segundo Año de Ejercicio Constitucional"
+                nombre: "Diputación Permanente"
             }
         })
-
         return await IntegranteComision.findAll({
             where:{
                 comision_id: comision?.id
             },
             include:[
+                {
+                    model: Comision,
+                    as: "comision",
+                    attributes: ["nombre"]
+                },
                 {
                 model: TipoCargoComision,
                 as: "tipo_cargo", 
