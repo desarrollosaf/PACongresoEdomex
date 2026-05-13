@@ -19,7 +19,7 @@ let MesaService = class MesaService {
     async findAll() {
         const comision = await comisiones_entity_1.Comision.findOne({
             where: {
-                nombre: "Directiva del Segundo Periodo Ordinario de Sesiones del Segundo Año de Ejercicio Constitucional"
+                nombre: "Diputación Permanente"
             }
         });
         return await integrante_comisions_entity_1.IntegranteComision.findAll({
@@ -27,6 +27,11 @@ let MesaService = class MesaService {
                 comision_id: comision?.id
             },
             include: [
+                {
+                    model: comisiones_entity_1.Comision,
+                    as: "comision",
+                    attributes: ["nombre"]
+                },
                 {
                     model: tipo_cargo_comision_entity_1.TipoCargoComision,
                     as: "tipo_cargo",
