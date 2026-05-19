@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import ParlamentaryStats from './ParlamentaryStats';
 
 type Foto = {
     path: string;
@@ -136,21 +137,42 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
                 <h3 className="heading-3 titulo-seccion" style={{ textAlign: 'left' }}>Grupos Parlamentarios</h3>
                 <br />
                 <div className="filtros-diputados grupos-parlamentarios-selector">
-                    {PARTIDOS.map((grupo) => (
-                        <a
-                            href="#"
-                            key={grupo.id}
-                            onClick={(e) => { e.preventDefault(); handleSelectPartido(grupo.id); }}
-                            className={`button grupo_parlamentario btn-grupo-parlamentario w-button ${grupo.clase}`}
-                            style={{
-                                opacity: partidoSeleccionado && partidoSeleccionado !== grupo.id ? 0.6 : 1,
-                                transition: 'all 0.2s'
-                            }}
-                        >
-                            {grupo.nombre}
-                        </a>
-                    ))}
+                    <ParlamentaryStats 
+                        onSelectPartido={handleSelectPartido} 
+                        partidoSeleccionado={partidoSeleccionado} 
+                    />
                 </div>
+                
+                {/* Nueva Sección Informativa */}
+                <div className="flex-centrado" style={{ marginTop: '4rem', marginBottom: '2rem' }}>
+                    <div className="que_es_un_diputado w-row">
+                        <div className="column-21 w-col w-col-6">
+                            <h1 className="titulo-gigante">¿Que es un grupo parlamentario?</h1>
+                            <p className="texto-general">Es la agrupación de diputadas y diputados organizada conforme a su filiación partidista.<br/></p>
+                            <ul role="list">
+                                <li>
+                                    <p className="texto-general">Su finalidad es garantizar la libre expresión de las distintas corrientes ideológicas dentro de la Legislatura.<br/></p>
+                                </li>
+                                <li>
+                                    <p className="texto-general">Cada Grupo Parlamentario debe integrarse por al menos dos legisladores.<br/></p>
+                                </li>
+                                <li>
+                                    <p className="texto-general">Solo puede existir un Grupo Parlamentario por cada partido político con representación en el Congreso.<br/></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="columna-quegp w-col w-col-6">
+                            <div className="img-mx-h">
+                                <img 
+                                    src="https://sistema.congresoedomex.gob.mx/storage/img/fotos/comunicados/lxi/10d422b87-97f0-4e28-90ee-e99050ebc0b7.jpg" 
+                                    alt="Pleno del Congreso" 
+                                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }} 
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
             </div>
 
             {/* Sección inferior: Resultados */}
