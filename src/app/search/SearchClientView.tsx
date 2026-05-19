@@ -45,8 +45,10 @@ export default function SearchClientView({
   };
 
   const ITEMS_PER_PAGE = 8;
-  const totalPages = Math.ceil(comunicados.length / ITEMS_PER_PAGE);
-  const paginatedComunicados = comunicados.slice(
+  // Ordenar comunicados por su número (del más reciente al más antiguo)
+  const sortedComunicados = [...comunicados].sort((a, b) => (b.comunicado || 0) - (a.comunicado || 0));
+  const totalPages = Math.ceil(sortedComunicados.length / ITEMS_PER_PAGE);
+  const paginatedComunicados = sortedComunicados.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
