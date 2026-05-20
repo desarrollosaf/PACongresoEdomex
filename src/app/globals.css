@@ -290,6 +290,42 @@ body {
   }
 }
 
+/* Puntos de Acuerdo */
+.punto-acuerdo-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.punto-acuerdo-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Iniciativas de ley o Decretos */
+.iniciativa-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.iniciativa-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Minutas */
+.minuta-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.minuta-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Oculta párrafos vacíos que vienen del HTML almacenado en BD */
 .comunicado-texto {
   text-align: justify;
