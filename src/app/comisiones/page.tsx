@@ -14,7 +14,7 @@ export default function ComisionesPage() {
 <div className="hero-img-comisiones">
   <div className="grid-cc">
     <div>
-      <h2 className="numero-de-cc">45</h2>
+      <h2 className="numero-de-cc">47</h2>
       <div className="text-centrado-cc">Comisiones</div>
     </div>
 

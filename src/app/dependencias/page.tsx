@@ -73,7 +73,7 @@
             <div className="div-block-33">
                 <h4 className="titulo-dorado">Dirección General de Comunicación Social</h4>
                 <div>Calle Pedro Ascencio Núm. 100, Colonia La Merced (Alameda), delegación o localidad Centro Histórico, Toluca, Estado de México, CP 50080</div>
-                <div>Tel. 722 779 6400</div>
+                <div>Tel. 722 279 6400  ext 2391</div>
             </div>
             <a href="https://sistema.congresoedomex.gob.mx/boletin" target="_blank" className="btn-var-2 w-button">Micrositio</a>
             </div>
