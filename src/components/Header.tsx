@@ -65,6 +65,7 @@ export default function Header() {
           <Dropdown id="congreso" label="Tu Congreso">
             <Link href="/que-es-el-congreso" className="link-nav-menu w-dropdown-link">¿Qué es el Congreso?</Link>
             <Link href="/dependencias" className="link-nav-menu w-dropdown-link">Dependencias</Link>
+            <Link href="/arte-y-cultura" className="link-nav-menu w-dropdown-link">Arte y Cultura</Link>
           </Dropdown>
 
           <Dropdown id="legislatura" label="Legislatura">
