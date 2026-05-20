@@ -1,6 +1,6 @@
 'use client';
 
-import { useDeferredValue, useEffect, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { getTrabajoLegislativo, getOrdenes } from '../service/trabajo_legislativo.service';
 
 const formatearFecha = (fecha: string) => {
@@ -29,6 +29,12 @@ export default function TrabajoLegislativo() {
   const [anioOrden, setAnioOrden] = useState('');
   const [paginaOrden, setPaginaOrden] = useState(1);
   const [isLoadingOrdenes, setIsLoadingOrdenes] = useState(false);
+  const [paginaIniciativas, setPaginaIniciativas] = useState(1);
+  const [paginaPuntos, setPaginaPuntos] = useState(1);
+  const [paginaMinutas, setPaginaMinutas] = useState(1);
+  const tabsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToTabs = () => tabsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   // Estados para Iniciativas
   const [iniciativas, setIniciativas] = useState<any[]>([]);
@@ -122,12 +128,6 @@ export default function TrabajoLegislativo() {
         ? '.gaceta-card'
         : activeTab === 'legislacion'
         ? '.legislacion-item'
-        : activeTab === 'iniciativas'
-        ? '.iniciativa-item'
-        : activeTab === 'puntos_acuerdo'
-        ? '.punto-acuerdo-item'
-        : activeTab === 'minutas'
-        ? '.minuta-item'
         : '';
 
     if (!selector) return;
@@ -150,7 +150,7 @@ export default function TrabajoLegislativo() {
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, [trabajoLegislativo, legislacion, iniciativas, puntosAcuerdo, minutas, mesPuntos, anioPuntos, busquedaTexto, busquedaLegislacion, deferredBusquedaIniciativas, deferredBusquedaMinutas, activeTab]);
+  }, [trabajoLegislativo, legislacion, busquedaTexto, busquedaLegislacion, activeTab]);
 
 
   const gacetasFiltradas = useMemo(() => {
@@ -229,6 +229,11 @@ export default function TrabajoLegislativo() {
     });
   }, [iniciativas, deferredBusquedaIniciativas, fechasIniciativas]);
 
+  const iniciativasPaginadas = useMemo(() => {
+    const start = (paginaIniciativas - 1) * 10;
+    return iniciativasFiltradas.slice(start, start + 10);
+  }, [iniciativasFiltradas, paginaIniciativas]);
+
   const puntosFiltrados = useMemo(() => {
     if (!Array.isArray(puntosAcuerdo)) return [];
     return [...puntosAcuerdo].sort((a, b) => b.no - a.no).filter((item: any) => {
@@ -245,6 +250,11 @@ export default function TrabajoLegislativo() {
       return matchMes && matchAnio;
     });
   }, [puntosAcuerdo, mesPuntos, anioPuntos]);
+
+  const puntosPaginados = useMemo(() => {
+    const start = (paginaPuntos - 1) * 10;
+    return puntosFiltrados.slice(start, start + 10);
+  }, [puntosFiltrados, paginaPuntos]);
 
   const fechasMinutas = useMemo(() => {
     const m = new Map<string, string>();
@@ -286,10 +296,16 @@ export default function TrabajoLegislativo() {
     });
   }, [minutas, deferredBusquedaMinutas, fechasMinutas]);
 
+  const minutasPaginadas = useMemo(() => {
+    const start = (paginaMinutas - 1) * 10;
+    return minutasFiltradas.slice(start, start + 10);
+  }, [minutasFiltradas, paginaMinutas]);
+
   return (
     <>
 
     <div
+        ref={tabsRef}
         data-current="Gaceta"
         data-easing="ease"
         data-duration-in="300"
@@ -708,7 +724,7 @@ export default function TrabajoLegislativo() {
                   id="busquedaIniciativas"
                   type="text"
                   value={busquedaIniciativas}
-                  onChange={(e) => setBusquedaIniciativas(e.target.value)}
+                  onChange={(e) => { setBusquedaIniciativas(e.target.value); setPaginaIniciativas(1); }}
                   className="input-fecha"
                   placeholder="Ej. educación, decreto, reforma, autor..."
                 />
@@ -716,7 +732,7 @@ export default function TrabajoLegislativo() {
               <button
                 type="button"
                 className="btn-limpiar-fecha"
-                onClick={() => setBusquedaIniciativas('')}
+                onClick={() => { setBusquedaIniciativas(''); setPaginaIniciativas(1); }}
               >
                 Limpiar
               </button>
@@ -751,8 +767,8 @@ export default function TrabajoLegislativo() {
             ) : (
               <ul role="list" className="btn-iniciativas-turnado">
                 {iniciativasFiltradas.length > 0 ? (
-                  iniciativasFiltradas.map((item: any, index: number) => (
-                    <li key={item.id ?? index} className="iniciativa-item" style={{ transitionDelay: `${index * 0.04}s` }}>
+                  iniciativasPaginadas.map((item: any, index: number) => (
+                    <li key={item.id ?? index}>
                       <div className="div-iniciativa-bloque">
                         <div className="div-block-85">
                           <img
@@ -805,6 +821,21 @@ export default function TrabajoLegislativo() {
                 )}
               </ul>
             )}
+            {!isLoadingOrdenes && iniciativasFiltradas.length > 10 && (
+              <div style={{ display: 'flex', gap: '5px', justifyContent: 'center', marginTop: '20px', alignItems: 'center' }}>
+                <button
+                  disabled={paginaIniciativas === 1}
+                  onClick={() => { setPaginaIniciativas(p => p - 1); scrollToTabs(); }}
+                  style={{ cursor: paginaIniciativas === 1 ? 'not-allowed' : 'pointer', padding: '5px 12px', background: paginaIniciativas === 1 ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >Anterior</button>
+                <span style={{ padding: '5px 10px' }}>Página {paginaIniciativas} de {Math.ceil(iniciativasFiltradas.length / 10)}</span>
+                <button
+                  disabled={paginaIniciativas >= Math.ceil(iniciativasFiltradas.length / 10)}
+                  onClick={() => { setPaginaIniciativas(p => p + 1); scrollToTabs(); }}
+                  style={{ cursor: paginaIniciativas >= Math.ceil(iniciativasFiltradas.length / 10) ? 'not-allowed' : 'pointer', padding: '5px 12px', background: paginaIniciativas >= Math.ceil(iniciativasFiltradas.length / 10) ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >Siguiente</button>
+              </div>
+            )}
           </div>
         )}
 
@@ -827,7 +858,7 @@ export default function TrabajoLegislativo() {
                   id="busquedaMinutas"
                   type="text"
                   value={busquedaMinutas}
-                  onChange={(e) => setBusquedaMinutas(e.target.value)}
+                  onChange={(e) => { setBusquedaMinutas(e.target.value); setPaginaMinutas(1); }}
                   className="input-fecha"
                   placeholder="Ej. licencia, decreto, elección..."
                 />
@@ -835,7 +866,7 @@ export default function TrabajoLegislativo() {
               <button
                 type="button"
                 className="btn-limpiar-fecha"
-                onClick={() => setBusquedaMinutas('')}
+                onClick={() => { setBusquedaMinutas(''); setPaginaMinutas(1); }}
               >
                 Limpiar
               </button>
@@ -864,8 +895,8 @@ export default function TrabajoLegislativo() {
             ) : (
               <ul role="list" className="w-list-unstyled">
                 {minutasFiltradas.length > 0 ? (
-                  minutasFiltradas.map((item: any, index: number) => (
-                    <li key={item.id ?? index} className="minuta-item" style={{ transitionDelay: `${index * 0.04}s` }}>
+                  minutasPaginadas.map((item: any, index: number) => (
+                    <li key={item.id ?? index}>
                       <div className="div-punto-acuerdo-block">
 
                         {/* — Bloque principal — */}
@@ -941,6 +972,21 @@ export default function TrabajoLegislativo() {
                 )}
               </ul>
             )}
+            {!isLoadingOrdenes && minutasFiltradas.length > 10 && (
+              <div style={{ display: 'flex', gap: '5px', justifyContent: 'center', marginTop: '20px', alignItems: 'center' }}>
+                <button
+                  disabled={paginaMinutas === 1}
+                  onClick={() => { setPaginaMinutas(p => p - 1); scrollToTabs(); }}
+                  style={{ cursor: paginaMinutas === 1 ? 'not-allowed' : 'pointer', padding: '5px 12px', background: paginaMinutas === 1 ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >Anterior</button>
+                <span style={{ padding: '5px 10px' }}>Página {paginaMinutas} de {Math.ceil(minutasFiltradas.length / 10)}</span>
+                <button
+                  disabled={paginaMinutas >= Math.ceil(minutasFiltradas.length / 10)}
+                  onClick={() => { setPaginaMinutas(p => p + 1); scrollToTabs(); }}
+                  style={{ cursor: paginaMinutas >= Math.ceil(minutasFiltradas.length / 10) ? 'not-allowed' : 'pointer', padding: '5px 12px', background: paginaMinutas >= Math.ceil(minutasFiltradas.length / 10) ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >Siguiente</button>
+              </div>
+            )}
           </div>
         )}
 
@@ -960,7 +1006,7 @@ export default function TrabajoLegislativo() {
                   <label className="label-fecha">Mes</label>
                   <select
                     value={mesPuntos}
-                    onChange={(e) => setMesPuntos(e.target.value)}
+                    onChange={(e) => { setMesPuntos(e.target.value); setPaginaPuntos(1); }}
                     className="input-fecha"
                     style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%235f687f\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
                   >
@@ -984,7 +1030,7 @@ export default function TrabajoLegislativo() {
                   <label className="label-fecha">Año</label>
                   <select
                     value={anioPuntos}
-                    onChange={(e) => setAnioPuntos(e.target.value)}
+                    onChange={(e) => { setAnioPuntos(e.target.value); setPaginaPuntos(1); }}
                     className="input-fecha"
                     style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%235f687f\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
                   >
@@ -1002,6 +1048,7 @@ export default function TrabajoLegislativo() {
                   onClick={() => {
                     setMesPuntos('');
                     setAnioPuntos('');
+                    setPaginaPuntos(1);
                   }}
                 >
                   Limpiar
@@ -1037,8 +1084,8 @@ export default function TrabajoLegislativo() {
             ) : (
               <ul role="list" className="list-legislacion-documentos">
                 {puntosFiltrados.length > 0 ? (
-                  puntosFiltrados.map((item: any, index: number) => (
-                    <li key={item.id ?? index} className="punto-acuerdo-item" style={{ transitionDelay: `${index * 0.04}s` }}>
+                  puntosPaginados.map((item: any, index: number) => (
+                    <li key={item.id ?? index}>
                       <div className="div-punto-acuerdo-block">
 
                         {/* — Bloque principal (siempre visible) — */}
@@ -1118,6 +1165,21 @@ export default function TrabajoLegislativo() {
                   </div>
                 )}
               </ul>
+            )}
+            {!isLoadingOrdenes && puntosFiltrados.length > 10 && (
+              <div style={{ display: 'flex', gap: '5px', justifyContent: 'center', marginTop: '20px', alignItems: 'center' }}>
+                <button
+                  disabled={paginaPuntos === 1}
+                  onClick={() => { setPaginaPuntos(p => p - 1); scrollToTabs(); }}
+                  style={{ cursor: paginaPuntos === 1 ? 'not-allowed' : 'pointer', padding: '5px 12px', background: paginaPuntos === 1 ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >Anterior</button>
+                <span style={{ padding: '5px 10px' }}>Página {paginaPuntos} de {Math.ceil(puntosFiltrados.length / 10)}</span>
+                <button
+                  disabled={paginaPuntos >= Math.ceil(puntosFiltrados.length / 10)}
+                  onClick={() => { setPaginaPuntos(p => p + 1); scrollToTabs(); }}
+                  style={{ cursor: paginaPuntos >= Math.ceil(puntosFiltrados.length / 10) ? 'not-allowed' : 'pointer', padding: '5px 12px', background: paginaPuntos >= Math.ceil(puntosFiltrados.length / 10) ? '#f0f0f0' : '#fff', border: '1px solid #ccc', borderRadius: '4px' }}
+                >Siguiente</button>
+              </div>
             )}
           </div>
         )}
