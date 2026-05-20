@@ -460,13 +460,13 @@ export default function TrabajoLegislativo() {
               </div>
             </div>
 
-            <div className="div-block-78">
-              <div className="w-layout-grid grid-minuta-ordendeldia">
+            <div style={{ width: '100%' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '20px', width: '100%' }}>
                 {isLoadingOrdenes ? (
                   // SKELETON LOADER
                   Array.from({ length: 4 }).map((_, idx) => (
-                    <div key={`sk-${idx}`} className="minuta_leg" style={{ pointerEvents: 'none', background: '#fff', borderRadius: '14px', border: '1px solid #e8eaf0', padding: '20px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
-                      <div className="div-block-81" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', flex: 1, minWidth: 0 }}>
+                    <div key={`sk-${idx}`} style={{ pointerEvents: 'none', background: '#fff', borderRadius: '14px', border: '1px solid #e8eaf0', padding: '20px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '15px', height: '100%', boxSizing: 'border-box' }}>
+                      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', flex: 1, minWidth: 0 }}>
                         <div style={{ width: '70px', height: '70px', borderRadius: '10px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', flexShrink: 0 }} />
                         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px', minWidth: 0 }}>
                           <div style={{ width: '60%', height: '16px', borderRadius: '4px', background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
@@ -480,8 +480,8 @@ export default function TrabajoLegislativo() {
                 ) : (
                   // ORDENES DATA
                   ordenesPaginadas.map((orden) => (
-                    <div key={orden.id} className="minuta_leg" style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e8eaf0', padding: '15px 20px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '15px', transition: 'box-shadow 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-                      <div className="div-block-81" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', flex: 1, minWidth: 0 }}>
+                    <div key={orden.id} style={{ background: '#fff', borderRadius: '14px', border: '1px solid #e8eaf0', padding: '15px 20px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '15px', transition: 'box-shadow 0.2s', boxShadow: '0 2px 10px rgba(0,0,0,0.05)', height: '100%', boxSizing: 'border-box', flexWrap: 'nowrap', margin: 0 }}>
+                      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '15px', flex: 1, minWidth: 0 }}>
                         <img src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png" loading="lazy" alt="" className="img-70px" style={{ background: '#f8f9fa', padding: '10px', borderRadius: '10px', flexShrink: 0 }} />
                         <div style={{ minWidth: 0, overflow: 'hidden' }}>
                           <h4 className="subtitulo-info" style={{ color: '#8B1A1A', marginBottom: '5px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Orden del día</h4>

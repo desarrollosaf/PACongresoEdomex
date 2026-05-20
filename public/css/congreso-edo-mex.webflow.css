@@ -4505,8 +4505,8 @@
 /* +++++++++++++++++++++++++++++++++++NUEVOS++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 /* ============================================================
-   CLASES NUEVAS DEL ARCHIVO 2 — agregar al final de tu CSS
-   (No estaban en tu versión modificada)
+   CLASES NUEVAS DEL ARCHIVO 2 —  mes pasado
+ 
    ============================================================ */
 
 .fecha-boletin-centrada {
@@ -5223,3 +5223,1038 @@
     grid-template-columns: repeat(4, 1fr) !important;
   }
 }
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ============================================================
+   CLASES PRESENTES EN ARCHIVO 2 PERO NO EN ARCHIVO 1  19/05/26
+   ============================================================ */
+/* ============================================================
+   CLASES NUEVAS — presentes en archivo 2, ausentes en archivo 1
+   ============================================================ */
+/* 
+.code-embed:hover {
+  flex-flow: column;
+}
+
+.column-4 {
+  flex-flow: column;
+  display: block;
+  overflow: hidden;
+}
+
+.button.grupo_parlamentario.btn-pri.btn-grupo-parlamentario {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.button.grupo_parlamentario.btn-prd.btn-grupo-parlamentario {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.button.grupo_parlamentario.btn-grupo-parlamentario {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.heading-3.titulo-seccion {
+  text-align: center;
+  font-size: 25px;
+}
+
+.heading-38 {
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.div-block-24 {
+  box-sizing: border-box;
+  aspect-ratio: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margen-seccion.tabs-menu-1 {
+  flex-flow: wrap;
+}
+
+.tab-link-comunicados.w--current {
+  border-radius: 10px;
+}
+
+.tab-link-comisiones.w--current {
+  border-radius: 10px;
+}
+
+.tabs-menu-3 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  border-radius: 0;
+  flex-flow: column;
+  display: flex;
+}
+
+.text-block-21,
+.text-block-22,
+.text-block-23 {
+  text-align: center;
+}
+
+.titulo-comunicado-general {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.div-resultados {
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.list-item-3 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-var-2_1 {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  flex: 0 auto;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  max-width: 200px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.btn-var-2_1.w--current {
+  color: #fff;
+  background-color: #bb945c;
+}
+
+.div-block-77 {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.link-block-5 {
+  text-decoration: none;
+}
+
+.div-block-78 {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.minuta_leg {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  display: flex;
+}
+
+.body-18 {
+  background-color: #f2f4f5;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.div-block-79 {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1400px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 10px;
+}
+
+.btn-var-2-minuta {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  flex-flow: row;
+  flex: 0 auto;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+}
+
+.btn-var-2-minuta.w--current {
+  color: #fff;
+  background-color: #bb945c;
+}
+
+.filtro-sintesis {
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.filtro-sintesis:hover {
+  color: #bb945c;
+}
+
+.filtro-sintesis.w--open {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.div-filtro-fechas-sintesis {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  display: flex;
+}
+
+.div-grid-sintesis {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1200px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-var-2-orden_del_dia {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  flex-flow: row;
+  flex: 0 auto;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  max-width: 250px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.btn-var-2-orden_del_dia.w--current {
+  color: #fff;
+  background-color: #bb945c;
+}
+
+.h4-sintesis {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.grid-sintesis {
+  background-color: #fff;
+  border-radius: 20px;
+  flex-flow: wrap;
+  flex: 1;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 0;
+  display: flex;
+}
+
+.numeralia-centrado {
+  text-align: center;
+  max-width: 1440px;
+  margin: 0 auto 40px;
+  padding-bottom: 40px;
+  font-weight: 700;
+}
+
+.div-block-81 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.grid-minuta-ordendeldia {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  flex-flow: wrap;
+  flex: 1;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: none;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 0;
+  display: flex;
+}
+
+.img-70px {
+  max-width: 70px;
+}
+
+.body-19 {
+  color: #454545;
+  background-color: #f2f4f5;
+}
+
+.div-hero {
+  max-width: 1400px;
+  margin: 40px auto;
+}
+
+.div-block-82 {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item-hxh {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  display: flex;
+}
+
+.img-250px {
+  border-radius: 20px;
+  max-width: 250px;
+}
+
+.fecha-boletin-centrado {
+  color: #c7c7c7;
+  text-align: center;
+}
+
+.icon-small {
+  max-width: 25px;
+  margin-left: auto;
+}
+
+.div-block-83 {
+  max-width: 850px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.texto-general-bold {
+  text-align: justify;
+  font-weight: 700;
+}
+
+.texto-general-bold.verde {
+  color: #18c329;
+}
+
+.div-block-85 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.div-punto-acuerdo-block {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 800px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+}
+
+.div-info-bloque {
+  margin-bottom: 20px;
+}
+
+.div-filtro-fechas-sintesis-centrado {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  order: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.div-iniciativa-bloque {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 20px;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+}
+
+.btn-iniciativas-turnado {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.features-block-gp {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  text-align: center;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-self: auto;
+  align-items: center;
+  display: flex;
+}
+
+.features-wrapper-gp {
+  color: #333;
+  flex-flow: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+.columna-quegp {
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.img-parlamentaria-nf {
+  max-width: 60%;
+  margin-bottom: 80px;
+}
+
+.info-iniciativas-bloque {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.btn-basico {
+  color: #454545;
+  background-color: #fff;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.img-mx-h {
+  background-image: url('../images/gplmtrs.jpeg');
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 20px;
+  width: 100%;
+  height: 250px;
+  max-height: 250px;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.texto-general-bold-centrado {
+  text-align: center;
+  font-weight: 700;
+}
+
+.texto-general-bold-centrado.verde {
+  color: #18c329;
+}
+
+.hero-stack {
+  background-color: #f5f7fa;
+  border-bottom: 1px solid #e4ebf3;
+  padding: 80px 30px;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-wrapper-two {
+  text-align: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.margin-bottom-24px {
+  margin-bottom: 24px;
+}
+
+.button-primary {
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: #1a1b1f;
+  padding: 12px 25px;
+  font-size: 12px;
+  line-height: 20px;
+  transition: all .2s;
+}
+
+.button-primary:hover {
+  color: #fff;
+  background-color: #32343a;
+}
+
+.button-primary:active {
+  background-color: #43464d;
+}
+
+.hero-image {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.div-arteycultura {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  color: #fff;
+  background-color: #0000;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  height: 100%;
+  padding: 40px 20px;
+  display: flex;
+}
+
+.texto-general-centrado {
+  text-align: center;
+}
+
+.img_full {
+  background-image: linear-gradient(#bb945c99, #000000c4), url('../images/6.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+  border-radius: 0;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  margin: auto;
+  display: flex;
+  overflow: hidden;
+}
+
+.body-20 {
+  color: #454545;
+  background-color: #f2f4f5;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.image-37 {
+  border-radius: 20px;
+}
+
+.titulo-gigante-centrado {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.max_width-arteycultura {
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #ffffff4d);
+  border-radius: 20px;
+  max-width: 1440px;
+  margin: 40px auto;
+  padding: 40px 20px;
+  overflow: hidden;
+}
+
+.max_width-arteycultura.seccion-de-diputados {
+  margin-top: 20px;
+}
+
+.max_width-arteycultura.fondo-img {
+  background-image: linear-gradient(#96134ba8, #f2f4f5), url('../images/9-bn.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, cover;
+}
+
+.div-ayc-titulo-texto {
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  background-color: #fff0;
+  border-radius: 20px;
+  flex-flow: column;
+  max-width: 1200px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 10px;
+  display: flex;
+}
+
+.subtitulo-arteycultura-centrado {
+  text-align: center;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.subtitulo-arteycultura-centrado._800-w {
+  max-width: 1000px;
+  margin-top: 40px;
+}
+
+.titulo-gigante-centrado-2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 124px;
+  line-height: 120px;
+}
+
+.max_width-arteycultura-no-padding {
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #ffffff4d);
+  border-radius: 20px;
+  max-width: 1440px;
+  margin: 40px auto;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+.max_width-arteycultura-no-padding.seccion-de-diputados {
+  margin-top: 20px;
+}
+
+.div-block-87 {
+  background-color: #fff0;
+  background-image: linear-gradient(#bb945c4d, #f2f4f5);
+  max-width: none;
+}
+
+.div-img-ac-full {
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #f2f4f5 103%);
+  width: 100%;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.image-38 {
+  display: block;
+}
+
+.img_full-total {
+  background-image: none;
+  border-radius: 0;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 900px;
+  height: auto;
+  margin: auto;
+  display: flex;
+  overflow: hidden;
+}
+
+.columns-26 {
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.column-29 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.heading-39 {
+  font-size: 34px;
+}
+
+.link-block-6 {
+  color: #454545;
+}
+
+.column-30 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.columns-27 {
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.heading-40 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.img_full-round {
+  background-image: linear-gradient(#bb945c99, #000000c4), url('../images/6.jpeg');
+  background-position: 0 0, 50%;
+  background-size: auto, auto;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  margin: 40px auto;
+  display: flex;
+  overflow: hidden;
+}
+
+.heading-41 {
+  color: #fff;
+}
+
+.subtitulo-text {
+  background-color: #fff0;
+  background-image: none;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.texto-general-22 {
+  text-align: justify;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.titulo-centrado-blanco {
+  color: #fff;
+  text-align: center;
+  max-width: 1440px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.texto-centrado-blanco {
+  color: #fff;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.texto-centrado-blanco._800-w {
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.texto-centrado._800-w {
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.div-block-88 {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.div--dip-legis {
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  display: flex;
+}
+
+.img-750px {
+  border-radius: 20px;
+  max-width: 450px;
+}
+
+.columns-28 {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.div-block-89 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.div-block-90 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-flow: row;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.dropdown,
+.dropdown-2 {
+  display: block;
+}
+
+.div-block-91 {
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  display: inline-flex;
+}
+
+
+
+@media screen and (max-width: 991px) {
+  .btn-var-2_1,
+  .btn-var-2-minuta,
+  .btn-var-2-orden_del_dia {
+    flex: none;
+    display: flex;
+  }
+
+  .grid-sintesis,
+  .grid-minuta-ordendeldia {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .features-wrapper-gp {
+    justify-content: space-between;
+  }
+
+  .container {
+    max-width: 728px;
+  }
+
+  .margen-seccion.tabs-menu-1 {
+    flex-flow: wrap;
+  }
+
+  .div-block-24 {
+    box-sizing: border-box;
+    aspect-ratio: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .column-4 {
+    flex-flow: column;
+    display: block;
+    overflow: hidden;
+  }
+
+  .heading-38 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .btn-var-2_1,
+  .btn-var-2-minuta,
+  .btn-var-2-orden_del_dia {
+    flex: none;
+  }
+
+  .grid-sintesis,
+  .grid-minuta-ordendeldia {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .features-block-gp {
+    width: 50%;
+    margin-bottom: 40px;
+  }
+
+  .features-wrapper-gp {
+    flex-wrap: wrap;
+    margin-bottom: -40px;
+  }
+
+  .hero-stack {
+    padding: 60px 15px;
+  }
+
+  .titulo-comunicado-general {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .button.grupo_parlamentario.btn-pri.btn-grupo-parlamentario {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .minuta_leg {
+    flex-flow: column;
+  }
+
+  .grid-sintesis,
+  .grid-minuta-ordendeldia {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .div-hero {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .item-hxh {
+    flex-flow: column;
+  }
+
+  .list-item-3 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .div-punto-acuerdo-block,
+  .div-iniciativa-bloque {
+    flex-flow: column;
+  }
+
+  .container {
+    max-width: none;
+  }
+
+  .max_width-arteycultura,
+  .max_width-arteycultura.seccion-de-diputados,
+  .max_width-arteycultura-no-padding,
+  .max_width-arteycultura-no-padding.seccion-de-diputados {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .div-resultados {
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+  }
+
+  .tabs-menu-3 {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    border-radius: 0;
+    flex-flow: column;
+    display: flex;
+  }
+
+  .text-block-21,
+  .text-block-22,
+  .text-block-23 {
+    text-align: center;
+  }
+
+  .button.grupo_parlamentario.btn-prd.btn-grupo-parlamentario {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .button.grupo_parlamentario.btn-grupo-parlamentario {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .heading-3.titulo-seccion {
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .tab-link-comunicados.w--current {
+    border-radius: 10px;
+  }
+
+  .tab-link-comisiones.w--current {
+    border-radius: 10px;
+  }
+} */
