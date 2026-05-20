@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import { getTrabajoLegislativo, getOrdenes } from '../service/trabajo_legislativo.service';
 
 const formatearFecha = (fecha: string) => {
@@ -30,6 +30,21 @@ export default function TrabajoLegislativo() {
   const [paginaOrden, setPaginaOrden] = useState(1);
   const [isLoadingOrdenes, setIsLoadingOrdenes] = useState(false);
 
+  // Estados para Iniciativas
+  const [iniciativas, setIniciativas] = useState<any[]>([]);
+  const [busquedaIniciativas, setBusquedaIniciativas] = useState('');
+  const deferredBusquedaIniciativas = useDeferredValue(busquedaIniciativas);
+
+  // Estados para Puntos de Acuerdo
+  const [puntosAcuerdo, setPuntosAcuerdo] = useState<any[]>([]);
+  const [mesPuntos, setMesPuntos] = useState('');
+  const [anioPuntos, setAnioPuntos] = useState('');
+
+  // Estados para Minutas
+  const [minutas, setMinutas] = useState<any[]>([]);
+  const [busquedaMinutas, setBusquedaMinutas] = useState('');
+  const deferredBusquedaMinutas = useDeferredValue(busquedaMinutas);
+
   const fetchOrdenes = async () => {
     setIsLoadingOrdenes(true);
     try {
@@ -37,6 +52,15 @@ export default function TrabajoLegislativo() {
       const response = await getOrdenes();
       if (response && response.eventos) {
         setTodasLasOrdenes(response.eventos);
+      }
+      if (response && response.iniciativas) {
+        setIniciativas(response.iniciativas);
+      }
+      if (response && response.puntosAcuerdo) {
+        setPuntosAcuerdo(response.puntosAcuerdo);
+      }
+      if (response && response.minutas) {
+        setMinutas(response.minutas);
       }
     } catch (error) {
       console.error('Error al obtener ordenes del dia:', error);
@@ -46,7 +70,10 @@ export default function TrabajoLegislativo() {
   };
 
   useEffect(() => {
-    if (activeTab === 'orden_del_dia' && todasLasOrdenes.length === 0) {
+    if (
+      (activeTab === 'orden_del_dia' || activeTab === 'iniciativas' || activeTab === 'puntos_acuerdo' || activeTab === 'minutas') &&
+      todasLasOrdenes.length === 0
+    ) {
       fetchOrdenes();
     }
   }, [activeTab]);
@@ -95,6 +122,12 @@ export default function TrabajoLegislativo() {
         ? '.gaceta-card'
         : activeTab === 'legislacion'
         ? '.legislacion-item'
+        : activeTab === 'iniciativas'
+        ? '.iniciativa-item'
+        : activeTab === 'puntos_acuerdo'
+        ? '.punto-acuerdo-item'
+        : activeTab === 'minutas'
+        ? '.minuta-item'
         : '';
 
     if (!selector) return;
@@ -117,7 +150,7 @@ export default function TrabajoLegislativo() {
     cards.forEach((card) => observer.observe(card));
 
     return () => observer.disconnect();
-  }, [trabajoLegislativo, legislacion, busquedaTexto, busquedaLegislacion, activeTab]);
+  }, [trabajoLegislativo, legislacion, iniciativas, puntosAcuerdo, minutas, mesPuntos, anioPuntos, busquedaTexto, busquedaLegislacion, deferredBusquedaIniciativas, deferredBusquedaMinutas, activeTab]);
 
 
   const gacetasFiltradas = useMemo(() => {
@@ -158,6 +191,101 @@ export default function TrabajoLegislativo() {
     });
   }, [legislacion, busquedaLegislacion]);
 
+  const fechasIniciativas = useMemo(() => {
+    const m = new Map<string, string>();
+    iniciativas.forEach(item => {
+      const raw = item?.fecha_evento_raw?.split('T')[0];
+      if (raw) m.set(item.id, formatearFecha(raw).toLowerCase());
+    });
+    return m;
+  }, [iniciativas]);
+
+  const iniciativasFiltradas = useMemo(() => {
+    if (!Array.isArray(iniciativas)) return [];
+    const sorted = [...iniciativas].sort((a, b) => b.no - a.no);
+    const termino = deferredBusquedaIniciativas.trim().toLowerCase();
+    if (!termino) return sorted;
+    return sorted.filter((item: any) => {
+      const titulo = String(item?.iniciativa || '').toLowerCase();
+      const autor = String(item?.autor_detalle || item?.autor || '').toLowerCase();
+      const comisiones = String(item?.comisiones || '').toLowerCase();
+      const estado = String(item?.observac || '').toLowerCase();
+      const grupo = String(item?.grupo_parlamentario || '').toLowerCase();
+      const no = String(item?.no || '');
+      const id = String(item?.id || '');
+      const presentac = String(item?.presentac || '').toLowerCase();
+      const fechaFormateada = fechasIniciativas.get(item.id) || '';
+      return (
+        titulo.includes(termino) ||
+        autor.includes(termino) ||
+        comisiones.includes(termino) ||
+        estado.includes(termino) ||
+        grupo.includes(termino) ||
+        no.includes(termino) ||
+        id.includes(termino) ||
+        presentac.includes(termino) ||
+        fechaFormateada.includes(termino)
+      );
+    });
+  }, [iniciativas, deferredBusquedaIniciativas, fechasIniciativas]);
+
+  const puntosFiltrados = useMemo(() => {
+    if (!Array.isArray(puntosAcuerdo)) return [];
+    return [...puntosAcuerdo].sort((a, b) => b.no - a.no).filter((item: any) => {
+      if (!mesPuntos && !anioPuntos) return true;
+      const raw = item?.fecha_evento_raw;
+      if (!raw) return true;
+      // handles both "YYYY-MM-DDTHH:MM:SS" and "YYYY-MM-DD HH:MM:SS" formats
+      const datePart = raw.split(/[T ]/)[0].trim();
+      const parts = datePart.split('-');
+      if (parts.length < 2) return true;
+      const [yyyy, mm] = parts;
+      const matchMes = mesPuntos ? parseInt(mm, 10).toString() === mesPuntos : true;
+      const matchAnio = anioPuntos ? yyyy.trim() === anioPuntos : true;
+      return matchMes && matchAnio;
+    });
+  }, [puntosAcuerdo, mesPuntos, anioPuntos]);
+
+  const fechasMinutas = useMemo(() => {
+    const m = new Map<string, string>();
+    minutas.forEach(item => {
+      const raw = item?.fecha_evento_raw?.split(/[T ]/)[0];
+      if (raw) m.set(item.id, formatearFecha(raw).toLowerCase());
+    });
+    return m;
+  }, [minutas]);
+
+  const minutasFiltradas = useMemo(() => {
+    if (!Array.isArray(minutas)) return [];
+    const sorted = [...minutas].sort((a, b) => b.no - a.no);
+    const termino = deferredBusquedaMinutas.trim().toLowerCase();
+    if (!termino) return sorted;
+    return sorted.filter((item: any) => {
+      const titulo = String(item?.iniciativa || '').toLowerCase();
+      const materia = String(item?.materia || '').toLowerCase();
+      const autor = String(item?.autor_detalle || item?.autor || '').toLowerCase();
+      const no = String(item?.no || '');
+      const estado = String(item?.observac || '').toLowerCase();
+      const presentac = String(item?.presentac || '').toLowerCase();
+      const fechaFormateada = fechasMinutas.get(item.id) || '';
+      const acuerdoNombre = String(item?.acuerdo?.nombre_decreto || '').toLowerCase();
+      const dispensada = item?.dispensada ? 'dispensa' : '';
+      const aprobada = item?.aprobada ? 'aprobado' : '';
+      return (
+        titulo.includes(termino) ||
+        materia.includes(termino) ||
+        autor.includes(termino) ||
+        no.includes(termino) ||
+        estado.includes(termino) ||
+        presentac.includes(termino) ||
+        fechaFormateada.includes(termino) ||
+        acuerdoNombre.includes(termino) ||
+        dispensada.includes(termino) ||
+        aprobada.includes(termino)
+      );
+    });
+  }, [minutas, deferredBusquedaMinutas, fechasMinutas]);
+
   return (
     <>
 
@@ -197,6 +325,36 @@ export default function TrabajoLegislativo() {
             }`}
           >
             <div>Orden del día</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('iniciativas')}
+            className={`btn-var-2 w-inline-block w-tab-link ${
+              activeTab === 'iniciativas' ? 'w--current' : ''
+            }`}
+          >
+            <div>Iniciativas de ley o Decretos</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('puntos_acuerdo')}
+            className={`btn-var-2 w-inline-block w-tab-link ${
+              activeTab === 'puntos_acuerdo' ? 'w--current' : ''
+            }`}
+          >
+            <div>Puntos de Acuerdo</div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab('minutas')}
+            className={`btn-var-2 w-inline-block w-tab-link ${
+              activeTab === 'minutas' ? 'w--current' : ''
+            }`}
+          >
+            <div>Minutas</div>
           </button>
 
           {/* <button
@@ -527,6 +685,439 @@ export default function TrabajoLegislativo() {
                 <div style={{ fontSize: '18px', color: '#5f687f', marginBottom: '10px' }}>No hay ordenes del día para mostrar.</div>
                 <div style={{ color: '#888' }}>Intenta ajustando los filtros de búsqueda.</div>
               </div>
+            )}
+          </div>
+        )}
+
+        {/* INICIATIVAS DE LEY O DECRETOS */}
+        {activeTab === 'iniciativas' && (
+          <div data-w-tab="iniciativas" className="w-tab-pane w--tab-active">
+            <div className="titulo-tab">
+              <h2 className="h4-centrado">Iniciativas de ley o Decretos</h2>
+              <div className="texto-centrado">
+                Propuestas presentadas por integrantes de la legislatura o autoridades facultadas para crear, reformar, adicionar o derogar disposiciones legales.
+              </div>
+            </div>
+
+            <div className="filtros-gaceta">
+              <div className="buscador-texto-box">
+                <label htmlFor="busquedaIniciativas" className="label-fecha">
+                  Buscar iniciativa
+                </label>
+                <input
+                  id="busquedaIniciativas"
+                  type="text"
+                  value={busquedaIniciativas}
+                  onChange={(e) => setBusquedaIniciativas(e.target.value)}
+                  className="input-fecha"
+                  placeholder="Ej. educación, decreto, reforma, autor..."
+                />
+              </div>
+              <button
+                type="button"
+                className="btn-limpiar-fecha"
+                onClick={() => setBusquedaIniciativas('')}
+              >
+                Limpiar
+              </button>
+            </div>
+
+            {isLoadingOrdenes ? (
+              <ul role="list" className="btn-iniciativas-turnado">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <li key={i}>
+                    <div className="div-iniciativa-bloque">
+                      <div className="div-block-85">
+                        <div style={{ width: 70, height: 70, borderRadius: 10, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', flexShrink: 0 }} />
+                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                          <div style={{ display: 'flex', gap: 40 }}>
+                            <div style={{ width: 60, height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                            <div style={{ width: 130, height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          </div>
+                          <div style={{ width: '88%', height: 18, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: '55%', height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: '35%', height: 12, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: 160, height: 32, borderRadius: 8, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+                        <div style={{ width: 80, height: 14, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                        <div style={{ width: 90, height: 36, borderRadius: 8, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul role="list" className="btn-iniciativas-turnado">
+                {iniciativasFiltradas.length > 0 ? (
+                  iniciativasFiltradas.map((item: any, index: number) => (
+                    <li key={item.id ?? index} className="iniciativa-item" style={{ transitionDelay: `${index * 0.04}s` }}>
+                      <div className="div-iniciativa-bloque">
+                        <div className="div-block-85">
+                          <img
+                            src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png"
+                            loading="lazy"
+                            alt=""
+                            className="img-70px"
+                          />
+                          <div>
+                            <div className="info-iniciativas-bloque">
+                              <div>No. {item.no}</div>
+                              <div>{formatearFecha(item.fecha_evento_raw?.split('T')[0])}</div>
+                            </div>
+                            <h4 className="texto-general-bold">{item.iniciativa}</h4>
+                            <div>Autor: <strong>{item.autor_detalle || item.autor}</strong></div>
+                            {item.comisiones && (
+                              <>
+                                <div>Turnada a:</div>
+                                {item.comisiones.split(',').map((com: string, ci: number) => (
+                                  <span key={ci} className="btn-basico w-button" style={{ display: 'inline-block', marginRight: '6px', marginTop: '4px' }}>
+                                    {com.trim()}
+                                  </span>
+                                ))}
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+                          <div className={`texto-general-bold-centrado ${item.aprobada ? 'verde' : ''}`}>
+                            {item.observac || 'En Estudio'}
+                          </div>
+                          {item.documento && (
+                            <a
+                              href={`https://parlamentario.congresoedomex.gob.mx/backend/${item.documento}`}
+                              className="btn-var-2 w-button"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Descargar
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <div className="sin-resultados">
+                    No se encontraron iniciativas con esa búsqueda.
+                  </div>
+                )}
+              </ul>
+            )}
+          </div>
+        )}
+
+        {/* MINUTAS */}
+        {activeTab === 'minutas' && (
+          <div data-w-tab="minutas" className="w-tab-pane w--tab-active">
+            <div className="titulo-tab">
+              <h2 className="h4-centrado">Minutas del H. Congreso de la Unión recibidas durante la legislatura</h2>
+              <div className="texto-centrado">
+                Proyectos de ley o decreto a la Constitución federal aprobados por el Congreso de la Unión y enviadas al Congreso del Estado de México para su análisis, discusión y eventual aprobación.
+              </div>
+            </div>
+
+            <div className="filtros-gaceta">
+              <div className="buscador-texto-box">
+                <label htmlFor="busquedaMinutas" className="label-fecha">
+                  Buscar minuta
+                </label>
+                <input
+                  id="busquedaMinutas"
+                  type="text"
+                  value={busquedaMinutas}
+                  onChange={(e) => setBusquedaMinutas(e.target.value)}
+                  className="input-fecha"
+                  placeholder="Ej. licencia, decreto, elección..."
+                />
+              </div>
+              <button
+                type="button"
+                className="btn-limpiar-fecha"
+                onClick={() => setBusquedaMinutas('')}
+              >
+                Limpiar
+              </button>
+            </div>
+
+            {isLoadingOrdenes ? (
+              <ul role="list" className="w-list-unstyled">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <li key={i}>
+                    <div className="div-punto-acuerdo-block">
+                      <div>
+                        <div className="div-block-85">
+                          <div style={{ width: 70, height: 70, borderRadius: 10, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', flexShrink: 0 }} />
+                          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                            <div style={{ width: 60, height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                            <div style={{ width: '88%', height: 18, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                            <div style={{ width: '55%', height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                            <div style={{ width: 160, height: 32, borderRadius: 8, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul role="list" className="w-list-unstyled">
+                {minutasFiltradas.length > 0 ? (
+                  minutasFiltradas.map((item: any, index: number) => (
+                    <li key={item.id ?? index} className="minuta-item" style={{ transitionDelay: `${index * 0.04}s` }}>
+                      <div className="div-punto-acuerdo-block">
+
+                        {/* — Bloque principal — */}
+                        <div>
+                          <div className="div-block-85">
+                            <img
+                              src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png"
+                              loading="lazy"
+                              alt=""
+                              className="img-70px"
+                            />
+                            <div className="div-info-bloque">
+                              <div>No. {item.no}</div>
+                              {item.autor_detalle && item.autor_detalle !== '-' && (
+                                <div>Autor: <strong>{item.autor_detalle}</strong></div>
+                              )}
+                              <h4 className="texto-general-bold">{item.iniciativa}</h4>
+                              <div>Fecha de presentación: {formatearFecha(item.fecha_evento_raw?.split(/[T ]/)[0])}</div>
+                              {item.dispensada && <div>Dispensa.</div>}
+                              {item.aprobada && (
+                                <div className="texto-general-bold verde">Aprobado</div>
+                              )}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="texto-general-bold">{item.observac || 'En Estudio'}</div>
+                            {item.documento && (
+                              <a
+                                href={`https://parlamentario.congresoedomex.gob.mx/backend/${item.documento}`}
+                                className="btn-boletin w-button"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Minuta
+                              </a>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* — Bloque acuerdo (solo si existe) — */}
+                        {item.acuerdo && (
+                          <div>
+                            <div className="div-block-85">
+                              <div className="div-info-bloque">
+                                <h4 className="texto-general-bold">Acuerdo</h4>
+                                {item.acuerdo.nombre_decreto && (
+                                  <div>{item.acuerdo.nombre_decreto}</div>
+                                )}
+                              </div>
+                            </div>
+                            <div>
+                              {item.acuerdo.decreto && (
+                                <a
+                                  href={`https://parlamentario.congresoedomex.gob.mx/backend/${item.acuerdo.decreto}`}
+                                  className="btn-boletin w-button"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Acuerdo
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <div className="sin-resultados">
+                    No se encontraron minutas con esa búsqueda.
+                  </div>
+                )}
+              </ul>
+            )}
+          </div>
+        )}
+
+        {/* PUNTOS DE ACUERDO */}
+        {activeTab === 'puntos_acuerdo' && (
+          <div data-w-tab="puntos_acuerdo" className="w-tab-pane w--tab-active">
+            <div className="titulo-tab">
+              <h2 className="h4-centrado">Puntos de Acuerdo presentados durante la LXII Legislatura</h2>
+              <div className="texto-centrado">
+                Resoluciones de la legislatura sobre asuntos de interés público que no requieren la creación de una ley pero sí un pronunciamiento formal del Congreso.
+              </div>
+            </div>
+
+            <div className="filtros-gaceta">
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+                <div className="buscador-fecha-box">
+                  <label className="label-fecha">Mes</label>
+                  <select
+                    value={mesPuntos}
+                    onChange={(e) => setMesPuntos(e.target.value)}
+                    className="input-fecha"
+                    style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%235f687f\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
+                  >
+                    <option value="">Todos los meses</option>
+                    <option value="1">Enero</option>
+                    <option value="2">Febrero</option>
+                    <option value="3">Marzo</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Mayo</option>
+                    <option value="6">Junio</option>
+                    <option value="7">Julio</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Septiembre</option>
+                    <option value="10">Octubre</option>
+                    <option value="11">Noviembre</option>
+                    <option value="12">Diciembre</option>
+                  </select>
+                </div>
+
+                <div className="buscador-fecha-box">
+                  <label className="label-fecha">Año</label>
+                  <select
+                    value={anioPuntos}
+                    onChange={(e) => setAnioPuntos(e.target.value)}
+                    className="input-fecha"
+                    style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%235f687f\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center' }}
+                  >
+                    <option value="">Todos los años</option>
+                    {[...Array(11)].map((_, i) => {
+                      const year = new Date().getFullYear() - i;
+                      return <option key={year} value={String(year)}>{year}</option>;
+                    })}
+                  </select>
+                </div>
+
+                <button
+                  type="button"
+                  className="btn-limpiar-fecha"
+                  onClick={() => {
+                    setMesPuntos('');
+                    setAnioPuntos('');
+                  }}
+                >
+                  Limpiar
+                </button>
+              </div>
+            </div>
+
+            {isLoadingOrdenes ? (
+              <ul role="list" className="btn-iniciativas-turnado">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <li key={i}>
+                    <div className="div-iniciativa-bloque">
+                      <div className="div-block-85">
+                        <div style={{ width: 70, height: 70, borderRadius: 10, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out', flexShrink: 0 }} />
+                        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                          <div style={{ display: 'flex', gap: 40 }}>
+                            <div style={{ width: 60, height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                            <div style={{ width: 130, height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          </div>
+                          <div style={{ width: '88%', height: 18, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: '55%', height: 13, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                          <div style={{ width: '35%', height: 12, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+                        <div style={{ width: 80, height: 14, borderRadius: 4, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                        <div style={{ width: 90, height: 36, borderRadius: 8, background: '#f0f0f0', animation: 'pulse 1.5s infinite ease-in-out' }} />
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ul role="list" className="list-legislacion-documentos">
+                {puntosFiltrados.length > 0 ? (
+                  puntosFiltrados.map((item: any, index: number) => (
+                    <li key={item.id ?? index} className="punto-acuerdo-item" style={{ transitionDelay: `${index * 0.04}s` }}>
+                      <div className="div-punto-acuerdo-block">
+
+                        {/* — Bloque principal (siempre visible) — */}
+                        <div>
+                          <div className="div-block-85">
+                            <img
+                              src="/images/description_100dp_5F687F_FILL0_wght400_GRAD0_opsz48.png"
+                              loading="lazy"
+                              alt=""
+                              className="img-70px"
+                            />
+                            <div className="div-info-bloque">
+                              <div className="info-iniciativas-bloque">
+                                <div>No. {item.no}</div>
+                                <div>Fecha de presentación: {formatearFecha(item.fecha_evento_raw?.split(/[T ]/)[0])}</div>
+                              </div>
+                              <h4 className="texto-general-bold">
+                                {item.titulo || item.descripcion || item.punto || item.iniciativa}
+                              </h4>
+                              {(item.autor_detalle || item.autor) && (
+                                <div>Autor: <strong>{item.autor_detalle || item.autor}</strong></div>
+                              )}
+                              {item.comisiones && item.comisiones !== '-' && (
+                                <div>Turnado a: <strong>{item.comisiones}</strong></div>
+                              )}
+                              {item.dispensada && <div>Dispensa.</div>}
+                              {item.aprobada && (
+                                <div className="texto-general-bold verde">Aprobado</div>
+                              )}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="texto-general-bold">{item.observac || 'En Estudio'}</div>
+                            {item.documento && (
+                              <a
+                                href={`https://parlamentario.congresoedomex.gob.mx/backend/${item.documento}`}
+                                className="btn-boletin w-button"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                Punto de acuerdo
+                              </a>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* — Bloque acuerdo (solo si existe) — */}
+                        {item.acuerdo && (
+                          <div>
+                            <div className="div-block-85">
+                              <div className="div-info-bloque">
+                                <h4 className="texto-general-bold">Acuerdo</h4>
+                                <div>{item.acuerdo}</div>
+                              </div>
+                            </div>
+                            <div>
+                              {item.documento_acuerdo && (
+                                <a
+                                  href={`https://parlamentario.congresoedomex.gob.mx/backend/${item.documento_acuerdo}`}
+                                  className="btn-boletin w-button"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Acuerdo
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        )}
+
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <div className="sin-resultados">
+                    No se encontraron puntos de acuerdo para el período seleccionado.
+                  </div>
+                )}
+              </ul>
             )}
           </div>
         )}

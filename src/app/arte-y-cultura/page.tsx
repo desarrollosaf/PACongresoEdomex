@@ -132,10 +132,6 @@ export default function ArteYCultura() {
           />
         </div>
         <h1 className="numeralia-centrado">La casa del pueblo no solo se recorre;<br />se vive, se contempla y se descubre.</h1>
-        <h1 className="texto-centrado-22">
-          <strong>Visita tu Congreso mexiquense </strong><br />
-          Para mayores informes sobre las visitas guiadas contacta a XXX:
-        </h1>
       </div>
     </>
   );
