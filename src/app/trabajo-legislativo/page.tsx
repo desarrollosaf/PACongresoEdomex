@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import TrabajoLegislativo from './trabajolegislativo';
 
 export default function TrabajoLegislativoPage() {
@@ -7,7 +8,9 @@ export default function TrabajoLegislativoPage() {
         Trabajo Legislativo
       </h2>
 
-      <TrabajoLegislativo />
+      <Suspense>
+        <TrabajoLegislativo />
+      </Suspense>
     </section>
   );
 }

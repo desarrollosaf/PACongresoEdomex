@@ -60,13 +60,19 @@ export default async function Home() {
               </Link>
             </div>
             <div className="div-block-21 legis-in-2">
-              <h4 className="heading-8">Iniciativas de Ley</h4>
+              <Link href="/trabajo-legislativo?tab=iniciativas" className="link-block w-inline-block">
+                <h4 className="heading-8">Iniciativas de Ley</h4>
+              </Link>
             </div>
             <div className="div-block-21 legis-in-3">
-              <h4 className="heading-8">Minutas</h4>
+              <Link href="/trabajo-legislativo?tab=minutas" className="link-block w-inline-block">
+                <h4 className="heading-8">Minutas</h4>
+              </Link>
             </div>
             <div className="div-block-21 legis-in-4">
-              <h4 className="heading-8">Decretos y Acuerdos</h4>
+              <Link href="/trabajo-legislativo?tab=puntos_acuerdo" className="link-block w-inline-block">
+                <h4 className="heading-8">Decretos y Acuerdos</h4>
+              </Link>
             </div>
             <div className="div-block-21 legis-in-5">
               <h4 className="heading-8">Diario de los Debates</h4>

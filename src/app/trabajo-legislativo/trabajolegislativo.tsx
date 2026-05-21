@@ -1,6 +1,7 @@
 'use client';
 
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { getTrabajoLegislativo, getOrdenes } from '../service/trabajo_legislativo.service';
 
 const formatearFecha = (fecha: string) => {
@@ -17,7 +18,10 @@ const formatearFecha = (fecha: string) => {
 };
 
 export default function TrabajoLegislativo() {
-  const [activeTab, setActiveTab] = useState('Gaceta');
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get('tab');
+  const validTabs = ['Gaceta', 'legislacion', 'orden_del_dia', 'iniciativas', 'puntos_acuerdo', 'minutas'];
+  const [activeTab, setActiveTab] = useState(validTabs.includes(tabParam ?? '') ? tabParam! : 'Gaceta');
   const [trabajoLegislativo, setTrabajoLegislativo] = useState<any[]>([]);
   const [legislacion, setLegislacion] = useState<any[]>([]);
   const [busquedaTexto, setBusquedaTexto] = useState('');
