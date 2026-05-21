@@ -11,7 +11,7 @@ export class JuntaService {
      async findAll() {
         const comision = await Comision.findOne({
             where:{
-                'nombre': "Junta de Coordinación Política (Jucopo)"
+                'nombre': "Junta de Coordinación Política"
             }
         })
 
