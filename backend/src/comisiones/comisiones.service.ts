@@ -29,7 +29,7 @@ export class ComisionesService {
       attributes: ['id', 'nombre', 'alias', 'tipo_comision_id'],
       where: {
         deleted_at: null,
-        nombre: { [Op.ne]: 'Junta de Coordinación Política (Jucopo)' },
+        nombre: { [Op.ne]: 'Junta de Coordinación Política' },
       },
       include: [
         {
