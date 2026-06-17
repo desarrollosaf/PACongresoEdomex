@@ -51,7 +51,9 @@
   text-align: center;
   background-color: #fff;
   border-bottom: 1px #d1d1d1;
-  padding: 20px 40px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
   display: flex;
 }
 
@@ -401,10 +403,11 @@
 }
 
 .div-block-8 {
+  background-color: #fff;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1440px;
+  max-width: none;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -3664,6 +3667,55 @@
   padding-right: 10px;
 }
 
+.navbar {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #fff;
+  flex-flow: row;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.nav-menu {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #fff;
+  flex-flow: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  display: flex;
+}
+
+.nav-menu .link-block-3.w-inline-block {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.menu-button.w--open {
+  background-color: #f2f4f5;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.container-4 {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.container-5 {
+  justify-content: flex-end;
+  align-items: center;
+}
+
 @media screen and (max-width: 991px) {
   .section-3 {
     height: 400px;
@@ -3857,6 +3909,11 @@
   .columnas-artecultura {
     flex-flow: column;
   }
+
+  .container-5 {
+    justify-content: flex-end;
+    align-items: center;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -4017,6 +4074,17 @@
 
    .columnas-artecultura {
     flex-flow: column;
+  }
+
+  .nav-menu {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-5 {
+    justify-content: flex-end;
+    align-items: center;
   }
 }
 
@@ -4489,6 +4557,24 @@
    .texto-centrado-22 {
     font-size: 16px;
     line-height: 20px;
+  }
+
+  .nav-menu {
+    text-align: center;
+    background-color: #f2f4f5;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .menu-button.w--open {
+    background-color: #f2f4f5;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .container-4 {
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 }
 
