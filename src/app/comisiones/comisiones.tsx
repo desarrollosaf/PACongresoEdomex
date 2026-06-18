@@ -17,7 +17,7 @@ export default function Comisiones() {
     const tiposOrdenados = [
         "Comisiones Legislativas",
         "Comisiones Especiales",
-        "Comisiones y Comités Permanentes",
+        "Comités Permanentes",
     ];
 
 
