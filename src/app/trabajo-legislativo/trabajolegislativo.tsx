@@ -771,7 +771,9 @@ export default function TrabajoLegislativo() {
             ) : (
               <ul role="list" className="btn-iniciativas-turnado">
                 {iniciativasFiltradas.length > 0 ? (
-                  iniciativasPaginadas.map((item: any, index: number) => (
+                  iniciativasPaginadas.map((item: any, index: number) => {
+                    const contador = iniciativasFiltradas.length - ((paginaIniciativas - 1) * 10 + index);
+                    return (
                     <li key={item.id ?? index}>
                       <div className="div-iniciativa-bloque">
                         <div className="div-block-85">
@@ -783,7 +785,7 @@ export default function TrabajoLegislativo() {
                           />
                           <div>
                             <div className="info-iniciativas-bloque">
-                              <div>No. {item.no}</div>
+                              <div>No. {contador}</div>
                               <div>{formatearFecha(item.fecha_evento_raw?.split('T')[0])}</div>
                             </div>
                             <h4 className="texto-general-bold">{item.iniciativa}</h4>
@@ -817,7 +819,7 @@ export default function TrabajoLegislativo() {
                         </div>
                       </div>
                     </li>
-                  ))
+                  ); })
                 ) : (
                   <div className="sin-resultados">
                     No se encontraron iniciativas con esa búsqueda.
@@ -899,7 +901,9 @@ export default function TrabajoLegislativo() {
             ) : (
               <ul role="list" className="w-list-unstyled">
                 {minutasFiltradas.length > 0 ? (
-                  minutasPaginadas.map((item: any, index: number) => (
+                  minutasPaginadas.map((item: any, index: number) => {
+                    const contador = minutasFiltradas.length - ((paginaMinutas - 1) * 10 + index);
+                    return (
                     <li key={item.id ?? index}>
                       <div className="div-punto-acuerdo-block">
 
@@ -913,7 +917,7 @@ export default function TrabajoLegislativo() {
                               className="img-70px"
                             />
                             <div className="div-info-bloque">
-                              <div>No. {item.no}</div>
+                              <div>No. {contador}</div>
                               {item.autor_detalle && item.autor_detalle !== '-' && (
                                 <div>Autor: <strong>{item.autor_detalle}</strong></div>
                               )}
@@ -968,7 +972,7 @@ export default function TrabajoLegislativo() {
 
                       </div>
                     </li>
-                  ))
+                  ); })
                 ) : (
                   <div className="sin-resultados">
                     No se encontraron minutas con esa búsqueda.
@@ -1088,7 +1092,9 @@ export default function TrabajoLegislativo() {
             ) : (
               <ul role="list" className="list-legislacion-documentos">
                 {puntosFiltrados.length > 0 ? (
-                  puntosPaginados.map((item: any, index: number) => (
+                  puntosPaginados.map((item: any, index: number) => {
+                    const contador = puntosFiltrados.length - ((paginaPuntos - 1) * 10 + index);
+                    return (
                     <li key={item.id ?? index}>
                       <div className="div-punto-acuerdo-block">
 
@@ -1103,7 +1109,7 @@ export default function TrabajoLegislativo() {
                             />
                             <div className="div-info-bloque">
                               <div className="info-iniciativas-bloque">
-                                <div>No. {item.no}</div>
+                                <div>No. {contador}</div>
                                 <div>Fecha de presentación: {formatearFecha(item.fecha_evento_raw?.split(/[T ]/)[0])}</div>
                               </div>
                               <h4 className="texto-general-bold">
@@ -1162,7 +1168,7 @@ export default function TrabajoLegislativo() {
 
                       </div>
                     </li>
-                  ))
+                  ); })
                 ) : (
                   <div className="sin-resultados">
                     No se encontraron puntos de acuerdo para el período seleccionado.
