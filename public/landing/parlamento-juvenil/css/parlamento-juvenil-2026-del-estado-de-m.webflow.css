@@ -1,0 +1,569 @@
+@font-face {
+  font-family: Regestogrotesk;
+  src: url('../fonts/RegestoGrotesk-UltraBold.ttf') format("truetype"), url('../fonts/RegestoGrotesk-Bold.ttf') format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Regestogrotesk;
+  src: url('../fonts/RegestoGrotesk-Regular.ttf') format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Regestogrotesk;
+  src: url('../fonts/RegestoGrotesk-Medium.ttf') format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.w-layout-grid {
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.navbar {
+  background-color: #fff;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.body {
+  color: #454545;
+  background-color: #f2f4f5;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.main {
+  margin-top: 40px;
+}
+
+.subtitulo {
+  text-align: center;
+  font-size: 22px;
+}
+
+.h1-centrado {
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.div-block {
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.image {
+  max-width: 150px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.div-block-2 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+.grid {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 40px;
+}
+
+.h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.div-block-3 {
+  color: #333;
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #f6f1e9);
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+}
+
+.div-registro {
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background-color: #fff;
+  background-image: url('../images/fondo-info-parlamento-infantil.webp');
+  background-position: 100% 0;
+  background-size: cover;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 1200px;
+  min-height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+}
+
+.subtitulo-general {
+  color: #fff;
+  text-align: left;
+  font-size: 22px;
+}
+
+.div-block-4 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-flow: column;
+  display: flex;
+}
+
+.columns {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.btn-registro {
+  color: #fff;
+  background-color: #454545;
+  border: 0 solid #cecece;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-weight: 500;
+}
+
+.btn-registro:hover {
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0;
+  background-color: #f76292;
+}
+
+.div-block-5 {
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  flex-flow: column;
+  display: flex;
+}
+
+.column {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.h3-centrados {
+  text-align: left;
+}
+
+.h3-centrado {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.subtitulo-general-bold {
+  text-align: left;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.text-span {
+  color: #fff;
+}
+
+.text-span-2 {
+  color: #454545;
+}
+
+.section-5 {
+  background-color: #f76292;
+  background-image: linear-gradient(127deg, #f76292, #b85d7a);
+  margin-top: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.columns-7 {
+  justify-content: center;
+  align-items: center;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.column-10 {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.footer-text {
+  color: #fff;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 60px;
+}
+
+.aviso-privacidad {
+  color: #454545;
+  text-align: left;
+  direction: ltr;
+  max-width: 100%;
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: Regestogrotesk, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.link-2 {
+  color: #454545;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.subtitulo-general-bold-blanco {
+  color: #fff;
+  text-align: left;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.seccion-bases {
+  margin-top: 40px;
+}
+
+.div-block-6 {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.texto-general {
+  font-size: 16px;
+}
+
+.div-base {
+  background-color: #fff;
+  border-radius: 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 10px;
+}
+
+.texto-general-suplementario {
+  font-size: 14px;
+}
+
+.grid-2 {
+  grid-template-rows: auto;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-logo {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.texto-general-suplementario-bold {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.text-span-3 {
+  color: #c2c92f;
+}
+
+.grid-3 {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.div-registo-item {
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 10px;
+}
+
+.texto-general-centrado {
+  text-align: center;
+  margin-right: 0;
+}
+
+.div-block-7 {
+  max-width: 1200px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.h2-centrado {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.grid-registro {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.div-registo-item-tematico {
+  color: #fff;
+  background-color: #fff;
+  background-image: url('../images/fondo-info-parlamento-infantil.webp');
+  background-position: 100%;
+  background-size: auto;
+  border: 1px solid #c2c92f;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+}
+
+.h4-centrado {
+  text-align: center;
+}
+
+.subtitulo-general-bold-centrado {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.grid-ejes-tematico {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 20px;
+}
+
+.link-aviso {
+  color: #fff;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.div-fechas-clave {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.div-block-fechas {
+  color: #333;
+  background-color: #fff;
+  background-image: url('../images/fondo-info-parlamento-infantil.webp');
+  background-position: 0 0;
+  background-size: auto;
+  border-radius: 20px;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: flex;
+}
+
+.texto-general-centrado-blanco {
+  color: #fff;
+  text-align: center;
+  margin-right: 0;
+}
+
+.subtitulo-general-bold-centrado-blanco {
+  color: #fff;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.div-datos {
+  background-color: #fff0;
+  border-radius: 20px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 10px;
+}
+
+.code {
+  color: #f76292;
+  font-family: Regestogrotesk, Arial, sans-serif;
+}
+
+.nav-link {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 991px) {
+  .grid-3 {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .grid-registro {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section-5 {
+    flex-flow: column;
+    display: flex;
+  }
+
+  .columns-7 {
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-ejes-tematico {
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .columns {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    flex-flow: column;
+  }
+
+  .section-5 {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .columns-7 {
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .aviso-privacidad, .texto-general-suplementario {
+    overflow: visible;
+  }
+
+  .grid-2 {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-auto-columns: 1fr;
+    grid-auto-flow: column;
+    display: grid;
+  }
+
+  .img-logo {
+    max-width: 300px;
+  }
+
+  .div-registo-item {
+    max-width: 350px;
+  }
+
+  .div-block-7 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .grid-ejes-tematico {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+#w-node-_560df5ba-fa5c-263b-c0e4-00d8698ad1a2-ae1b240a {
+  grid-area: span 1 / span 1 / span 1 / span 1;
+}
+
+
+@font-face {
+  font-family: 'Regestogrotesk';
+  src: url('../fonts/RegestoGrotesk-UltraBold.ttf') format('truetype'), url('../fonts/RegestoGrotesk-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Regestogrotesk';
+  src: url('../fonts/RegestoGrotesk-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Regestogrotesk';
+  src: url('../fonts/RegestoGrotesk-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
