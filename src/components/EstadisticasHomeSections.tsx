@@ -17,7 +17,7 @@ export default function EstadisticasHomeSection({ estadisticas }: Props) {
         <div data-w-id="c1fc9fc7-cb97-4374-627a-4e26bfd7443a" className="div-block-5">
           {/* <div className="text-block color_oro">+</div> */}
           <div className="text-block">
-            819
+            832
             {/* {
               estadisticas.data.iniciativas.aprobadas +
               estadisticas.data.puntos_acuerdo.total +
