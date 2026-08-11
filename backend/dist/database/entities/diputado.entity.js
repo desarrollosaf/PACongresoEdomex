@@ -20,6 +20,7 @@ let Diputado = class Diputado extends sequelize_typescript_1.Model {
     amaterno;
     nombres;
     descripcion;
+    nombre_captura;
     shortname;
     fancyurl;
     gender_id;
@@ -56,6 +57,10 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.TEXT }),
     __metadata("design:type", String)
 ], Diputado.prototype, "descripcion", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
+    __metadata("design:type", String)
+], Diputado.prototype, "nombre_captura", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.STRING }),
     __metadata("design:type", String)

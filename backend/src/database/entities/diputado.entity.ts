@@ -22,6 +22,9 @@ export class Diputado extends Model {
   descripcion: string;
 
   @Column({ type: DataType.STRING })
+  nombre_captura: string;
+
+  @Column({ type: DataType.STRING })
   shortname: string;
 
   @Column({ type: DataType.STRING })
