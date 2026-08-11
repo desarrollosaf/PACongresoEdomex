@@ -9,6 +9,7 @@ export declare class Diputado extends Model {
     amaterno: string;
     nombres: string;
     descripcion: string;
+    nombre_captura: string;
     shortname: string;
     fancyurl: string;
     gender_id: string;
