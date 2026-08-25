@@ -559,3 +559,13 @@
 .evt-tag--tribuna { background: #fff3e0; color: #e65100; }
 .evt-tag--dispensa { background: #fce4ec; color: #c62828; }
 
+/* El diagrama parlamentario ahora es un SVG dentro de un div, no un <img>.
+   .img-parlamentaria limitaba al 60% pensando en el PNG original. */
+div.img-parlamentaria {
+  max-width: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: stretch;
+}
+
