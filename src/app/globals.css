@@ -417,8 +417,7 @@ body {
 .comunicado-texto {
   text-align: justify;
 }
-.comunicado-texto p:empty,
-.comunicado-texto p:blank {
+.comunicado-texto p:empty {
   display: none;
 }
 .comunicado-texto p {
