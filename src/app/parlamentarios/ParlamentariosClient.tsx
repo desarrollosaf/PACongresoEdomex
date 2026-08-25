@@ -47,11 +47,18 @@ const PARTIDOS = [
     { id: 'pan', nombre: 'PAN', clase: 'btn-pan', logo: 'images/Pan.png' },
     { id: 'mc', nombre: 'MC', clase: 'btn-mc', logo: 'images/MC.png' },
     { id: 'prd', nombre: 'PRD', clase: 'btn-prd', logo: 'images/PRD.png' },
+    { id: 'indep', nombre: 'Indep.', clase: 'btn-indep', logo: 'images/indep.svg' },
 ];
 
 type SortKey = '' | 'nombre' | 'apellido' | 'genero' | 'distrito';
 
-export default function ParlamentariosClient({ diputados }: { diputados: Diputado[] }) {
+export default function ParlamentariosClient({
+    diputados,
+    conteosPorPartido,
+}: {
+    diputados: Diputado[];
+    conteosPorPartido?: Record<string, number>;
+}) {
     const [busqueda, setBusqueda] = useState('');
     const [partidoSeleccionado, setPartidoSeleccionado] = useState<string | null>(null);
     const [orden, setOrden] = useState<SortKey>('');
@@ -137,9 +144,10 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
                 <h3 className="heading-3 titulo-seccion" style={{ textAlign: 'left' }}>Grupos Parlamentarios</h3>
                 <br />
                 <div className="filtros-diputados grupos-parlamentarios-selector">
-                    <ParlamentaryStats 
-                        onSelectPartido={handleSelectPartido} 
-                        partidoSeleccionado={partidoSeleccionado} 
+                    <ParlamentaryStats
+                        onSelectPartido={handleSelectPartido}
+                        partidoSeleccionado={partidoSeleccionado}
+                        conteosPorPartido={conteosPorPartido}
                     />
                 </div>
                 
