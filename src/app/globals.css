@@ -645,3 +645,27 @@ div.img-parlamentaria {
   align-self: stretch;
 }
 
+/* .features-wrapper (webflow.css:5138) agrega flex-wrap: wrap, que rompe
+   el space-around de la regla base (2214) y recorre los bloques a la
+   izquierda. Con flex-wrap: nowrap los 8 bloques (~1036px sin envolver) no
+   caben en el ancho disponible de la tarjeta en escritorios angostos
+   (~952px a 992px de viewport, con overflow: hidden heredado de Webflow
+   recortando los bloques que sobran), así que se opta por dejarlos
+   envolver mostrandose centrados con espacio parejo entre ellos.
+   Selector "div.features-wrapper" (0,1,1) para ganarle en especificidad
+   al ".features-wrapper" de Webflow (0,1,0), que además carga después
+   que este archivo. */
+div.features-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Botón "Indep.": no tiene una regla :hover propia en webflow.css como el
+   resto de los partidos (btn-pan, btn-pt, etc.), así que sin esto cae al
+   hover genérico rojo (#b5261e) de .button.grupo_parlamentario:hover. */
+.button.grupo_parlamentario.btn-indep:hover {
+  color: #fff;
+  background-color: #454545;
+}
+
