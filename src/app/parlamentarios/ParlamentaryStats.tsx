@@ -121,7 +121,7 @@ export default function ParlamentaryStats({ onSelectPartido, partidoSeleccionado
     }, []);
 
     return (
-        <div className="div-block-36" ref={wrapperRef}>
+        <div className="div-block-36" ref={wrapperRef} style={{ width: '100%' }}>
             <div ref={imgRef} className="img-parlamentaria img-parlamentaria-anim">
                 <DiagramaParlamentario grupos={PARTIDOS} />
             </div>
