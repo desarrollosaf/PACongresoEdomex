@@ -194,17 +194,6 @@ export default function DiagramaParlamentario({ grupos }: DiagramaParlamentarioP
                     />
                 ))}
             </svg>
-            <figcaption className="mt-4 flex flex-wrap justify-center gap-[20px] text-sm">
-                {gruposConDiputados.map((grupo) => (
-                    <span key={grupo.id} className="inline-flex items-center gap-1.5">
-                        <span
-                            className="inline-block rounded-full shrink-0"
-                            style={{ width: '0.8em', height: '0.8em', backgroundColor: grupo.color }}
-                        />
-                        {grupo.nombre}: <strong>{grupo.diputados}</strong>
-                    </span>
-                ))}
-            </figcaption>
         </figure>
     );
 }
