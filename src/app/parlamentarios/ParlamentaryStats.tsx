@@ -1,16 +1,26 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import DiagramaParlamentario from '@/components/DiagramaParlamentario';
 
 const PARTIDOS = [
-    { id: 'morena', nombre: 'Morena', clase: '', img: 'images/morena.png', srcSet: 'images/morena-p-500.png 500w, images/morena.png 839w', sizes: '(max-width: 839px) 100vw, 839px', porcentaje: '52%' },
-    { id: 'pvem', nombre: 'PVEM', clase: 'btn-pvem', img: 'images/PVEM.png', srcSet: 'images/PVEM-p-500.png 500w, images/PVEM-p-800.png 800w, images/PVEM.png 852w', sizes: '(max-width: 852px) 100vw, 852px', porcentaje: '12%' },
-    { id: 'pt', nombre: 'PT', clase: 'btn-pt', img: 'images/PT.png', srcSet: 'images/PT-p-500.png 500w, images/PT.png 852w', sizes: '(max-width: 852px) 100vw, 852px', porcentaje: '10.7%' },
-    { id: 'pri', nombre: 'PRI', clase: 'btn-pri', img: 'images/PRI.png', srcSet: 'images/PRI-p-500.png 500w, images/PRI-p-800.png 800w, images/PRI.png 825w', sizes: '(max-width: 825px) 100vw, 825px', porcentaje: '9.3%' },
-    { id: 'pan', nombre: 'PAN', clase: 'btn-pan', img: 'images/Pan.png', srcSet: 'images/Pan-p-500.png 500w, images/Pan.png 840w', sizes: '(max-width: 840px) 100vw, 840px', porcentaje: '8%' },
-    { id: 'mc', nombre: 'MC', clase: 'btn-mc', img: 'images/MC.png', srcSet: 'images/MC-p-500.png 500w, images/MC.png 799w', sizes: '(max-width: 799px) 100vw, 799px', porcentaje: '5.3%' },
-    { id: 'prd', nombre: 'PRD', clase: 'btn-prd', img: 'images/PRD.png', srcSet: 'images/PRD-p-500.png 500w, images/PRD.png 775w', sizes: '(max-width: 775px) 100vw, 775px', porcentaje: '2.7%' },
+    { id: 'morena', nombre: 'Morena', clase: '', img: 'images/morena.png', srcSet: 'images/morena-p-500.png 500w, images/morena.png 839w', sizes: '(max-width: 839px) 100vw, 839px', color: '#9b2d25', diputados: 39 },
+    { id: 'pvem', nombre: 'PVEM', clase: 'btn-pvem', img: 'images/PVEM.png', srcSet: 'images/PVEM-p-500.png 500w, images/PVEM-p-800.png 800w, images/PVEM.png 852w', sizes: '(max-width: 852px) 100vw, 852px', color: '#7aae52', diputados: 9 },
+    { id: 'pt', nombre: 'PT', clase: 'btn-pt', img: 'images/PT.png', srcSet: 'images/PT-p-500.png 500w, images/PT.png 852w', sizes: '(max-width: 852px) 100vw, 852px', color: '#9b1010', diputados: 8 },
+    { id: 'pri', nombre: 'PRI', clase: 'btn-pri', img: 'images/PRI.png', srcSet: 'images/PRI-p-500.png 500w, images/PRI-p-800.png 800w, images/PRI.png 825w', sizes: '(max-width: 825px) 100vw, 825px', color: '#ce1b28', diputados: 6 },
+    { id: 'pan', nombre: 'PAN', clase: 'btn-pan', img: 'images/Pan.png', srcSet: 'images/Pan-p-500.png 500w, images/Pan.png 840w', sizes: '(max-width: 840px) 100vw, 840px', color: '#233ea2', diputados: 6 },
+    { id: 'mc', nombre: 'MC', clase: 'btn-mc', img: 'images/MC.png', srcSet: 'images/MC-p-500.png 500w, images/MC.png 799w', sizes: '(max-width: 799px) 100vw, 799px', color: '#d68128', diputados: 5 },
+    { id: 'prd', nombre: 'PRD', clase: 'btn-prd', img: 'images/PRD.png', srcSet: 'images/PRD-p-500.png 500w, images/PRD.png 775w', sizes: '(max-width: 775px) 100vw, 775px', color: '#eec730', diputados: 2 },
+    { id: 'indep', nombre: 'Indep.', clase: 'btn-indep', img: '', srcSet: '', sizes: '', color: '#454545', diputados: 0 },
 ];
+
+const TOTAL_DIPUTADOS = PARTIDOS.reduce((acc, p) => acc + p.diputados, 0);
+
+function calcularPorcentaje(diputados: number): string {
+    const conDecimal = ((diputados / TOTAL_DIPUTADOS) * 100).toFixed(1);
+    const valor = conDecimal.endsWith('.0') ? conDecimal.slice(0, -2) : conDecimal;
+    return `${valor}%`;
+}
 
 interface ParlamentaryStatsProps {
     onSelectPartido?: (id: string) => void;
@@ -19,7 +29,7 @@ interface ParlamentaryStatsProps {
 
 export default function ParlamentaryStats({ onSelectPartido, partidoSeleccionado }: ParlamentaryStatsProps = {}) {
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const imgRef = useRef<HTMLImageElement>(null);
+    const imgRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const style = document.createElement('style');
@@ -112,17 +122,11 @@ export default function ParlamentaryStats({ onSelectPartido, partidoSeleccionado
 
     return (
         <div className="div-block-36" ref={wrapperRef}>
-            <img
-                ref={imgRef}
-                src="images/grupo-parlamentario-2.png"
-                loading="lazy"
-                sizes="(max-width: 1666px) 100vw, 1666px"
-                alt=""
-                srcSet="images/grupo-parlamentario-2.png 500w, images/grupo-parlamentario-2.png 800w, images/grupo-parlamentario-2.png 1080w, images/grupo-parlamentario-2.png 1600w, images/grupo-parlamentario-2.png 1666w"
-                className="img-parlamentaria img-parlamentaria-anim"
-            />
+            <div ref={imgRef} className="img-parlamentaria img-parlamentaria-anim">
+                <DiagramaParlamentario grupos={PARTIDOS} />
+            </div>
             <div className="features-wrapper">
-                {PARTIDOS.map((p, i) => (
+                {PARTIDOS.filter(p => p.diputados > 0).map((p, i) => (
                     <div
                         key={p.img}
                         className={`features-block features-block-anim ${i % 2 === 0 ? 'sube' : 'no-sube'}`}
@@ -135,7 +139,7 @@ export default function ParlamentaryStats({ onSelectPartido, partidoSeleccionado
                             alt=""
                             className="image-23"
                         />
-                        <div className="features-title">{p.porcentaje}</div>
+                        <div className="features-title">{calcularPorcentaje(p.diputados)}</div>
                         <a
                             href="#"
                             onClick={(e) => {
