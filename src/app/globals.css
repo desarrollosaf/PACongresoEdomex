@@ -12,6 +12,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --color-institucional: #96134b;
+  --color-marino: #1a1a2e;
+  --color-dorado: #bb945c;
+
+  --color-voto-favor: #16a34a;
+  --color-voto-contra: #8b1a1a;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
