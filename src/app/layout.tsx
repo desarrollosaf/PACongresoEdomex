@@ -24,11 +24,11 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://congresoedomex.gob.mx/images/favicon.png"
+          content="https://congresoedomex.gob.mx/Thumbnail.jpg"
         />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1024" />
-        <meta property="og:image:height" content="683" />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
 
         <link href="/css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="/css/webflow.css" rel="stylesheet" type="text/css" />
