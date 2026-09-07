@@ -1,74 +1,172 @@
-function Pulse({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse rounded-md bg-black/10 ${className}`} />;
-}
+'use client';
+
+import { useEffect, useState } from 'react';
 
 export default function Loading() {
+  const [mensaje, setMensaje] = useState('Estamos preparando todo…');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMensaje('Esto puede tardar unos segundos…');
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <>
-      <section className="section-3" style={{ position: "relative" }}>
-        <Pulse className="absolute inset-0 rounded-none" />
-        <div
-          data-w-id="0103c995-5e1d-dcc5-e0e3-47ae2562f79a"
-          className="div-block hero-information"
-          style={{ position: "relative", width: "100%" }}
-        >
-          <Pulse className="h-10 w-2/3 max-w-[520px] mx-auto bg-white/40" />
-          <Pulse className="h-12 w-full max-w-[420px] mx-auto mt-6 bg-white/40" />
-        </div>
-      </section>
+    <div className="splash-screen">
+      <style>{`
+        @keyframes splashFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes splashLogoIn {
+          0% { opacity: 0; transform: translateY(16px) scale(0.94); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes splashTextIn {
+          0% { opacity: 0; transform: translateY(8px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes splashOrbDrift {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(3%, -3%) scale(1.06); }
+        }
+        @keyframes splashSpin {
+          to { transform: rotate(360deg); }
+        }
+        @keyframes splashPulseSoft {
+          0%, 100% { opacity: 0.55; }
+          50% { opacity: 1; }
+        }
 
-      <section className="numeralia max_width">
-        <div className="div-block-4">
-          <Pulse className="h-8 w-64 mx-auto" />
-          <Pulse className="h-4 w-96 max-w-full mx-auto mt-3" />
-        </div>
-        <div>
-          <div className="columns w-row">
-            {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="column numeralia_columna w-col w-col-3">
-                <div className="div-block-5">
-                  <Pulse className="h-10 w-16" />
-                </div>
-                <Pulse className="h-3 w-20 mx-auto mt-2" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        .splash-screen {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          background: #fffdfb;
+          animation: splashFadeIn 0.4s ease-out;
+        }
 
-      <section className="max_width seccion-de-diputados">
-        <Pulse className="h-64 w-full" />
-      </section>
+        .splash-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(90px);
+          opacity: 0.16;
+          animation: splashOrbDrift 9s ease-in-out infinite;
+        }
 
-      <section className="max_width">
-        <Pulse className="h-8 w-56 mb-4" />
-        <Pulse className="h-80 w-full" />
-      </section>
+        .splash-orb-gold {
+          width: 460px;
+          height: 460px;
+          top: -140px;
+          left: -120px;
+          background: #d9b077;
+        }
 
-      <section className="max_width">
-        <Pulse className="h-8 w-56 mx-auto mb-6" />
-        <div className="w-layout-grid grid">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <Pulse key={i} className="h-24 w-full" />
-          ))}
+        .splash-orb-wine {
+          width: 420px;
+          height: 420px;
+          bottom: -150px;
+          right: -110px;
+          background: #96134b;
+          animation-delay: 1.5s;
+        }
+
+        .splash-content {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 26px;
+          padding: 0 24px;
+          text-align: center;
+        }
+
+        .splash-logo-wrap {
+          animation: splashLogoIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+          filter: drop-shadow(0 10px 24px rgba(60, 40, 20, 0.08));
+        }
+
+        .splash-logo {
+          width: min(340px, 74vw);
+          height: auto;
+          display: block;
+        }
+
+        .splash-divider {
+          width: 46px;
+          height: 2px;
+          border-radius: 999px;
+          background: linear-gradient(90deg, #bb945c, #96134b);
+          animation: splashTextIn 0.6s ease-out 0.2s both;
+        }
+
+        .splash-tagline {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 15px;
+          letter-spacing: 0.03em;
+          color: #6b6b6f;
+          animation: splashTextIn 0.6s ease-out 0.32s both;
+        }
+
+        .splash-status-group {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 4px;
+          animation: splashTextIn 0.6s ease-out 0.46s both;
+        }
+
+        .splash-spinner {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          border: 2px solid rgba(150, 19, 75, 0.15);
+          border-top-color: #96134b;
+          animation: splashSpin 0.85s linear infinite;
+        }
+
+        .splash-status {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #96134b;
+          animation: splashPulseSoft 1.8s ease-in-out infinite, splashTextIn 0.4s ease-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .splash-screen, .splash-orb, .splash-logo-wrap, .splash-divider,
+          .splash-tagline, .splash-status-group, .splash-spinner, .splash-status {
+            animation: none !important;
+          }
+        }
+      `}</style>
+
+      <div className="splash-orb splash-orb-gold" />
+      <div className="splash-orb splash-orb-wine" />
+
+      <div className="splash-content">
+        <div className="splash-logo-wrap">
+          <img
+            src="/images/congreso_logo_horizontal.png"
+            alt="Congreso del Estado de México"
+            className="splash-logo"
+          />
         </div>
-      </section>
-
-      <section className="max_width">
-        <Pulse className="h-8 w-40 mb-4" />
-        <div className="columns-8 w-row" style={{ gap: 16 }}>
-          <Pulse className="h-64 w-full" />
-          <Pulse className="h-64 w-full" />
+        <div className="splash-divider" />
+        <p className="splash-tagline">Tu Congreso conectado y transparente</p>
+        <div className="splash-status-group">
+          <span className="splash-spinner" />
+          <span key={mensaje} className="splash-status">{mensaje}</span>
         </div>
-      </section>
-
-      <section className="max_width">
-        <Pulse className="h-8 w-64 mx-auto mb-6" />
-        <div className="w-layout-grid grid-2">
-          <Pulse className="h-40 w-full" />
-          <Pulse className="h-40 w-full" />
-        </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }
