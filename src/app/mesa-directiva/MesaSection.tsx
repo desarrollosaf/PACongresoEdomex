@@ -171,7 +171,7 @@ return (
             <div className="que_es_jucopo">
             <div className="columns-21 w-row">
                 <div className="w-col w-col-6">
-                <h1 className="titulo-seccion">¿Que hace la Mesa Directiva?</h1>
+                <h1 className="titulo-seccion">¿Que hace la  Directiva?</h1>
                 </div>
                 <div className="w-col w-col-6">
                 <p className="texto-comunicado">

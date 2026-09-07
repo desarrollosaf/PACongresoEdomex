@@ -13,7 +13,7 @@ export class MesaService {
     async findAll() {
         const comision = await Comision.findOne({
             where:{
-                nombre: "Diputación Permanente"
+                nombre: "Mesa Directiva"
             }
         })
         return await IntegranteComision.findAll({

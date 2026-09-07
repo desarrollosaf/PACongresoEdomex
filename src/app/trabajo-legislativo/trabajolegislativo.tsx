@@ -110,8 +110,11 @@ export default function TrabajoLegislativo() {
       try {
         const data = await getTrabajoLegislativo();
 
+        const gacetaSinDuplicados = Array.isArray(data?.gaceta)
+          ? Array.from(new Map(data.gaceta.map((item: any) => [item.id, item])).values())
+          : [];
 
-        setTrabajoLegislativo(Array.isArray(data?.gaceta) ? data.gaceta : []);
+        setTrabajoLegislativo(gacetaSinDuplicados);
         setLegislacion(Array.isArray(data?.legislacion) ? data.legislacion : []);
       } catch (error) {
         console.error('Error al obtener trabajo legislativo:', error);
