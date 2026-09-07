@@ -94,7 +94,7 @@ const skeletonStyles = `
                             <>
                                 <div className="fecha-boletin">{ principal?.fecha } </div>
                                 <h3 className="titulo-boletin"> { principal?.titulo }</h3>
-                                { principal?.descripcion[0].bullets }
+                                { principal?.descripcion?.[0]?.bullets }
                                 <a href={`/boletines/${principal?.id ?? ''}`}  className="btn-boletin w-button">Abrir Comunicado</a>
                             </>
                         )}
