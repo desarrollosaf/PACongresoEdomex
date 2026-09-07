@@ -6,9 +6,9 @@ import { BoletinesModule } from './boletines/boletines.module';
 import { TrabajoLegislativoModule } from './trabajo_legislativo/trabajo_legislativo.module';
 import { ComisionesModule } from './comisiones/comisiones.module';
 import { DiputadosModule } from './diputados/diputados.module';
+import { DatabaseModule } from './database/database.module';
 import { MesaModule } from './mesa/mesa.module';
 import { JuntaModule } from './junta/junta.module';
-import { DatabaseModule } from './database/database.module';
 import { AgendaModule } from './agenda/agenda.module';
 import { BannersModule } from './banners/banners.module';
 import { EstadisticasModule } from './estadisticas/estadisticas.module';
@@ -18,11 +18,11 @@ import { MonitoreoModule } from './monitoreo/monitoreo.module';
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
+      host: '192.168.36.58',
       port: 3306,
-      username: 'root',
-      password: '',
-      database: 'congreso_bd',
+      username: 'usr_congreso',
+      password: 'NAp1gMx3QB5rzwLJjGGx',
+      database: 'adminplem_congresoedomex',
       models: [],
       autoLoadModels: true, 
       synchronize: true,  
@@ -37,6 +37,7 @@ import { MonitoreoModule } from './monitoreo/monitoreo.module';
     TrabajoLegislativoModule,
     ComisionesModule,
     DiputadosModule,
+    DatabaseModule,
     MesaModule,
     JuntaModule,
     DatabaseModule,

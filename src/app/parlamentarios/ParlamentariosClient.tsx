@@ -197,7 +197,7 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
 
                     {/* Botones de navegación solictados */}
                     <div className="div-block-26" style={{ marginBottom: '2.5rem' }}>
-                        <a href="/mesa-directiva" target="_blank" rel="noopener noreferrer" className="btn-var-2 w-button">Mesa Directiva</a>
+                        <a href="/mesa-directiva" target="_blank" rel="noopener noreferrer" className="btn-var-2 w-button">Directiva</a>
                         <a href="/junta-de-coordinacion-politica" target="_blank" rel="noopener noreferrer" className="btn-var-2 w-button">Junta de Coordinación Política</a>
                         <a href="/comisiones" target="_blank" rel="noopener noreferrer" className="btn-var-2 w-button">Comisiones y Comités</a>
                     </div>

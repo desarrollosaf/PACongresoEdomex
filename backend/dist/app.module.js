@@ -15,9 +15,9 @@ const boletines_module_1 = require("./boletines/boletines.module");
 const trabajo_legislativo_module_1 = require("./trabajo_legislativo/trabajo_legislativo.module");
 const comisiones_module_1 = require("./comisiones/comisiones.module");
 const diputados_module_1 = require("./diputados/diputados.module");
+const database_module_1 = require("./database/database.module");
 const mesa_module_1 = require("./mesa/mesa.module");
 const junta_module_1 = require("./junta/junta.module");
-const database_module_1 = require("./database/database.module");
 const agenda_module_1 = require("./agenda/agenda.module");
 const banners_module_1 = require("./banners/banners.module");
 const estadisticas_module_1 = require("./estadisticas/estadisticas.module");
@@ -30,11 +30,11 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forRoot({
                 dialect: 'mysql',
-                host: 'localhost',
+                host: '192.168.36.58',
                 port: 3306,
-                username: 'root',
-                password: '',
-                database: 'congreso_bd',
+                username: 'usr_congreso',
+                password: 'NAp1gMx3QB5rzwLJjGGx',
+                database: 'adminplem_congresoedomex',
                 models: [],
                 autoLoadModels: true,
                 synchronize: true,
@@ -49,6 +49,7 @@ exports.AppModule = AppModule = __decorate([
             trabajo_legislativo_module_1.TrabajoLegislativoModule,
             comisiones_module_1.ComisionesModule,
             diputados_module_1.DiputadosModule,
+            database_module_1.DatabaseModule,
             mesa_module_1.MesaModule,
             junta_module_1.JuntaModule,
             database_module_1.DatabaseModule,

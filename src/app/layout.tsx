@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://congresoedomex.gob.mx/images/favicon.png",
-        type: "image/png",
-        width: 1024,
-        height: 683,
+        url: "https://congresoedomex.gob.mx/Thumbnail.jpg",
+        type: "image/jpeg",
+        width: 1600,
+        height: 900,
       },
     ],
   },
