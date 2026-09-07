@@ -5,6 +5,17 @@ import ClientShell from "@/components/ClientSheell";
 export const metadata: Metadata = {
   title: "Congreso del Estado de México",
   description: "Tu Congreso conectado y transparente",
+  openGraph: {
+    type: "website",
+    images: [
+      {
+        url: "https://congresoedomex.gob.mx/images/favicon.png",
+        type: "image/png",
+        width: 1024,
+        height: 683,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -21,14 +32,6 @@ export default function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content="https://congresoedomex.gob.mx/images/favicon.png"
-        />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1024" />
-        <meta property="og:image:height" content="683" />
 
         <link href="/css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="/css/webflow.css" rel="stylesheet" type="text/css" />
