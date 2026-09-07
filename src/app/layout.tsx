@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://congresoedomex.gob.mx/images/favicon.png",
-        type: "image/png",
-        width: 1024,
-        height: 683,
+        url: "https://congresoedomex.gob.mx/Thumbnail.jpg",
+        type: "image/jpeg",
+        width: 1600,
+        height: 900,
       },
     ],
   },
@@ -32,14 +32,6 @@ export default function RootLayout({
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:image"
-          content="https://congresoedomex.gob.mx/Thumbnail.jpg"
-        />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1600" />
-        <meta property="og:image:height" content="900" />
 
         <link href="/css/normalize.css" rel="stylesheet" type="text/css" />
         <link href="/css/webflow.css" rel="stylesheet" type="text/css" />
