@@ -80,89 +80,26 @@ return (
         <div className="cuerpo-jucopo">
             <h3 className="titulo-centrado">Integrantes</h3>
 
-            <style dangerouslySetInnerHTML={{__html: `
-              .secretarios-container-custom {
-                display: grid !important;
-                gap: 20px !important;
-                width: 100% !important;
-                justify-items: center !important;
-                align-items: stretch !important;
-                margin-bottom: 20px !important;
-              }
-              @media screen and (min-width: 992px) {
-                .secretarios-container-custom {
-                  grid-template-columns: repeat(4, 1fr) !important;
-                }
-              }
-              @media screen and (min-width: 768px) and (max-width: 991px) {
-                .secretarios-container-custom {
-                  grid-template-columns: repeat(2, 1fr) !important;
-                }
-              }
-              @media screen and (max-width: 767px) {
-                .secretarios-container-custom {
-                  grid-template-columns: 1fr !important;
-                }
-              }
-            `}} />
-
             <div className="bg-gradient-gris">
             {(() => {
                 if (!integrante || !Array.isArray(integrante)) return null;
                 
-                const normalizeString = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-                const isDiputacionPermanente = integrante.length > 0 && integrante[0]?.comision?.nombre === "Diputación Permanente";
-
-                if (isDiputacionPermanente) {
-                  return (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                      <br />
-                      {integrante.reduce((resultArray: any[], item: any, index: number) => {
-                        const chunkIndex = Math.floor(index / 4);
-                        if (!resultArray[chunkIndex]) {
-                          resultArray[chunkIndex] = [];
-                        }
-                        resultArray[chunkIndex].push(item);
-                        return resultArray;
-                      }, []).map((chunk: any[], chunkIndex: number) => (
-                        <div key={`dip-perm-${chunkIndex}`} style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-                            {chunk.map((item, itemIndex) => renderCard(item, `dip-perm-item-${chunkIndex}-${itemIndex}`))}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                }
-
-                const secretarios = integrante.filter((item: any) => {
-                  const cargo = item?.tipo_cargo?.valor || '';
-                  return normalizeString(cargo).includes('secretari');
-                });
-                const otros = integrante.filter((item: any) => {
-                  const cargo = item?.tipo_cargo?.valor || '';
-                  return !normalizeString(cargo).includes('secretari');
-                });
-
                 return (
-                  <>
-                    {otros.reduce((resultArray: any[], item: any, index: number) => {
-                      const chunkIndex = Math.floor(index / 3);
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <br />
+                    {integrante.reduce((resultArray: any[], item: any, index: number) => {
+                      const chunkIndex = Math.floor(index / 4);
                       if (!resultArray[chunkIndex]) {
                         resultArray[chunkIndex] = [];
                       }
                       resultArray[chunkIndex].push(item);
                       return resultArray;
                     }, []).map((chunk: any[], chunkIndex: number) => (
-                      <div key={`otros-${chunkIndex}`} className="w-layout-grid div-mesa-direciva">
-                          {chunk.map((item, itemIndex) => renderCard(item, `otros-item-${chunkIndex}-${itemIndex}`))}
+                      <div key={`mesa-${chunkIndex}`} style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                          {chunk.map((item, itemIndex) => renderCard(item, `mesa-item-${chunkIndex}-${itemIndex}`))}
                       </div>
                     ))}
-
-                    {secretarios.length > 0 && (
-                      <div className="secretarios-container-custom">
-                          {secretarios.map((item, index) => renderCard(item, `sec-${index}`))}
-                      </div>
-                    )}
-                  </>
+                  </div>
                 );
             })()}
             <br />
