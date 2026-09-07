@@ -27,7 +27,7 @@ type MesaItem = {
 export default function MesaSection({ integrante } : Props) {
   const router = useRouter();
   const isDiputacionPermanente = Array.isArray(integrante) && integrante.length > 0 && integrante[0]?.comision?.nombre === "Diputación Permanente";
-  const tituloSeccion = isDiputacionPermanente ? "Diputación Permanente" : "Mesa Directiva";
+  const tituloSeccion = isDiputacionPermanente ? "Diputación Permanente" : "Directiva";
 
   useEffect(() => {
     if (isDiputacionPermanente) {
