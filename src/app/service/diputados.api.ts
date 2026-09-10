@@ -32,6 +32,50 @@ export async function getDiputados() {
   }
 }
 
+const MAPEO_SIGLA_A_ID: Record<string, string> = {
+  morena: 'morena',
+  pvem: 'pvem',
+  pt: 'pt',
+  pri: 'pri',
+  pan: 'pan',
+  mc: 'mc',
+  prd: 'prd',
+};
+
+// 'Sin partido' se mapea explícitamente a 'indep'; el resto de siglas se
+// normaliza con toLowerCase(). Si llega una sigla que no está en el
+// mapeo, se avisa por consola en vez de descartarla en silencio.
+function mapearSiglaAId(siglas: string): string | null {
+  const normalizada = siglas.toLowerCase();
+  if (normalizada === 'sin partido') return 'indep';
+  return MAPEO_SIGLA_A_ID[normalizada] ?? null;
+}
+
+// Cuenta diputados por grupo parlamentario a partir de su militancia
+// vigente (integrante con fecha_fin === null). Un diputado puede tener
+// varios integrantes por cambios de bancada, así que el filtro por
+// fecha_fin es obligatorio, no solo tomar el primero del arreglo.
+export function calcularConteoPorPartido(diputados: any[]): Record<string, number> {
+  const conteo: Record<string, number> = {};
+
+  for (const diputado of diputados) {
+    const integrantes = diputado?.integrantes ?? [];
+    const vigente = integrantes.find((i: any) => i.fecha_fin === null);
+    const siglas = vigente?.partido?.siglas;
+    if (!siglas) continue;
+
+    const id = mapearSiglaAId(siglas);
+    if (!id) {
+      console.warn('calcularConteoPorPartido: sigla sin mapeo:', siglas);
+      continue;
+    }
+
+    conteo[id] = (conteo[id] ?? 0) + 1;
+  }
+
+  return conteo;
+}
+
 export async function getDiputadoPerfil(id: string) {
   try {
 
