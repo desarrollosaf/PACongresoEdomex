@@ -50,7 +50,7 @@ const getFoto = (item?: JuntaItem) => {
 
 export default function JuntaSection({ presidente, miembros, integrante } : Props) {
     return (
-    <section className="junta-de-coordinacion-politica max_width">
+    <section className="junta-de-coordinacion-politica">
       <div className="div-block-52">
         <div className="div-block-53">
           <h1 className="titulo-centrado">Junta de Coordinación Política</h1>
@@ -63,12 +63,14 @@ export default function JuntaSection({ presidente, miembros, integrante } : Prop
         </div>
       </div>
 
-      <div className="cuerpo-jucopo">
-        <h3 className="titulo-seccion">Integrantes</h3>
+      <h3 className="titulo-seccion" style={{ textAlign: 'center', maxWidth: 1440, margin: '0 auto' }}>Integrantes</h3>
 
-        <div>
-          <div className="columns-18 w-row">
-            <div className="column-22 w-col w-col-4">
+      <div className="cuerpo-jucopo max_width">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <br />
+
+          {presidente && (
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
               <div className="presidente-card-jucopo">
                 <img
                   src={getFoto(presidente)}
@@ -88,43 +90,57 @@ export default function JuntaSection({ presidente, miembros, integrante } : Prop
                 </div>
               </div>
             </div>
+          )}
 
-            <div className="column-23 w-col w-col-8">
-              <div className="w-layout-grid grid-15">
-                {miembros.map((item: any, index: any) => (
-                  <div className="miembro-card-jucopo" key={index}>
-                    <img
-                      src={getFoto(item)}
-                      loading="lazy"
-                      alt={getNombreCompleto(item) || `Integrante ${index + 1}`}
-                      className={`img-jucopo ${colores[index] || 'bg-morena'}`}
-                    />
-                    <div className="cuerpo-info-jucopo">
-                      <h3 className="nombre-jucopo">
-                        {getNombreCompleto(item) || 'Información no disponible'}
-                      </h3>
-                      <div className="text-block-24">
-                        {item?.tipo_cargo?.valor || 'Cargo no disponible'}
-                      </div>
-                    </div>
+          {miembros.length === 0 ? (
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="miembro-card-jucopo">
+                <div className="cuerpo-info-jucopo">
+                  <h3 className="nombre-jucopo">No hay integrantes disponibles</h3>
+                  <div className="text-block-24">
+                    No se pudo cargar la información de la junta.
                   </div>
-                ))}
-
-                {miembros.length === 0 && (
-                  <div className="miembro-card-jucopo">
-                    <div className="cuerpo-info-jucopo">
-                      <h3 className="nombre-jucopo">No hay integrantes disponibles</h3>
-                      <div className="text-block-24">
-                        No se pudo cargar la información de la junta.
-                      </div>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            miembros.reduce((resultArray: any[], item: any, index: number) => {
+              const chunkIndex = Math.floor(index / 4);
+              if (!resultArray[chunkIndex]) {
+                resultArray[chunkIndex] = [];
+              }
+              resultArray[chunkIndex].push(item);
+              return resultArray;
+            }, []).map((chunk: any[], chunkIndex: number) => (
+              <div key={`junta-${chunkIndex}`} style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                {chunk.map((item: any, itemIndex: number) => {
+                  const globalIndex = chunkIndex * 4 + itemIndex;
+                  return (
+                    <div className="miembro-card-jucopo" key={globalIndex}>
+                      <img
+                        src={getFoto(item)}
+                        loading="lazy"
+                        alt={getNombreCompleto(item) || `Integrante ${globalIndex + 1}`}
+                        className={`img-jucopo ${colores[globalIndex] || 'bg-morena'}`}
+                      />
+                      <div className="cuerpo-info-jucopo">
+                        <h3 className="nombre-jucopo">
+                          {getNombreCompleto(item) || 'Información no disponible'}
+                        </h3>
+                        <div className="text-block-24">
+                          {item?.tipo_cargo?.valor || 'Cargo no disponible'}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))
+          )}
         </div>
+      </div>
 
+      <div className="cuerpo-jucopo max_width">
         <div className="que_es_jucopo">
           <h1 className="titulo-seccion">
             ¿Qué hace la Junta de Coordinación Política?
