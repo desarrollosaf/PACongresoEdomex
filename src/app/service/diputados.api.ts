@@ -158,7 +158,7 @@ export async function fetchIniciativasDiputado(diputadoId: string, page: number 
     const options = {
       hostname: '192.168.36.61',
       port: 3013,
-      path: '/backend/api/estadistico/diputado/iniciativas',
+      path: '/api/estadistico/diputado/iniciativas',
       method: 'GET', // The API expects GET but requires a JSON body for filters
       headers: {
         'Content-Type': 'application/json',
