@@ -149,7 +149,7 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
                         <div className="column-21 w-col w-col-6">
                             <h1 className="titulo-gigante">¿Que es un grupo parlamentario?</h1>
                             <p className="texto-general">Es la agrupación de diputadas y diputados organizada conforme a su filiación partidista.<br/></p>
-                            <ul role="list">
+                            <ul role="list" style={{ paddingLeft: 0 }}>
                                 <li>
                                     <p className="texto-general">Su finalidad es garantizar la libre expresión de las distintas corrientes ideológicas dentro de la Legislatura.<br/></p>
                                 </li>
