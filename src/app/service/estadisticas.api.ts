@@ -1,6 +1,6 @@
 export async function getEstadisticasHome() {
   try {
-    const res = await fetch('http://192.168.36.61:3013/backend/api/estadistico/iniciativas/resumen');
+    const res = await fetch('http://192.168.36.61:3013/api/estadistico/iniciativas/resumen');
     if (!res.ok) {
       const text = await res.text();
       console.error('Error backend:', text);
