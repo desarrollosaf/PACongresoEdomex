@@ -8,7 +8,7 @@ export async function GET(
     const { id } = await params
 
     const res = await fetch(
-      `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/getvotospunto/${id}`,
+      `http://192.168.36.61:3013/backend/api/estadistico/getvotospunto/${id}`,
       { cache: 'no-store' }
     )
 
