@@ -1,4 +1,4 @@
-import * as https from 'https';
+import * as http from 'http';
 
 function getApiUrl() {
   if (typeof window === 'undefined') {
@@ -156,8 +156,8 @@ export async function fetchIniciativasDiputado(diputadoId: string, page: number 
     const data = JSON.stringify({ id: diputadoId });
 
     const options = {
-      hostname: 'parlamentario.congresoedomex.gob.mx',
-      port: 443,
+      hostname: '192.168.36.61',
+      port: 3013,
       path: '/backend/api/estadistico/diputado/iniciativas',
       method: 'GET', // The API expects GET but requires a JSON body for filters
       headers: {
@@ -166,7 +166,7 @@ export async function fetchIniciativasDiputado(diputadoId: string, page: number 
       },
     };
 
-    const req = https.request(options, (res) => {
+    const req = http.request(options, (res) => {
       let responseBody = '';
 
       res.on('data', (chunk) => {

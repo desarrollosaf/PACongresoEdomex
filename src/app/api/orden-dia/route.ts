@@ -10,7 +10,7 @@ export async function GET(request: Request) {
 
   try {
     const response = await fetch(
-      `https://parlamentario.congresoedomex.gob.mx/backend/api/estadistico/getordendia?id=${id}`
+      `http://192.168.36.61:3013/backend/api/estadistico/getordendia?id=${id}`
     );
 
     if (!response.ok) {
