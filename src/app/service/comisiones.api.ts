@@ -31,7 +31,7 @@ export async function getComisionById(id: string) {
 export async function getIniciativasByComision(id: string) {
   try {
     const res = await fetch(
-      `http://192.168.36.61:3013/backend/api/estadistico/comision/iniciativas?id=${id}`,
+      `http://192.168.36.61:3013/api/estadistico/comision/iniciativas?id=${id}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -55,7 +55,7 @@ export async function getIniciativasByComision(id: string) {
 export async function getEventosByComision(id: string) {
   try {
     const res = await fetch(
-      `http://192.168.36.61:3013/backend/api/estadistico/comision/eventos/?id=${id}`,
+      `http://192.168.36.61:3013/api/estadistico/comision/eventos/?id=${id}`,
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },

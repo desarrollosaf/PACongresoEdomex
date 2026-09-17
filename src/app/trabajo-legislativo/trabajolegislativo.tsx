@@ -811,7 +811,7 @@ export default function TrabajoLegislativo() {
                           </div>
                           {item.documento && (
                             <a
-                              href={`http://192.168.36.61:3013/backend/${item.documento}`}
+                              href={`http://192.168.36.61:3013/${item.documento}`}
                               className="btn-var-2 w-button"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -936,7 +936,7 @@ export default function TrabajoLegislativo() {
                             <div className="texto-general-bold">{item.observac || 'En Estudio'}</div>
                             {item.documento && (
                               <a
-                                href={`http://192.168.36.61:3013/backend/${item.documento}`}
+                                href={`http://192.168.36.61:3013/${item.documento}`}
                                 className="btn-boletin w-button"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -961,7 +961,7 @@ export default function TrabajoLegislativo() {
                             <div>
                               {item.acuerdo.decreto && (
                                 <a
-                                  href={`http://192.168.36.61:3013/backend/${item.acuerdo.decreto}`}
+                                  href={`http://192.168.36.61:3013/${item.acuerdo.decreto}`}
                                   className="btn-boletin w-button"
                                   target="_blank"
                                   rel="noopener noreferrer"
@@ -1134,7 +1134,7 @@ export default function TrabajoLegislativo() {
                             <div className="texto-general-bold">{item.observac || 'En Estudio'}</div>
                             {item.documento && (
                               <a
-                                href={`http://192.168.36.61:3013/backend/${item.documento}`}
+                                href={`http://192.168.36.61:3013/${item.documento}`}
                                 className="btn-boletin w-button"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -1157,7 +1157,7 @@ export default function TrabajoLegislativo() {
                             <div>
                               {item.documento_acuerdo && (
                                 <a
-                                  href={`http://192.168.36.61:3013/backend/${item.documento_acuerdo}`}
+                                  href={`http://192.168.36.61:3013/${item.documento_acuerdo}`}
                                   className="btn-boletin w-button"
                                   target="_blank"
                                   rel="noopener noreferrer"

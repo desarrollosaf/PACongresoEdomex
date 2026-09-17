@@ -12,7 +12,7 @@ export async function GET(request: Request) {
   queryParams.append('page', page);
 
   try {
-    const response = await fetch(`http://192.168.36.61:3013/backend/api/estadistico/getordenes?${queryParams.toString()}`);
+    const response = await fetch(`http://192.168.36.61:3013/api/estadistico/getordenes?${queryParams.toString()}`);
     
     if (!response.ok) {
       return NextResponse.json({ error: 'Failed to fetch from backend' }, { status: response.status });
