@@ -83,11 +83,24 @@ return (
             <div className="bg-gradient-gris">
             {(() => {
                 if (!integrante || !Array.isArray(integrante)) return null;
-                
+
+                const presidenteIndex = integrante.findIndex(
+                  (item: any) => item?.tipo_cargo?.valor?.trim().toLowerCase() === 'presidencia'
+                );
+                const presidente = presidenteIndex !== -1 ? integrante[presidenteIndex] : null;
+                const resto = presidenteIndex !== -1
+                  ? integrante.filter((_: any, i: number) => i !== presidenteIndex)
+                  : integrante;
+
                 return (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     <br />
-                    {integrante.reduce((resultArray: any[], item: any, index: number) => {
+                    {presidente && (
+                      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '10px' }}>
+                        {renderCard(presidente, 'mesa-presidente')}
+                      </div>
+                    )}
+                    {resto.reduce((resultArray: any[], item: any, index: number) => {
                       const chunkIndex = Math.floor(index / 4);
                       if (!resultArray[chunkIndex]) {
                         resultArray[chunkIndex] = [];
