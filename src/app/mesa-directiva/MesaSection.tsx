@@ -132,7 +132,7 @@ return (
                 />
                 </div>
                 <div className="w-col w-col-6">
-                <h1 className="titulo-boletin">¿Que hace la Directiva?</h1>
+                <h1 className="titulo-boletin">¿Qué hace la Directiva?</h1>
                 <p className="texto-comunicado">
                     La Directiva organiza y conduce las sesiones del Congreso. Se integra por una
                     presidencia, dos vicepresidencias y las secretarías necesarias. Su labor es mantener
