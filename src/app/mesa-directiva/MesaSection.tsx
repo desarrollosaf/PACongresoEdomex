@@ -133,6 +133,44 @@ return (
                 </div>
             </div>
             </div>
+
+            <div className="que_es_jucopo">
+            <div className="columns-24 w-row">
+                <div className="w-col w-col-6">
+                <img
+                    src="/images/img_directiva_2.webp"
+                    loading="lazy"
+                    sizes="(max-width: 479px) 100vw, (max-width: 767px) 97vw, (max-width: 991px) 48vw, (max-width: 3918px) 49vw, 1920px"
+                    srcSet="/images/img_directiva_2-p-500.webp 500w, /images/img_directiva_2-p-800.webp 800w, /images/img_directiva_2-p-1080.webp 1080w, /images/img_directiva_2-p-1600.webp 1600w, /images/img_directiva_2.webp 1920w"
+                    alt=""
+                    className="img-informacion"
+                />
+                </div>
+                <div className="w-col w-col-6">
+                <h1 className="titulo-boletin">¿Que hace la Directiva?</h1>
+                <p className="texto-comunicado">
+                    La Directiva organiza y conduce las sesiones del Congreso. Se integra por una
+                    presidencia, dos vicepresidencias y las secretarías necesarias. Su labor es mantener
+                    el orden, coordinar los debates, registrar las votaciones y dar seguimiento a los
+                    acuerdos.
+                </p>
+                <h1 className="titulo-boletin">Sus funciones son:</h1>
+                <p className="texto-comunicado">
+                    • Supervisar y asegurar el correcto funcionamiento de las actividades legislativas.<br />
+                    • Aplicar con imparcialidad la ley y el reglamento.<br />
+                    • Convocar y conducir las sesiones.<br />
+                    • Organizar el orden del día.<br />
+                    • Dirigir los debates y deliberaciones.<br />
+                    • Verificar el quórum.<br />
+                    • Mantener el orden en el recinto legislativo.<br />
+                    • Dar trámite a los asuntos parlamentarios.<br />
+                    • Representar jurídicamente al Poder Legislativo, a través de su presidencia.<br />
+                    • Comunicar su integración a otras autoridades.<br />
+                    • Garantizar el respeto institucional durante el desarrollo de los trabajos.
+                </p>
+                </div>
+            </div>
+            </div>
         </div>
     </section>
   )
