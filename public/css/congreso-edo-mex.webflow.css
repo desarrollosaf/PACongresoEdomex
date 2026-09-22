@@ -5242,8 +5242,9 @@
 .columns-24 {
   grid-column-gap: 40px;
   grid-row-gap: 40px;
-  justify-content: center;
-  align-items: center;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   display: flex;
 }
 

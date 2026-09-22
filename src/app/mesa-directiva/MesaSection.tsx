@@ -117,21 +117,7 @@ return (
             <br />
             </div>
 
-            <div className="que_es_jucopo">
-            <div className="columns-21 w-row">
-                <div className="w-col w-col-6">
-                <h1 className="titulo-seccion">¿Que hace la  Directiva?</h1>
-                </div>
-                <div className="w-col w-col-6">
-                <p className="texto-comunicado">
-                    Atiende los asuntos del Congreso mexiquense durante los periodos de receso; es decir,
-                    entre un periodo ordinario y otro. Debido a que tiene atribuciones limitadas, puede
-                    convocar a todas y todos los legisladores a un periodo extraordinario para resolver
-                    asuntos cuya importancia lo requiera.
-                </p>
-                </div>
-            </div>
-            </div>
+            
 
             <div className="que_es_jucopo">
             <div className="columns-24 w-row">
