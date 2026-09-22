@@ -69,11 +69,10 @@ return (
         <div className="div-block-52">
             <div className="div-block-53">
             <h1 className="titulo-centrado">{tituloSeccion}</h1>
-            {/* <p className="subtitulo-info-centrado">
-                Grupo de legisladoras y legisladores que trabajan durante los periodos de receso de la
-                Legislatura. Puede convocar a todas y todos los legisladores a un periodo extraordinario
-                para resolver asuntos que lo ameriten.
-            </p> */}
+              <p className="subtitulo-info-centrado">
+               Órgano de la Legislatura que conduce y organiza el desarrollo de las sesiones del Congreso del Estado de México. Se integra de forma plural y
+               paritaria, y es responsable de garantizar el orden y cumplimiento del trabajo legislativo.
+              </p> 
             </div>
         </div>
 
