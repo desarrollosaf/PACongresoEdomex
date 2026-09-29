@@ -13,16 +13,17 @@ import { AgendaModule } from './agenda/agenda.module';
 import { BannersModule } from './banners/banners.module';
 import { EstadisticasModule } from './estadisticas/estadisticas.module';
 import { MonitoreoModule } from './monitoreo/monitoreo.module';
+import { SintesisInformativaModule } from './sintesis-informativa/sintesis-informativa.module';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: '192.168.36.58',
+      host: 'localhost',
       port: 3306,
-      username: 'usr_congreso',
-      password: 'NAp1gMx3QB5rzwLJjGGx',
-      database: 'adminplem_congresoedomex',
+      username: 'root',
+      password: '',
+      database: 'congreso_bd',
       models: [],
       autoLoadModels: true, 
       synchronize: true,  
@@ -44,7 +45,8 @@ import { MonitoreoModule } from './monitoreo/monitoreo.module';
     AgendaModule,
     BannersModule,
     EstadisticasModule,
-    MonitoreoModule
+    MonitoreoModule,
+    SintesisInformativaModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -22,6 +22,7 @@ import { VisitaPagina } from './entities/visita-pagina.entity';
 import { EncuestaSatisfaccion } from './entities/encuesta-satisfaccion.entity';
 import { EncuestaSatisfaccionDetallada } from './entities/encuesta-satisfaccion-detallada.entity';
 import { Monitoreo } from './entities/monitoreo.entity';
+import { SintesisInformativa } from './entities/sintesis-informativa.entity';
 
 const sequelizeFeatures = SequelizeModule.forFeature([
   Legislatura,
@@ -43,7 +44,8 @@ const sequelizeFeatures = SequelizeModule.forFeature([
   VisitaPagina,
   EncuestaSatisfaccion,
   EncuestaSatisfaccionDetallada,
-  Monitoreo
+  Monitoreo,
+  SintesisInformativa
 ]);
 
 @Global()
