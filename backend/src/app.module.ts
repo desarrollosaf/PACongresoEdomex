@@ -19,11 +19,11 @@ import { SintesisInformativaModule } from './sintesis-informativa/sintesis-infor
   imports: [
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
+      host: '192.168.36.58',
       port: 3306,
-      username: 'root',
-      password: '',
-      database: 'congreso_bd',
+      username: 'usr_congreso',
+      password: 'NAp1gMx3QB5rzwLJjGGx',
+      database: 'adminplem_congresoedomex',
       models: [],
       autoLoadModels: true, 
       synchronize: true,  
