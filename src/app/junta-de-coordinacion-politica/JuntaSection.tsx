@@ -141,34 +141,52 @@ export default function JuntaSection({ presidente, miembros, integrante } : Prop
       </div>
 
       <div className="cuerpo-jucopo max_width">
-        <div className="que_es_jucopo">
-          <h1 className="titulo-seccion">
-            ¿Qué hace la Junta de Coordinación Política?
-          </h1>
-          <p className="texto-comunicado">
-            La <strong>Junta de Coordinación Política</strong> sirve para
-            <strong> coordinar y conducir la vida política del Congreso</strong>,
-            asegurando que el trabajo legislativo se realice mediante el diálogo,
-            los acuerdos y la representación equilibrada de los grupos
-            parlamentarios.
-            <br />
-            <br />
-            <strong>De manera concreta, su función es:</strong>
-            <br />
-            Coordinar los trabajos legislativos entre los distintos grupos
-            parlamentarios.
-            <br />
-            Construir acuerdos políticos para el funcionamiento del Congreso.
-            <br />
-            Definir y ordenar la agenda legislativa.
-            <br />
-            Proponer la integración de comisiones y comités.
-            <br />
-            Impulsar decisiones que garanticen gobernabilidad y eficiencia
-            legislativa.
-            <br />
-            Servir como espacio de diálogo y negociación parlamentaria.
-          </p>
+        <div className="que_es_jucopo jucopo-info-card">
+          <span className="jucopo-flecha jucopo-flecha-izq" aria-hidden="true">
+            <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2.5 11L12 20" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+
+          <div className="jucopo-info-columnas">
+            <div className="jucopo-info-titulo">
+              <h1 className="titulo-seccion">
+                ¿Qué hace la Junta de Coordinación Política?
+              </h1>
+            </div>
+            <div className="jucopo-info-texto">
+              <p className="texto-comunicado">
+                La <strong>Junta de Coordinación Política</strong> sirve para
+                <strong> coordinar y conducir la vida política del Congreso</strong>,
+                asegurando que el trabajo legislativo se realice mediante el diálogo,
+                los acuerdos y la representación equilibrada de los grupos
+                parlamentarios.
+                <br />
+                <br />
+                <strong>De manera concreta, su función es:</strong>
+                <br />
+                Coordinar los trabajos legislativos entre los distintos grupos
+                parlamentarios.
+                <br />
+                Construir acuerdos políticos para el funcionamiento del Congreso.
+                <br />
+                Definir y ordenar la agenda legislativa.
+                <br />
+                Proponer la integración de comisiones y comités.
+                <br />
+                Impulsar decisiones que garanticen gobernabilidad y eficiencia
+                legislativa.
+                <br />
+                Servir como espacio de diálogo y negociación parlamentaria.
+              </p>
+            </div>
+          </div>
+
+          <span className="jucopo-flecha jucopo-flecha-der" aria-hidden="true">
+            <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2L11.5 11L2 20" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
         </div>
       </div>
     </section>

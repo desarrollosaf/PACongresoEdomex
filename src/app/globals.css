@@ -627,3 +627,69 @@ body {
 .evt-tag--tribuna { background: #fff3e0; color: #e65100; }
 .evt-tag--dispensa { background: #fce4ec; color: #c62828; }
 
+/* ── Tarjeta informativa estilo carrusel (JUCOPO, etc.) ───── */
+.jucopo-info-card {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 44px 36px;
+}
+
+.jucopo-flecha {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #595959;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jucopo-info-columnas {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 48px;
+  min-width: 0;
+}
+
+.jucopo-info-titulo {
+  flex: 0 0 320px;
+}
+
+.jucopo-info-titulo .titulo-seccion {
+  margin: 0;
+  text-align: left;
+}
+
+.jucopo-info-texto {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 991px) {
+  .jucopo-info-columnas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .jucopo-info-titulo {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .jucopo-info-card {
+    padding: 28px 18px;
+    gap: 14px;
+  }
+
+  .jucopo-flecha {
+    width: 36px;
+    height: 36px;
+  }
+}
+
