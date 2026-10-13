@@ -635,18 +635,6 @@ body {
   padding: 44px 36px;
 }
 
-.jucopo-flecha {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #595959;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .jucopo-info-columnas {
   display: flex;
   flex: 1;
@@ -687,9 +675,5 @@ body {
     gap: 14px;
   }
 
-  .jucopo-flecha {
-    width: 36px;
-    height: 36px;
-  }
 }
 

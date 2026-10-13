@@ -142,12 +142,6 @@ export default function JuntaSection({ presidente, miembros, integrante } : Prop
 
       <div className="cuerpo-jucopo max_width">
         <div className="que_es_jucopo jucopo-info-card">
-          <span className="jucopo-flecha jucopo-flecha-izq" aria-hidden="true">
-            <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L2.5 11L12 20" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-
           <div className="jucopo-info-columnas">
             <div className="jucopo-info-titulo">
               <h1 className="titulo-seccion">
@@ -181,12 +175,6 @@ export default function JuntaSection({ presidente, miembros, integrante } : Prop
               </p>
             </div>
           </div>
-
-          <span className="jucopo-flecha jucopo-flecha-der" aria-hidden="true">
-            <svg width="14" height="22" viewBox="0 0 14 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 2L11.5 11L2 20" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
         </div>
       </div>
     </section>
