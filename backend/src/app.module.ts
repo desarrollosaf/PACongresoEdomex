@@ -13,6 +13,7 @@ import { AgendaModule } from './agenda/agenda.module';
 import { BannersModule } from './banners/banners.module';
 import { EstadisticasModule } from './estadisticas/estadisticas.module';
 import { MonitoreoModule } from './monitoreo/monitoreo.module';
+import { DialogoModule } from './dialogos/dialogos.module';
 import { SintesisInformativaModule } from './sintesis-informativa/sintesis-informativa.module';
 
 @Module({
@@ -46,7 +47,8 @@ import { SintesisInformativaModule } from './sintesis-informativa/sintesis-infor
     BannersModule,
     EstadisticasModule,
     MonitoreoModule,
-    SintesisInformativaModule
+    SintesisInformativaModule,
+    DialogoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
