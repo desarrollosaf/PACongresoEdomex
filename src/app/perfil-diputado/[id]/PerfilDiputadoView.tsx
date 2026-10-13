@@ -200,11 +200,7 @@ export default function PerfilDiputadoView({ diputado, serverIniciativas = [] }:
                             <div className={imgUrl ? 'w-col w-col-6' : 'w-col w-col-12'}>
                               <h2 className="heading-38">{c.titulo}</h2>
                               {c.texto && (
-                                <div
-                                  dangerouslySetInnerHTML={{ __html: c.texto }}
-                                  style={{ ['--empty-p' as any]: 'none' }}
-                                  className="comunicado-texto"
-                                />
+                                <p className="comunicado-resumen">{stripHtml(c.texto)}</p>
                               )}
                               <a href={`/boletines/${c.id}`}  className="btn-black-str w-button">Abrir Comunicado</a>
                             </div>

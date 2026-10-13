@@ -413,6 +413,15 @@ body {
   }
 }
 
+/* Resumen del comunicado destacado en el perfil de diputado */
+.comunicado-resumen {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
 /* Oculta párrafos vacíos que vienen del HTML almacenado en BD */
 .comunicado-texto {
   text-align: justify;
