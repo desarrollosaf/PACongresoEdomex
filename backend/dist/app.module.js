@@ -22,6 +22,8 @@ const agenda_module_1 = require("./agenda/agenda.module");
 const banners_module_1 = require("./banners/banners.module");
 const estadisticas_module_1 = require("./estadisticas/estadisticas.module");
 const monitoreo_module_1 = require("./monitoreo/monitoreo.module");
+const dialogos_module_1 = require("./dialogos/dialogos.module");
+const sintesis_informativa_module_1 = require("./sintesis-informativa/sintesis-informativa.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,11 +32,11 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             sequelize_1.SequelizeModule.forRoot({
                 dialect: 'mysql',
-                host: '192.168.36.58',
+                host: 'localhost',
                 port: 3306,
-                username: 'usr_congreso',
-                password: 'NAp1gMx3QB5rzwLJjGGx',
-                database: 'adminplem_congresoedomex',
+                username: 'root',
+                password: '',
+                database: 'congreso_bd',
                 models: [],
                 autoLoadModels: true,
                 synchronize: true,
@@ -56,7 +58,9 @@ exports.AppModule = AppModule = __decorate([
             agenda_module_1.AgendaModule,
             banners_module_1.BannersModule,
             estadisticas_module_1.EstadisticasModule,
-            monitoreo_module_1.MonitoreoModule
+            monitoreo_module_1.MonitoreoModule,
+            sintesis_informativa_module_1.SintesisInformativaModule,
+            dialogos_module_1.DialogoModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
