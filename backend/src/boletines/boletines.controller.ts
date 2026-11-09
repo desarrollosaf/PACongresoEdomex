@@ -17,6 +17,12 @@ export class BoletinesController {
     return this.boletinesService.findAll();
   }
 
+
+@Get('boletinesTodos')
+  async boletinesTodos() {
+    return this.boletinesService.boletinesTodos();
+}
+
 @Get('boletinesAll/:pagina')
   async boletinesAll(@Param('pagina', ParseIntPipe) pagina: number){
     const page = Number(pagina) || 1;
