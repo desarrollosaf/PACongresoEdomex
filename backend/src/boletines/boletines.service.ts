@@ -89,6 +89,72 @@ export class BoletinesService {
     return merged.slice(0, 9);
   }
 
+  async boletinesTodos() {
+    const legis = await Legislatura.findOne({ where: { numero: 'LXII' } });
+
+    const comunicados2 = await Comunicados.findAll({
+      where: {
+        legislatura_id: legis?.id || null,
+        publicado: 0
+      },
+      order: [[literal('CAST(comunicado AS UNSIGNED)'), 'DESC']],
+      include: [
+        {
+          model: Foto,
+          as: "fotos",
+          separate: true,
+          order: [['path', 'ASC']]
+        },
+        {
+          model: DescripcionComunicados,
+          as: 'descripcion', 
+          separate: true,
+          order: [['orden', 'ASC']]
+        }
+      ]
+    });
+
+    const comunicadosd = await Comunicados.findAll({
+      where: {
+        publicado: 0
+      },
+      order: [[literal('CAST(comunicado AS UNSIGNED)'), 'DESC']],
+      include: [
+        {
+          model: Foto,
+          as: "fotos",
+          separate: true,
+          order: [['path', 'ASC']]
+        },
+        {
+          model: DescripcionComunicados,
+          as: 'descripcion', 
+          separate: true,
+          order: [['orden', 'ASC']]
+        }
+      ]
+    });
+
+    const map = new Map();
+    const merged = [];
+    
+    for (const c of comunicados2) {
+      if (!map.has(c.id)) {
+        map.set(c.id, true);
+        merged.push(c);
+      }
+    }
+    
+    for (const c of comunicadosd) {
+      if (!map.has(c.id)) {
+        map.set(c.id, true);
+        merged.push(c);
+      }
+    }
+
+    return merged;
+  }
+
   async findOne(id: string) {
     return await Comunicados.findByPk(id, {
       include: [
