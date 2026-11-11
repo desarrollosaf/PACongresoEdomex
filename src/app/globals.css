@@ -1,84 +1,17 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@theme {
+  --color-institucional: #96134b;
+  --color-marino: #1a1a2e;
+  --color-dorado: #bb945c;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-.gacetas-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 24px;
-}
-
-.gaceta-card {
-  width: 100%;
-}
-
-.gaceta-img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.gaceta-card h4 {
-  margin: 0 0 8px 0;
-  font-size: 32px;
-  line-height: 1.2;
-}
-
-.gaceta-card div {
-  font-size: 18px;
-  line-height: 1.4;
-}
-
-@media (max-width: 1200px) {
-  .gacetas-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 991px) {
-  .gacetas-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 767px) {
-  .gacetas-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 479px) {
-  .gacetas-grid {
-    grid-template-columns: 1fr;
-  }
+  --color-voto-favor: #16a34a;
+  --color-voto-contra: #8b1a1a;
 }
 
 .filtros-gaceta {
@@ -417,8 +350,7 @@ body {
 .comunicado-texto {
   text-align: justify;
 }
-.comunicado-texto p:empty,
-.comunicado-texto p:blank {
+.comunicado-texto p:empty {
   display: none;
 }
 .comunicado-texto p {
@@ -626,4 +558,38 @@ body {
 .evt-tag--voto   { background: #e8f5e9; color: #2e7d32; }
 .evt-tag--tribuna { background: #fff3e0; color: #e65100; }
 .evt-tag--dispensa { background: #fce4ec; color: #c62828; }
+
+/* El diagrama parlamentario ahora es un SVG dentro de un div, no un <img>.
+   .img-parlamentaria limitaba al 60% pensando en el PNG original. */
+div.img-parlamentaria {
+  max-width: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: stretch;
+}
+
+/* .features-wrapper (webflow.css:5138) agrega flex-wrap: wrap, que rompe
+   el space-around de la regla base (2214) y recorre los bloques a la
+   izquierda. Con flex-wrap: nowrap los 8 bloques (~1036px sin envolver) no
+   caben en el ancho disponible de la tarjeta en escritorios angostos
+   (~952px a 992px de viewport, con overflow: hidden heredado de Webflow
+   recortando los bloques que sobran), así que se opta por dejarlos
+   envolver mostrandose centrados con espacio parejo entre ellos.
+   Selector "div.features-wrapper" (0,1,1) para ganarle en especificidad
+   al ".features-wrapper" de Webflow (0,1,0), que además carga después
+   que este archivo. */
+div.features-wrapper {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Botón "Indep.": no tiene una regla :hover propia en webflow.css como el
+   resto de los partidos (btn-pan, btn-pt, etc.), así que sin esto cae al
+   hover genérico rojo (#b5261e) de .button.grupo_parlamentario:hover. */
+.button.grupo_parlamentario.btn-indep:hover {
+  color: #fff;
+  background-color: #454545;
+}
 
