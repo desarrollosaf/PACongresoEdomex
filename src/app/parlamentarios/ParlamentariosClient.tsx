@@ -3,14 +3,10 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import ParlamentaryStats from './ParlamentaryStats';
+import { BASE_URL, getGruposParlamentarios, getPartidoId, type Partido } from './grupos';
 
 type Foto = {
     path: string;
-};
-
-type Partido = {
-    siglas: string;
-    nombre: string;
 };
 
 type Distrito = {
@@ -37,21 +33,11 @@ type Diputado = {
     integrantes?: Integrante[];
 };
 
-const BASE_URL = 'https://sistema.congresoedomex.gob.mx/';
-
-const PARTIDOS = [
-    { id: 'morena', nombre: 'Morena', clase: '', logo: 'images/morena.png' },
-    { id: 'pvem', nombre: 'PVEM', clase: 'btn-pvem', logo: 'images/PVEM.png' },
-    { id: 'pt', nombre: 'PT', clase: 'btn-pt', logo: 'images/PT.png' },
-    { id: 'pri', nombre: 'PRI', clase: 'btn-pri', logo: 'images/PRI.png' },
-    { id: 'pan', nombre: 'PAN', clase: 'btn-pan', logo: 'images/Pan.png' },
-    { id: 'mc', nombre: 'MC', clase: 'btn-mc', logo: 'images/MC.png' },
-    { id: 'prd', nombre: 'PRD', clase: 'btn-prd', logo: 'images/PRD.png' },
-];
-
 type SortKey = '' | 'nombre' | 'apellido' | 'genero' | 'distrito';
 
 export default function ParlamentariosClient({ diputados }: { diputados: Diputado[] }) {
+    const { grupos, sinPartido } = useMemo(() => getGruposParlamentarios(diputados), [diputados]);
+
     const [busqueda, setBusqueda] = useState('');
     const [partidoSeleccionado, setPartidoSeleccionado] = useState<string | null>(null);
     const [orden, setOrden] = useState<SortKey>('');
@@ -91,10 +77,7 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
         let lista = [...diputados];
 
         // Filtrar por el partido seleccionado
-        lista = lista.filter((d) => {
-            const siglas = d.integrantes?.[0]?.partido?.siglas?.toLowerCase() ?? '';
-            return siglas === partidoSeleccionado.toLowerCase();
-        });
+        lista = lista.filter((d) => getPartidoId(d) === partidoSeleccionado.toLowerCase());
 
         // Autocompletado de texto (nombre, apellidos, distrito)
         if (busqueda.trim()) {
@@ -128,7 +111,7 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
         return lista;
     }, [diputados, busqueda, partidoSeleccionado, orden]);
 
-    const partidoInfo = PARTIDOS.find(p => p.id === partidoSeleccionado);
+    const partidoInfo = grupos.find(p => p.id === partidoSeleccionado);
 
     return (
         <section className="diputados max_width">
@@ -137,7 +120,9 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
                 <h3 className="heading-3 titulo-seccion" style={{ textAlign: 'left' }}>Grupos Parlamentarios</h3>
                 <br />
                 <div className="filtros-diputados grupos-parlamentarios-selector">
-                    <ParlamentaryStats 
+                    <ParlamentaryStats
+                        grupos={grupos}
+                        sinPartido={sinPartido}
                         onSelectPartido={handleSelectPartido} 
                         partidoSeleccionado={partidoSeleccionado} 
                     />
@@ -183,13 +168,15 @@ export default function ParlamentariosClient({ diputados }: { diputados: Diputad
                     <div className="div-block-36" style={{ marginBottom: '2rem' }}>
                         <div className="features-wrapper">
                             <div className="features-gp">
-                                <img
-                                    src={partidoInfo.logo}
-                                    loading="lazy"
-                                    sizes="(max-width: 839px) 100vw, 839px"
-                                    alt={`${partidoInfo.nombre} Logo`}
-                                    className="img-grupo_parlamentario-logo"
-                                />
+                                {partidoInfo.logo && (
+                                    <img
+                                        src={partidoInfo.logo}
+                                        loading="lazy"
+                                        sizes="(max-width: 839px) 100vw, 839px"
+                                        alt={`${partidoInfo.nombre} Logo`}
+                                        className="img-grupo_parlamentario-logo"
+                                    />
+                                )}
                                 <div className="titulo-seccion-legislativo">{partidoInfo.nombre}</div>
                             </div>
                         </div>

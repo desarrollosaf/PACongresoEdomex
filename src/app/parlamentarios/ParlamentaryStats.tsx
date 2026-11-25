@@ -1,25 +1,37 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { COLOR_SIN_PARTIDO, type GrupoParlamentario } from './grupos';
 
-const PARTIDOS = [
-    { id: 'morena', nombre: 'Morena', clase: '', img: 'images/morena.png', srcSet: 'images/morena-p-500.png 500w, images/morena.png 839w', sizes: '(max-width: 839px) 100vw, 839px', porcentaje: '52%' },
-    { id: 'pvem', nombre: 'PVEM', clase: 'btn-pvem', img: 'images/PVEM.png', srcSet: 'images/PVEM-p-500.png 500w, images/PVEM-p-800.png 800w, images/PVEM.png 852w', sizes: '(max-width: 852px) 100vw, 852px', porcentaje: '12%' },
-    { id: 'pt', nombre: 'PT', clase: 'btn-pt', img: 'images/PT.png', srcSet: 'images/PT-p-500.png 500w, images/PT.png 852w', sizes: '(max-width: 852px) 100vw, 852px', porcentaje: '10.7%' },
-    { id: 'pri', nombre: 'PRI', clase: 'btn-pri', img: 'images/PRI.png', srcSet: 'images/PRI-p-500.png 500w, images/PRI-p-800.png 800w, images/PRI.png 825w', sizes: '(max-width: 825px) 100vw, 825px', porcentaje: '9.3%' },
-    { id: 'pan', nombre: 'PAN', clase: 'btn-pan', img: 'images/Pan.png', srcSet: 'images/Pan-p-500.png 500w, images/Pan.png 840w', sizes: '(max-width: 840px) 100vw, 840px', porcentaje: '8%' },
-    { id: 'mc', nombre: 'MC', clase: 'btn-mc', img: 'images/MC.png', srcSet: 'images/MC-p-500.png 500w, images/MC.png 799w', sizes: '(max-width: 799px) 100vw, 799px', porcentaje: '5.3%' },
-    { id: 'prd', nombre: 'PRD', clase: 'btn-prd', img: 'images/PRD.png', srcSet: 'images/PRD-p-500.png 500w, images/PRD.png 775w', sizes: '(max-width: 775px) 100vw, 775px', porcentaje: '2.7%' },
-];
+// Geometría de la gráfica de curules (unidades del viewBox)
+const FILAS = 4;
+const RADIO = 20.5;
+const PASO_X = 109;
+const PASO_Y = 101;
 
 interface ParlamentaryStatsProps {
+    grupos: GrupoParlamentario[];
+    sinPartido: number;
     onSelectPartido?: (id: string) => void;
     partidoSeleccionado?: string | null;
 }
 
-export default function ParlamentaryStats({ onSelectPartido, partidoSeleccionado }: ParlamentaryStatsProps = {}) {
+export default function ParlamentaryStats({ grupos, sinPartido, onSelectPartido, partidoSeleccionado }: ParlamentaryStatsProps) {
     const wrapperRef = useRef<HTMLDivElement>(null);
-    const imgRef = useRef<HTMLImageElement>(null);
+    const imgRef = useRef<SVGSVGElement>(null);
+
+    // Una curul por diputado, agrupadas por partido y al final las que no tienen partido
+    const curules = grupos.flatMap((g) =>
+        Array.from({ length: g.total }, () => ({ color: g.color, nombre: g.nombre }))
+    );
+    for (let i = 0; i < sinPartido; i++) {
+        curules.push({ color: COLOR_SIN_PARTIDO, nombre: 'Sin partido' });
+    }
+    const columnas = Math.ceil(curules.length / FILAS);
+    const descripcion = grupos
+        .map((g) => `${g.nombre}: ${g.total}`)
+        .concat(sinPartido > 0 ? `Sin partido: ${sinPartido}` : [])
+        .join(', ');
 
     useEffect(() => {
         const style = document.createElement('style');
@@ -111,31 +123,46 @@ export default function ParlamentaryStats({ onSelectPartido, partidoSeleccionado
     }, []);
 
     return (
-        <div className="div-block-36" ref={wrapperRef}>
-            <img
-                ref={imgRef}
-                src="images/grupo-parlamentario-2.png"
-                loading="lazy"
-                sizes="(max-width: 1666px) 100vw, 1666px"
-                alt=""
-                srcSet="images/grupo-parlamentario-2.png 500w, images/grupo-parlamentario-2.png 800w, images/grupo-parlamentario-2.png 1080w, images/grupo-parlamentario-2.png 1600w, images/grupo-parlamentario-2.png 1666w"
-                className="img-parlamentaria img-parlamentaria-anim"
-            />
+        <div className="div-block-36" ref={wrapperRef} style={{ width: '100%' }}>
+            {curules.length > 0 && (
+                <svg
+                    ref={imgRef}
+                    viewBox={`0 0 ${(columnas - 1) * PASO_X + RADIO * 2} ${(FILAS - 1) * PASO_Y + RADIO * 2}`}
+                    role="img"
+                    aria-label={`Integración del Congreso por partido. ${descripcion}`}
+                    className="img-parlamentaria img-parlamentaria-anim"
+                    style={{ width: '100%', height: 'auto' }}
+                >
+                    {curules.map((c, i) => (
+                        <circle
+                            key={i}
+                            cx={RADIO + Math.floor(i / FILAS) * PASO_X}
+                            cy={RADIO + (i % FILAS) * PASO_Y}
+                            r={RADIO}
+                            fill={c.color}
+                        >
+                            <title>{c.nombre}</title>
+                        </circle>
+                    ))}
+                </svg>
+            )}
             <div className="features-wrapper">
-                {PARTIDOS.map((p, i) => (
+                {grupos.map((p, i) => (
                     <div
-                        key={p.img}
+                        key={p.id}
                         className={`features-block features-block-anim ${i % 2 === 0 ? 'sube' : 'no-sube'}`}
                     >
-                        <img
-                            src={p.img}
-                            loading="lazy"
-                            sizes={p.sizes}
-                            srcSet={p.srcSet}
-                            alt=""
-                            className="image-23"
-                        />
-                        <div className="features-title">{p.porcentaje}</div>
+                        {p.logo && (
+                            <img
+                                src={p.logo}
+                                loading="lazy"
+                                sizes={p.sizes}
+                                srcSet={p.srcSet}
+                                alt=""
+                                className="image-23"
+                            />
+                        )}
+                        {p.porcentaje && <div className="features-title">{p.porcentaje}</div>}
                         <a
                             href="#"
                             onClick={(e) => {
